@@ -1,0 +1,24 @@
+footer {
+    background-image: url("../../assets/img/footer-bg.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h5 {
+    border-left: 2px solid #2196F3;
+}
+
+hr {
+    color: #2196F3;
+    height: 2px;
+    opacity: 1;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
