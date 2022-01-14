@@ -3,6 +3,7 @@ footer {
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
+    border-top: 4px solid black;
 }
 
 h5 {
@@ -17,8 +18,14 @@ hr {
 
 ul {
     list-style-type: none;
+    padding-left: 0;
 }
 
 a {
     text-decoration: none;
+    padding-left: 1rem;
+}
+
+fa-icon {
+    color: dodgerblue;
 }
