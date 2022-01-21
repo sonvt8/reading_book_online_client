@@ -1,7 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountsComponent } from './accounts/accounts.component';
+import { ForgotPasswordComponent } from './accounts/forgot-password/forgot-password.component';
+import { RegisterComponent } from './accounts/register/register.component';
+import { HomeComponent } from './home/home.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'accounts', component: AccountsComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+
+
+
+
+
+  // Always put default route at the end.
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
