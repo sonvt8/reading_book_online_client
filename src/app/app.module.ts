@@ -14,6 +14,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { RegisterComponent } from './accounts/register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './accounts/forgot-password/forgot-password.component';
+import { AdminNavbarComponent } from './dashboard/admin-navbar/admin-navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ForgotPasswordComponent } from './accounts/forgot-password/forgot-passw
     AccountsComponent,
     RegisterComponent,
     ProfileComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule,
