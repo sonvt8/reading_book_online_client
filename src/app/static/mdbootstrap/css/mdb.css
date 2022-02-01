@@ -18297,34 +18297,34 @@ button.md-toast-close-button {
     border: none; }
 
 .double-nav,
-.fixed-sn main,
-.fixed-sn footer {
+main,
+footer {
   padding-left: 15rem; }
 
-.fixed-sn main {
+main {
   padding-top: 5.5rem; }
 
 @media (max-width: 1440px) {
-  .fixed-sn .double-nav,
-  .fixed-sn main,
-  .fixed-sn footer {
+  .double-nav,
+  main,
+  footer {
     padding-left: 0; } }
 
 @media (min-width: 600px) {
-  .fixed-sn main,
-  .fixed-sn .page-footer .container-fluid {
+  main,
+  .page-footer .container-fluid {
     margin-left: 2%;
     margin-right: 2%; } }
 
 @media (min-width: 992px) {
-  .fixed-sn main,
-  .fixed-sn .page-footer .container-fluid {
+  main,
+  .page-footer .container-fluid {
     margin-left: 5%;
     margin-right: 5%; } }
 
 @media (min-width: 1200px) {
-  .fixed-sn main,
-  .fixed-sn .page-footer .container-fluid {
+  main,
+  .page-footer .container-fluid {
     margin-left: 6%;
     margin-right: 6%; } }
 
