@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountsComponent } from './accounts/accounts.component';
 import { ForgotPasswordComponent } from './accounts/forgot-password/forgot-password.component';
 import { RegisterComponent } from './accounts/register/register.component';
+import { AdminCategoryComponent } from './dashboard/admin-category/admin-category.component';
 import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +22,9 @@ const routes: Routes = [
     path: 'admin', 
     component: AdminComponent,
     children:[
+      { path: '', component: AdminHomeComponent },
       { path: 'home', component: AdminHomeComponent },
+      { path: 'category', component: AdminCategoryComponent },
     ]
   },
   
