@@ -18,6 +18,8 @@ import { AdminNavbarComponent } from './dashboard/admin-navbar/admin-navbar.comp
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component';
 import { AdminCategoryComponent } from './dashboard/admin-category/admin-category.component';
+import { CategoryService } from './_services/category.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,10 @@ import { AdminCategoryComponent } from './dashboard/admin-category/admin-categor
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

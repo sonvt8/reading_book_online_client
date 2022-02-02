@@ -34,33 +34,39 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tiên Hiệp</td>
-                            <td>2022-02-15</td>
-                            <td>tinsatthu</td>
-                            <td>
-                                <span class="badge badge-pill badge-success">Hiển Thị</span>
-                            </td>
-                            <td class="text-center">
-                                <a class="teal-text pr-2" data-toggle="tooltip" data-placement="top" title="Sửa" href=""><i class="fas fa-pencil-alt"></i></a>
-                                <a class="red-text pr-2" data-toggle="tooltip" data-placement="top" title="Xóa Chapter"><i class="fas fa-times"></i></a>
-                            </td>
-                        </tr>
+                            <tr *ngIf="categories.length==0" class="text-center">
+                                <td colspan="6">Chưa Có Thể Loại nào</td>
+                            </tr>
+                            <ng-container *ngIf="categories.length!==0">
+                                <tr *ngFor="let cat of categories">
+                                    <td>{{cat?.id}}</td>
+                                    <td>{{cat?.name}}</td>
+                                    <td>{{cat?.createDate | date: 'mediumDate'}}</td>
+                                    <td>{{cat?.createBy}}</td>
+                                    <td>
+                                        <span *ngIf="cat.status==1" class="badge badge-pill badge-success">Hiển Thị</span>
+                                        <span *ngIf="cat.status==0" class="badge badge-pill badge-danger">Khóa</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="teal-text pr-2" data-toggle="tooltip" data-placement="top" title="Sửa" href=""><i class="fas fa-pencil-alt"></i></a>
+                                        <a class="red-text pr-2" data-toggle="tooltip" data-placement="top" title="Xóa Chapter"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </ng-container>
                         </tbody>
                     </table>
-                    <div aria-label="Page navigation example">
+                    <div aria-label="Page navigation example" *ngIf="totalPages>1">
                         <ul class="pagination pg-blue justify-content-end">
-                            <li class="page-item">
-                                <a class="page-link">
+                            <li class="page-item" *ngIf="currentPage!=1">
+                                <a class="page-link" (click)="getCategory(currentPage - 1)">
                                     <i class="fas fa-step-backward fa-sm"></i>
                                 </a>
                             </li>
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
+                            <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                <a class="page-link" (click)="getCategory(i)">{{i}}</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link">
+                            <li class="page-item" *ngIf="currentPage != totalPages">
+                                <a class="page-link" (click)="getCategory(currentPage + 1)">
                                     <i class="fas fa-step-forward fa-sm"></i>
                                 </a>
                             </li>
