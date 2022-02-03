@@ -15,21 +15,19 @@ export class AdminCategoryComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   totalPages: number = 0;
   currentPage: number = 1;
-  theKeyword: string = "";
-
 
   constructor(private categoryService: CategoryService, private router: Router) { }
 
 
   ngOnInit(): void {
-    this.getCategory(1);
+    this.getCategory(1, "");
   }
 
-  getCategory(thePageNumber: number){
+  getCategory(thePageNumber: number, theKeyword: string){
     if (thePageNumber === undefined) {
       thePageNumber = 1;
     }
-    this.subscriptions.push(this.categoryService.getCategoryList(thePageNumber, this.theKeyword)
+    this.subscriptions.push(this.categoryService.getCategoryList(thePageNumber, theKeyword)
         .subscribe(data => {
           this.categories = data.content;
           this.currentPage = data.number + 1;
@@ -41,7 +39,7 @@ export class AdminCategoryComponent implements OnInit, OnDestroy {
               pages.push(i);
           }
           this.page = pages;
-          console.log(this.totalPages);
+          
         }
     ));
   }
