@@ -15,6 +15,12 @@ export class CategoryService {
   public getCategoryList(thePage: number, theKeyword: string): Observable<GetCategoryResponse> {
     return this.httpClient.get<GetCategoryResponse>(`${this.baseUrl}quan-tri/the-loai/danh-sach?keyword=${theKeyword}&pagenumber=${thePage}`);
   }
+
+  public addCategory(name: string): Observable<Category> {
+    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/them`, name);
+  }
+
+  
 }
 
 interface GetCategoryResponse {

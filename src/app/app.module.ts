@@ -19,7 +19,12 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component';
 import { AdminCategoryComponent } from './dashboard/admin-category/admin-category.component';
 import { CategoryService } from './_services/category.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddCategoryComponent } from './dashboard/add-category/add-category.component';
+import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminNavbarComponent,
     AdminComponent,
     AdminHomeComponent,
-    AdminCategoryComponent
+    AdminCategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +48,11 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
