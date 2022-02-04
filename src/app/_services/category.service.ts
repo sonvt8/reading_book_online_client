@@ -20,6 +20,14 @@ export class CategoryService {
     return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/them`, name);
   }
 
+  public getCategory(id: number): Observable<Category> {
+    return this.httpClient.get<Category>(`${this.baseUrl}quan-tri/the-loai/cap-nhat/${id}`);
+  }
+
+  public updateCategory(category: Category): Observable<Category> {
+    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/cap-nhat/${category.id}`, category);
+  }
+
   
 }
 
