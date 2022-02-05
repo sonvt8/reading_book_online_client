@@ -26,7 +26,6 @@ export class EditCategoryComponent implements OnInit {
       this.handleCategoryDetails();
     });
   }
-  //+this.route.snapshot.paramMap.get('id')
 
   handleCategoryDetails(): void {
     this.currentId = +this.route.snapshot.params['id'];

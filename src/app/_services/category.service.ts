@@ -28,6 +28,10 @@ export class CategoryService {
     return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/cap-nhat/${category.id}`, category);
   }
 
+  public deleteCategory(id: number): Observable<Category> {
+    return this.httpClient.delete<Category>(`${this.baseUrl}quan-tri/the-loai/xoa/${id}`);
+  }
+
   
 }
 
