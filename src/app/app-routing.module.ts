@@ -9,6 +9,7 @@ import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component'
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
+import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 
 const routes: Routes = [
   { 
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'category', component: AdminCategoryComponent },
       { path: 'category/:id', component: EditCategoryComponent },
       { path: 'add-category', component: AddCategoryComponent },
+      { path: 'user', component: ListUserComponent },
     ]
   },
   
