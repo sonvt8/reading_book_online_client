@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/_services/category.service';
 
+
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',

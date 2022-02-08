@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any;
+declare const showNavbar: any
 
 
 @Component({
@@ -14,13 +14,8 @@ export class AdminNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.showNavbar();
+    showNavbar();
   }
-
-  showNavbar(){
-    $(".button-collapse").click(function(){
-      $(".side-nav").css("transform","translateX(0%)");
-    });
-  }
+  
 
 }

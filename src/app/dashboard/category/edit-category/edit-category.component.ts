@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Category } from 'src/app/_models/category';
 import { CategoryService } from 'src/app/_services/category.service';
 
-declare var $ : any;
 
 @Component({
   selector: 'app-edit-category',
