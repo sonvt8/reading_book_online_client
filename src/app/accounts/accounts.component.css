@@ -1,5 +1,5 @@
 section {
-    height: 32rem;
+    height: 34rem;
     background-image: url('../../assets/img/login_bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -29,4 +29,12 @@ section {
 
 a {
     text-decoration: none;
+}
+
+label {
+    margin: 0.5rem auto;
+}
+
+input {
+    margin-bottom: 0.5rem;
 }
