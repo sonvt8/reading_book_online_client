@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 declare var $: any;
+declare var Ps: any;
 
 
 @Component({
@@ -18,9 +19,18 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   showNavbar(){
-    $(".button-collapse").click(function(){
-      $(".side-nav").css("transform","translateX(0%)");
+    $(".button-collapse").sideNav();
+    var container = document.querySelector('.custom-scrollbar');
+    Ps.initialize(container, {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        minScrollbarLength: 20
     });
+
+    // Tooltips Initialization
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
   }
 
 }

@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
@@ -28,6 +30,7 @@ export class ListUserComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.showSelect();
     this.getUser(1,"");
   }
 
@@ -50,6 +53,12 @@ export class ListUserComponent implements OnInit {
           
         }
     ));
+  }
+
+  showSelect(){
+    $(document).ready(function () {
+      $('.mdb-select').materialSelect();
+    });
   }
 
 }
