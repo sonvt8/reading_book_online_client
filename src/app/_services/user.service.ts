@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAdminUserList(search: string, type: number, pagenumber: number): Observable<GetAdminUserResponse> {
-    return this.httpClient.get<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach?search=${search}&type=${type}&pagenumber=${pagenumber}`);
+  public getAdminUserList(form: FormData): Observable<GetAdminUserResponse> {
+    return this.httpClient.post<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach`, form);
   }
 }
 
