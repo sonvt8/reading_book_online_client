@@ -16,12 +16,12 @@ export class CustomValidationService {
       }
 
       /*
-        The password should be a minimum of eight characters long.
+        The password should be a minimum of six to thirteen characters long.
         It has at least one lower case letter.
         It has at least one upper case letter.
         It has at least one number.
       */
-      const regex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+      const regex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,13}$');
       const valid = regex.test(control.value);
       return valid ? null as any : { invalidPassword: true };
     };
