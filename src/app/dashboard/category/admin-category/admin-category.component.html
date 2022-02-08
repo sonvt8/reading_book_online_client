@@ -18,7 +18,8 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-12">
                             <div class="md-form mb-0">
-                                <input #myInput type="text" class="form-control" (keyup.enter)="getCategory(1, myInput.value)" placeholder="Tìm Kiếm Theo Tên" length="255">
+                                <input #myInput type="text" class="form-control" (keyup.enter)="getCategory(1, myInput.value)" length="255" id="name">
+                                <label for="name" class="form-label text-primary">Tìm Kiếm Theo Tên</label>
                             </div>
                         </div>
                     </div>
@@ -48,8 +49,8 @@
                                         <span *ngIf="cat.status==0" class="badge badge-pill badge-danger">Khóa</span>
                                     </td>
                                     <td class="text-center">
-                                        <a class="teal-text pr-2" data-toggle="tooltip" data-placement="top" title="Sửa" routerLink="/admin/category/{{cat.id}}"><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="red-text pr-2" data-toggle="tooltip" data-placement="top" title="Xóa Chapter" (click)="onDeleteCategory(cat.id)"><i class="fas fa-times"></i></a>
+                                        <a class="teal-text pr-2" title="Sửa" routerLink="/admin/category/{{cat.id}}"><i class="fas fa-pencil-alt"></i></a>
+                                        <a class="red-text pr-2" title="Xóa" (click)="onDeleteCategory(cat.id)"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
                             </ng-container>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var $: any;
-declare var Ps: any;
+declare const showNavbar: any
 
 
 @Component({
@@ -15,22 +14,8 @@ export class AdminNavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.showNavbar();
+    showNavbar();
   }
-
-  showNavbar(){
-    $(".button-collapse").sideNav();
-    var container = document.querySelector('.custom-scrollbar');
-    Ps.initialize(container, {
-        wheelSpeed: 2,
-        wheelPropagation: true,
-        minScrollbarLength: 20
-    });
-
-    // Tooltips Initialization
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-  }
+  
 
 }

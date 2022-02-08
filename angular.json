@@ -35,7 +35,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/static/mdbootstrap/css/bootstrap.min.css",
-              "src/assets/static/mdbootstrap/css/mdb.css",
+              "src/assets/static/mdbootstrap/css/mdb.min.css",
               "src/assets/static/bower/Font-Awesome/css/all.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "node_modules/ngx-toastr/toastr.css"
@@ -44,7 +44,9 @@
               "src/assets/js/jquery.js",
               "src/assets/js/popper.min.js",
               "src/assets/static/mdbootstrap/js/bootstrap.min.js",
-              "src/assets/js/mdb.min.js"            
+              "src/assets/js/mdb.min.js",
+              "src/assets/js/showNavbar.js"
+                   
             ]
           },
           "configurations": {
