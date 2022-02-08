@@ -22,7 +22,7 @@ import { CategoryService } from './_services/category.service';
 import { UserService } from './_services/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCategoryComponent } from './dashboard/category/add-category/add-category.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
@@ -58,6 +58,7 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
   ],
