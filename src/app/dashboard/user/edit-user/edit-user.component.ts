@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-edit-user',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditUserComponent implements OnInit {
 
+  user: User = new User();
   constructor() { }
 
   ngOnInit(): void {

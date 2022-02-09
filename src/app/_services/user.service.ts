@@ -15,6 +15,10 @@ export class UserService {
   public getAdminUserList(form: FormData): Observable<GetAdminUserResponse> {
     return this.httpClient.post<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach`, form);
   }
+
+  public updateAdminUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat`, user);
+  }
 }
 
 interface GetAdminUserResponse {
