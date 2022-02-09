@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Đọc truyện online';
+  title = 'Web Truyện - Đọc truyện online, hoàn toàn miễn phí';
 
   constructor(
     private titleService: Title, 
@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {}
 
   setDocTitle(title: string) {
-    console.log('current title:::::' + this.titleService.getTitle());
     this.titleService.setTitle(title);
   }
 
@@ -28,8 +27,6 @@ export class AppComponent implements OnInit {
         filter(event => event instanceof NavigationEnd),
         map(() => {
           let child = this.activatedRoute.firstChild;
-          console.log(child!.firstChild)
-          console.log(child!.snapshot.data['title'])
           while (child!.firstChild) {
             child = child!.firstChild;
           }
