@@ -5,10 +5,7 @@
                 <h5 class="text-primary ps-2">Giới thiệu</h5>
                 <hr />
                 <small>
-                    WebTruyện là nơi chia sẻ, cập nhật sớm và đầy đủ nhất những câu truyện hay, nổi tiếng hoàn toàn miễn
-                    phí từ các nguồn internet và các thành viên. Những câu chuyện với nội dung hấp dẫn và đa dạng với
-                    đầy đủ các thể loại từ tiểu thuyết ngôn tình, truyện ma kinh dị, kiếm hiệp, ... và nhiều thể loại
-                    hấp dẫn khác.
+                    {{info?.introduce}}
                 </small>
                 <br />
                 <small>
@@ -42,15 +39,15 @@
                 <ul>
                     <li>
                         <fa-icon [icon]="faEnvelope"></fa-icon>
-                        <a href="">Email: apt.truyenonline@gmail.com</a>
+                        <a href="">Email: {{info?.email}}</a>
                     </li>
                     <li>
                         <fa-icon [icon]="faPhoneAlt"></fa-icon>
-                        <a href="">Phone: 077.123.45678</a>
+                        <a href="">Phone: {{info?.phone}}</a>
                     </li>
                     <li>
-                        <fa-icon [icon]="faFacebookSquare"></fa-icon>
-                        <a href="">Facebook: WebTruyenFree</a>
+                        <fa-icon [icon]="faSkype"></fa-icon>
+                        <a href="">Skype: {{info?.skype}}</a>
                     </li>
                 </ul>
             </div>
