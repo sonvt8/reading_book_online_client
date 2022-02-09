@@ -34,10 +34,6 @@ export class ListUserComponent implements OnInit {
     this.getUser(1);
   }
 
-  testSearch(search: string){
-    this.search = search;
-    console.log(this.search);
-  }
 
   getUser(pagenumber: number){
     if (pagenumber === undefined) {

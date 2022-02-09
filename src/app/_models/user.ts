@@ -8,7 +8,8 @@ export class User {
     status: number;
     gold: number;
     email: string;
-    roles: Role[];
+    roleList: Role[];
+    rolesInput: string[];
 
 
 
@@ -20,6 +21,7 @@ export class User {
         this.status = 1;
         this.gold = 0;
         this.email="";
-        this.roles = [];
+        this.roleList = [];
+        this.rolesInput = [];
     }
 }

@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { Role } from 'src/app/_models/role';
 import { User } from 'src/app/_models/user';
+import { UserService } from 'src/app/_services/user.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-edit-user',
@@ -8,10 +16,67 @@ import { User } from 'src/app/_models/user';
 })
 export class EditUserComponent implements OnInit {
 
+  private subscriptions: Subscription[] = [];
   user: User = new User();
-  constructor() { }
+  currentId: number = 0;
+
+  listRole: Role[] = [];
+
+  roles = [
+    {'id': 1, 'name': 'ROLE_ADMIN'},
+    {'id': 2, 'name': 'ROLE_SMOD'},
+    {'id': 3, 'name': 'ROLE_CONVERTER'},
+    {'id': 4, 'name': 'ROLE_USER'}
+  ];
+  //role = this.roles[0];
+
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.showRole();
+    this.getListRoles();
+    this.route.paramMap.subscribe(() => {
+      this.handleUserDetails();
+    });
+  }
+
+  handleUserDetails(): void {
+    this.currentId = +this.route.snapshot.params['id'];
+    this.userService.getAdminUser(this.currentId).subscribe(data => {
+      this.user = data;
+      this.user.rolesInput = this.user.roleList.map(role => role.name);
+    }
+    );
+    
+  }
+
+  submitEditAdminUser(editForm: NgForm): void {
+    // console.log(ngForm.value);
+    const data = new FormData();
+    data.append('status', JSON.stringify(this.user.status));
+    this.user.rolesInput.forEach(tempRole => data.append('role', tempRole));
+    this.subscriptions.push(this.userService.updateAdminUser(data, this.user.id).subscribe(
+        response => {
+            console.log(response.rolesInput);
+            this.router.navigateByUrl('/quan_tri/nguoi_dung').then(r => {});
+            editForm.reset();
+            this.toastr.success(`Tài khoản ${response.username} cập nhật thành công!`);
+        }, error => this.toastr.error(error.error.message)
+    ));
+  }
+
+  getListRoles(){
+    this.subscriptions.push(this.userService.getListRoles().subscribe(
+      response =>{
+        this.listRole = response;     
+      }
+    ));
+  }
+
+  showRole(){
+    $(document).ready(function () {
+      $('.mdb-select').materialSelect();
+  });
   }
 
 }

@@ -10,6 +10,7 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
+import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 
 const routes: Routes = [
   { 
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'the_loai/:id', component: EditCategoryComponent },
       { path: 'them_the_loai', component: AddCategoryComponent },
       { path: 'nguoi_dung', component: ListUserComponent },
+      { path: 'nguoi_dung/:id', component: EditUserComponent },
     ]
   },
   

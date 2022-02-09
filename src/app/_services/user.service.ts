@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Role } from '../_models/role';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -16,8 +17,16 @@ export class UserService {
     return this.httpClient.post<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach`, form);
   }
 
-  public updateAdminUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat`, user);
+  public updateAdminUser(form: FormData, id: number): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat/${id}`, form);
+  }
+
+  public getAdminUser(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat/${id}`);
+  }
+
+  public getListRoles(): Observable<Role[]> {
+    return this.httpClient.get<Role[]>(`${this.baseUrl}quan_tri/nguoi_dung/phan_quyen`);
   }
 }
 
