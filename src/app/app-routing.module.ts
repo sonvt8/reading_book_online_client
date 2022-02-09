@@ -13,12 +13,12 @@ import { ListUserComponent } from './dashboard/user/list-user/list-user.componen
 
 const routes: Routes = [
   { 
-    path: 'home', 
+    path: 'trang-chu', 
     component: HomeComponent,
     children:[
-      { path: 'accounts', component: AccountsComponent, data: {title: 'Đăng nhập'}},
-      { path: 'register', component: RegisterComponent, data: {title: 'Đăng ký'}},
-      { path: 'forgot-password', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
+      { path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
+      { path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
+      { path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
     ]
   },
   { 
@@ -36,7 +36,7 @@ const routes: Routes = [
   
 
   // Always put default route at the end.
-  { path: '', redirectTo: '/home', pathMatch: 'full', data: {title: 'Trang chủ'} }
+  { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} }
 ];
 
 @NgModule({
