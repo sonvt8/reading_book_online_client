@@ -16,27 +16,27 @@ const routes: Routes = [
     path: 'home', 
     component: HomeComponent,
     children:[
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'accounts', component: AccountsComponent, data: {title: 'Đăng nhập'}},
+      { path: 'register', component: RegisterComponent, data: {title: 'Đăng ký'}},
+      { path: 'forgot-password', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
     ]
   },
   { 
     path: 'admin', 
     component: AdminComponent,
     children:[
-      { path: '', component: AdminHomeComponent },
-      { path: 'home', component: AdminHomeComponent },
-      { path: 'category', component: AdminCategoryComponent },
-      { path: 'category/:id', component: EditCategoryComponent },
-      { path: 'add-category', component: AddCategoryComponent },
-      { path: 'user', component: ListUserComponent },
+      { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
+      { path: 'home', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
+      { path: 'category', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại'}},
+      { path: 'category/:id', component: EditCategoryComponent, data: {title: 'Thể loại'}},
+      { path: 'add-category', component: AddCategoryComponent, data: {title: 'Thêm thể loại'}},
+      { path: 'user', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
     ]
   },
   
 
   // Always put default route at the end.
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full', data: {title: 'Trang chủ'} }
 ];
 
 @NgModule({

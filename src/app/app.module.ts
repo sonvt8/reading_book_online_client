@@ -1,6 +1,6 @@
 // Module
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
@@ -62,7 +62,12 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
     BrowserAnimationsModule,
     ToastrModule.forRoot({timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
   ],
-  providers: [CategoryService, UserService, {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},],
+  providers: [
+    CategoryService, 
+    UserService, 
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+    Title,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
