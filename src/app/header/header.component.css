@@ -30,3 +30,18 @@ svg {
 .navbar-nav .nav-item img {
     color: rgba(18,18,23,.6);
 }
+
+.btn {
+    padding: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+form.search input, form.search button {
+    height: 100%;
+    display: inline-block;
+}
+
+form.search button {
+    padding: 0.3rem;
+}
