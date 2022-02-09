@@ -29,7 +29,6 @@ export class FooterComponent implements OnInit {
 
   getDataHeader(){
     this.dataService.getData().subscribe(res => {
-      console.log(res);
       this.info = res.information;
     });
   }

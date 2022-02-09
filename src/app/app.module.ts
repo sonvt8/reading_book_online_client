@@ -30,6 +30,7 @@ import { EditCategoryComponent } from './dashboard/category/edit-category/edit-c
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { AddUserComponent } from './dashboard/user/add-user/add-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
+import { PageContentComponent } from './home/page-content/page-content.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
     EditCategoryComponent,
     ListUserComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    PageContentComponent
   ],
   imports: [
     BrowserModule,
