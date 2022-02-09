@@ -16,21 +16,21 @@ const routes: Routes = [
     path: 'home', 
     component: HomeComponent,
     children:[
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'tai_khoan', component: AccountsComponent },
+      { path: 'dang_ky', component: RegisterComponent },
+      { path: 'quen_mat_khau', component: ForgotPasswordComponent },
     ]
   },
   { 
-    path: 'admin', 
+    path: 'quan_tri', 
     component: AdminComponent,
     children:[
       { path: '', component: AdminHomeComponent },
       { path: 'home', component: AdminHomeComponent },
-      { path: 'category', component: AdminCategoryComponent },
-      { path: 'category/:id', component: EditCategoryComponent },
-      { path: 'add-category', component: AddCategoryComponent },
-      { path: 'user', component: ListUserComponent },
+      { path: 'the_loai', component: AdminCategoryComponent },
+      { path: 'the_loai/:id', component: EditCategoryComponent },
+      { path: 'them_the_loai', component: AddCategoryComponent },
+      { path: 'nguoi_dung', component: ListUserComponent },
     ]
   },
   
