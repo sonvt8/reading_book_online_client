@@ -1,59 +1,53 @@
-<footer>
-    <section class="container">
-        <div class="row gx-5 py-3">
-            <div class="col">
-                <h5 class="text-primary ps-2">Giới thiệu</h5>
-                <hr />
-                <small>
-                    WebTruyện là nơi chia sẻ, cập nhật sớm và đầy đủ nhất những câu truyện hay, nổi tiếng hoàn toàn miễn
-                    phí từ các nguồn internet và các thành viên. Những câu chuyện với nội dung hấp dẫn và đa dạng với
-                    đầy đủ các thể loại từ tiểu thuyết ngôn tình, truyện ma kinh dị, kiếm hiệp, ... và nhiều thể loại
-                    hấp dẫn khác.
-                </small>
-                <br />
-                <small>
-                    Truyện trên WebTruyện được tổng hợp tự động từ internet, chúng tôi không giữ bản quyền cũng như chịu
-                    trách nhiệm nội dung trên website này.
-                </small>
-            </div>
-
-            <div class="col">
-                <h5 class="text-primary ps-2">Hỗ trợ</h5>
-                <hr />
-                <ul>
-                    <li>
-                        <fa-icon [icon]="faMobileAlt" size="lg"></fa-icon>
-                        <a href="">Ứng dụng truyện online</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faBug"></fa-icon>
-                        <a href="">Báo lỗi ứng dụng</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faQuestion"></fa-icon>
-                        <a href="">Câu hỏi thường gặp</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col">
-                <h5 class="text-primary ps-2">Liên hệ</h5>
-                <hr />
-                <ul>
-                    <li>
-                        <fa-icon [icon]="faEnvelope"></fa-icon>
-                        <a href="">Email: apt.truyenonline@gmail.com</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faPhoneAlt"></fa-icon>
-                        <a href="">Phone: 077.123.45678</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faFacebookSquare"></fa-icon>
-                        <a href="">Facebook: WebTruyenFree</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<footer class="truyen-footer">
+    <section id="footer">
+        <section class="container footer-con">
+            <section class="row text-center text-xs-center text-sm-left text-md-left">
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Giới thiêu</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <p>{{info?.introduce}}</p>
+                </section>
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Hỗ trợ</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="#" target="_blank"><span class="block-list-icon">
+                                <i class="truyen-icon icon-mobile mr-3"></i></span> Ứng dụng Truyện Online</a></li>
+                        <li><a href="#"><span class="block-list-icon"><i
+                                class="truyen-icon icon-warning mr-3"></i></span>Báo lỗi ứng dụng</a></li>
+                        <li><a href="#"><span class="block-list-icon"><i
+                                class="truyen-icon icon-faq mr-3"></i></span> FAQs</a></li>
+                    </ul>
+                </section>
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Liên hệ</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <ul class="list-unstyled quick-links">
+                        <li>
+                            <a href="mailto: {{info?.email}}">
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-email mr-3"></i>
+                                </span> Email: <span>{{info?.email}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-mobile mr-3"></i>
+                                </span>
+                                Phone: <span>{{info?.phone}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="skype: ${information.skype}">
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-skype mr-3"></i>
+                                </span>Skype: <span>{{info?.skype}}</span>
+                            </a></li>
+                    </ul>
+                </section>
+            </section>
+        </section>
     </section>
 </footer>
+<!-- Footer -->
