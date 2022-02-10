@@ -8,7 +8,7 @@ import { DataService } from '../_services/data.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css', '../../assets/css/myWebStyle.css']
 })
 export class HeaderComponent implements OnInit {
   info!: Information;

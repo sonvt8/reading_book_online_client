@@ -1,57 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="../../assets/img/logo.png" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://img.icons8.com/material-rounded/24/000000/sort.png" />
-                        <span>Danh sách</span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle caret-off" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <svg viewBox="0 0 1024 1024" width="24" height="24">
-                            <path
-                                d="M512 85.333333c235.52 0 426.666667 191.146667 426.666667 426.666667s-191.146667 426.666667-426.666667 426.666667S85.333333 747.52 85.333333 512 276.48 85.333333 512 85.333333z m234.666667 192L426.24 426.24 277.333333 746.666667l320.426667-148.906667L746.666667 277.333333zM512 465.066667c26.026667 0 46.933333 20.906667 46.933333 46.933333 0 26.026667-20.906667 46.933333-46.933333 46.933333-26.026667 0-46.933333-20.906667-46.933333-46.933333 0-26.026667 20.906667-46.933333 46.933333-46.933333z">
-                            </path>
-                        </svg>
-                        <span>Thể loại</span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
+<header class="truyen-header">
+    <nav class="navbar navbar-truyen">
+        <section class="container">
+            <section class="navbar-header">
+                <a *ngIf="info?.logo" routerLink="/trang-chu" class="navbar-logo hidden-sm hidden-xs"> <img
+                        class="img-fluid" src={{info.logo}} alt="">
+                </a>
+                <a *ngIf="!info?.logo" routerLink="/trang-chu" class="navbar-logo hidden-sm hidden-xs"> <img
+                        class="img-fluid" src="../../assets/static/images/logo.png" alt="">
+                </a>
+                <a href="#" class="navbar-search-btn js-open-search-box-mobile d-md-block d-lg-none">
+                    <i class="truyen-icon icon-search"></i>
+                </a>
+                <section class="navbar-category">
+                    <button class="navbar-category-btn js-open-sidebar">
+                        <span class="lines">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </span>
+                        <span class="hidden-xs hidden-sm">Danh Mục</span>
+                    </button>
+                    <ul class="navbar-category-list">
+                        <li class="col-4 float-left">
+                            <a routerLink="/trang-chu" title="Truyện Hoàn Thành">Truyện Hoàn Thành</a>
+                        </li>
+                        <li class="col-4 float-left">
+                            <a routerLink="/trang-chu" title="Truyện Mới">Truyện Mới</a>
+                        </li>
+                        <li class="col-4 float-left">
+                            <a routerLink="/trang-chu" title="Truyện Vip">Truyện Vip</a>
                         </li>
                     </ul>
+                </section>
+                <section class="navbar-category">
+                    <button class="navbar-category-btn js-open-sidebar">
+                        <span class="lines">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </span>
+                        <span class="hidden-xs hidden-sm">Thể loại</span>
+                    </button>
+                    <ul class="navbar-category-list" *ngIf="categories && categories?.length">
+                        <li class="col-4 float-left" *ngFor="let cate of categories; let i=index;">
+                            <a routerLink="/trang-chu" (click)="setDocTitle('Truyện ' + cate.name)">
+                                {{ i + 1 }} - {{ cate?.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+            </section>
             <section class="custom navbar-custom">
                 <ul class="nav navbar-nav navbar-right" style="flex-direction: row;">
                     <li>
                         <section class="search-block">
                             <section class="actions">
-                                <button type="submit" title="Tìm kiếm"
-                                        class="search-toggle-btn" id="js-search-toggle">
+                                <button type="submit" title="Tìm kiếm" class="search-toggle-btn" id="js-search-toggle">
                                     <i class="truyen-icon icon-search"></i>
                                 </button>
                             </section>
                             <form id="js-search-panel" class="search-panel">
                                 <div class="txtDiv">
                                     <input type="text" name="txtKeyword" id="txtKeyword" value=""
-                                           placeholder="Tên truyện" class="form-control"
-                                           autocomplete="off" required oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">
+                                        placeholder="Tên truyện" class="form-control" autocomplete="off" required
+                                        oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">
                                     <button class="btn btn-search mt-0" type="submit">
                                         <i class="truyen-icon icon-search-primary"></i>
                                     </button>
@@ -77,7 +90,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
+                            aria-haspopup="true" aria-expanded="false">
                             <i class="truyen-icon icon-user"></i>
                             <span class="truyen-login-title">AAAA</span>
                         </a>
@@ -93,6 +106,9 @@
                     </li>
                 </ul>
             </section>
+        </section>
+    </nav>
+</header>
 <aside class="truyen-sidebar">
     <a href="#" class="sidebar-close js-close-sidebar"></a>
     <section class="sidebar-container">
@@ -103,17 +119,14 @@
             <section class="card-menu">
                 <section class="list-group" style="margin-bottom: 20px;">
                     <section class="list-group-item list-group-item-sidebar">
-                        <a class="truyen-sidebar-user-title" role="button"
-                           data-toggle="collapse" href="#truyen-user-login-custom"
-                           aria-expanded="false"
-                           aria-controls="truyen-user-login-custom">Đăng nhập /
+                        <a class="truyen-sidebar-user-title" role="button" data-toggle="collapse"
+                            href="#truyen-user-login-custom" aria-expanded="false"
+                            aria-controls="truyen-user-login-custom">Đăng nhập /
                             Đăng ký <span class="truyen-icon icon-white-next"></span>
                         </a>
                     </section>
-                    <section class="list-group collapse"
-                             id="truyen-user-login-custom">
-                        <section
-                                class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
+                    <section class="list-group collapse" id="truyen-user-login-custom">
+                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
                             <a routerLink="/dang-nhap" class="login-btn">Đăng nhập</a>
                         </section>
@@ -133,47 +146,37 @@
             <section class="card-menu">
                 <section class="list-group" style="margin-bottom: 20px;">
                     <section class="list-group-item list-group-item-sidebar">
-                        <a class="truyen-sidebar-user-title collapsed"
-                           role="button" data-toggle="collapse"
-                           href="#truyen-user-menu-collapse" aria-expanded="false"
-                           aria-controls="truyen-user-menu-collapse" sec:authentication="name"> <span
+                        <a class="truyen-sidebar-user-title collapsed" role="button" data-toggle="collapse"
+                            href="#truyen-user-menu-collapse" aria-expanded="false"
+                            aria-controls="truyen-user-menu-collapse" sec:authentication="name"> <span
                                 class="truyen-icon icon-white-next"></span>
                         </a>
                     </section>
-                    <section class="list-group collapse"
-                             id="truyen-user-menu-collapse">
+                    <section class="list-group collapse" id="truyen-user-menu-collapse">
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Đăng truyện<span
-                                    class="truyen-icon icon-white-next"></span>
+                            <a routerLink="/trang-chu">Đăng truyện<span class="truyen-icon icon-white-next"></span>
                             </a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Truyện Theo Dõi<span
-                                    class="truyen-icon icon-white-next"></span>
+                            <a routerLink="/trang-chu">Truyện Theo Dõi<span class="truyen-icon icon-white-next"></span>
                             </a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar">
                             <a routerLink="/trang-chu">Quản lý truyện<span
                                     class="truyen-icon icon-white-next"></span></a>
                         </section>
-                        <section
-                                class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
+                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Tủ truyện<span
-                                    class="truyen-icon icon-white-next"></span></a>
+                            <a routerLink="/trang-chu">Tủ truyện<span class="truyen-icon icon-white-next"></span></a>
                         </section>
-                        <section
-                                class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
+                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Hồ sơ <span
-                                    class="truyen-icon icon-white-next"></span></a>
+                            <a routerLink="/trang-chu">Hồ sơ <span class="truyen-icon icon-white-next"></span></a>
                         </section>
-                        <section
-                                class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
+                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Nạp Đậu<span
-                                    class="truyen-icon icon-white-next"></span></a>
+                            <a routerLink="/trang-chu">Nạp Đậu<span class="truyen-icon icon-white-next"></span></a>
                         </section>
                     </section>
                 </section>
@@ -189,20 +192,17 @@
             </section>
             <section class="list-group" style="margin-bottom: 20px;">
                 <section class="list-group-item list-group-item-action list-group-item-sidebar">
-                    <a routerLink="/trang-chu" target="_blank"
-                       title="Truyện Mới"> Truyện Mới <span
+                    <a routerLink="/trang-chu" target="_blank" title="Truyện Mới"> Truyện Mới <span
                             class="truyen-icon icon-next"></span>
                     </a>
                 </section>
                 <section class="list-group-item list-group-item-action list-group-item-sidebar">
-                    <a routerLink="/trang-chu" target="_blank"
-                       title="Truyện Hoàn Thành"> Truyện Hoàn Thành <span
+                    <a routerLink="/trang-chu" target="_blank" title="Truyện Hoàn Thành"> Truyện Hoàn Thành <span
                             class="truyen-icon icon-next"></span>
                     </a>
                 </section>
                 <section class="list-group-item list-group-item-action list-group-item-sidebar">
-                    <a routerLink="/trang-chu" target="_blank"
-                       title="Truyện Vip"> Truyện Vip <span
+                    <a routerLink="/trang-chu" target="_blank" title="Truyện Vip"> Truyện Vip <span
                             class="truyen-icon icon-next"></span>
                     </a>
                 </section>
@@ -210,11 +210,9 @@
         </section>
         <section *ngIf="categories && categories?.length" class="list-group" style="margin-bottom: 20px;">
             <section class="list-group-item list-group-item-action list-group-item-sidebar"
-                    *ngFor="let cate of categories; let i=index;">
-                <a routerLink="/trang-chu"
-                (click)="setDocTitle('Truyện ' + cate.name)"
-                ><span>{{ i + 1 }} - {{ cate?.name }}</span> <span
-                        class="truyen-icon icon-next"></span></a>
+                *ngFor="let cate of categories; let i=index;">
+                <a routerLink="/trang-chu" (click)="setDocTitle('Truyện ' + cate.name)"><span>{{ i + 1 }} - {{
+                        cate?.name }}</span> <span class="truyen-icon icon-next"></span></a>
             </section>
         </section>
     </section>
@@ -223,11 +221,10 @@
 <section class="truyen-search-box">
     <section class="container">
         <form class="search-box-mobile">
-            <input type="text" id="txtKeywordMobi" name="txtKeyword"
-                   class="form-control" placeholder="Tên truyện hoặc tác giả không dấu" value=""
-                   autocomplete="off" required oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">
-            <button type="submit" class="search-box-mobile-btn"
-                    id="js-search-box-mobile-btn">
+            <input type="text" id="txtKeywordMobi" name="txtKeyword" class="form-control"
+                placeholder="Tên truyện hoặc tác giả không dấu" value="" autocomplete="off" required
+                oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">
+            <button type="submit" class="search-box-mobile-btn" id="js-search-box-mobile-btn">
                 <i class="truyen-icon icon-search-primary"></i>
             </button>
         </form>
