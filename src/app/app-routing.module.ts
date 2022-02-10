@@ -10,13 +10,13 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { 
-    path: 'trang-chu', 
-    component: HomeComponent,
-    children:[]
-  },
+  { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
+  { path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
+  { path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
+  { path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
   { 
     path: 'admin', 
     component: AdminComponent,
@@ -29,9 +29,6 @@ const routes: Routes = [
       { path: 'user', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
     ]
   },
-  {path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
-  {path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
-  {path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} }
 ];

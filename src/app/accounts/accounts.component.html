@@ -1,46 +1,60 @@
 <app-header></app-header>
-<section>
-    <div class="card">
-        <h5 class="card-header bg-primary bg-gradient text-white text-center">ĐĂNG NHẬP</h5>
+<section class="page-wrapper">
+    <!--NavBar-->
+    
+    <section class="truyen-main">
+        <section id="content" class="container">
+            <section class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <h5 class="card-header primary-color white-text text-center py-4">
+                            <strong>Đăng Nhập</strong>
+                        </h5>
+                        <div class="card-body px-lg-5 pt-0">
+                            <form class="md-form" id="signupForm1" name='loginForm'>
+                                <!-- <section class="md-form">
+                                    <section class="alert alert-danger" role="alert"></section>
+                                </section>
+                                <section class="md-form">
+                                    <section class="alert alert-success" role="alert"></section>
+                                </section> -->
+                                <div class="md-form">
+                                    <input type="text" name="username" id="username" placeholder="" autofocus="autofocus" class="form-control mb-4">
+                                    <label for="username">Tài khoản</label>
+                                </div>
+                                <div class="md-form">
+                                    <input type="password" name="password" id="password" class="form-control mb-4">
+                                    <label for="password">Mật Khẩu</label>
+                                </div>
+                                <div class="form-check my-4">
+                                    <input class="form-check-input" type="checkbox" id="remember-me" name="remember-me">
+                                    <label class="form-check-label" for="remember-me"> Ghi nhớ đăng nhập</label>
+                                </div>
+                                <!--Grid row-->
+                                <div class="row d-flex align-items-center mb-4">
 
-        <div class="card-body">
-            <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="username">Tên đăng nhập</label>
-                    <input type="text" formControlName="username" class="form-control" />
-                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
-                        <div *ngIf="f['username'].errors['required']">Tài khoản không được để trống</div>
+                                    <!--Grid column-->
+                                    <div class="text-center mb-3 col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-block btn-rounded z-depth-1">Đăng Nhập</button>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                                <!--Grid row-->
+
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Bạn chưa có tài khoản? <a class="text-primary ml-1 font-weight-bold"> Đăng Ký Ngay</a></p>
+                                </div>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" formControlName="password" class="form-control" />
-                    <div *ngIf="(f['password'].touched || submitted) && f['password'].errors" class="text-danger">
-                        <div *ngIf="f['password'].errors['required']">Mật khẩu không được để trống</div>
-                    </div>
-                </div>
-                <div class="form-check form-switch flex">
-                    <input class="form-check-input" type="checkbox" id="rememeberUser" checked>
-                    <label class="form-check-label m-0" for="rememeberUser">Ghi nhớ đăng nhập</label>
-                </div>
-                <div class="form-group mt-3 mb-3">
-                    <button class="btn btn-primary btn-block w-100">
-                        Đăng nhập
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="card-footer text-end">
-            <div class="mb-2">
-                <span>Bạn chưa có tài khoản ?</span>
-                <a href=""> Đăng ký ngay</a>
-            </div>
-            <div>
-                <span>Quên mật khẩu ?</span>
-                <a href=""> Lấy lại mật khẩu</a>
-            </div>
-        </div>
-    </div>
+            </section>
+        </section>
+    </section>
 </section>
 <app-footer></app-footer>
