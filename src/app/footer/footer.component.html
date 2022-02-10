@@ -1,56 +1,52 @@
-<footer>
-    <section class="container">
-        <div class="row gx-5 py-3">
-            <div class="col">
-                <h5 class="text-primary ps-2">Giới thiệu</h5>
-                <hr />
-                <small>
-                    {{info?.introduce}}
-                </small>
-                <br />
-                <small>
-                    Truyện trên WebTruyện được tổng hợp tự động từ internet, chúng tôi không giữ bản quyền cũng như chịu
-                    trách nhiệm nội dung trên website này.
-                </small>
-            </div>
-
-            <div class="col">
-                <h5 class="text-primary ps-2">Hỗ trợ</h5>
-                <hr />
-                <ul>
-                    <li>
-                        <fa-icon [icon]="faMobileAlt" size="lg"></fa-icon>
-                        <a href="">Ứng dụng truyện online</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faBug"></fa-icon>
-                        <a href="">Báo lỗi ứng dụng</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faQuestion"></fa-icon>
-                        <a href="">Câu hỏi thường gặp</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col">
-                <h5 class="text-primary ps-2">Liên hệ</h5>
-                <hr />
-                <ul>
-                    <li>
-                        <fa-icon [icon]="faEnvelope"></fa-icon>
-                        <a href="">Email: {{info?.email}}</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faPhoneAlt"></fa-icon>
-                        <a href="">Phone: {{info?.phone}}</a>
-                    </li>
-                    <li>
-                        <fa-icon [icon]="faSkype"></fa-icon>
-                        <a href="">Skype: {{info?.skype}}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<footer class="truyen-footer">
+    <section id="footer">
+        <section class="container footer-con">
+            <section class="row text-center text-xs-center text-sm-left text-md-left">
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Giới thiêu</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <p>TruyenOnline là website đọc truyện convert online cập nhật liên tục và nhanh nhất các truyện tiên hiệp, kiếm hiệp, huyền ảo được các thành viên liên tục đóng góp rất nhiều truyện hay và nổi bật.</p>
+                </section>
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Hỗ trợ</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="#" target="_blank"><span class="block-list-icon">
+                                <i class="truyen-icon icon-mobile mr-3"></i></span> Ứng dụng Truyện Online</a></li>
+                        <li><a href="#"><span class="block-list-icon"><i
+                                class="truyen-icon icon-warning mr-3"></i></span>Báo lỗi ứng dụng</a></li>
+                        <li><a href="#"><span class="block-list-icon"><i
+                                class="truyen-icon icon-faq mr-3"></i></span> FAQs</a></li>
+                    </ul>
+                </section>
+                <section class="col-12 col-sm-12 col-md-4">
+                    <h5>Liên hệ</h5>
+                    <hr class="bg-truyen mb-2 mt-0 d-inline-block mx-auto w-50">
+                    <ul class="list-unstyled quick-links">
+                        <li>
+                            <a href="">
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-email mr-3"></i>
+                                </span> Email: <span>tinsatthu@gmail.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-mobile mr-3"></i>
+                                </span>
+                                Phone: <span>0969765264</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="block-list-icon">
+                                    <i class="truyen-icon icon-skype mr-3"></i>
+                                </span>Skype: <span>096587598</span>
+                            </a></li>
+                    </ul>
+                </section>
+            </section>
+        </section>
     </section>
 </footer>

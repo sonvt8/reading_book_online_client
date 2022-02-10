@@ -35,7 +35,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/static/mdbootstrap/css/bootstrap.min.css",
-              "src/assets/static/mdbootstrap/css/mdb.min.css",
+              "src/assets/static/mdbootstrap/css/mdb.css",
               "src/assets/static/bower/Font-Awesome/css/all.css",
               "src/assets/static/css/myWebStyle.css",
               "src/assets/static/css/animationStyle.css",
