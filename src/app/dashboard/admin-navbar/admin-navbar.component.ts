@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 
 declare const showNavbar: any
 
@@ -11,9 +12,12 @@ declare const showNavbar: any
 
 export class AdminNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    this.renderer.addClass(this.document.body, 'fixed-sn');
+    this.renderer.addClass(this.document.body, 'white-skin');
+    this.renderer.addClass(this.document.body, 'body-none');
     showNavbar();
   }
   

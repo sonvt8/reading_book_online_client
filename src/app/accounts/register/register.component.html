@@ -1,57 +1,58 @@
-<section>
-    <div class="card">
-        <h5 class="card-header bg-primary bg-gradient text-white text-center">ĐĂNG KÝ</h5>
+<app-header></app-header>
+<section class="page-wrapper">
+    <!--NavBar-->
+    
+    <section class="truyen-main">
+        <section id="content" class="container">
+            <section class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <h5 class="card-header primary-color white-text text-center py-4">
+                            <strong>Đăng Ký</strong>
+                        </h5>
+                        <div class="card-body px-lg-5 pt-0">
+                            <form class="md-form" id="registerForm" name='loginForm' [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                <div class="md-form">
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4" autofocus="autofocus"/>
+                                    <label for="username" class="text-primary">Tên đăng nhập</label>
+                                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors">
+                                        <span *ngIf="f['username'].errors['required']" class="error invalid-feedback">Tài khoản không được để trống</span>
+                                    </div>
+                                </div>
+                                <div class="md-form">
+                                    <input type="email" id="email" formControlName="email" class="form-control mb-4"/>
+                                    <label for="email" class="text-primary">Email</label>
+                                    <div *ngIf="(f['email'].touched || submitted) && f['email'].errors">
+                                        <span *ngIf="f['email'].errors['required']" class="error invalid-feedback">Email không được để trống</span>
+                                        <span *ngIf="f['email'].errors['email']" class="error invalid-feedback">Email không đúng định dạng</span>
+                                    </div>
+                                </div>
+                                <!--Grid row-->
+                                <div class="row d-flex align-items-center mb-4">
 
-        <div class="card-body">
-            <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="username">Tên đăng nhập</label>
-                    <input type="text" formControlName="username" class="form-control" />
-                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
-                        <div *ngIf="f['username'].errors['required']">Tài khoản không được để trống</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" formControlName="email" class="form-control"/>
-                    <div *ngIf="(f['email'].touched || submitted) && f['email'].errors" class="text-danger">
-                        <div *ngIf="f['email'].errors['required']">Email không được để trống</div>
-                        <div *ngIf="f['email'].errors['email']">Email không đúng định dạng</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" formControlName="password" class="form-control" />
-                    <div *ngIf="(f['password'].touched || submitted) && f['password'].errors" class="text-danger">
-                        <div *ngIf="f['password'].errors['required']">Mật khẩu không được để trống</div>
-                        <div *ngIf="f['password'].errors['invalidPassword']">Mật khẩu có độ dài từ 6-13. Đảm bảo một ký tự in Hoa, thường và ký tự số</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="confirm_password">Xác nhận mật khẩu</label>
-                    <input type="password" formControlName="confirm_password" class="form-control"/>
-                    <div *ngIf="(f['confirm_password'].touched || submitted) && f['confirm_password'].errors" class="text-danger">
-                        <div *ngIf="f['confirm_password'].errors['required']">Mật khẩu xác nhận không được để trống</div>
-                        <div *ngIf="f['confirm_password'].errors['passwordMismatch']">Mật khẩu xác nhận không trùng khớp</div>
-                    </div>
-                </div>
-                <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-primary btn-block w-100">
-                        Đăng ký
-                    </button>
-                </div>
-            </form>
-        </div>
+                                    <!--Grid column-->
+                                    <div class="text-center mb-3 col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-block btn-rounded z-depth-1">Đăng Ký</button>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                                <!--Grid row-->
 
-        <div class="card-footer text-end">
-            <div class="mb-2">
-                <span>Bạn đã có tài khoản ?</span>
-                <a href=""> Đăng nhập ngay</a>
-            </div>
-            <div>
-                <span>Quên mật khẩu ?</span>
-                <a href=""> Lấy lại mật khẩu</a>
-            </div>
-        </div>
-    </div>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Bạn đã có tài khoản? <a href="" class="text-primary ml-1 font-weight-bold"> Đăng Nhập Ngay</a></p>
+                                </div>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a href="" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>   
 </section>
+
+<app-footer></app-footer>

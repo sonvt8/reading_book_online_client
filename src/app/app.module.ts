@@ -1,6 +1,6 @@
 // Module
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
@@ -29,6 +29,7 @@ import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
+import { PageContentComponent } from './home/page-content/page-content.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
     AddCategoryComponent,
     EditCategoryComponent,
     ListUserComponent,
-    EditUserComponent
+    AddUserComponent,
+    EditUserComponent,
+    PageContentComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,12 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
     BrowserAnimationsModule,
     ToastrModule.forRoot({timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
   ],
-  providers: [CategoryService, UserService, {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},],
+  providers: [
+    CategoryService, 
+    UserService, 
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+    Title,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

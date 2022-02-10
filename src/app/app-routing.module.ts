@@ -10,35 +10,28 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
-import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
+  { path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
+  { path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
+  { path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
   { 
-    path: 'home', 
-    component: HomeComponent,
-    children:[
-      { path: 'tai_khoan', component: AccountsComponent },
-      { path: 'dang_ky', component: RegisterComponent },
-      { path: 'quen_mat_khau', component: ForgotPasswordComponent },
-    ]
-  },
-  { 
-    path: 'quan_tri', 
+    path: 'admin', 
     component: AdminComponent,
     children:[
-      { path: '', component: AdminHomeComponent },
-      { path: 'home', component: AdminHomeComponent },
-      { path: 'the_loai', component: AdminCategoryComponent },
-      { path: 'the_loai/:id', component: EditCategoryComponent },
-      { path: 'them_the_loai', component: AddCategoryComponent },
-      { path: 'nguoi_dung', component: ListUserComponent },
+      { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
+      { path: 'home', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
+      { path: 'category', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại'}},
+      { path: 'category/:id', component: EditCategoryComponent, data: {title: 'Thể loại'}},
+      { path: 'add-category', component: AddCategoryComponent, data: {title: 'Thêm thể loại'}},
+      { path: 'user', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
       { path: 'nguoi_dung/:id', component: EditUserComponent },
     ]
   },
-  
-
   // Always put default route at the end.
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} }
 ];
 
 @NgModule({

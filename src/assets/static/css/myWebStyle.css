@@ -17,6 +17,7 @@ body {
 .body-none{
     background-image:none;
 }
+
 .container-full {
     max-width: 100% !important;
 }
