@@ -1,105 +1,115 @@
 <app-admin-navbar></app-admin-navbar>
 <main>
     <form class="section-preview" id="resetForm" #editForm="ngForm" (ngSubmit)="submitEditAdminUser(editForm)">
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <!-- Section: Intro -->
-        <section class="pb-4">
-            <div class="card">
-                <h2 class="card-header primary-color white-text text-center font-weight-bold">
-                    <span class="oi oi-book"></span> CẬP NHẬT NGƯỜI DÙNG
-                </h2>
+            <!-- Section: Intro -->
+            <section class="pb-4">
+                <div class="card">
+                    <h2 class="card-header primary-color white-text text-center font-weight-bold">
+                        <span class="oi oi-book"></span> CẬP NHẬT NGƯỜI DÙNG
+                    </h2>
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="id" name="id" [(ngModel)]="user.id" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="id" class="text-primary active">ID: </label>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="user.id"
+                                        [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="id" class="text-primary active">ID: </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="username" class="text-primary active">Tên Đăng Nhập: </label>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="username" class="text-primary active">Tên Đăng Nhập: </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="displayName" name="displayName" [(ngModel)]="user.displayName" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="displayName" class="text-primary active">Tên Hiển Thị: </label>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="displayName" name="displayName"
+                                        [(ngModel)]="user.displayName" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="displayName" class="text-primary active">Tên Hiển Thị: </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="createDate" name="createDate" [(ngModel)]="user.createDate" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="createDate" class="text-primary active">Ngày Tạo </label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="createDate" name="createDate"
+                                        [(ngModel)]="user.createDate" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="createDate" class="text-primary active">Ngày Tạo </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="gold" name="gold" [(ngModel)]="user.gold" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="gold" class="text-primary active">Số đậu: </label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="gold" name="gold"
+                                        [(ngModel)]="user.gold" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="gold" class="text-primary active">Số đậu: </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="md-form mb-0">
-                                <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="email" class="text-primary active">Email </label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="email" class="text-primary active">Email </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="md-label-cs text-primary mt-1 form-label">Phân Quyền</label>
-                        </div>
-                        <!-- Material checked -->
-                        <div class="col-6 col-md-4 col-lg-2" *ngFor="let role of listRole">
-                            <div class="custom-control custom-checkbox" >
-                                <input type="checkbox" class="custom-control-input" name="rolesInput" ngModel [value]="role.name" [attr.id]="'inlineCheckbox' + role.id">
-                                <label class="custom-control-label" [attr.for]="'inlineCheckbox' + role.id" style="line-height: 1.8">{{role.name}}</label>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-12">
+                                <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="rolesInput" [(ngModel)]="user.rolesInput" [ngModelOptions]="{standalone: true}">
+                                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                    <option value="ROLE_SMOD">ROLE_SMOD</option>
+                                    <option value="ROLE_CONVERTER">ROLE_CONVERTER</option>
+                                    <option value="ROLE_USER">ROLE_USER</option>
+                                </select>
+                                <label class="md-label-cs text-primary mt-1 form-label">Phân Quyền</label>
                             </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
-                    <!--Grid row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <select class="mdb-select md-form colorful-select dropdown-primary" name="status"  [(ngModel)]="user.status">
-                                <option value="1">Mở</option>
-                                <option value="0">Khóa</option>
-                            </select>
-                            <label class="md-label-cs text-primary mt-1 form-label">Trạng Thái</label>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="md-label-cs text-primary mt-1 form-label">Trạng Thái</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="isActiveBool" type="checkbox"
+                                        [(ngModel)]="isActiveBool" id="status" [ngModelOptions]="{standalone: true}">
+                                    <label class="form-check-label" for="status">
+                                        Mở
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!--Grid row-->
-                    <div class="row text-right">
-                        <div class="col-12">
-                            <a class="btn btn-outline-secondary btn-rounded waves-effect" routerLink="/quan_tri/nguoi_dung">Quay Lại</a>
-                            <input type="submit" class="btn btn-outline-primary btn-rounded waves-effect" value="Cập Nhật"/>
+                        <!--Grid row-->
+                        <div class="row text-right">
+                            <div class="col-12">
+                                <a class="btn btn-outline-secondary btn-rounded waves-effect"
+                                    routerLink="/quan_tri/nguoi_dung">Quay Lại</a>
+                                <input type="submit" class="btn btn-outline-primary btn-rounded waves-effect"
+                                    value="Cập Nhật" />
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
-
-            </div>
-        </section>
-    </div>
-</form>
+            </section>
+        </div>
+    </form>
 </main>

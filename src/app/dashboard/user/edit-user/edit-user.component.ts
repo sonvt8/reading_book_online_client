@@ -57,7 +57,7 @@ export class EditUserComponent implements OnInit {
     this.user.rolesInput.forEach(tempRole => data.append('role', tempRole));
     this.subscriptions.push(this.userService.updateAdminUser(data, this.user.id).subscribe(
         response => {
-            console.log(response.rolesInput);
+            console.log(response.roleList);
             this.router.navigateByUrl('/quan_tri/nguoi_dung').then(r => {});
             editForm.reset();
             this.toastr.success(`Tài khoản ${response.username} cập nhật thành công!`);
@@ -71,6 +71,14 @@ export class EditUserComponent implements OnInit {
         this.listRole = response;     
       }
     ));
+  }
+
+  get isActiveBool() {
+    return this.user.status == 1
+  }
+ 
+  set isActiveBool(newValue:boolean) {
+    this.user.status = newValue ? 1 : 0
   }
 
   showRole(){
