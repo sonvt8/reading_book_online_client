@@ -44,18 +44,13 @@ export class EditUserComponent implements OnInit {
     this.currentId = +this.route.snapshot.params['id'];
     this.userService.getAdminUser(this.currentId).subscribe(data => {
       this.user = data;
-      this.user.rolesInput = this.user.roleList.map(role => role.name);
     }
     );
     
   }
 
   submitEditAdminUser(editForm: NgForm): void {
-    // console.log(ngForm.value);
-    const data = new FormData();
-    data.append('status', JSON.stringify(this.user.status));
-    this.user.rolesInput.forEach(tempRole => data.append('role', tempRole));
-    this.subscriptions.push(this.userService.updateAdminUser(data, this.user.id).subscribe(
+    this.subscriptions.push(this.userService.updateAdminUser(this.user).subscribe(
         response => {
             console.log(response.roleList);
             this.router.navigateByUrl('/quan_tri/nguoi_dung').then(r => {});
@@ -80,6 +75,7 @@ export class EditUserComponent implements OnInit {
   set isActiveBool(newValue:boolean) {
     this.user.status = newValue ? 1 : 0
   }
+
 
   showRole(){
     $(document).ready(function () {

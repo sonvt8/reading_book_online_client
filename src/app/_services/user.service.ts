@@ -17,8 +17,12 @@ export class UserService {
     return this.httpClient.post<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach`, form);
   }
 
-  public updateAdminUser(form: FormData, id: number): Observable<User> {
-    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat/${id}`, form);
+  // public updateAdminUser(form: FormData, id: number): Observable<User> {
+  //   return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat/${id}`, form);
+  // }
+
+  public updateAdminUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/cap_nhat/${user.id}`, user);
   }
 
   public getAdminUser(id: number): Observable<User> {

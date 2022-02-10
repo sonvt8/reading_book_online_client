@@ -73,11 +73,10 @@
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-12">
-                                <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="rolesInput" [(ngModel)]="user.rolesInput" [ngModelOptions]="{standalone: true}">
-                                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                                    <option value="ROLE_SMOD">ROLE_SMOD</option>
-                                    <option value="ROLE_CONVERTER">ROLE_CONVERTER</option>
-                                    <option value="ROLE_USER">ROLE_USER</option>
+                                <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="rolseList" [(ngModel)]="user.roleList" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let role of listRole" [ngValue]="role">
+                                        {{role.name}}
+                                    </option>
                                 </select>
                                 <label class="md-label-cs text-primary mt-1 form-label">Phân Quyền</label>
                             </div>
