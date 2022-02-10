@@ -15,11 +15,7 @@ const routes: Routes = [
   { 
     path: 'trang-chu', 
     component: HomeComponent,
-    children:[
-      { path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
-      { path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
-      { path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
-    ]
+    children:[]
   },
   { 
     path: 'admin', 
@@ -33,8 +29,9 @@ const routes: Routes = [
       { path: 'user', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
     ]
   },
-  
-
+  {path: 'dang-nhap', component: AccountsComponent, data: {title: 'Đăng nhập'}},
+  {path: 'dang-ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
+  {path: 'quen-mat-khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} }
 ];
