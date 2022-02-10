@@ -48,7 +48,6 @@ import { PageContentComponent } from './home/page-content/page-content.component
     AddCategoryComponent,
     EditCategoryComponent,
     ListUserComponent,
-    AddUserComponent,
     EditUserComponent,
     PageContentComponent
   ],
