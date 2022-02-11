@@ -58,7 +58,8 @@
               "src/assets/js/aes.js",
               "src/assets/js/pbkdf2.js",
               "src/assets/js/AesUtil.js",
-              "src/assets/js/showNavbar.js"
+              "src/assets/js/showNavbar.js",
+              "src/assets/js/myApp.js"
             ]
           },
           "configurations": {
