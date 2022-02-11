@@ -53,7 +53,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
 
     this.loading = true;
     var loginUser: UserLogin = {
-      username: this.loginForm.get('email')!.value,
+      username: this.loginForm.get('username')!.value,
       password:this.loginForm.get('password')!.value
     };
 

@@ -15,7 +15,7 @@ import { NotificationService } from '../_services/notification.service';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private toastr: ToastrService, private notificationService: NotificationService) { }
+  constructor(private router: Router, private toastr: ToastrService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -32,7 +32,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors;
               } else if (typeof(errorResponse.error) === 'object') {
-                this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
+                this.toastr.error(errorResponse.error.message);
               } else {
                 console.log("3333");
                 // this.toastr.error(error.error, error.status);
@@ -58,13 +58,4 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       })
     )
   }
-
-  private sendErrorNotification(notificationType: NotificationType, message: string): void {
-    if (message) {
-      this.notificationService.notify(notificationType, message);
-    } else {
-      this.notificationService.notify(notificationType, 'Có lỗi xảy ra. Vui lòng thử lại sau!');
-    }
-  }
-
 }

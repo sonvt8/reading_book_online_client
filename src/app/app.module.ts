@@ -31,6 +31,7 @@ import { ListUserComponent } from './dashboard/user/list-user/list-user.componen
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 import { PageContentComponent } from './home/page-content/page-content.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NotificationService } from './_services/notification.service';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
   providers: [
     CategoryService, 
     UserService,
+    NotificationService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     Title,
