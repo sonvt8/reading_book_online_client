@@ -13,7 +13,7 @@
                         <div class="card-body px-lg-5 pt-0">
                             <form class="md-form" id="registerForm" name='registerForm' [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
-                                    <input type="text" id="username" formControlName="username" class="form-control mb-4" autofocus="autofocus"/>
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4"/>
                                     <label for="username" class="text-primary">Tên đăng nhập</label>
                                     <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
                                         <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>
@@ -40,11 +40,11 @@
 
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Bạn đã có tài khoản? <a href="" class="text-primary ml-1 font-weight-bold"> Đăng Nhập Ngay</a></p>
+                                    <p class="font-small d-flex justify-content-end">Bạn đã có tài khoản? <a routerLink="/dang-nhap" class="text-primary ml-1 font-weight-bold"> Đăng Nhập Ngay</a></p>
                                 </div>
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a href="" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a routerLink="/quen-mat-khau" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
                                 </div>
                             </form>
                         </div>

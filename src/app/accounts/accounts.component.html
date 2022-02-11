@@ -13,7 +13,7 @@
                         <div class="card-body px-lg-5 pt-0">
                             <form class="md-form" id="signupForm1" name='loginForm' [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
-                                    <input type="text" id="username" formControlName="username" class="form-control mb-4" autofocus="autofocus"/>
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4"/>
                                     <label for="username" class="text-primary">Tên đăng nhập</label>
                                     <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
                                         <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>
@@ -43,11 +43,11 @@
 
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Bạn chưa có tài khoản? <a class="text-primary ml-1 font-weight-bold"> Đăng Ký Ngay</a></p>
+                                    <p class="font-small d-flex justify-content-end">Bạn chưa có tài khoản? <a routerLink="/dang-ky" class="text-primary ml-1 font-weight-bold"> Đăng Ký Ngay</a></p>
                                 </div>
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a routerLink="/quen-mat-khau" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
                                 </div>
                             </form>
                         </div>
