@@ -11,20 +11,20 @@
                             <strong>Đăng Ký</strong>
                         </h5>
                         <div class="card-body px-lg-5 pt-0">
-                            <form class="md-form" id="registerForm" name='loginForm' [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <form class="md-form" id="registerForm" name='registerForm' [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
                                     <input type="text" id="username" formControlName="username" class="form-control mb-4" autofocus="autofocus"/>
                                     <label for="username" class="text-primary">Tên đăng nhập</label>
-                                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors">
-                                        <span *ngIf="f['username'].errors['required']" class="error invalid-feedback">Tài khoản không được để trống</span>
+                                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
+                                        <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>
                                     </div>
                                 </div>
                                 <div class="md-form">
                                     <input type="email" id="email" formControlName="email" class="form-control mb-4"/>
                                     <label for="email" class="text-primary">Email</label>
-                                    <div *ngIf="(f['email'].touched || submitted) && f['email'].errors">
-                                        <span *ngIf="f['email'].errors['required']" class="error invalid-feedback">Email không được để trống</span>
-                                        <span *ngIf="f['email'].errors['email']" class="error invalid-feedback">Email không đúng định dạng</span>
+                                    <div *ngIf="(f['email'].touched || submitted) && f['email'].errors" class="text-danger">
+                                        <span *ngIf="f['email'].errors['required']">Email không được để trống</span>
+                                        <span *ngIf="f['email'].errors['email']">Email không đúng định dạng</span>
                                     </div>
                                 </div>
                                 <!--Grid row-->
