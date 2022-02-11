@@ -30,6 +30,7 @@ import { EditCategoryComponent } from './dashboard/category/edit-category/edit-c
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 import { PageContentComponent } from './home/page-content/page-content.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { PageContentComponent } from './home/page-content/page-content.component
   ],
   providers: [
     CategoryService, 
-    UserService, 
+    UserService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     Title,
   ],
