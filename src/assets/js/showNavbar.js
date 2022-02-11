@@ -1,4 +1,4 @@
-function showNavbar(){
+$('document').ready(function () {
     $(".button-collapse").sideNav();
     var container = document.querySelector('.custom-scrollbar');
     Ps.initialize(container, {
@@ -11,4 +11,4 @@ function showNavbar(){
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-}
+})

@@ -44,7 +44,7 @@ export class ListUserComponent implements OnInit {
       pagenumber = 1;
     }
     const data = new FormData();
-    data.append('pagenumber', JSON.stringify(pagenumber));
+    data.append('pagenumber', JSON.stringify(pagenumber = "" ? 0 : pagenumber));
     data.append('search', this.search.trim());
     data.append('type', JSON.stringify(this.type.id));
     
@@ -91,21 +91,25 @@ export class ListUserComponent implements OnInit {
 
   submitPayhDraw(payDrawForm: NgForm): void {
     const data = new FormData();
-    data.append("money", JSON.stringify(this.payCoin));
+    data.append("money", payDrawForm.value.payCoin);
     data.append("reId", JSON.stringify(this.userId));
-    $('#submitPD').val("Đang Xử Lý").attr("disabled", true);
-    $('#numberExample').attr('readonly', true);
-    $('#canSubmit').attr("disabled", true);
     this.subscriptions.push(this.userService.payDrawAdminUser(data).subscribe(
         response => {
-          //templates.modal('hide');
-          // $("#submitPD").attr("disabled", false).val("Đăng Ký");
-          // $('#numberExample').attr('readonly', false);
-          // $('#canSubmit').attr("disabled", false);
-          this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
-          payDrawForm.reset();
-          this.toastr.success(`Tài khoản ${response.username} nạp đậu thành công!`);
-        }, error => this.toastr.error(error.error.message)
+          //this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
+          //payDrawForm.reset();
+          //payDrawForm.value.payCoin = 0;
+          Swal.fire({
+            text: "Nạp đậu thành tiền mặt thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => {
+          Swal.fire({
+            text: error.error.message,
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+        }
     ));
   }
 
