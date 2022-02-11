@@ -58,6 +58,10 @@ export class UserService {
   public getListRoles(): Observable<Role[]> {
     return this.httpClient.get<Role[]>(`${this.baseUrl}quan_tri/nguoi_dung/phan_quyen`);
   }
+
+  public deleteAdminUser(user: User): Observable<User> {
+    return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
+  }
 }
 
 interface GetAdminUserResponse {
