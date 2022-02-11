@@ -14,7 +14,7 @@
                 <div class="card-body table-responsive">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-12">
-                            <a class="btn btn-outline-primary btn-rounded waves-effect" routerLink="/admin/add-category">THÊM MỚI</a>
+                            <a class="btn btn-outline-primary btn-rounded waves-effect" routerLink="/quan-tri/them-the-loai">THÊM MỚI</a>
                         </div>
                         <div class="col-sm-12 col-md-6 col-12">
                             <div class="md-form mb-0">
@@ -49,7 +49,7 @@
                                         <span *ngIf="cat.status==0" class="badge badge-pill badge-danger">Khóa</span>
                                     </td>
                                     <td class="text-center">
-                                        <a class="teal-text pr-2" title="Sửa" routerLink="/admin/category/{{cat.id}}"><i class="fas fa-pencil-alt"></i></a>
+                                        <a class="teal-text pr-2" title="Sửa" routerLink="/quan-tri/the-loai/{{cat.id}}"><i class="fas fa-pencil-alt"></i></a>
                                         <a class="red-text pr-2" title="Xóa" (click)="onDeleteCategory(cat.id)"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>

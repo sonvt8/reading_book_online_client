@@ -1,3 +1,5 @@
+import { Role } from "./role";
+
 export class User {
     public id: string;
     public userId: string;
@@ -12,8 +14,8 @@ export class User {
     public lastLoginDate: Date;
     public lastLoginDateDisplay: Date;
     public createDate: Date;
-    public roleList: [];
   
+    roleList: Role[];
     constructor() {
       this.id = '';
       this.userId = '';
