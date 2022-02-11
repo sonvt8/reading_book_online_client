@@ -8,6 +8,7 @@ import { AuthService } from '../_services/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../_models/user';
 import { HeaderType } from '../enum/header-type.enum';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-accounts',
@@ -26,7 +27,8 @@ export class AccountsComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private customValidator: CustomValidationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private tokenService: TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
       this.authService.login(loginUser).subscribe(
         (response: HttpResponse<User>) => {
           const token = response.headers.get(HeaderType.JWT_TOKEN);
-          this.authService.saveToken(token!);
+          this.tokenService.saveToken(token!);
           this.authService.addUserToLocalCache(response.body!);
           this.authService.setCurrentUser(response.body!);
           this.router.navigate(['../trang-chu'], { relativeTo: this.route });

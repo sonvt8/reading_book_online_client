@@ -5,6 +5,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../_models/user';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class AuthService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
   private loggedInUsername!: string;
-  private token!: string;
   private jwtHelper = new JwtHelperService();
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private tokenService: TokenStorageService
   ) {
     this.userSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('user') as string));
     this.user = this.userSubject.asObservable();
@@ -41,11 +42,6 @@ export class AuthService {
     );
   }
 
-  public saveToken(token: string): void {
-    this.token = token;
-    localStorage.setItem('token', token);
-  }
-
   public addUserToLocalCache(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -54,20 +50,12 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user')!);
   }
 
-  public loadToken(): void {
-    this.token = localStorage.getItem('token')!;
-  }
-
-  public getToken(): string {
-    return this.token;
-  }
-
   public isLoggedIn(): boolean {
-    this.loadToken();
-    if (this.token != null && this.token !== ''){
-      if (this.jwtHelper.decodeToken(this.token).sub != null || '') {//get Username
-        if (!this.jwtHelper.isTokenExpired(this.token)) {
-          this.loggedInUsername = this.jwtHelper.decodeToken(this.token).sub;
+    this.tokenService.loadToken();
+    if (this.tokenService.token != null && this.tokenService.token !== ''){
+      if (this.jwtHelper.decodeToken(this.tokenService.token).sub != null || '') {//get Username
+        if (!this.jwtHelper.isTokenExpired(this.tokenService.token)) {
+          this.loggedInUsername = this.jwtHelper.decodeToken(this.tokenService.token).sub;
           return true;
         }
       }
@@ -83,7 +71,7 @@ export class AuthService {
   }
 
   public logOut(): void {
-    this.token = '';
+    this.tokenService.token = '';
     this.loggedInUsername = '';
     this.userSubject.next(null);
     localStorage.removeItem('user');
