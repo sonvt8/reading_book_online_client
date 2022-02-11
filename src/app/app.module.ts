@@ -28,7 +28,6 @@ import {ToastrModule} from 'ngx-toastr';
 import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
-import { AddUserComponent } from './dashboard/user/add-user/add-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 import { PageContentComponent } from './home/page-content/page-content.component';
 
@@ -49,7 +48,6 @@ import { PageContentComponent } from './home/page-content/page-content.component
     AddCategoryComponent,
     EditCategoryComponent,
     ListUserComponent,
-    AddUserComponent,
     EditUserComponent,
     PageContentComponent
   ],

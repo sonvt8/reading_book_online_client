@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
-
+  search: string = "";
   users: User[] = [];
   page : number[] = [];
   private subscriptions: Subscription[] = [];
@@ -31,14 +31,20 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.showSelect();
-    this.getUser(1,"");
+    this.getUser(1);
   }
 
-  getUser(pagenumber: number, search: string){
+
+  getUser(pagenumber: number){
     if (pagenumber === undefined) {
       pagenumber = 1;
     }
-    this.subscriptions.push(this.userService.getAdminUserList(search, this.type.id, pagenumber)
+    const data = new FormData();
+    data.append('pagenumber', JSON.stringify(pagenumber));
+    data.append('search', this.search.trim());
+    data.append('type', JSON.stringify(this.type.id));
+    
+    this.subscriptions.push(this.userService.getAdminUserList(data)
         .subscribe(data => {
           this.users = data.content;
           this.currentPage = data.number + 1;
@@ -60,5 +66,5 @@ export class ListUserComponent implements OnInit {
       $('.mdb-select').materialSelect();
     });
   }
-
+  
 }

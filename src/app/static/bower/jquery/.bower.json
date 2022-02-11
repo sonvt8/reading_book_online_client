@@ -1,0 +1,14 @@
+{
+  "name": "jquery",
+  "homepage": "https://github.com/jquery/jquery",
+  "version": "3.6.0",
+  "_release": "3.6.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.6.0",
+    "commit": "0cc1ad64ab0f482c13d6edd2a5226f309dd00006"
+  },
+  "_source": "https://github.com/jquery/jquery.git",
+  "_target": "^3.3.1",
+  "_originalSource": "https://github.com/jquery/jquery.git"
+}
