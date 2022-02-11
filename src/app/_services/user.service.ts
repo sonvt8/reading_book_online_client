@@ -33,7 +33,6 @@ export class UserService {
   public register(user: UserRegister): Observable<User> {
     return this.httpClient.post(`${this.baseUrl}thanh_vien/dang_ky`, user).pipe(
       map((response: any) => {
-        console.log(response);
         return response;
       })
     );
