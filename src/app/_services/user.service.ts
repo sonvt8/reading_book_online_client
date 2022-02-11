@@ -62,6 +62,10 @@ export class UserService {
   public deleteAdminUser(user: User): Observable<User> {
     return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
   }
+
+  public payDrawAdminUser(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/nap_dau`, form);
+  }
 }
 
 interface GetAdminUserResponse {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -20,6 +21,8 @@ export class ListUserComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   totalPages: number = 0;
   currentPage: number = 1;
+  payCoin: number = 0;
+  userId: number = 0;
   typeList = [
     {'id': 4, 'label': 'USER'},
     {'id': 1, 'label': 'ADMIN'},
@@ -84,6 +87,34 @@ export class ListUserComponent implements OnInit {
       }
     })
     
+  }
+
+  submitPayhDraw(payDrawForm: NgForm): void {
+    const data = new FormData();
+    data.append("money", JSON.stringify(this.payCoin));
+    data.append("reId", JSON.stringify(this.userId));
+    $('#submitPD').val("Đang Xử Lý").attr("disabled", true);
+    $('#numberExample').attr('readonly', true);
+    $('#canSubmit').attr("disabled", true);
+    this.subscriptions.push(this.userService.payDrawAdminUser(data).subscribe(
+        response => {
+          //templates.modal('hide');
+          // $("#submitPD").attr("disabled", false).val("Đăng Ký");
+          // $('#numberExample').attr('readonly', false);
+          // $('#canSubmit').attr("disabled", false);
+          this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
+          payDrawForm.reset();
+          this.toastr.success(`Tài khoản ${response.username} nạp đậu thành công!`);
+        }, error => this.toastr.error(error.error.message)
+    ));
+  }
+
+  setID(userId: number){
+    this.userId = userId;
+  }
+
+  reset(){
+    this.payCoin = 0;
   }
 
   showSelect(){
