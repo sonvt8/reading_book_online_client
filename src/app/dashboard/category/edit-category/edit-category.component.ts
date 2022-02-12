@@ -36,7 +36,7 @@ export class EditCategoryComponent implements OnInit {
     this.subscriptions.push(this.categoryService.updateCategory(this.category).subscribe(
         response => {
             console.log(response);
-            this.router.navigateByUrl('/quan_tri/the_loai').then(r => {});
+            this.router.navigateByUrl('/quan-tri/the-loai').then(r => {});
             editForm.reset();
             this.toastr.success(`Thể loại ${response.name} cập nhật thành công!`);
         }, error => this.toastr.error(error.error.message)
