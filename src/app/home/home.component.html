@@ -1,17 +1,271 @@
-
-
+<section class="page-wrapper">
     <app-header></app-header>
-    <section class="page-wrapper">
-        <!--NavBar-->
-        
-        <section class="truyen-main">
-            <p>Home</p>
-        </section>    
+
+    <section class="truyen-main">
+        <section class="container">
+            <section class="truyen-section section-featured">
+                <section class="featured-content">
+                    <section class="row">
+                        <section class="col-12 col-md-6 col-lg-4">
+                            <section class="block block-editors-choice-slider">
+                                <section class="block-content">
+                                    <section class="editors-choice-slider js-editors-choice-slider">
+                                        <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
+                                        <section class="swiper-container">
+                                            <section class="swiper-wrapper">
+                                                <section class="swiper-slide" *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
+                                                    <section class="item">
+                                                        <section class="thumb">
+                                                            <a href="" >
+                                                                <img class="img-fluid lazyload" alt="" src="{{_topStoryWeek.images}}" title="{{_topStoryWeek.name}}">
+                                                            </a>
+                                                        </section>
+                                                        <section class="info">
+                                                            <h2 class="title">
+                                                                <a href="">{{_topStoryWeek.name}}</a>
+                                                            </h2>
+                                                            <span>
+                                                                <span class="fz-16" >{{_topStoryWeek.cnt}}</span> người truy cập</span>
+                                                            <section class="description text-center" style="-webkit-line-clamp: 2;"
+                                                                     >{{_topStoryWeek.infomation}}</section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                            <section class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="col-12 col-md-6 col-lg-4">
+                            <section class="block">
+                                <section class="block-content">
+                                    <section class="editors-choice-list">
+                                        <section class="row">
+                                            <ng-container *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
+                                                <section class="col-12 col-sm-12 col-md-6 btv-2">
+                                                    <section class="item">
+                                                        <h2 class="title">
+                                                            <a href="" title="{{_topStoryWeek.name}}">{{_topStoryWeek.name}}</a>
+                                                        </h2>
+                                                        <section class="view text-secondary">
+                                                            <span class="text-red fz-16">{{_topStoryWeek.cnt}}</span>người truy cập
+                                                        </section>
+                                                        <section class="description">{{_topStoryWeek.infomation}}</section>
+                                                    </section>
+                                                </section>
+                                            </ng-container>
+                                            <section class="clearfix hidden-xs"></section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="col-12 col-md-12 col-lg-4">
+                            <section class="block block-default block-readers-choice">
+                                <section class="block-header"><h2 class="title"> Top Đề Cử </h2></section>
+                                <section class="block-content">
+                                    <ul class="list-group">
+                                        <li *ngFor="let _topstory of topStory; index as i" class="list-group-item list-group-item-primary-me" [ngClass]="i==0?'item-featured':''">
+                                            <section class="content">
+                                                <section class="index index-{{i+1}} index-star">{{i+1}}</section>
+                                                <section class="info">
+                                                    <h2 class="title">
+                                                        <a href="">{{_topstory.name}}</a>
+                                                    </h2>
+                                                    <section class="view text-secondary" ng-if="$index == 0">
+                                                        <span class="text-red fz-16">{{_topstory.cnt}}</span> phiếu
+                                                    </section>
+                                                    <section class="view text-secondary" *ngIf="i != 0">
+                                                        {{_topstory.cnt}}
+                                                    </section>
+                                                    <section class="extra-info" *ngIf="i == 0">
+                                                        <p>Thể Loại:
+                                                            <a href="">{{_topstory.categoryName}}</a>
+                                                        </p>
+                                                        <p>Tác giả: <span>{{_topstory.author}}</span>
+                                                        </p>
+                                                    </section>
+                                                </section>
+                                                <section class="thumb" *ngIf="i == 0">
+                                                    <section class="book-cover">
+                                                        <a class="book-cover-link" href="" title="{{_topstory.name}}">
+                                                            <img src="{{_topstory.images}}" alt="{{_topstory.name}}">
+                                                        </a> <span class="book-cover-shadow"></span>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+
+            <!-- <section class="truyen-section">
+                <section class="container">
+                    <section class="row">
+                        <section class="col-12 col-md-12 col-lg-12">
+                            <section class="block block-default block-list-new">
+                                <section class="block-header">
+                                    <h2 class="title text-uppercase">Mới Cập Nhật</h2>
+                                </section>
+                                <section class="block-content" id="dataTable">
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-table" ng-repeat="storyNU in storyNewUpdate">
+                                            <section class="content">
+                                                <a class="thumb" ng-href="/truyen/{{storyNU.id}}">
+                                                    <img class="img-fluid" ng-src="{{storyNU.images}}" ng-alt="{{storyNU.vnName}}">
+                                                </a>
+                                                <section class="info">
+                                                    <h2 class="title">
+                                                        <a ng-href="/truyen/{{storyNU.id}}" ng-attr-title="{{storyNU.vnName}}">
+                                                            <img class="img-fluid" src="/images/vip-vip.gif" ng-show="storyNU.dealStatus === 1" alt="">
+                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''">{{storyNU.vnName}}</span>
+                                                        </a>
+                                                    </h2>
+                                                    <section class="chap">{{storyNU.author}}</section>
+                                                    <section class="author">
+                                                        <a ng-if="storyNU.chapterId != null" ng-href="/truyen/{{storyNU.id}}/chuong-{{storyNU.chapterId}}"
+                                                           ng-attr-title="Chương {{storyNU.chapterNumber}}">Chương {{storyNU.chapterNumber}}</a>
+                                                        <a ng-if="storyNU.chapterId == null">&nbsp;</a>
+                                                    </section>
+                                                    <section class="time">
+                                                        {{storyNU.displayName?storyNU.displayName:storyNU.username}}
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </li>
+                                    </ul>
+                                    <section>
+                                        <a th:href="@{/danh-muc/moi-cap-nhat}" class="float-right cnt-view">Xem tiếp</a>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section> -->
+        </section>
+        <!-- <section class="truyen-section section-featured">
+            <section class="container">
+                <section class="row">
+                    <section class="col-12 col-md-12 col-lg-8">
+                        <section class="block block-default">
+                            <section class="block-header">
+                                <h2 class="title text-uppercase">Truyện Vip</h2>
+                            </section>
+                            <section class="block-content">
+                                <section class="row">
+                                    <section class="col-12 col-md-12 col-lg-6">
+                                        <section class="truyen-slider js-truyen-slider">
+                                            <section class="slider-thumb">
+                                                <section class="swiper-container">
+                                                    <section class="swiper-wrapper">
+                                                        <section class="swiper-slide" th:each="storyVip,iterStat : ${vipStory}" th:if="${iterStat.index < 4}">
+                                                            <a class="item" th:href="@{'/truyen/'+${storyVip.id}}" th:title="${storyVip.vnName}">
+                                                                <img th:src="${storyVip.images}" th:alt="${storyVip.vnName}" class="img-fluid img-thumbnail">
+                                                            </a>
+                                                        </section>
+                                                    </section>
+                                                    <section class="swiper-button-prev"><i class="truyen-icon icon-prev"></i></section>
+                                                    <section class="swiper-button-next"><i class="truyen-icon icon-next"></i></section>
+                                                </section>
+                                            </section>
+                                            <section class="slider-info">
+                                                <section class="swiper-container">
+                                                    <section class="swiper-wrapper">
+                                                        <section class="swiper-slide" th:each="storyVip,iterStat : ${vipStory}" th:if="${iterStat.index < 4}">
+                                                            <section class="item text-center">
+                                                                <h2 class="title" th:text="${storyVip.vnName}"></h2>
+                                                                <section class="view text-secondary" th:text="${storyVip.author}"></section>
+                                                                <p class="description" th:text="${T(org.jsoup.Jsoup).parse(storyVip.infomation).text()}"></p>
+                                                                <a th:href="@{'/truyen/'+${storyVip.id}}" class="btn btn-truyen" title="xem tiếp">
+                                                                    Xem chi tiết
+                                                                </a>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="col-12 col-md-12 col-lg-6">
+                                        <section class="block">
+                                            <section class="block-content">
+                                                <section class="editors-choice-list" style="border-bottom: none;">
+                                                    <section class="row">
+                                                        <th:block th:each="vStory,iterStat : ${vipStory}" th:if="${(vipStory.size()-6) le iterStat.index}">
+                                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
+                                                                <section class="item">
+                                                                    <h2 class="title">
+                                                                        <a th:href="@{'/truyen/'+${vStory.id}}" th:title="${vStory.vnName}" th:text="${vStory.vnName}"></a>
+                                                                    </h2>
+                                                                    <section class="view text-secondary">
+                                                                        <span class="text-red fz-16" th:text="${vStory.author}"></span>
+                                                                    </section>
+                                                                    <p class="description" th:text="${T(org.jsoup.Jsoup).parse(vStory.infomation).text()}"></p>
+                                                                </section>
+                                                            </section>
+                                                        </th:block>
+                                                        <section class="clearfix hidden-xs"></section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="col-12 col-md-12 col-lg-4">
+                        <section class="block block-default block-readers-choice">
+                            <section class="block-header"><h2 class="title"> Top Conveter</h2></section>
+                            <section class="block-content">
+                                <ul class="list-group">
+                                    <li ng-repeat="conveter in topConveter" class="list-group-item list-group-item-primary-me" ng-class="$index==0?'item-featured':''">
+                                        <section class="content">
+                                            <section class="index index-{{$index+1}} index-star">{{$index+1}}</section>
+                                            <section class="info">
+                                                <h2 class="title">
+                                                    <a ng-href="/member/{{conveter.id}}" ng-attr-title="{{conveter.displayName}}">{{conveter.displayName}}</a>
+                                                </h2>
+                                                <section class="view text-secondary" ng-if="$index == 0">
+                                                    Số Truyện: <span class="text-red fz-16">{{conveter.scnt}}</span>
+                                                </section>
+                                                <section class="view text-secondary" ng-if="$index != 0">
+                                                    {{conveter.cnt}} Chương
+                                                </section>
+                                                <section class="extra-info" ng-if="$index == 0">
+                                                    <p>Số Chương đã đăng: {{conveter.cnt}}</p>
+                                                </section>
+                                            </section>
+                                            <section class="thumb" ng-if="$index == 0">
+                                                <section class="book-cover">
+                                                    <a class="book-cover-link" ng-href="/member/{{conveter.id}}" ng-attr-title="{{conveter.displayName}}">
+                                                        <img ng-src="{{conveter.avatar?conveter.avatar:noImage}}" ng-alt="{{conveter.displayName}}">
+                                                    </a> <span class="book-cover-shadow"></span>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </li>
+                                </ul>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section> -->
     </section>
-    
-    <app-footer></app-footer>
+</section>
 
-
-
-
-
+<app-footer></app-footer>

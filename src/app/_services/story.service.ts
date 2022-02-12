@@ -16,6 +16,10 @@ export class StoryService {
   public getStoryList(form: FormData): Observable<GetStoryResponse> {
     return this.httpClient.post<GetStoryResponse>(`${this.baseUrl}quan-tri/truyen/danh-sach`, form);
   }
+
+  public getHomeStory(): Observable<GetHomeStoryResponse> {
+    return this.httpClient.get<GetHomeStoryResponse>(`${this.baseUrl}trang-chu`);
+  }
 }
 
 interface GetStoryResponse {
@@ -24,4 +28,11 @@ interface GetStoryResponse {
   totalElements: number,
   totalPages: number,
   number: number
+}
+
+interface GetHomeStoryResponse {
+  topStoryWeek: Story[];
+  listNewStory: Story[];
+  topStory: Story[];
+  topVipStory: Story[];
 }

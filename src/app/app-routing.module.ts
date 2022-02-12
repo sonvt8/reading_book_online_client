@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
       { path: 'trang-quan-ly', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
       { path: 'the-loai', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại'}},
-      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: 'Thể loại'}},
+      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: ' Cập nhật Thể loại'}},
       { path: 'them-the-loai', component: AddCategoryComponent, data: {title: 'Thêm thể loại'}},
       { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
       { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },

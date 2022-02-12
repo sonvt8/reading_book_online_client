@@ -6,6 +6,7 @@ export class Story{
     author: string;
     countAppoint: number;
     countView: number;
+    cnt: number;
     createDate : Date;
     dealStatus: number;
     images: string;
@@ -18,6 +19,7 @@ export class Story{
     updateDate: Date;
     userPosted: number;
     displayName: string;
+    categoryName: string;
     categoryList: Category[];
 
     constructor(){
@@ -25,6 +27,7 @@ export class Story{
         this.author = "";
         this.countAppoint = 0;
         this.countView = 0;
+        this.cnt = 0;
         this.createDate = new Date();
         this.dealStatus = 0;
         this.images = "";
@@ -37,6 +40,7 @@ export class Story{
         this.updateDate = new Date;
         this.userPosted = 0;
         this.displayName = "";
+        this.categoryName = "";
         this.categoryList = [];
     }
         
