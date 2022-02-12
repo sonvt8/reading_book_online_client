@@ -11,20 +11,20 @@
                             <strong>Đăng Nhập</strong>
                         </h5>
                         <div class="card-body px-lg-5 pt-0">
-                            <form class="md-form" id="signupForm1" name='loginForm'>
-                                <!-- <section class="md-form">
-                                    <section class="alert alert-danger" role="alert"></section>
-                                </section>
-                                <section class="md-form">
-                                    <section class="alert alert-success" role="alert"></section>
-                                </section> -->
+                            <form class="md-form" id="signupForm1" name='loginForm' [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
-                                    <input type="text" name="username" id="username" placeholder="" autofocus="autofocus" class="form-control mb-4">
-                                    <label for="username">Tài khoản</label>
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4"/>
+                                    <label for="username" class="text-primary">Tên đăng nhập</label>
+                                    <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
+                                        <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>
+                                    </div>
                                 </div>
                                 <div class="md-form">
-                                    <input type="password" name="password" id="password" class="form-control mb-4">
-                                    <label for="password">Mật Khẩu</label>
+                                    <input type="password" name="password" id="password" formControlName="password" class="form-control mb-4">
+                                    <label for="password" class="text-primary">Mật Khẩu</label>
+                                    <div *ngIf="(f['password'].touched || submitted) && f['password'].errors" class="text-danger">
+                                        <div *ngIf="f['password'].errors['required']">Mật khẩu không được để trống</div>
+                                    </div>
                                 </div>
                                 <div class="form-check my-4">
                                     <input class="form-check-input" type="checkbox" id="remember-me" name="remember-me">
@@ -43,11 +43,11 @@
 
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Bạn chưa có tài khoản? <a class="text-primary ml-1 font-weight-bold"> Đăng Ký Ngay</a></p>
+                                    <p class="font-small d-flex justify-content-end">Bạn chưa có tài khoản? <a routerLink="/dang-ky" class="text-primary ml-1 font-weight-bold"> Đăng Ký Ngay</a></p>
                                 </div>
                                 <!--Grid column-->
                                 <div class="col-md-12">
-                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a routerLink="/quen-mat-khau" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
                                 </div>
                             </form>
                         </div>
