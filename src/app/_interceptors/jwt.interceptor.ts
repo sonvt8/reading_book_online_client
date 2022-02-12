@@ -8,22 +8,65 @@ import { TokenStorageService } from '../_services/token-storage.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService,private tokenService: TokenStorageService) { }
+    private readonly validRequestForNotAddingToken: Array<string>;
+    private readonly validGetRequestForNotAddingToken: Array<string>;
+
+    constructor(private authService: AuthService, private tokenService: TokenStorageService) {
+        this.validRequestForNotAddingToken = [
+            "thanh_vien/dang_nhap",
+            "thanh_vien/dang_ky",
+            "thanh_vien/quen_mat_khau",
+            "trang-chu",
+            "home",
+            "trang-chu",
+        ];
+        this.validGetRequestForNotAddingToken = [
+            "the-loai/..",
+            "thong-tin",
+            "danh-muc/..",
+            "chuong/..",
+            "truyen/.."
+        ];
+    }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // const user = this.authService.userValue;
-        const token = this.tokenService.getToken();
-        const isLoggedIn = this.authService.isLoggedIn();
-        const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            
+        if (this.isValidRequestForInterceptor(request) && this.isValidGetRequestForInterceptor(request)) {
+            this.tokenService.loadToken();
+            const token = this.tokenService.getToken();
+
+            // inject token into headers
+            const modifiedRequest = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
+            return next.handle(modifiedRequest);
         }
 
         return next.handle(request);
     }
+
+    private isValidRequestForInterceptor(request: HttpRequest<unknown>): boolean {
+        const positionIndicator = '8081/';
+        const position = request.url.indexOf(positionIndicator);
+        if (position > 0) {
+          const destination = request.url.substr(position + positionIndicator.length);
+          for (const address of this.validRequestForNotAddingToken) {
+            if (new RegExp(address).test(destination)) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+    
+      private isValidGetRequestForInterceptor(request: HttpRequest<unknown>): boolean {
+        const positionIndicator = '8081/';
+        const position = request.url.indexOf(positionIndicator);
+        if (position > 0) {
+          const destination = request.url.substr(position + positionIndicator.length);
+          for (const address of this.validGetRequestForNotAddingToken) {
+            if (new RegExp(address).test(destination) && request.method === 'GET') {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
 }
