@@ -20,6 +20,7 @@ export class Story{
     userPosted: number;
     displayName: string;
     categoryName: string;
+    chapterNumber: number;
     categoryList: Category[];
 
     constructor(){
@@ -41,6 +42,7 @@ export class Story{
         this.userPosted = 0;
         this.displayName = "";
         this.categoryName = "";
+        this.chapterNumber = 0
         this.categoryList = [];
     }
         
