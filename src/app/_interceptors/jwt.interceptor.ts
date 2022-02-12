@@ -24,10 +24,7 @@ export class JwtInterceptor implements HttpInterceptor {
             "trang-chu",
         ];
         this.validGetRequestForNotAddingToken = [
-            "thong-tin",
-            "danh-muc/..",
-            "chuong/..",
-            "truyen/.."
+            "thong-tin"
         ];
     }
 
@@ -46,10 +43,12 @@ export class JwtInterceptor implements HttpInterceptor {
 
     private isValidRequestForInterceptor(request: HttpRequest<unknown>): boolean {
         const positionIndicator = '8081/';
+        //console.log(request.url);
         const position = request.url.indexOf(positionIndicator);
+        //console.log(position);
         if (position > 0) {
           const destination = request.url.substr(position + positionIndicator.length);
-          console.log(destination);
+          //console.log(destination);
           for (const address of this.validRequestForNotAddingToken) {
             if (new RegExp(address).test(destination)) {
               return false;
@@ -64,7 +63,7 @@ export class JwtInterceptor implements HttpInterceptor {
         const position = request.url.indexOf(positionIndicator);
         if (position > 0) {
           const destination = request.url.substr(position + positionIndicator.length);
-          console.log(destination);
+          //console.log(destination);
           for (const address of this.validGetRequestForNotAddingToken) {
             if (new RegExp(address).test(destination) && request.method === 'GET') {
               return false;

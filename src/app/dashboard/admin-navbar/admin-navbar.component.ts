@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 declare var showNavbar: any
 
@@ -11,7 +13,12 @@ declare var showNavbar: any
 
 export class AdminNavbarComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2) { }
+  constructor(
+    @Inject(DOCUMENT) private document: Document, 
+    private renderer: Renderer2,
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.renderer.addClass(this.document.body, 'fixed-sn');
@@ -20,5 +27,9 @@ export class AdminNavbarComponent implements OnInit {
     showNavbar();
   }
   
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/trang-chu']);
+  }
 
 }
