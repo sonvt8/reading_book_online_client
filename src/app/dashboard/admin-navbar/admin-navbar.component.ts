@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 
+declare var showNavbar: any
 
 @Component({
   selector: 'app-admin-navbar',
@@ -16,6 +17,7 @@ export class AdminNavbarComponent implements OnInit {
     this.renderer.addClass(this.document.body, 'fixed-sn');
     this.renderer.addClass(this.document.body, 'white-skin');
     this.renderer.addClass(this.document.body, 'body-none');
+    showNavbar();
   }
   
 
