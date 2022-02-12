@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomValidationService } from '../_services/custom-validation.service';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -26,8 +24,6 @@ export class AccountsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private customValidator: CustomValidationService,
-    private toastr: ToastrService,
     private tokenService: TokenStorageService
   ) { }
 

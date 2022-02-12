@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private customValidator: CustomValidationService,
     private toastr: ToastrService
   ) { }
 

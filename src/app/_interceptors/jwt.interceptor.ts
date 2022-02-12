@@ -18,7 +18,6 @@ export class JwtInterceptor implements HttpInterceptor {
             "thanh_vien/quen_mat_khau",
             "trang-chu",
             "home",
-            "trang-chu",
         ];
         this.validGetRequestForNotAddingToken = [
             "the-loai/..",
