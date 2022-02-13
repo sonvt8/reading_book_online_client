@@ -58,8 +58,8 @@
               "src/assets/js/aes.js",
               "src/assets/js/pbkdf2.js",
               "src/assets/js/AesUtil.js",
-              "src/assets/js/myApp.js",
               "src/assets/static/js/myFunction.js",
+              "src/assets/static/js/myApp.js",
               "src/assets/static/js/backToTop.js",
               "src/assets/js/showNavbar.js"
             ]

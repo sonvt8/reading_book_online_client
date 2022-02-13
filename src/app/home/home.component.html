@@ -80,7 +80,7 @@
                                                     <h2 class="title">
                                                         <a href="">{{_topstory.name}}</a>
                                                     </h2>
-                                                    <section class="view text-secondary" ng-if="$index == 0">
+                                                    <section class="view text-secondary" *ngIf="i == 0">
                                                         <span class="text-red fz-16">{{_topstory.cnt}}</span> phiếu
                                                     </section>
                                                     <section class="view text-secondary" *ngIf="i != 0">
@@ -227,32 +227,32 @@
                             </section>
                         </section>
                     </section>
-                    <!-- <section class="col-12 col-md-12 col-lg-4">
+                    <section class="col-12 col-md-12 col-lg-4">
                         <section class="block block-default block-readers-choice">
                             <section class="block-header"><h2 class="title"> Top Conveter</h2></section>
                             <section class="block-content">
                                 <ul class="list-group">
-                                    <li ng-repeat="conveter in topConveter" class="list-group-item list-group-item-primary-me" ng-class="$index==0?'item-featured':''">
+                                    <li *ngFor="let _topConvert of topConvert; let i = index" class="list-group-item list-group-item-primary-me" [ngClass]="i==0?'item-featured':''">
                                         <section class="content">
-                                            <section class="index index-{{$index+1}} index-star">{{$index+1}}</section>
+                                            <section class="index index-{{i+1}} index-star">{{i+1}}</section>
                                             <section class="info">
                                                 <h2 class="title">
-                                                    <a ng-href="/member/{{conveter.id}}" ng-attr-title="{{conveter.displayName}}">{{conveter.displayName}}</a>
+                                                    <a href="" title="{{_topConvert.displayName}}">{{_topConvert.displayName}}</a>
                                                 </h2>
-                                                <section class="view text-secondary" ng-if="$index == 0">
-                                                    Số Truyện: <span class="text-red fz-16">{{conveter.scnt}}</span>
+                                                <section class="view text-secondary" *ngIf="i == 0">
+                                                    Số Truyện: <span class="text-red fz-16">{{_topConvert.scnt}}</span>
                                                 </section>
-                                                <section class="view text-secondary" ng-if="$index != 0">
-                                                    {{conveter.cnt}} Chương
+                                                <section class="view text-secondary" *ngIf="i != 0">
+                                                    {{_topConvert.cnt}} Chương
                                                 </section>
-                                                <section class="extra-info" ng-if="$index == 0">
-                                                    <p>Số Chương đã đăng: {{conveter.cnt}}</p>
+                                                <section class="extra-info" *ngIf="i == 0">
+                                                    <p>Số Chương đã đăng: {{_topConvert.cnt}}</p>
                                                 </section>
                                             </section>
-                                            <section class="thumb" ng-if="$index == 0">
+                                            <section class="thumb" *ngIf="i == 0">
                                                 <section class="book-cover">
-                                                    <a class="book-cover-link" ng-href="/member/{{conveter.id}}" ng-attr-title="{{conveter.displayName}}">
-                                                        <img ng-src="{{conveter.avatar?conveter.avatar:noImage}}" ng-alt="{{conveter.displayName}}">
+                                                    <a class="book-cover-link" title="{{_topConvert.displayName}}">
+                                                        <img src="{{_topConvert.avatar?_topConvert.avatar:noImage}}" alt="{{_topConvert.displayName}}">
                                                     </a> <span class="book-cover-shadow"></span>
                                                 </section>
                                             </section>
@@ -261,7 +261,7 @@
                                 </ul>
                             </section>
                         </section>
-                    </section> -->
+                    </section>
                 </section>
             </section>
         </section>
