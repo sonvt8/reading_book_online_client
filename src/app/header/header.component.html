@@ -85,9 +85,9 @@
                     <li *ngIf="!currentUser">
                         <section class="user-block h-100">
                             <i class="truyen-icon icon-user"></i>
-                            <a routerLink="/dang-nhap"> Đăng nhập </a>
+                            <a routerLink="/thanh_vien/dang_nhap"> Đăng nhập </a>
                             <a class="diver disabled">|</a>
-                            <a routerLink="/dang-ky"> Đăng ký </a>
+                            <a routerLink="/thanh_vien/dang_ky"> Đăng ký </a>
                         </section>
                     </li>
                     <li class="dropdown" *ngIf="currentUser">
@@ -133,10 +133,10 @@
                         <section
                                 class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/dang-nhap" class="login-btn">Đăng nhập</a>
+                            <a routerLink="/thanh_vien/dang_nhap" class="login-btn">Đăng nhập</a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/dang-ky" class="login-btn">Đăng ký</a>
+                            <a routerLink="/thanh_vien/dang_nhap/dang_ky" class="login-btn">Đăng ký</a>
                         </section>
                     </section>
                 </section>
@@ -147,7 +147,7 @@
                 <i class="truyen-icon icon-user"></i>
             </section>
 
-            <a routerLink="/trang-chu" class="user-logout">Thoát</a>
+            <a (click)="logOut()" class="user-logout">Thoát</a>
             <section class="card-menu">
                 <section class="list-group" style="margin-bottom: 20px;">
                     <section class="list-group-item list-group-item-sidebar">

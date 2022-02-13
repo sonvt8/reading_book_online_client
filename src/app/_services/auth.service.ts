@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../_models/user';
 import { TokenStorageService } from './token-storage.service';
+import { CustomHttpResponse } from '../_models/custom-http-response';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,12 @@ export class AuthService {
 
   public getUserFromLocalCache(): User {
     return JSON.parse(localStorage.getItem('user')!);
+  }
+
+  public resetPassword(email: string): Observable<CustomHttpResponse> {
+    var formData: any = new FormData();
+    formData.append("email", email);
+    return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}thanh_vien/quen_mat_khau`,formData);
   }
 
   public isLoggedIn(): boolean {

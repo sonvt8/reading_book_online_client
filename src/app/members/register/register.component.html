@@ -1,44 +1,61 @@
 <app-header></app-header>
 <section class="page-wrapper">
+    <!--NavBar-->
+    
     <section class="truyen-main">
         <section id="content" class="container">
             <section class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="card">
                         <h5 class="card-header primary-color white-text text-center py-4">
-                            <strong>Lấy Lại Mật Khẩu</strong>
+                            <strong>Đăng Ký</strong>
                         </h5>
                         <div class="card-body px-lg-5 pt-0">
-                            <form class="md-form" id="rePassword" name='rePassword' [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
+                            <form class="md-form" id="registerForm" name='registerForm' [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
-                                    <input type="text" id="username" formControlName="username" class="form-control mb-4"/>
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4" autocomplete="off"/>
                                     <label for="username" class="text-primary">Tên đăng nhập</label>
                                     <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
                                         <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>
                                     </div>
                                 </div>
                                 <div class="md-form">
-                                    <input type="email" id="email" formControlName="email" class="form-control mb-4"/>
+                                    <input type="email" id="email" formControlName="email" class="form-control mb-4" autocomplete="off"/>
                                     <label for="email" class="text-primary">Email</label>
                                     <div *ngIf="(f['email'].touched || submitted) && f['email'].errors" class="text-danger">
                                         <span *ngIf="f['email'].errors['required']">Email không được để trống</span>
                                         <span *ngIf="f['email'].errors['email']">Email không đúng định dạng</span>
                                     </div>
-                                </div><!--Grid row-->
+                                </div>
+                                <!--Grid row-->
                                 <div class="row d-flex align-items-center mb-4">
+
                                     <!--Grid column-->
                                     <div class="text-center mb-3 col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-block btn-rounded z-depth-1">Gửi Mật Khẩu</button>
+                                        <button type="submit" [disabled]="loading" class="btn btn-primary btn-block btn-rounded z-depth-1">
+                                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                            Đăng Ký
+                                        </button>
                                     </div>
                                     <!--Grid column-->
                                 </div>
                                 <!--Grid row-->
+
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Bạn đã có tài khoản? <a routerLink="/thanh_vien/dang-nhap" class="text-primary ml-1 font-weight-bold"> Đăng Nhập Ngay</a></p>
+                                </div>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <p class="font-small d-flex justify-content-end">Quên mật khẩu? <a routerLink="/thanh_vien/quen_mat_khau" class="text-primary ml-1 font-weight-bold"> Lấy Lại Mật Khẩu</a></p>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
         </section>
-    </section>
+    </section>   
 </section>
+
 <app-footer></app-footer>
