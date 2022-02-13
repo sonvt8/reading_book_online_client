@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidationService } from '../../_services/custom-validation.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,8 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -24,6 +27,9 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'body-home');
+    this.renderer.addClass(this.document.body, 'page-login');
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]

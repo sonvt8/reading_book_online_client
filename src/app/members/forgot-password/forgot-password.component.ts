@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CustomHttpResponse } from 'src/app/_models/custom-http-response';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,6 +19,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -26,6 +29,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'page-login');
     this.forgotForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });

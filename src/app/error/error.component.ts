@@ -14,8 +14,15 @@ export class ErrorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.renderer.addClass("error-title-block", "animated flipInY");
-    this.renderer.addClass("error-container", "animated fadeInUp");
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'style-3');
+    var eTitle = document.getElementsByClassName("error-title-block");
+    eTitle[0].classList.add("animated");
+    eTitle[0].classList.add("flipInY");
+
+    var eCon = document.getElementsByClassName("error-container");
+    eCon[0].classList.add("animated");
+    eCon[0].classList.add("fadeInUp");
   }
 
 }

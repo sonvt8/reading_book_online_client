@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../_models/user';
 import { HeaderType } from '../enum/header-type.enum';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-members',
@@ -20,6 +21,8 @@ export class MembersComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -28,9 +31,11 @@ export class MembersComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-      this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'page-login');
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -68,6 +73,13 @@ export class MembersComponent implements OnInit, OnDestroy {
       )
     );
   }
+
+  removeElementsByClass(className: any){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode!.removeChild(elements[0]);
+    }
+}
 }
 
 interface UserLogin {

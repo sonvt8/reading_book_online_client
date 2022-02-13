@@ -36,8 +36,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.renderer.addClass(this.document.body, 'body-home');
-    this.renderer.addClass(this.document.body, 'page-login');
     this.getDataHeader();
     // this.currentUser = this.authService.userValue as User;
   }
