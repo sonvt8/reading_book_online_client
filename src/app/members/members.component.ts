@@ -9,11 +9,11 @@ import { HeaderType } from '../enum/header-type.enum';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
-  selector: 'app-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.css']
 })
-export class AccountsComponent implements OnInit, OnDestroy {
+export class MembersComponent implements OnInit, OnDestroy {
   public loading = false;
   public submitted = false;
   public loginForm!: FormGroup;
@@ -62,7 +62,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
           this.tokenService.saveToken(token!);
           this.authService.addUserToLocalCache(response.body!);
           this.authService.setCurrentUser(response.body!);
-          this.router.navigate(['../trang-chu'], { relativeTo: this.route });
+          this.router.navigate(['/trang-chu']);
           this.loading = false;
         }
       )

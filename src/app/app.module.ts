@@ -10,10 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { AccountsComponent } from './accounts/accounts.component';
-import { RegisterComponent } from './accounts/register/register.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ForgotPasswordComponent } from './accounts/forgot-password/forgot-password.component';
 import { AdminNavbarComponent } from './dashboard/admin-navbar/admin-navbar.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component';
@@ -32,6 +29,10 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
 import { PageContentComponent } from './home/page-content/page-content.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NotificationService } from './_services/notification.service';
+import { MembersComponent } from './members/members.component';
+import { RegisterComponent } from './members/register/register.component';
+import { ForgotPasswordComponent } from './members/forgot-password/forgot-password.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { NotificationService } from './_services/notification.service';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AccountsComponent,
+    MembersComponent,
     RegisterComponent,
     ProfileComponent,
     ForgotPasswordComponent,
@@ -51,7 +52,8 @@ import { NotificationService } from './_services/notification.service';
     EditCategoryComponent,
     ListUserComponent,
     EditUserComponent,
-    PageContentComponent
+    PageContentComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
