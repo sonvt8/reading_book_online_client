@@ -10,7 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './account/profile/profile.component';
 import { AdminNavbarComponent } from './dashboard/admin-navbar/admin-navbar.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { AdminHomeComponent } from './dashboard/admin-home/admin-home.component';
@@ -26,7 +26,6 @@ import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
-import { PageContentComponent } from './home/page-content/page-content.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NotificationService } from './_services/notification.service';
 import { StoryService } from './_services/story.service';
@@ -35,6 +34,7 @@ import { MembersComponent } from './members/members.component';
 import { RegisterComponent } from './members/register/register.component';
 import { ForgotPasswordComponent } from './members/forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
+import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +54,9 @@ import { ErrorComponent } from './error/error.component';
     EditCategoryComponent,
     ListUserComponent,
     EditUserComponent,
-    PageContentComponent,
     ListStoryComponent,
-    ErrorComponent
+    ErrorComponent,
+    AccountNavbarComponent
   ],
   imports: [
     BrowserModule,
