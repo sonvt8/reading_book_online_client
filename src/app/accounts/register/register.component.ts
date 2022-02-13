@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidationService } from '../../_services/custom-validation.service';
@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.renderer.addClass(this.document.body, 'page-login');
+    this.renderer.removeClass(this.document.body, 'body-home');
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
@@ -59,7 +60,10 @@ export class RegisterComponent implements OnInit {
       this.loading = false;
     })
   }
+
 }
+
+
 
 interface UserRegister {
   username: string;

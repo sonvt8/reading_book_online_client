@@ -35,6 +35,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeClass(this.document.body, 'body-home');
     this.renderer.addClass(this.document.body, 'page-login');
       this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
@@ -43,7 +44,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());   
   }
 
   // convenience getter for easy access to form fields
@@ -77,6 +78,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
     );
   }
 }
+
 
 interface UserLogin {
   username: string;
