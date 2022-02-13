@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="collapsible-header waves-effect arrow-r">
+                        <a routerLink="/quan-tri/truyen" routerLinkActive="active-link" class="collapsible-header waves-effect arrow-r">
                             <i class="w-fa fab fa-css3"></i>Quản Lý Truyện </a>
                     </li>
                 </ul>
@@ -55,7 +55,7 @@
 
         <!-- Breadcrumb -->
         <div class="breadcrumb-dn mr-auto">
-            <p>tieu de</p>
+            <p>{{title}}</p>
         </div>
 
         <div class="d-flex change-mode">
@@ -68,7 +68,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Hồ Sơ</a>
-                        <a class="dropdown-item" href="#">Đăng Xuất</a>
+                        <a class="dropdown-item" (click)="logOut()">Đăng Xuất</a>
                     </div>
                 </li>
 

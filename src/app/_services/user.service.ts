@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Role } from '../_models/role';
+import { TopConvert } from '../_models/top-convert';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -34,6 +35,18 @@ export class UserService {
 
   public getListRoles(): Observable<Role[]> {
     return this.httpClient.get<Role[]>(`${this.baseUrl}quan_tri/nguoi_dung/phan_quyen`);
+  }
+
+  public getTopConvert(): Observable<TopConvert[]> {
+    return this.httpClient.get<TopConvert[]>(`${this.baseUrl}thanh_vien/xem_top_converter`);
+  }
+
+  public deleteAdminUser(user: User): Observable<User> {
+    return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
+  }
+
+  public payDrawAdminUser(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/nap_dau`, form);
   }
 }
 

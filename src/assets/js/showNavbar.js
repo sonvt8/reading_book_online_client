@@ -1,4 +1,4 @@
-function showNavbar(){
+function showNavbar() {
     $(".button-collapse").sideNav();
     var container = document.querySelector('.custom-scrollbar');
     Ps.initialize(container, {

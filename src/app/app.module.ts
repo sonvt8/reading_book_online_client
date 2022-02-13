@@ -29,6 +29,8 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
 import { PageContentComponent } from './home/page-content/page-content.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NotificationService } from './_services/notification.service';
+import { StoryService } from './_services/story.service';
+import { ListStoryComponent } from './dashboard/story/list-story/list-story.component';
 import { MembersComponent } from './members/members.component';
 import { RegisterComponent } from './members/register/register.component';
 import { ForgotPasswordComponent } from './members/forgot-password/forgot-password.component';
@@ -53,6 +55,7 @@ import { ErrorComponent } from './error/error.component';
     ListUserComponent,
     EditUserComponent,
     PageContentComponent,
+    ListStoryComponent,
     ErrorComponent
   ],
   imports: [
@@ -70,6 +73,7 @@ import { ErrorComponent } from './error/error.component';
     CategoryService, 
     UserService,
     NotificationService,
+    StoryService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     Title,

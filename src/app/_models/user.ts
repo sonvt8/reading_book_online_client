@@ -1,7 +1,7 @@
 import { Role } from "./role";
 
 export class User {
-    public id: string;
+    public id: number;
     public userId: string;
     public username: string;
     public displayName: string;
@@ -17,7 +17,7 @@ export class User {
   
     roleList: Role[];
     constructor() {
-      this.id = '';
+      this.id = 0;
       this.userId = '';
       this.username = '';
       this.displayName = '';

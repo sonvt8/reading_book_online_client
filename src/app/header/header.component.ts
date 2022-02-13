@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit {
   private loggedInUsername!: string;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2,
+    
     private router: Router,
     private dataService: DataService,
     private authService: AuthService,
@@ -36,6 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getDataHeader();
     // this.currentUser = this.authService.userValue as User;
   }

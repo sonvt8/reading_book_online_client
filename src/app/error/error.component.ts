@@ -16,6 +16,7 @@ export class ErrorComponent implements OnInit {
   ngOnInit(): void {
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'style-3');
+    this.renderer.addClass(this.document.body, 'body-home');
     var eTitle = document.getElementsByClassName("error-title-block");
     eTitle[0].classList.add("animated");
     eTitle[0].classList.add("flipInY");
