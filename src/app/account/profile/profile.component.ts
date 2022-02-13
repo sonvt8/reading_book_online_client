@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,9 +23,21 @@ export class ProfileComponent implements OnInit {
     {name: 'Quản lý Truyện',path: 'tai_khoan/quan_ly_truyen'}
   ];
 
-  selectedIndex: number = 0;
+  public selectedIndex: number = 0;
+  public currentUser: User = new User;
+  private subscription: Subscription;
+  private loggedInUsername!: string;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    private authService: AuthService,
+  ) {
+    this.subscription = this.authService.user.subscribe(user => {
+      this.currentUser = user as User;
+      this.loggedInUsername = user?.username as string;
+    });
+  }
 
   ngOnInit(): void {
   }
