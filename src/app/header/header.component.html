@@ -114,7 +114,7 @@
 <aside class="truyen-sidebar">
     <a href="#" class="sidebar-close js-close-sidebar"></a>
     <section class="sidebar-container">
-        <section class="sidebar-header">
+        <section class="sidebar-header" *ngIf="!currentUser">
             <section class="user-icon">
                 <i class="truyen-icon icon-user"></i>
             </section>
@@ -142,7 +142,7 @@
                 </section>
             </section>
         </section>
-        <section class="sidebar-header">
+        <section class="sidebar-header" *ngIf="currentUser">
             <section class="user-icon">
                 <i class="truyen-icon icon-user"></i>
             </section>
@@ -154,7 +154,7 @@
                         <a class="truyen-sidebar-user-title collapsed"
                            role="button" data-toggle="collapse"
                            href="#truyen-user-menu-collapse" aria-expanded="false"
-                           aria-controls="truyen-user-menu-collapse" sec:authentication="name"> <span
+                           aria-controls="truyen-user-menu-collapse"> {{currentUser?.username}}<span
                                 class="truyen-icon icon-white-next"></span>
                         </a>
                     </section>
