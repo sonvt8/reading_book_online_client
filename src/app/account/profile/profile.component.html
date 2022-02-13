@@ -1,0 +1,105 @@
+<section class="page-wrapper">
+    <!--NavBar-->
+    <app-header></app-header>
+
+    <!--Body-->
+    <section class="truyen-main">
+        <section class="truyen-section section-featured">
+            <section class="container container-full mb-4 mt-5">
+                <section class="featured-content">
+                    <section class="container-fluid">
+                        <section class="featured-content" id="content">
+                            <section class="row">
+                                <div class="col-lg-2 col-md-3">
+                                    <div class="card sticky-top mb-3" style="top: 20px !important">
+                                        <div class="card-body list-group z-depth-1 p-0">
+                                            <a *ngFor="let item of items; let i = index" 
+                                                [ngClass]="{'active': selectedIndex == i, 'list-group-item': true}"
+                                                (click)="select(i)" 
+                                                [routerLink]="[(item.path)]">{{ item.name }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <section class="col-lg-10 col-md-9">
+                                    <section class="row">
+                                        <div class="col-lg-6 mb-5">
+                                            <div class="card h-100">
+                                                <h3 class="card-header primary-color white-text">
+                                                    <span class="fas fa-user" aria-hidden="true"></span> Thông tin tài khoản
+                                                </h3>
+                                                <div class="card-body media">
+                                                    <div class="mr-2" style=" position: relative">
+                                                        <a>
+                                                            <img class="img-thumbnail lazyload" width="210px" src="../../assets/static/images/logo.png" alt="Avatar" id="imgavatar">
+                                                        </a>
+                                                        <button id="upload" style="position: absolute;top:0px">Đổi</button>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <p class="text-muted">ID: <strong>?????</strong>
+                                                        </p>
+                                                        <p class="text-muted">Ngoại hiệu:
+                                                            <strong>Bạn chưa có Ngoại hiệu If Login</strong>
+                                                            <strong>Tên ngoại hiệu ????? Else</strong>
+                                                        </p>
+                                                        <p class="text-muted">Email: <strong>??????</strong>
+                                                        </p>
+                                                        <p class="text-muted">Đã đăng <strong class="text-primary">?????</strong> truyện và <strong class="text-primary">????</strong>
+                                                            chương
+                                                        </p>
+                                                        <p class="text-muted">Tài sản: <strong class="text-primary" >??????</strong> đậu</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5">
+                                            <div class="card h-100">
+                                                <h3 class="card-header primary-color white-text">
+                                                    <span class="fas fa-user" aria-hidden="true"></span> Cập nhật thông báo
+                                                </h3>
+                                                <div class="card-body">
+                                                    <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi đưa vào thông
+                                                        báo</p>
+                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" ng-submit="updateNotification()">
+                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3">Danh sách thông báo ??????</textarea>
+                                                        <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập nhật</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-5">
+                                            <div class="card h-100">
+                                                <h3 class="card-header primary-color white-text">
+                                                    <span class="fas fa-user" aria-hidden="true"></span> Đổi ngoại hiệu
+                                                </h3>
+                                                <div class="card-body">
+                                                    <p class="text-muted mb-2">Ngoại hiệu hiện tại:
+                                                        <strong>Bạn chưa có Ngoại hiệu If</strong>
+                                                        <strong>Tên ngoại hiệu sau khi đổi Else</strong>
+                                                    </p>
+                                                    <p class="text-muted mb-2">Việc đổi tên sẽ mất 2000 đậu, bạn đang
+                                                        có <strong>???</strong> đậu</p>
+                                                    <p class="text-muted">Ngoại hiệu mới không dài quá 25 ký tự</p>
+                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick">
+                                                        <div class="form-group">
+                                                            <div class="md-form mb-0">
+                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick">
+                                                                <label for="txtChangenick" class="">Ngoại hiệu mới</label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect mt-2 float-right" name="btnChangenick" id="btnChangenick">Đổi
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<app-footer></app-footer>

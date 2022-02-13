@@ -14,15 +14,23 @@ import { AppComponent } from './app.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 import { ListStoryComponent } from './dashboard/story/list-story/list-story.component';
 import { ErrorComponent } from './error/error.component';
+import { ProfileComponent } from './account/profile/profile.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
   { 
     path: 'thanh_vien', 
     children:[
+      { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_nhap', component: MembersComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
       { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}}
+    ]
+  },
+  { 
+    path: 'tai_khoan', 
+    children:[
+      { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}}
     ]
   },
   { 
