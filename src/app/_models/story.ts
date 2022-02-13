@@ -21,7 +21,8 @@ export class Story{
     displayName: string;
     categoryName: string;
     chapterNumber: number;
-    categoryList: Category[];
+    categoryList: string[];
+    user!: User;
 
     constructor(){
         this.id=0;
@@ -44,6 +45,7 @@ export class Story{
         this.categoryName = "";
         this.chapterNumber = 0
         this.categoryList = [];
+
     }
         
 

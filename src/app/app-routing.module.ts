@@ -15,6 +15,7 @@ import { EditUserComponent } from './dashboard/user/edit-user/edit-user.componen
 import { ListStoryComponent } from './dashboard/story/list-story/list-story.component';
 import { ErrorComponent } from './error/error.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
       { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },
       { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện'} },
+      { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện'} },
     ]
   },
   // Always put default route at the end.

@@ -17,12 +17,32 @@ export class StoryService {
     return this.httpClient.post<GetStoryResponse>(`${this.baseUrl}quan-tri/truyen/danh-sach`, form);
   }
 
+  public getAdminStory(id: number): Observable<Story> {
+    return this.httpClient.get<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`);
+  }
+
   public getHomeStory(): Observable<GetHomeStoryResponse> {
     return this.httpClient.get<GetHomeStoryResponse>(`${this.baseUrl}trang-chu`);
   }
 
   public deleteStory(id: number): Observable<Story> {
     return this.httpClient.delete<Story>(`${this.baseUrl}quan-tri/truyen/xoa-truyen/${id}`);
+  }
+
+  public updateAdminStory(form: FormData, id: number): Observable<Story> {
+    return this.httpClient.post<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`, form);
+  }
+
+  public createStoryFormData(story: Story, profileImage: File): FormData {
+    const formData = new FormData();
+    formData.append('name', story.name);
+    formData.append('author', story.author);
+    formData.append('infomation', story.infomation);
+    story.categoryList.forEach(tempCat => formData.append('category', tempCat));
+    formData.append('price', JSON.stringify(story.price));
+    formData.append('timeDeal', JSON.stringify(story.timeDeal));
+    formData.append('image', profileImage);
+    return formData;
   }
 }
 

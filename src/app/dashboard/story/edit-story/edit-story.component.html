@@ -1,0 +1,205 @@
+<app-admin-navbar></app-admin-navbar>
+<main>
+    <form enctype="multipart/form-data" class="section-preview" #editForm="ngForm" (ngSubmit)="submitEditAdminStory(editForm)" id="resetForm">
+        <div class="container-fluid">
+
+            <!-- Section: Intro -->
+            <section class="pb-4">
+                <div class="card">
+                    <h2 class="card-header primary-color white-text text-center font-weight-bold">
+                        <span class="oi oi-book"></span> CẬP NHẬT TRUYỆN
+                    </h2>
+
+                    <div class="card-body">
+
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="story.id"
+                                    [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="id" class="form-label text-primary active">ID Truyện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="story.name"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <label for="name" class="form-label text-primary active">Tên Truyện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="author" name="author" [(ngModel)]="story.author"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <label for="author" class=" text-primary active">Tác giả</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <textarea type="text" id="infomation" name="infomation" rows="6" class="form-control md-textarea" [(ngModel)]="story.infomation"
+                                    [ngModelOptions]="{standalone: true}"></textarea>
+                                    <label for="infomation" class=" text-primary form-label active">Giới Thiệu</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="createDate" name="createDate" [(ngModel)]="story.createDate"
+                                    [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="createDate" class="text-primary active">Ngày Tạo </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="userPosted" name="user" [(ngModel)]="story.user"
+                                    [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="userPosted" class="text-primary active">Người Đăng: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="text" class="form-control" id="updateDate" name="updateDate" [(ngModel)]="story.updateDate"
+                                    [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="updateDate" class="text-primary active">Thời Gian Cập Nhật: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <!-- Material checked -->
+                            <div class="col-md-12">
+                                <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="categoryList" [(ngModel)]="story.categoryList" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let cate of listCate" [ngValue]="cate">
+                                        {{cate}}
+                                    </option>
+                                </select>
+                                <label class="md-label-cs text-primary mt-1 form-label">Thể loại</label>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-12 mt-2">
+                                <label class="md-label-cs text-primary form-label">Hình Ảnh</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="md-form mt-0">
+                                    <div class="file-field">
+                                        <div class="btn blue-gradient btn-sm float-left">
+                                            <span>Hình Ảnh</span>
+                                            <input type="file" id="inputFile" accept="image/png, image/jpeg, image/jpg" th:field="*{editfile}"/>
+                                        </div>
+                                        <div class="file-path-wrapper form-row">
+                                            <div class="col-8">
+                                                <!-- Material input -->
+                                                <input class="file-path" type="text" placeholder="Ảnh Bìa" id="file-name" readonly>
+                                            </div>
+                                            <!-- Grid column -->
+                                            <div class="col-auto">
+                                                <!-- Material input -->
+                                                <button type="button" class="btn btn-sm btn-danger btn-remove" id="img-remove">Hủy</button>
+                                            </div>
+                                            <!-- Grid column -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pl-0">
+                                    <div class="md-form mt-0 mb-0">
+                                        <em class="error invalid-feedback" th:if="${#fields.hasErrors('editfile')}" th:errors="*{uploadfile}"
+                                            th:classappend="${#fields.hasErrors('editfile')} ? 'd-block' : ''"></em>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="col-12 col-sm-3 img-input">
+                                <img id="imgLogo" class="img-fluid" th:src="${story.images}">
+                            </section>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select class="mdb-select md-form colorful-select dropdown-primary" name="status" [(ngModel)]="story.dealStatus" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let vip of vipList" [ngValue]="vip">
+                                        {{vip.label}}
+                                    </option>
+                                </select>
+                                <label class="md-label-cs text-primary mt-1 form-label">Trạng thái Vip</label>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="number" class="form-control" id="price" name="price" [(ngModel)]="story.price"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <label for="price" class="md-label-cs text-primary mt-1 form-label active">Giá Tiền: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <input type="number" class="form-control" id="timeDeal" name="timeDeal" [(ngModel)]="story.timeDeal"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <label for="timeDeal" class="md-label-cs text-primary mt-1 form-label active">Thời Hạn Vip: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select class="mdb-select md-form colorful-select dropdown-primary" name="status" [(ngModel)]="story.status" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let status of statusList" [ngValue]="status">
+                                        {{status.label}}
+                                    </option>
+                                </select>
+                                <label class="md-label-cs text-primary mt-1 form-label">Trạng thái</label>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row text-right">
+                            <div class="col-12">
+                                <a class="btn btn-outline-secondary btn-rounded waves-effect" routerLink="/quan-tri/truyen">Quay Lại</a>
+                                <input type="submit" class="btn btn-outline-primary btn-rounded waves-effect" value="Cập Nhật"/>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </form>
+</main>

@@ -23,8 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
         this.validGetRequestForNotAddingToken = [
             "thong-tin",
             "danh-muc",
-            "chuong",
-            "truyen"
+            "chuong"
         ];
     }
 
