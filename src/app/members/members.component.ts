@@ -69,8 +69,9 @@ export class MembersComponent implements OnInit, OnDestroy {
           this.authService.setCurrentUser(response.body!);
           this.router.navigate(['/trang-chu']);
           this.loading = false;
-        }
-      )
+        },error => {
+          this.loading = false;
+        })
     );
   }
 

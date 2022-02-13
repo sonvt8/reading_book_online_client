@@ -59,6 +59,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
           this.toastr.success(response.message);
           this.router.navigate(['../dang-nhap'], { relativeTo: this.route });
           this.loading = false;
+        },error => {
+          this.loading = false;
         },
         () => this.forgotForm.reset()
       )
