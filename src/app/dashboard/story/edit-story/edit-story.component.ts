@@ -21,7 +21,7 @@ export class EditStoryComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   story: Story = new Story();
   currentId: number = 0;
-  profileImage!: File ;
+  images!: File ;
 
   listCate: string[] = [];
 
@@ -63,7 +63,7 @@ export class EditStoryComponent implements OnInit {
   }
 
   submitEditAdminStory(editForm: NgForm): void {
-    const formData = this.storyService.createStoryFormData(this.story, this.profileImage);
+    const formData = this.storyService.createStoryFormData(this.story, this.images);
     this.subscriptions.push(this.storyService.updateAdminStory(formData, this.story.id).subscribe(
         response => {
             this.router.navigateByUrl('/quan-tri/truyen').then(r => {});
@@ -79,6 +79,15 @@ export class EditStoryComponent implements OnInit {
         this.listCate = responses.map(response => response.name);
       }, error => this.toastr.error(error.error.message)
   ));
+  }
+
+  onProfileImageChange(event: any): void {
+    this.images = event.target.files[0];
+    console.log(this.images);
+  }
+
+  convertToInt(id: string){
+    
   }
   
 

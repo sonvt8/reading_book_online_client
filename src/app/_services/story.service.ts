@@ -33,7 +33,7 @@ export class StoryService {
     return this.httpClient.post<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`, form);
   }
 
-  public createStoryFormData(story: Story, profileImage: File): FormData {
+  public createStoryFormData(story: Story, images: File): FormData {
     const formData = new FormData();
     formData.append('name', story.name);
     formData.append('author', story.author);
@@ -41,7 +41,9 @@ export class StoryService {
     story.categoryList.forEach(tempCat => formData.append('category', tempCat));
     formData.append('price', JSON.stringify(story.price));
     formData.append('timeDeal', JSON.stringify(story.timeDeal));
-    formData.append('image', profileImage);
+    formData.append('dealStatus', JSON.stringify(Number(story.dealStatus)));
+    formData.append('status', JSON.stringify(Number(story.status)));
+    formData.append('images', images);
     return formData;
   }
 }

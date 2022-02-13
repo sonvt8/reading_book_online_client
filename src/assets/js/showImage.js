@@ -3,8 +3,8 @@ function showImage(){
     $("#inputFile").change(function () {
         var fileName = $('#inputFile').val();
         if (fileName !== "") {
-            readURL($("#inputFile"));
-            readFileName($("#inputFile"));
+            readURL(this);
+            readFileName(this);
             showRemoveBtn();
         } else {
             removeURL();
