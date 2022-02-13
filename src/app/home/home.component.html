@@ -1,11 +1,8 @@
-<app-header></app-header>
 <section class="page-wrapper">
-    <!--NavBar-->
+    <app-header></app-header>
 
     <section class="truyen-main">
         <section class="container">
-
-            <!-- ĐỌC NHIỀU TRONG TUẦN -->
             <section class="truyen-section section-featured">
                 <section class="featured-content">
                     <section class="row">
@@ -16,42 +13,30 @@
                                         <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
                                         <section class="swiper-container">
                                             <section class="swiper-wrapper">
-                                                <section class="swiper-slide"
-                                                    th:each="topstory,iterStat : ${topStoryWeek}"
-                                                    th:if="${iterStat.index < 4}">
+                                                <section class="swiper-slide" *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
                                                     <section class="item">
                                                         <section class="thumb">
-                                                            <a th:href="@{'/truyen/'+${topstory.id}}"
-                                                                th:title="${topstory.vnName}">
-                                                                <img class="img-fluid lazyload" alt=""
-                                                                    th:data-src="${topstory.images}"
-                                                                    th:title="${topstory.vnName}">
+                                                            <a href="" >
+                                                                <img class="img-fluid lazyload" alt="" data-src="{{_topStoryWeek.images}}" title="{{_topStoryWeek.name}}">
                                                             </a>
                                                         </section>
                                                         <section class="info">
                                                             <h2 class="title">
-                                                                <a th:href="@{'/truyen/'+${topstory.id}}"
-                                                                    th:title="${topstory.vnName}"
-                                                                    th:text="${topstory.vnName}"></a>
+                                                                <a href="">{{_topStoryWeek.name}}</a>
                                                             </h2>
                                                             <span>
-                                                                <span class="fz-16" th:text="${topstory.cnt}"></span>
-                                                                người truy cập</span>
-                                                            <section class="description text-center"
-                                                                style="-webkit-line-clamp: 2;"
-                                                                th:text="${T(org.jsoup.Jsoup).parse(topstory.infomation).text()}">
-                                                            </section>
+                                                                <span class="fz-16" >{{_topStoryWeek.cnt}}</span> người truy cập</span>
+                                                            <section class="description text-center" style="-webkit-line-clamp: 2;"
+                                                                     >{{_topStoryWeek.infomation}}</section>
                                                         </section>
                                                     </section>
                                                 </section>
                                             </section>
-                                            <section
-                                                class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                                            <section class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
                                                 <span class="swiper-pagination-bullet"></span>
                                                 <span class="swiper-pagination-bullet"></span>
                                                 <span class="swiper-pagination-bullet"></span>
-                                                <span
-                                                    class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
                                                 <span class="swiper-pagination-bullet"></span>
                                             </section>
                                         </section>
@@ -59,356 +44,65 @@
                                 </section>
                             </section>
                         </section>
-
-                        <!-- EDITOR CHOICE LIST -->
                         <section class="col-12 col-md-6 col-lg-4">
                             <section class="block">
                                 <section class="block-content">
                                     <section class="editors-choice-list">
                                         <section class="row">
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/3" title="Dị Thế Giới Mỹ Thực Gia">Dị Thế Giới
-                                                            Mỹ Thực Gia</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">Ở Vũ Giả nhấc tay có thể Liệt Sơn
-                                                        xuyên, súy chân có thể đoạn trường hà Huyền Huyễn trên thế
-                                                        giới, tồn tại như vậy một nhà nhà hàng nhỏ . Nhà hàng nhỏ không
-                                                        lớn, nhưng là vô số cường giả đỉnh cao xua như xua vịt chi địa .
-                                                        Ở đàng kia ngươi có thể thưởng thức được dùng trứng Phượng Hoàng
-                                                        cùng Long Huyết mét xào thành cơm xào trứng . Ở đàng kia ngươi
-                                                        có thể Hát đáo Sinh Mệnh Chi Tuyền xứng Chu Quả chế riêng Liệt
-                                                        Tửu . Ở đàng kia ngươi có thể ăn được Cửu Giai Thánh Thú nhục
-                                                        thân hợp với Hắc hồ tiêu thịt quay . Cái gì ngươi nghĩ đem đầu
-                                                        bếp bắt về nhà ? Không có khả năng, bởi vì nhà hàng cửa nằm một
-                                                        con giữ cửa Thập Giai Thần Thú, Địa Ngục Khuyển .</section>
-                                                </section>
-                                            </section>
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/5" title="Đột Nhiên Vô Địch">Đột Nhiên Vô
-                                                            Địch</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">Đạo Thiên Quân Một cái bình thường,
-                                                        danh tự tự kỷ thiếu niên lang, một giấc thức tỉnh, phát hiện tự
-                                                        mình đi vào thế giới xa lạ. Ở trên bầu trời đại điểu là cái gì,
-                                                        kia so núi còn cao hầu tử là cái gì. . . Nguyên lai mình chỗ
-                                                        tinh vực gọi Bắc Đẩu. A, các loại, Bắc Đẩu, tu luyện cấp bậc là
-                                                        Luân Hải cảnh, Đạo Cung bí cảnh. . . Cái này mẹ nó không phải
-                                                        Già Thiên thế giới đi. Giống như lại không đúng, ta thế nào nghe
-                                                        nói còn có mười hai Tiên Thể, hẳn là đây là nhất đại Bức Vương
-                                                        thế giới. Không đúng, không đúng, ta mẹ nó thấy cái gì, Trấn
-                                                        Thiên Hải Thành, thế nhưng là tại sao không có Bức Đế đâu, trong
-                                                        lịch sử không có Âm Nha. Đạo Thiên Quân suy nghĩ có chút lộn
-                                                        xộn. Một ngày nào đó. "Đối diện kẻ chăn trâu phía trước rất nguy
-                                                        hiểm, là cái nuốt người tiên động, đừng đi" . . . Đạo Thiên Quân
-                                                        hữu hảo khuyên can. "Tạ ơn, ngươi người thật tốt, ngươi tên là
-                                                        gì, ta gọi Lý Thất Dạ."</section>
-                                                </section>
-                                            </section>
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/6"
-                                                            title="Vô Địch Từ Max Cấp Thuộc Tính Bắt Đầu">Vô Địch Từ Max
-                                                            Cấp Thuộc Tính Bắt Đầu</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">Xuyên qua thành tu chân đại lục một cái
-                                                        củi mục, cái kia còn tu chân em gái nhà ngươi? Một đạo thất thải
-                                                        hào quang sau đó, Dương Chân trực tiếp kéo banh trời! Hắn nhìn
-                                                        qua công pháp, trực tiếp mãn phẩm max cấp, học đều không học
-                                                        hết! Hắn luyện chế đan dược, chẳng những khởi tử hồi sinh, còn
-                                                        có thể thanh xuân mãi mãi, bao nhiêu thánh nữ tiên tử đau khổ
-                                                        muốn nhờ, điều kiện gì đều chịu đáp ứng! Hắn rèn đúc vũ khí,
-                                                        trên đánh Thần Vương Đại Đế, dưới đâm Hoàng Tuyền U Ngục, mỗi
-                                                        một kiện đều để thiên địa run rẩy, để thần ma tránh lui! Khụ
-                                                        khụ. . . "Ta từ trước tới giờ không đóng vai heo trang bức, bởi
-                                                        vì ta thực ngưu một nhóm!" ☆☆☆ Luca Chi Hố ☆☆☆ _Siêu Phàm cảnh
-                                                        gồm: Ngưng Nguyên Kỳ - Trúc Cơ Kỳ - Tiểu Thừa Kỳ - Kim Đan Kỳ -
-                                                        Nguyên Anh Kỳ - Luyện Hư Kỳ - Thần Du Kỳ _Thiên Nhân cảnh _Thánh
-                                                        Giả cảnh _Đại Đế cảnh.</section>
-                                                </section>
-                                            </section>
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/4" title="Mục Thần Ký">Mục Thần Ký</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">Đại Khư tổ huấn nói, trời tối, đừng đi
-                                                        ra ngoài. Đại Khư Tàn Lão thôn mấy kẻ già yếu tàn tật từ bờ sông
-                                                        nhặt được một đứa bé, lấy tên Tần Mục, ngậm đắng nuốt cay đem
-                                                        hắn nuôi lớn. Một ngày này màn đêm buông xuống, bóng tối bao
-                                                        trùm Đại Khư, Tần Mục đi ra cửa chính. . . Làm trong gió xuân
-                                                        nhộn nhạo nhân vật phản diện đi! Mù lòa nói với hắn. Tần Mục
-                                                        nhân vật phản diện chi lộ, ngay tại quật khởi!</section>
-                                                </section>
-                                            </section>
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/8" title="Chư Thiên Kịch Thấu Quần">Chư Thiên
-                                                            Kịch Thấu Quần</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">(kịch thấu = spoiler) Xuyên qua thiên
-                                                        địa khôi phục thế giới song song, ngẫu nhiên lấy được chư thiên
-                                                        group chat. Bởi vì cái gọi là kịch thấu nhất thời thoải mái, một
-                                                        mực kịch thấu một mực thoải mái! Lý Hạo nhìn xem group chat bên
-                                                        trong quen thuộc vạn giới các đại lão, lâm vào lâu dài trầm tư.
-                                                        Hôm nay nên đùa giỡn vị kia đại lão? Còn không liên lụy chín
-                                                        con rồng kéo hòm quan tài Diệp Thiên Đế? Lại hoặc là thê thê
-                                                        thảm thảm Tiêu Đấu Đế? Lại hoặc là đùa giỡn Ngoan Nhân Đại Đế?
+                                            <ng-container *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
+                                                <section class="col-12 col-sm-12 col-md-6 btv-2">
+                                                    <section class="item">
+                                                        <h2 class="title">
+                                                            <a href="" title="{{_topStoryWeek.name}}">{{_topStoryWeek.name}}</a>
+                                                        </h2>
+                                                        <section class="view text-secondary">
+                                                            <span class="text-red fz-16">{{_topStoryWeek.cnt}}</span>người truy cập
+                                                        </section>
+                                                        <section class="description">{{_topStoryWeek.infomation}}</section>
                                                     </section>
                                                 </section>
-                                            </section>
-
-                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                <section class="item">
-                                                    <h2 class="title">
-                                                        <a href="/truyen/9" title="Nhất Kiếm Độc Tôn">Nhất Kiếm Độc
-                                                            Tôn</a>
-                                                    </h2>
-                                                    <section class="view text-secondary">
-                                                        <span class="text-red fz-16">0</span>người truy cập
-                                                    </section>
-                                                    <section class="description">Sinh tử coi nhẹ, không phục liền làm.
-                                                        Chư thiên thần phật tiên, không qua đến nhất kiếm ! Cảnh giới: -
-                                                        Kiếm phân chia: Tục kiếm, linh kiếm, minh kiếm, chân kiếm, thiên
-                                                        kiếm, đạo kiếm, bất hủ chi kiếm... - Tu luyện phân chia: Nhất
-                                                        phẩm Thối Thể cảnh, nhị phẩm Luyện Lực cảnh, tam phẩm Nội Tráng
-                                                        cảnh, tứ phẩm Kiêm Tu cảnh, ngũ phẩm Bất Tức cảnh, lục phẩm Khí
-                                                        Biến cảnh, phía trên liền là Ngự Khí cảnh, Lăng Không cảnh,
-                                                        Thông U cảnh, Thần Hợp cảnh, Vạn Pháp cảnh, Ngự Pháp cảnh, Phá
-                                                        Không cảnh, Nguyên Cảnh, Vô Thượng cảnh, Thánh cảnh, Tiên cảnh,
-                                                        Tạo Hóa chi cảnh... Thanh Phong Loan sách mới, cùng tác Vô Địch
-                                                        Kiếm Vực</section>
-                                                </section>
-                                            </section>
+                                            </ng-container>
                                             <section class="clearfix hidden-xs"></section>
                                         </section>
                                     </section>
                                 </section>
                             </section>
                         </section>
-
-                        <!-- TOP ĐỀ CỬ -->
                         <section class="col-12 col-md-12 col-lg-4">
                             <section class="block block-default block-readers-choice">
-                                <section class="block-header">
-                                    <h2 class="title"> Top Đề Cử </h2>
-                                </section>
+                                <section class="block-header"><h2 class="title"> Top Đề Cử </h2></section>
                                 <section class="block-content">
                                     <ul class="list-group">
-                                        <!-- ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope item-featured"
-                                            ng-class="$index==0?'item-featured':''">
+                                        <li *ngFor="let _topstory of topStory; index as i" class="list-group-item list-group-item-primary-me" [ngClass]="i==0?'item-featured':''">
                                             <section class="content">
-                                                <section class="index index-1 index-star">1</section>
+                                                <section class="index index-{{i+1}} index-star">{{i+1}}</section>
                                                 <section class="info">
                                                     <h2 class="title">
-                                                        <a ng-href="/truyen/3" class="ng-binding" href="/truyen/3"
-                                                            title="Dị Thế Giới Mỹ Thực Gia">Dị Thế Giới Mỹ Thực Gia</a>
+                                                        <a href="">{{_topstory.name}}</a>
                                                     </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <section class="view text-secondary ng-scope" ng-if="$index == 0">
-                                                        <span class="text-red fz-16 ng-binding">0</span> phiếu
-                                                    </section><!-- end ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <section class="extra-info ng-scope" ng-if="$index == 0">
+                                                    <section class="view text-secondary" *ngIf="i == 0">
+                                                        <span class="text-red fz-16">{{_topstory.cnt}}</span> phiếu
+                                                    </section>
+                                                    <section class="view text-secondary" *ngIf="i != 0">
+                                                        {{_topstory.cnt}}
+                                                    </section>
+                                                    <section class="extra-info" *ngIf="i == 0">
                                                         <p>Thể Loại:
-                                                            <a ng-href="/the-loai/1" class="ng-binding"
-                                                                href="/the-loai/1">Đô Thị</a>
+                                                            <a href="">{{_topstory.categoryName}}</a>
                                                         </p>
-                                                        <p>Tác giả: <span class="ng-binding">Lý Hồng Thiên</span>
+                                                        <p>Tác giả: <span>{{_topstory.author}}</span>
                                                         </p>
-                                                    </section><!-- end ngIf: $index == 0 -->
+                                                    </section>
                                                 </section>
-                                                <!-- ngIf: $index == 0 -->
-                                                <section class="thumb ng-scope" ng-if="$index == 0">
+                                                <section class="thumb" *ngIf="i == 0">
                                                     <section class="book-cover">
-                                                        <a class="book-cover-link" ng-href="/truyen/3" href="/truyen/3"
-                                                            title="Dị Thế Giới Mỹ Thực Gia">
-                                                            <img ng-src="https://res.cloudinary.com/thang1988/image/upload/v1539535665/truyenmvc/di-the-gioi-my-thuc-gia.jpg"
-                                                                ng-alt="Dị Thế Giới Mỹ Thực Gia"
-                                                                src="https://res.cloudinary.com/thang1988/image/upload/v1539535665/truyenmvc/di-the-gioi-my-thuc-gia.jpg">
+                                                        <a class="book-cover-link" href="" title="{{_topstory.name}}">
+                                                            <img src="{{_topstory.images}}" alt="{{_topstory.name}}">
                                                         </a> <span class="book-cover-shadow"></span>
                                                     </section>
-                                                </section><!-- end ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-2 index-star">2</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/1" class="ng-binding" href="/truyen/1"
-                                                            title="Tu Chân Nói Chuyện Phiếm Quần">Tu Chân Nói Chuyện
-                                                            Phiếm Quần</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
                                                 </section>
-                                                <!-- ngIf: $index == 0 -->
                                             </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-3 index-star">3</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/2" class="ng-binding" href="/truyen/2"
-                                                            title="Nhất Niệm Vĩnh Hằng">Nhất Niệm Vĩnh Hằng</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-4 index-star">4</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/5" class="ng-binding" href="/truyen/5"
-                                                            title="Đột Nhiên Vô Địch">Đột Nhiên Vô Địch</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-5 index-star">5</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/4" class="ng-binding" href="/truyen/4"
-                                                            title="Mục Thần Ký">Mục Thần Ký</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-6 index-star">6</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/6" class="ng-binding" href="/truyen/6"
-                                                            title="Vô Địch Từ Max Cấp Thuộc Tính Bắt Đầu">Vô Địch Từ Max
-                                                            Cấp Thuộc Tính Bắt Đầu</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-7 index-star">7</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/8" class="ng-binding" href="/truyen/8"
-                                                            title="Chư Thiên Kịch Thấu Quần">Chư Thiên Kịch Thấu
-                                                            Quần</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
-                                        <li ng-repeat="storyVM in topViewMonth"
-                                            class="list-group-item list-group-item-primary-me ng-scope"
-                                            ng-class="$index==0?'item-featured':''">
-                                            <section class="content">
-                                                <section class="index index-8 index-star">8</section>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/9" class="ng-binding" href="/truyen/9"
-                                                            title="Nhất Kiếm Độc Tôn">Nhất Kiếm Độc Tôn</a>
-                                                    </h2>
-                                                    <!-- ngIf: $index == 0 -->
-                                                    <!-- ngIf: $index != 0 -->
-                                                    <section class="view text-secondary ng-binding ng-scope"
-                                                        ng-if="$index != 0">
-                                                        0
-                                                    </section><!-- end ngIf: $index != 0 -->
-                                                    <!-- ngIf: $index == 0 -->
-                                                </section>
-                                                <!-- ngIf: $index == 0 -->
-                                            </section>
-                                        </li><!-- end ngRepeat: storyVM in topViewMonth -->
+                                        </li>
                                     </ul>
                                 </section>
                             </section>
@@ -417,7 +111,6 @@
                 </section>
             </section>
 
-            <!-- TRUYỆN MỚI CẬP NHẬT -->
             <section class="truyen-section">
                 <section class="container">
                     <section class="row">
@@ -428,283 +121,33 @@
                                 </section>
                                 <section class="block-content" id="dataTable">
                                     <ul class="list-group">
-                                        <!-- ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
+                                        <li class="list-group-item list-group-item-table" *ngFor="let _listNewStory of listNewStory; index as i">
                                             <section class="content">
-                                                <a class="thumb" ng-href="/truyen/3" href="/truyen/3">
-                                                    <img class="img-fluid"
-                                                        ng-src="https://res.cloudinary.com/thang1988/image/upload/v1539535665/truyenmvc/di-the-gioi-my-thuc-gia.jpg"
-                                                        ng-alt="Dị Thế Giới Mỹ Thực Gia"
-                                                        src="https://res.cloudinary.com/thang1988/image/upload/v1539535665/truyenmvc/di-the-gioi-my-thuc-gia.jpg">
+                                                <a class="thumb" href="">
+                                                    <img class="img-fluid" src="{{_listNewStory.images}}" alt="{{_listNewStory.name}}">
                                                 </a>
                                                 <section class="info">
                                                     <h2 class="title">
-                                                        <a ng-href="/truyen/3" href="/truyen/3"
-                                                            title="Dị Thế Giới Mỹ Thực Gia">
-                                                            <img class="img-fluid" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding shadow-2">Dị Thế Giới Mỹ Thực
-                                                                Gia</span>
+                                                        <a title="{{_listNewStory.name}}">
+                                                            <img class="img-fluid" src="assets/img/vip-vip.gif" *ngIf="_listNewStory.dealStatus === 1" alt="">
+                                                            <span [ngClass]="_listNewStory.dealStatus == 1?'shadow-2' : ''">{{_listNewStory.name}}</span>
                                                         </a>
                                                     </h2>
-                                                    <section class="chap ng-binding">Lý Hồng Thiên</section>
+                                                    <section class="chap">{{_listNewStory.author}}</section>
                                                     <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null --><a
-                                                            ng-if="storyNU.chapterId != null"
-                                                            ng-href="/truyen/3/chuong-430" class="ng-binding ng-scope"
-                                                            title="Chương 16" href="/truyen/3/chuong-430">Chương 16</a>
-                                                        <!-- end ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null -->
+                                                        <a ng-if="storyNU.chapterId != null" 
+                                                           title="Chương {{_listNewStory.chapterNumber}}">Chương {{_listNewStory.chapterNumber}}</a>
+                                                        <a ng-if="storyNU.chapterId == null">&nbsp;</a>
                                                     </section>
-                                                    <section class="time ng-binding">
-                                                        Chủ Biên
+                                                    <section class="time">
+                                                        {{_listNewStory.displayName}}
                                                     </section>
                                                 </section>
                                             </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/9" href="/truyen/9">
-                                                    <img class="img-fluid"
-                                                        ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/nhubang8x-44215509023806"
-                                                        ng-alt="Nhất Kiếm Độc Tôn"
-                                                        src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/nhubang8x-44215509023806">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/9" href="/truyen/9"
-                                                            title="Nhất Kiếm Độc Tôn">
-                                                            <img class="img-fluid ng-hide" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding">Nhất Kiếm Độc Tôn</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Thanh Phong Loan</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null --><a
-                                                            ng-if="storyNU.chapterId == null"
-                                                            class="ng-scope">&nbsp;</a>
-                                                        <!-- end ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/8" href="/truyen/8">
-                                                    <img class="img-fluid"
-                                                        ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/nhubang8x-3145768093933"
-                                                        ng-alt="Chư Thiên Kịch Thấu Quần"
-                                                        src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/nhubang8x-3145768093933">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/8" href="/truyen/8"
-                                                            title="Chư Thiên Kịch Thấu Quần">
-                                                            <img class="img-fluid ng-hide" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding">Chư Thiên Kịch Thấu Quần</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Hội Tả Tự Oa Ngưu</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null --><a
-                                                            ng-if="storyNU.chapterId == null"
-                                                            class="ng-scope">&nbsp;</a>
-                                                        <!-- end ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/4" href="/truyen/4">
-                                                    <img class="img-fluid"
-                                                        ng-src="https://res.cloudinary.com/thang1988/image/upload/v1539535810/truyenmvc/muc-than-ky.jpg"
-                                                        ng-alt="Mục Thần Ký"
-                                                        src="https://res.cloudinary.com/thang1988/image/upload/v1539535810/truyenmvc/muc-than-ky.jpg">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/4" href="/truyen/4" title="Mục Thần Ký">
-                                                            <img class="img-fluid ng-hide" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding">Mục Thần Ký</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Trạch Trư</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null --><a
-                                                            ng-if="storyNU.chapterId != null"
-                                                            ng-href="/truyen/4/chuong-391" class="ng-binding ng-scope"
-                                                            title="Chương 13" href="/truyen/4/chuong-391">Chương 13</a>
-                                                        <!-- end ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-                                                        Chủ Biên
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/5" href="/truyen/5">
-                                                    <img class="img-fluid"
-                                                        ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-479161545197145"
-                                                        ng-alt="Đột Nhiên Vô Địch"
-                                                        src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-479161545197145">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/5" href="/truyen/5"
-                                                            title="Đột Nhiên Vô Địch">
-                                                            <img class="img-fluid ng-hide" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding">Đột Nhiên Vô Địch</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Đạp Tiên Lộ Băng Trần</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null --><a
-                                                            ng-if="storyNU.chapterId != null"
-                                                            ng-href="/truyen/5/chuong-428" class="ng-binding ng-scope"
-                                                            title="Chương 43" href="/truyen/5/chuong-428">Chương 43</a>
-                                                        <!-- end ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-                                                        Đời Không Như Là Mơ
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/2" href="/truyen/2">
-                                                    <img class="img-fluid"
-                                                        ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-353645803721300"
-                                                        ng-alt="Nhất Niệm Vĩnh Hằng"
-                                                        src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-353645803721300">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/2" href="/truyen/2"
-                                                            title="Nhất Niệm Vĩnh Hằng">
-                                                            <img class="img-fluid" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding shadow-2">Nhất Niệm Vĩnh Hằng</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Nhĩ Căn</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null --><a
-                                                            ng-if="storyNU.chapterId != null"
-                                                            ng-href="/truyen/2/chuong-358" class="ng-binding ng-scope"
-                                                            title="Chương 150" href="/truyen/2/chuong-358">Chương
-                                                            150</a>
-                                                        <!-- end ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-                                                        Chủ Biên
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/1" href="/truyen/1">
-                                                    <img class="img-fluid"
-                                                        ng-src="https://res.cloudinary.com/thang1988/image/upload/v1539535310/truyenmvc/tu-chan-noi-chuyen-phiem-quan.jpg"
-                                                        ng-alt="Tu Chân Nói Chuyện Phiếm Quần"
-                                                        src="https://res.cloudinary.com/thang1988/image/upload/v1539535310/truyenmvc/tu-chan-noi-chuyen-phiem-quan.jpg">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/1" href="/truyen/1"
-                                                            title="Tu Chân Nói Chuyện Phiếm Quần">
-                                                            <img class="img-fluid" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding shadow-2">Tu Chân Nói Chuyện Phiếm
-                                                                Quần</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Thánh kỵ sĩ truyền thuyết</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null --><a
-                                                            ng-if="storyNU.chapterId != null"
-                                                            ng-href="/truyen/1/chuong-211" class="ng-binding ng-scope"
-                                                            title="Chương 211" href="/truyen/1/chuong-211">Chương
-                                                            211</a>
-                                                        <!-- end ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-                                                        Chủ Biên
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
-                                        <li class="list-group-item list-group-item-table ng-scope"
-                                            ng-repeat="storyNU in storyNewUpdate">
-                                            <section class="content">
-                                                <a class="thumb" ng-href="/truyen/6" href="/truyen/6">
-                                                    <img class="img-fluid"
-                                                        ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-558834158888772"
-                                                        ng-alt="Vô Địch Từ Max Cấp Thuộc Tính Bắt Đầu"
-                                                        src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-558834158888772">
-                                                </a>
-                                                <section class="info">
-                                                    <h2 class="title">
-                                                        <a ng-href="/truyen/6" href="/truyen/6"
-                                                            title="Vô Địch Từ Max Cấp Thuộc Tính Bắt Đầu">
-                                                            <img class="img-fluid ng-hide" src="/images/vip-vip.gif"
-                                                                ng-show="storyNU.dealStatus === 1" alt="">
-                                                            <span ng-class="storyNU.dealStatus == 1?'shadow-2' : ''"
-                                                                class="ng-binding">Vô Địch Từ Max Cấp Thuộc Tính Bắt
-                                                                Đầu</span>
-                                                        </a>
-                                                    </h2>
-                                                    <section class="chap ng-binding">Nhất Xích Nam Phong</section>
-                                                    <section class="author">
-                                                        <!-- ngIf: storyNU.chapterId != null -->
-                                                        <!-- ngIf: storyNU.chapterId == null --><a
-                                                            ng-if="storyNU.chapterId == null"
-                                                            class="ng-scope">&nbsp;</a>
-                                                        <!-- end ngIf: storyNU.chapterId == null -->
-                                                    </section>
-                                                    <section class="time ng-binding">
-
-                                                    </section>
-                                                </section>
-                                            </section>
-                                        </li><!-- end ngRepeat: storyNU in storyNewUpdate -->
+                                        </li>
                                     </ul>
                                     <section>
-                                        <a href="/danh-muc/moi-cap-nhat" class="float-right cnt-view">Xem tiếp</a>
+                                        <a th:href="@{/danh-muc/moi-cap-nhat}" class="float-right cnt-view">Xem tiếp</a>
                                     </section>
                                 </section>
                             </section>
@@ -713,8 +156,6 @@
                 </section>
             </section>
         </section>
-
-        <!-- TRUYỆN VIP -->
         <section class="truyen-section section-featured">
             <section class="container">
                 <section class="row">
@@ -730,38 +171,25 @@
                                             <section class="slider-thumb">
                                                 <section class="swiper-container">
                                                     <section class="swiper-wrapper">
-                                                        <section class="swiper-slide"
-                                                            th:each="storyVip,iterStat : ${vipStory}"
-                                                            th:if="${iterStat.index < 4}">
-                                                            <a class="item" th:href="@{'/truyen/'+${storyVip.id}}"
-                                                                th:title="${storyVip.vnName}">
-                                                                <img th:src="${storyVip.images}"
-                                                                    th:alt="${storyVip.vnName}"
-                                                                    class="img-fluid img-thumbnail">
+                                                        <section class="swiper-slide" *ngFor="let _topVipStory of topVipStory; let i = index">
+                                                            <a class="item" title="{{_topVipStory.name}}">
+                                                                <img src="{{_topVipStory.images}}" alt="{{_topVipStory.name}}" class="img-fluid img-thumbnail">
                                                             </a>
                                                         </section>
                                                     </section>
-                                                    <section class="swiper-button-prev"><i
-                                                            class="truyen-icon icon-prev"></i></section>
-                                                    <section class="swiper-button-next"><i
-                                                            class="truyen-icon icon-next"></i></section>
+                                                    <section class="swiper-button-prev"><i class="truyen-icon icon-prev"></i></section>
+                                                    <section class="swiper-button-next"><i class="truyen-icon icon-next"></i></section>
                                                 </section>
                                             </section>
                                             <section class="slider-info">
                                                 <section class="swiper-container">
                                                     <section class="swiper-wrapper">
-                                                        <section class="swiper-slide"
-                                                            th:each="storyVip,iterStat : ${vipStory}"
-                                                            th:if="${iterStat.index < 4}">
+                                                        <section class="swiper-slide" *ngFor="let _topVipStory of topVipStory; let i = index">
                                                             <section class="item text-center">
-                                                                <h2 class="title" th:text="${storyVip.vnName}"></h2>
-                                                                <section class="view text-secondary"
-                                                                    th:text="${storyVip.author}"></section>
-                                                                <p class="description"
-                                                                    th:text="${T(org.jsoup.Jsoup).parse(storyVip.infomation).text()}">
-                                                                </p>
-                                                                <a th:href="@{'/truyen/'+${storyVip.id}}"
-                                                                    class="btn btn-truyen" title="xem tiếp">
+                                                                <h2 class="title">{{_topVipStory.name}}</h2>
+                                                                <section class="view text-secondary">{{_topVipStory.author}}</section>
+                                                                <p class="description">{{_topVipStory.infomation}}</p>
+                                                                <a href="" class="btn btn-truyen" title="xem tiếp">
                                                                     Xem chi tiết
                                                                 </a>
                                                             </section>
@@ -776,76 +204,19 @@
                                             <section class="block-content">
                                                 <section class="editors-choice-list" style="border-bottom: none;">
                                                     <section class="row">
-
-                                                        <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                            <section class="item">
-                                                                <h2 class="title">
-                                                                    <a href="/truyen/3"
-                                                                        title="Dị Thế Giới Mỹ Thực Gia">Dị Thế Giới Mỹ
-                                                                        Thực Gia</a>
-                                                                </h2>
-                                                                <section class="view text-secondary">
-                                                                    <span class="text-red fz-16">Lý Hồng Thiên</span>
+                                                        <ng-container *ngFor="let _topVipStory of topVipStory; let i = index">
+                                                            <section class="col-12 col-sm-12 col-md-6 btv-2">
+                                                                <section class="item">
+                                                                    <h2 class="title">
+                                                                        <a href="" title="{{_topVipStory.name}}">{{_topVipStory.name}}</a>
+                                                                    </h2>
+                                                                    <section class="view text-secondary">
+                                                                        <span class="text-red fz-16">{{_topVipStory.author}}</span>
+                                                                    </section>
+                                                                    <p class="description">{{_topVipStory.infomation}}</p>
                                                                 </section>
-                                                                <p class="description">Ở Vũ Giả nhấc tay có thể Liệt Sơn
-                                                                    xuyên, súy chân có thể đoạn trường hà Huyền Huyễn
-                                                                    trên thế giới, tồn tại như vậy một nhà nhà hàng nhỏ
-                                                                    . Nhà hàng nhỏ không lớn, nhưng là vô số cường giả
-                                                                    đỉnh cao xua như xua vịt chi địa . Ở đàng kia ngươi
-                                                                    có thể thưởng thức được dùng trứng Phượng Hoàng cùng
-                                                                    Long Huyết mét xào thành cơm xào trứng . Ở đàng kia
-                                                                    ngươi có thể Hát đáo Sinh Mệnh Chi Tuyền xứng Chu
-                                                                    Quả chế riêng Liệt Tửu . Ở đàng kia ngươi có thể ăn
-                                                                    được Cửu Giai Thánh Thú nhục thân hợp với Hắc hồ
-                                                                    tiêu thịt quay . Cái gì ngươi nghĩ đem đầu bếp bắt
-                                                                    về nhà ? Không có khả năng, bởi vì nhà hàng cửa nằm
-                                                                    một con giữ cửa Thập Giai Thần Thú, Địa Ngục Khuyển
-                                                                    .</p>
                                                             </section>
-                                                        </section>
-
-                                                        <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                            <section class="item">
-                                                                <h2 class="title">
-                                                                    <a href="/truyen/2" title="Nhất Niệm Vĩnh Hằng">Nhất
-                                                                        Niệm Vĩnh Hằng</a>
-                                                                </h2>
-                                                                <section class="view text-secondary">
-                                                                    <span class="text-red fz-16">Nhĩ Căn</span>
-                                                                </section>
-                                                                <p class="description">Nhất niệm thành thương hải , nhất
-                                                                    niệm hóa tang điền . nhất niệm trảm thiên ma , nhất
-                                                                    niệm tru vạn tiên . duy ngã niệm …… vĩnh hằng</p>
-                                                            </section>
-                                                        </section>
-
-                                                        <section class="col-12 col-sm-12 col-md-6 btv-2">
-                                                            <section class="item">
-                                                                <h2 class="title">
-                                                                    <a href="/truyen/1"
-                                                                        title="Tu Chân Nói Chuyện Phiếm Quần">Tu Chân
-                                                                        Nói Chuyện Phiếm Quần</a>
-                                                                </h2>
-                                                                <section class="view text-secondary">
-                                                                    <span class="text-red fz-16">Thánh kỵ sĩ truyền
-                                                                        thuyết</span>
-                                                                </section>
-                                                                <p class="description">Một ngày, Tống Thư Hàng ngoài ý
-                                                                    muốn gia nhập một cái tiên hiệp chuunibyou thâm niên
-                                                                    người bệnh giao lưu quần, bên trong quần bạn nhóm
-                                                                    đều lấy 'Đạo hữu' tương xứng, quần danh thiếp đều là
-                                                                    các loại Phủ chủ, Động chủ, Chân nhân, Thiên Sư.
-                                                                    Liền chủ nhóm lạc đường chó cảnh đều xưng là Đại
-                                                                    yêu khuyển rời nhà trốn đi. Cả ngày nói chuyện là
-                                                                    luyện đan, xông bí cảnh, luyện công kinh nghiệm cái
-                                                                    gì. Đột nhiên có một ngày, lặn xuống nước hồi lâu
-                                                                    hắn đột nhiên phát hiện... Trong đám mỗi một cái
-                                                                    quần viên, vậy mà toàn bộ là Tu chân giả, có thể
-                                                                    di sơn đảo hải, trường sinh ngàn năm cái chủng
-                                                                    loại kia!</p>
-                                                            </section>
-                                                        </section>
-
+                                                        </ng-container>
                                                         <section class="clearfix hidden-xs"></section>
                                                     </section>
                                                 </section>
@@ -856,52 +227,37 @@
                             </section>
                         </section>
                     </section>
-
-                    <!-- TOP CONVERTER -->
                     <section class="col-12 col-md-12 col-lg-4">
                         <section class="block block-default block-readers-choice">
                             <section class="block-header"><h2 class="title"> Top Conveter</h2></section>
                             <section class="block-content">
                                 <ul class="list-group">
-                                    <!-- ngRepeat: conveter in topConveter --><li ng-repeat="conveter in topConveter" class="list-group-item list-group-item-primary-me ng-scope item-featured" ng-class="$index==0?'item-featured':''">
+                                    <li *ngFor="let _topConvert of topConvert; let i = index" class="list-group-item list-group-item-primary-me" [ngClass]="i==0?'item-featured':''">
                                         <section class="content">
-                                            <section class="index index-1 index-star">1</section>
+                                            <section class="index index-{{i+1}} index-star">{{i+1}}</section>
                                             <section class="info">
                                                 <h2 class="title">
-                                                    <a ng-href="/member/1" class="ng-binding" href="/member/1" title="Chủ Biên">Chủ Biên</a>
+                                                    <a href="" title="{{_topConvert.displayName}}">{{_topConvert.displayName}}</a>
                                                 </h2>
-                                                <!-- ngIf: $index == 0 --><section class="view text-secondary ng-scope" ng-if="$index == 0">
-                                                    Số Truyện: <span class="text-red fz-16 ng-binding">4</span>
-                                                </section><!-- end ngIf: $index == 0 -->
-                                                <!-- ngIf: $index != 0 -->
-                                                <!-- ngIf: $index == 0 --><section class="extra-info ng-scope" ng-if="$index == 0">
-                                                    <p class="ng-binding">Số Chương đã đăng: 386</p>
-                                                </section><!-- end ngIf: $index == 0 -->
+                                                <section class="view text-secondary" *ngIf="i == 0">
+                                                    Số Truyện: <span class="text-red fz-16">{{_topConvert.scnt}}</span>
+                                                </section>
+                                                <section class="view text-secondary" *ngIf="i != 0">
+                                                    {{_topConvert.cnt}} Chương
+                                                </section>
+                                                <section class="extra-info" *ngIf="i == 0">
+                                                    <p>Số Chương đã đăng: {{_topConvert.cnt}}</p>
+                                                </section>
                                             </section>
-                                            <!-- ngIf: $index == 0 --><section class="thumb ng-scope" ng-if="$index == 0">
+                                            <section class="thumb" *ngIf="i == 0">
                                                 <section class="book-cover">
-                                                    <a class="book-cover-link" ng-href="/member/1" href="/member/1" title="Chủ Biên">
-                                                        <img ng-src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-6757513899548700" ng-alt="Chủ Biên" src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-6757513899548700">
+                                                    <a class="book-cover-link" title="{{_topConvert.displayName}}">
+                                                        <img src="{{_topConvert.avatar?_topConvert.avatar:noImage}}" alt="{{_topConvert.displayName}}">
                                                     </a> <span class="book-cover-shadow"></span>
                                                 </section>
-                                            </section><!-- end ngIf: $index == 0 -->
-                                        </section>
-                                    </li><!-- end ngRepeat: conveter in topConveter --><li ng-repeat="conveter in topConveter" class="list-group-item list-group-item-primary-me ng-scope" ng-class="$index==0?'item-featured':''">
-                                        <section class="content">
-                                            <section class="index index-2 index-star">2</section>
-                                            <section class="info">
-                                                <h2 class="title">
-                                                    <a ng-href="/member/2" class="ng-binding" href="/member/2" title="Đời Không Như Là Mơ">Đời Không Như Là Mơ</a>
-                                                </h2>
-                                                <!-- ngIf: $index == 0 -->
-                                                <!-- ngIf: $index != 0 --><section class="view text-secondary ng-binding ng-scope" ng-if="$index != 0">
-                                                    43 Chương
-                                                </section><!-- end ngIf: $index != 0 -->
-                                                <!-- ngIf: $index == 0 -->
                                             </section>
-                                            <!-- ngIf: $index == 0 -->
                                         </section>
-                                    </li><!-- end ngRepeat: conveter in topConveter -->
+                                    </li>
                                 </ul>
                             </section>
                         </section>

@@ -30,6 +30,10 @@ import { EditCategoryComponent } from './dashboard/category/edit-category/edit-c
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
 import { PageContentComponent } from './home/page-content/page-content.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NotificationService } from './_services/notification.service';
+import { StoryService } from './_services/story.service';
+import { ListStoryComponent } from './dashboard/story/list-story/list-story.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import { PageContentComponent } from './home/page-content/page-content.component
     EditCategoryComponent,
     ListUserComponent,
     EditUserComponent,
-    PageContentComponent
+    PageContentComponent,
+    ListStoryComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,10 @@ import { PageContentComponent } from './home/page-content/page-content.component
   ],
   providers: [
     CategoryService, 
-    UserService, 
+    UserService,
+    NotificationService,
+    StoryService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     Title,
   ],

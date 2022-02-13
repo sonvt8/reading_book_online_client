@@ -80,7 +80,7 @@
                             </form>
                         </section>
                     </li>
-                    <li>
+                    <li *ngIf="!currentUser">
                         <section class="user-block h-100">
                             <i class="truyen-icon icon-user"></i>
                             <a routerLink="/dang-nhap"> Đăng nhập </a>
@@ -88,11 +88,11 @@
                             <a routerLink="/dang-ky"> Đăng ký </a>
                         </section>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" *ngIf="currentUser">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="truyen-icon icon-user"></i>
-                            <span class="truyen-login-title">AAAA</span>
+                            <span class="truyen-login-title">{{currentUser?.username}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a routerLink="/quan-tri">Trang Quản Lý</a></li>
@@ -101,7 +101,7 @@
                             <li><a routerLink="/trang-chu">Quản Lý Truyện</a></li>
                             <li><a routerLink="/trang-chu">Nạp Đậu</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a routerLink="/trang-chu">Thoát</a></li>
+                            <li><a (click)="logOut()">Thoát</a></li>
                         </ul>
                     </li>
                 </ul>

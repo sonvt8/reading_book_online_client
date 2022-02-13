@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Role } from '../_models/role';
+import { TopConvert } from '../_models/top-convert';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -11,32 +12,10 @@ import { User } from '../_models/user';
 })
 export class UserService {
   private baseUrl = environment.apiUrl;
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
 
   constructor(
-    private httpClient: HttpClient,
-    private router: Router,
-  ) {
-    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') as string));
-    this.user = this.userSubject.asObservable();
-  }
-
-  public get userValue(): User {
-    return this.userSubject.value;
-  }
-
-  public setCurrentUser(user: User) {
-    this.userSubject.next(user);
-  }
-
-  public register(user: UserRegister): Observable<User> {
-    return this.httpClient.post(`${this.baseUrl}thanh_vien/dang_ky`, user).pipe(
-      map((response: any) => {
-        return response;
-      })
-    );
-  }
+    private httpClient: HttpClient
+  ) {}
 
   public getAdminUserList(form: FormData): Observable<GetAdminUserResponse> {
     return this.httpClient.post<GetAdminUserResponse>(`${this.baseUrl}quan_tri/nguoi_dung/danh-sach`, form);
@@ -57,6 +36,18 @@ export class UserService {
   public getListRoles(): Observable<Role[]> {
     return this.httpClient.get<Role[]>(`${this.baseUrl}quan_tri/nguoi_dung/phan_quyen`);
   }
+
+  public getTopConvert(): Observable<TopConvert[]> {
+    return this.httpClient.get<TopConvert[]>(`${this.baseUrl}thanh_vien/xem_top_converter`);
+  }
+
+  public deleteAdminUser(user: User): Observable<User> {
+    return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
+  }
+
+  public payDrawAdminUser(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}quan_tri/nguoi_dung/nap_dau`, form);
+  }
 }
 
 interface GetAdminUserResponse {
@@ -65,9 +56,4 @@ interface GetAdminUserResponse {
   totalElements: number,
   totalPages: number,
   number: number
-}
-
-interface UserRegister {
-  username: string;
-  email: string;
 }

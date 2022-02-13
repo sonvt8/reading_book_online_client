@@ -12,6 +12,7 @@ import { EditCategoryComponent } from './dashboard/category/edit-category/edit-c
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
 import { AppComponent } from './app.component';
 import { EditUserComponent } from './dashboard/user/edit-user/edit-user.component';
+import { ListStoryComponent } from './dashboard/story/list-story/list-story.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -25,10 +26,11 @@ const routes: Routes = [
       { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
       { path: 'trang-quan-ly', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
       { path: 'the-loai', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại'}},
-      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: 'Thể loại'}},
+      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: ' Cập nhật Thể loại'}},
       { path: 'them-the-loai', component: AddCategoryComponent, data: {title: 'Thêm thể loại'}},
       { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
-      { path: 'nguoi-dung/:id', component: EditUserComponent },
+      { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },
+      { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện'} },
     ]
   },
   // Always put default route at the end.

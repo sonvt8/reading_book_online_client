@@ -57,9 +57,9 @@
                                     <span *ngIf="user.status==0" class="badge badge-pill badge-danger">Khóa</span>
                                 </td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#modalLRFormDemo" title="Nạp Tiền" class="badge badge-pill badge-danger mr-1"><i class="fas fa-coins mx-1"></i></a>
+                                    <a data-toggle="modal" (click)="setID(user.id)" data-target="#modalLRFormDemo" title="Nạp Tiền" class="badge badge-pill badge-danger mr-1"><i class="fas fa-coins mx-1"></i></a>
                                     <a routerLink="/quan-tri/nguoi-dung/{{user.id}}" title="Sửa" class="badge badge-pill badge-danger mr-1"><i class="fas fa-edit mx-1"></i></a>
-                                    <a title="Xóa user" class="badge badge-pill badge-danger mr-1"><i class="fas fa-trash mx-1"></i></a>
+                                    <a title="Xóa user" (click)="onDeleteAdminUser(user)" class="badge badge-pill badge-danger mr-1"><i class="fas fa-trash mx-1"></i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -91,3 +91,40 @@
         <!-- Section: Intro -->
     </div>
 </main>
+
+<!-- Modal nạp tiền-->
+<div class="modal fade" id="modalLRFormDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-primary" role="document">
+        <!-- Content -->
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <p class="heading lead">Nạp Tiền</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <form #payDrawForm="ngForm" (ngSubmit)="submitPayhDraw(payDrawForm)">
+                <!-- Body -->
+                <div class="modal-body">
+                    <!-- Material input -->
+                    <div class="md-form input-group">
+                        <input type="number" id="numberExample1" class="form-control font-weight-bold" name="payCoin" ngModel="0" value=0>
+                        <label for="numberExample1" class="text-primary active">Số Đậu</label>
+                        <div class="input-group-append">
+                            <span class="input-group-text md-addon">Đậu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer justify-content-center">
+                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Nạp" id="submitPD">
+                    <input type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal" (click)="reset()" id="canSubmit" value="Hủy"/>
+                </div>
+            </form>
+        </div>
+        <!-- Content -->
+    </div>
+</div>

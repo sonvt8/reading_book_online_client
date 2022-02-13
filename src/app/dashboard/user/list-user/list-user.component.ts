@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -19,6 +21,8 @@ export class ListUserComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   totalPages: number = 0;
   currentPage: number = 1;
+  payCoin: number = 0;
+  userId: number = 0;
   typeList = [
     {'id': 4, 'label': 'USER'},
     {'id': 1, 'label': 'ADMIN'},
@@ -40,7 +44,7 @@ export class ListUserComponent implements OnInit {
       pagenumber = 1;
     }
     const data = new FormData();
-    data.append('pagenumber', JSON.stringify(pagenumber));
+    data.append('pagenumber', JSON.stringify(pagenumber = "" ? 0 : pagenumber));
     data.append('search', this.search.trim());
     data.append('type', JSON.stringify(this.type.id));
     
@@ -59,6 +63,62 @@ export class ListUserComponent implements OnInit {
           
         }
     ));
+  }
+
+  onDeleteAdminUser(user: User): void{
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng Ý',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.value) {
+        this.subscriptions.push(this.userService.deleteAdminUser(user).subscribe(data=>{
+          this.toastr.success(`Người dùng ${user.username} đã bị xóa thành công!`);
+          this.getUser(1);
+        }, error => this.toastr.error(error.error.message)
+        ));
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        
+      }
+    })
+    
+  }
+
+  submitPayhDraw(payDrawForm: NgForm): void {
+    const data = new FormData();
+    data.append("money", payDrawForm.value.payCoin);
+    data.append("reId", JSON.stringify(this.userId));
+    this.subscriptions.push(this.userService.payDrawAdminUser(data).subscribe(
+        response => {
+          //this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
+          //payDrawForm.reset();
+          //payDrawForm.value.payCoin = 0;
+          Swal.fire({
+            text: "Nạp đậu thành tiền mặt thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => {
+          Swal.fire({
+            text: error.error.message,
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+        }
+    ));
+  }
+
+  setID(userId: number){
+    this.userId = userId;
+  }
+
+  reset(){
+    this.payCoin = 0;
   }
 
   showSelect(){
