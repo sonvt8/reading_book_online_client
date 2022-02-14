@@ -38,7 +38,7 @@ export class StoryService {
     formData.append('name', story.name);
     formData.append('author', story.author);
     formData.append('infomation', story.infomation);
-    story.categoryList.forEach(tempCat => formData.append('category', tempCat));
+    story.categoryListInput.forEach(tempCat => formData.append('category', tempCat));
     formData.append('price', JSON.stringify(story.price));
     formData.append('timeDeal', JSON.stringify(story.timeDeal));
     formData.append('dealStatus', JSON.stringify(Number(story.dealStatus)));

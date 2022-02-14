@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,12 +16,14 @@ declare var showImage : any;
   templateUrl: './edit-story.component.html',
   styleUrls: ['./edit-story.component.css']
 })
-export class EditStoryComponent implements OnInit {
+export class EditStoryComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
   story: Story = new Story();
   currentId: number = 0;
   images!: File ;
+  username: string = "";
+  categoryListInput: string[] = [];
 
   listCate: string[] = [];
 
@@ -50,15 +52,20 @@ export class EditStoryComponent implements OnInit {
     this.getcategoriesList();
     this.route.paramMap.subscribe(() => {
       this.handleStoryDetails();
+      
     });
+    
   }
 
   handleStoryDetails(): void {
     this.currentId = +this.route.snapshot.params['id'];
-    this.storyService.getAdminStory(this.currentId).subscribe(data => {
-      this.story = data;
-    }
-    );
+    this.subscriptions.push(this.storyService.getAdminStory(this.currentId).subscribe(
+      response => {
+          this.story = response;
+          this.story.categoryListInput = response.categoryList.map(response => response.name);
+          this.username = response.user.username;
+      }, error => this.toastr.error(error.error.message)
+  ));
     
   }
 
@@ -86,10 +93,9 @@ export class EditStoryComponent implements OnInit {
     console.log(this.images);
   }
 
-  convertToInt(id: string){
-    
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-  
 
   showSelect(){
     $(document).ready(function () {
