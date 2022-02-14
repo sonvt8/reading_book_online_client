@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/_models/story';
 import { StoryService } from 'src/app/_services/story.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -60,6 +61,30 @@ export class ListStoryComponent implements OnInit {
           
         }
     ));
+  }
+
+  onDeleteStory(id: number): void{
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng Ý',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.value) {
+        this.subscriptions.push(this.storyService.deleteStory(id).subscribe(data=>{
+          this.toastr.success(`Truyện đã xóa thành công!`);
+          this.getStory(1);
+        }, error => this.toastr.error(error.error.message)
+        ));
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        
+      }
+    })
+    
   }
 
   showSelect(){

@@ -83,9 +83,9 @@
                     <li *ngIf="!currentUser">
                         <section class="user-block h-100">
                             <i class="truyen-icon icon-user"></i>
-                            <a routerLink="/dang-nhap"> Đăng nhập </a>
+                            <a routerLink="/thanh_vien/dang_nhap"> Đăng nhập </a>
                             <a class="diver disabled">|</a>
-                            <a routerLink="/dang-ky"> Đăng ký </a>
+                            <a routerLink="/thanh_vien/dang_ky"> Đăng ký </a>
                         </section>
                     </li>
                     <li class="dropdown" *ngIf="currentUser">
@@ -96,7 +96,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a routerLink="/quan-tri">Trang Quản Lý</a></li>
-                            <li><a routerLink="/trang-chu">Hồ Sơ</a></li>
+                            <li><a routerLink="/tai_khoan">Hồ Sơ</a></li>
                             <li><a routerLink="/trang-chu">Truyện Theo Dõi</a></li>
                             <li><a routerLink="/trang-chu">Quản Lý Truyện</a></li>
                             <li><a routerLink="/trang-chu">Nạp Đậu</a></li>
@@ -112,7 +112,7 @@
 <aside class="truyen-sidebar">
     <a href="#" class="sidebar-close js-close-sidebar"></a>
     <section class="sidebar-container">
-        <section class="sidebar-header">
+        <section class="sidebar-header" *ngIf="!currentUser">
             <section class="user-icon">
                 <i class="truyen-icon icon-user"></i>
             </section>
@@ -128,27 +128,28 @@
                     <section class="list-group collapse" id="truyen-user-login-custom">
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/dang-nhap" class="login-btn">Đăng nhập</a>
+                            <a routerLink="/thanh_vien/dang_nhap" class="login-btn">Đăng nhập</a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/dang-ky" class="login-btn">Đăng ký</a>
+                            <a routerLink="/thanh_vien/dang_nhap/dang_ky" class="login-btn">Đăng ký</a>
                         </section>
                     </section>
                 </section>
             </section>
         </section>
-        <section class="sidebar-header">
+        <section class="sidebar-header" *ngIf="currentUser">
             <section class="user-icon">
                 <i class="truyen-icon icon-user"></i>
             </section>
 
-            <a routerLink="/trang-chu" class="user-logout">Thoát</a>
+            <a (click)="logOut()" class="user-logout">Thoát</a>
             <section class="card-menu">
                 <section class="list-group" style="margin-bottom: 20px;">
                     <section class="list-group-item list-group-item-sidebar">
-                        <a class="truyen-sidebar-user-title collapsed" role="button" data-toggle="collapse"
-                            href="#truyen-user-menu-collapse" aria-expanded="false"
-                            aria-controls="truyen-user-menu-collapse" sec:authentication="name"> <span
+                        <a class="truyen-sidebar-user-title collapsed"
+                           role="button" data-toggle="collapse"
+                           href="#truyen-user-menu-collapse" aria-expanded="false"
+                           aria-controls="truyen-user-menu-collapse"> {{currentUser?.username}}<span
                                 class="truyen-icon icon-white-next"></span>
                         </a>
                     </section>
@@ -172,7 +173,8 @@
                         </section>
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Hồ sơ <span class="truyen-icon icon-white-next"></span></a>
+                            <a routerLink="/tai_khoan">Hồ sơ <span
+                                    class="truyen-icon icon-white-next"></span></a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">

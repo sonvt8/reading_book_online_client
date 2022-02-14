@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomValidationService } from '../_services/custom-validation.service';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -12,11 +10,11 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.css']
 })
-export class AccountsComponent implements OnInit, OnDestroy {
+export class MembersComponent implements OnInit, OnDestroy {
   public loading = false;
   public submitted = false;
   public loginForm!: FormGroup;
@@ -29,16 +27,15 @@ export class AccountsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private customValidator: CustomValidationService,
-    private toastr: ToastrService,
     private tokenService: TokenStorageService
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'page-login');
-      this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -70,12 +67,20 @@ export class AccountsComponent implements OnInit, OnDestroy {
           this.tokenService.saveToken(token!);
           this.authService.addUserToLocalCache(response.body!);
           this.authService.setCurrentUser(response.body!);
-          this.router.navigate(['../trang-chu'], { relativeTo: this.route });
+          this.router.navigate(['/trang-chu']);
           this.loading = false;
-        }
-      )
+        },error => {
+          this.loading = false;
+        })
     );
   }
+
+  removeElementsByClass(className: any){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode!.removeChild(elements[0]);
+    }
+}
 }
 
 interface UserLogin {

@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css', '../../assets/css/myWebStyle.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public info!: Information;
   public categories!: Category[];
   public currentUser: User = new User;
@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   private loggedInUsername!: string;
 
   constructor(
-    
     private router: Router,
     private dataService: DataService,
     private authService: AuthService,
@@ -35,9 +34,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.getDataHeader();
-    // this.currentUser = this.authService.userValue as User;
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   getDataHeader(){

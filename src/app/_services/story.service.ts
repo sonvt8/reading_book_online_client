@@ -20,6 +20,10 @@ export class StoryService {
   public getHomeStory(): Observable<GetHomeStoryResponse> {
     return this.httpClient.get<GetHomeStoryResponse>(`${this.baseUrl}trang-chu`);
   }
+
+  public deleteStory(id: number): Observable<Story> {
+    return this.httpClient.delete<Story>(`${this.baseUrl}quan-tri/truyen/xoa-truyen/${id}`);
+  }
 }
 
 interface GetStoryResponse {

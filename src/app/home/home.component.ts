@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { UserService } from '../_services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   topStoryWeek: Story[] = [];
   listNewStory: Story[] = [];
   topStory: Story[] = [];
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.renderer.addClass(this.document.body, 'body-home');
-    //this.renderer.addClass(this.document.body, 'page-login');
+    this.renderer.removeClass(this.document.body, 'page-login');
     this.getHomeStory();
     this.getTopConvert();
   }
@@ -56,6 +56,10 @@ export class HomeComponent implements OnInit {
           this.topConvert = data;
         }
     ));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }

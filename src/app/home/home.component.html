@@ -14,7 +14,7 @@
                                         <section class="swiper-container">
                                             <section class="swiper-wrapper">
                                                 <section class="swiper-slide" *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
-                                                    <section class="item">
+                                                    <section class="item" *ngIf="i < 4">
                                                         <section class="thumb">
                                                             <a href="" >
                                                                 <img class="img-fluid lazyload" alt="" data-src="{{_topStoryWeek.images}}" title="{{_topStoryWeek.name}}">
@@ -50,7 +50,7 @@
                                     <section class="editors-choice-list">
                                         <section class="row">
                                             <ng-container *ngFor="let _topStoryWeek of topStoryWeek; index as i" >
-                                                <section class="col-12 col-sm-12 col-md-6 btv-2">
+                                                <section class="col-12 col-sm-12 col-md-6 btv-2" *ngIf="i < 6">
                                                     <section class="item">
                                                         <h2 class="title">
                                                             <a href="" title="{{_topStoryWeek.name}}">{{_topStoryWeek.name}}</a>

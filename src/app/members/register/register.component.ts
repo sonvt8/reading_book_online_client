@@ -23,11 +23,12 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private customValidator: CustomValidationService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'body-home');
     this.renderer.addClass(this.document.body, 'page-login');
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
