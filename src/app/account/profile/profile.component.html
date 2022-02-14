@@ -53,8 +53,8 @@
                                                 <div class="card-body">
                                                     <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi đưa vào thông
                                                         báo</p>
-                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" ng-submit="updateNotification()">
-                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3">{{currentUser?.notification}}</textarea>
+                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" (ngSubmit)="onUpdateNotification(notification.value)" #notification = "ngForm">
+                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3" [(ngModel)]="currentUser.notification"></textarea>
                                                         <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập nhật</button>
                                                     </form>
                                                 </div>
