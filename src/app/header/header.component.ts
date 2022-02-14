@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public info!: Information;
   public categories!: Category[];
   public currentUser: User = new User;
@@ -35,6 +35,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataHeader();
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   getDataHeader(){

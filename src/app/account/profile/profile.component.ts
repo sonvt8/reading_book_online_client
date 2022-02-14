@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
@@ -10,7 +10,7 @@ import { DataService } from 'src/app/_services/data.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   public items = [
     {name: 'Hồ sơ',path: 'tai_khoan'},
     {name: 'Truyện Theo Dõi',path: 'tai_khoan/theo_doi'},
@@ -40,6 +40,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   select(index: number) {
