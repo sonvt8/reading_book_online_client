@@ -17,6 +17,10 @@ export class StoryService {
     return this.httpClient.post<GetStoryResponse>(`${this.baseUrl}quan-tri/truyen/danh-sach`, form);
   }
 
+  public getStoryListByCatalog(pagenumber: number, catalog:string): Observable<GetStoryResponseByCatalog> {
+    return this.httpClient.get<GetStoryResponseByCatalog>(`${this.baseUrl}danh-muc/${catalog}?pagenumber=${pagenumber}`);
+  }
+
   public getAdminStory(id: number): Observable<Story> {
     return this.httpClient.get<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`);
   }
@@ -61,4 +65,15 @@ interface GetHomeStoryResponse {
   listNewStory: Story[];
   topStory: Story[];
   topVipStory: Story[];
+}
+
+interface GetStoryResponseByCatalog {
+  topStoryMonth: Story[],
+  listStoryPage: {
+    content: Story[],
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
+  }
 }

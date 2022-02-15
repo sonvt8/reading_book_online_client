@@ -24,6 +24,8 @@ export class Story{
     categoryListInput: string[];
     categoryList!: Category[];
     user!: User;
+    chapterId!: number;
+    timeUpdate!: string;
 
     constructor(){
         this.id=0;
@@ -46,6 +48,7 @@ export class Story{
         this.categoryName = "";
         this.chapterNumber = 0
         this.categoryListInput = [];
+        this.chapterNumber = 0
 
     }
         

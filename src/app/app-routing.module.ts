@@ -16,16 +16,20 @@ import { ListStoryComponent } from './dashboard/story/list-story/list-story.comp
 import { ErrorComponent } from './error/error.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.component';
+import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pagination.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
+  
   { 
+    
     path: 'thanh_vien', 
     children:[
       { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_nhap', component: MembersComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
-      { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}}
+      { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
+      
     ]
   },
   { 
@@ -47,8 +51,13 @@ const routes: Routes = [
       { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },
       { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện'} },
       { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện'} },
+      
+
     ]
   },
+
+  { path: 'danh-muc/:catalog', component: CatalogPaginationComponent, data: {title: 'Danh mục truyện' }},
+
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} },
   { path: '**', component: ErrorComponent },  // Wildcard route for a 404 page
