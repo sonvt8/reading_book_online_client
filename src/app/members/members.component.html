@@ -12,7 +12,7 @@
                         <div class="card-body px-lg-5 pt-0">
                             <form class="md-form" id="signupForm1" name='loginForm' [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="md-form">
-                                    <input type="text" id="username" formControlName="username" class="form-control mb-4"/>
+                                    <input type="text" id="username" formControlName="username" class="form-control mb-4" autocomplete="off"/>
                                     <label for="username" class="text-primary">Tên đăng nhập</label>
                                     <div *ngIf="(f['username'].touched || submitted) && f['username'].errors" class="text-danger">
                                         <span *ngIf="f['username'].errors['required']">Tên đăng nhập không được để trống</span>

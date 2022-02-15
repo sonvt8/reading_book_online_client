@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { NotificationType } from '../enum/notification-type.enum';
 import Swal from 'sweetalert2';
 
