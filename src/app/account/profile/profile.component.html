@@ -11,7 +11,6 @@
                         <section class="featured-content" id="content">
                             <section class="row">
                                 <app-account-navbar></app-account-navbar>
-                                
                                 <section class="col-lg-10 col-md-9">
                                     <section class="row">
                                         <div class="col-lg-6 mb-5">
@@ -54,8 +53,8 @@
                                                 <div class="card-body">
                                                     <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi đưa vào thông
                                                         báo</p>
-                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" ng-submit="updateNotification()">
-                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3">{{currentUser?.notification}}</textarea>
+                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" (ngSubmit)="onUpdateNotification(notification.value)" #notification = "ngForm">
+                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3" [(ngModel)]="currentUser.notification"></textarea>
                                                         <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập nhật</button>
                                                     </form>
                                                 </div>
@@ -71,14 +70,18 @@
                                                         <strong *ngIf="!currentUser?.displayName">Bạn chưa có Ngoại hiệu</strong>
                                                         <strong *ngIf="currentUser?.displayName">{{currentUser?.displayName}}</strong>
                                                     </p>
-                                                    <p class="text-muted mb-2">Việc đổi tên sẽ mất 2000 đậu, bạn đang
-                                                        có <strong>{{currentUser?.gold}}</strong> đậu</p>
+                                                    <p class="text-muted mb-2" *ngIf="!currentUser?.displayName">Bạn được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
+                                                    <p class="text-muted mb-2" *ngIf="currentUser?.displayName">Việc đổi tên sẽ mất 2000 đậu, bạn đang có <strong>{{currentUser?.gold}}</strong> đậu</p>
                                                     <p class="text-muted">Ngoại hiệu mới không dài quá 25 ký tự</p>
-                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick">
+                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick" [formGroup]="reNameForm" (ngSubmit)="onUpdateDisplayedName()">
                                                         <div class="form-group">
                                                             <div class="md-form mb-0">
-                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick">
+                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick" formControlName="txtChangenick" autocomplete="off">
                                                                 <label for="txtChangenick" class="">Ngoại hiệu mới</label>
+                                                            </div>
+                                                            <div *ngIf="(fRename['txtChangenick'].touched || submitted) && fRename['txtChangenick'].errors" class="text-danger">
+                                                                <span *ngIf="fRename['txtChangenick'].errors['required']">Ngoại hiệu mới không được để trống</span>
+                                                                <span *ngIf="fRename['txtChangenick'].errors['maxlength']">Tên ngoại hiệu nhiều hơn 25 ký tự</span>
                                                             </div>
                                                             <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect mt-2 float-right" name="btnChangenick" id="btnChangenick">Đổi
                                                             </button>
