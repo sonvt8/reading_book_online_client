@@ -43,7 +43,7 @@
                     </button>
                     <ul class="navbar-category-list" *ngIf="categories && categories?.length">
                         <li class="col-4 float-left" *ngFor="let cate of categories; let i=index;">
-                            <a routerLink="/trang-chu"
+                            <a routerLink="/the-loai/{{cate.id}}"
                                 (click)="setDocTitle('Truyện ' + cate.name)">
                                {{ i + 1 }} - {{ cate?.name }}
                             </a>
@@ -229,7 +229,7 @@
         <section *ngIf="categories && categories?.length" class="list-group" style="margin-bottom: 20px;">
             <section class="list-group-item list-group-item-action list-group-item-sidebar"
                     *ngFor="let cate of categories; let i=index;">
-                <a routerLink="/trang-chu"
+                <a routerLink="/the-loai/{{cate.id}}"
                 (click)="setDocTitle('Truyện ' + cate.name)"
                 ><span>{{ i + 1 }} - {{ cate?.name }}</span> <span
                         class="truyen-icon icon-next"></span></a>

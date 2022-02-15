@@ -135,9 +135,11 @@
                                                     </h2>
                                                     <section class="chap">{{_listNewStory.author}}</section>
                                                     <section class="author">
-                                                        <a ng-if="storyNU.chapterId != null" 
-                                                           title="Chương {{_listNewStory.chapterNumber}}">Chương {{_listNewStory.chapterNumber}}</a>
-                                                        <a ng-if="storyNU.chapterId == null">&nbsp;</a>
+                                                        <a *ngIf="_listNewStory.chapterId != null"
+                                                           href=""
+                                                           title="'Chương ' + {{_listNewStory.chapterNumber}}"
+                                                           >Chương {{_listNewStory.chapterNumber}}</a>
+                                                        <a *ngIf="_listNewStory.chapterId == null">&nbsp;</a>
                                                     </section>
                                                     <section class="time">
                                                         {{_listNewStory.displayName}}

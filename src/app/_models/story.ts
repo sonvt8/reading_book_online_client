@@ -26,6 +26,7 @@ export class Story{
     user!: User;
     chapterId!: number;
     timeUpdate!: string;
+    username!: string;
 
     constructor(){
         this.id=0;

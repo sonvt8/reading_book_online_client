@@ -21,6 +21,10 @@ export class StoryService {
     return this.httpClient.get<GetStoryResponseByCatalog>(`${this.baseUrl}danh-muc/${catalog}?pagenumber=${pagenumber}`);
   }
 
+  public getStoryListByCategory(pagenumber: number, cid: string): Observable<GetStoryResponseByCategory> {
+    return this.httpClient.get<GetStoryResponseByCategory>(`${this.baseUrl}the-loai/${cid}?pagenumber=${pagenumber}`);
+  }
+
   public getAdminStory(id: number): Observable<Story> {
     return this.httpClient.get<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`);
   }
@@ -70,6 +74,18 @@ interface GetHomeStoryResponse {
 interface GetStoryResponseByCatalog {
   topStoryMonth: Story[],
   listStoryPage: {
+    content: Story[],
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
+  }
+}
+
+interface GetStoryResponseByCategory {
+  listTopViewWeek: Story[],
+  listTopAppointMonth: Story[],
+  pageStory: {
     content: Story[],
     size: number,
     totalElements: number,

@@ -37,6 +37,7 @@ import { ErrorComponent } from './error/error.component';
 import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
 import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.component';
 import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pagination.component';
+import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
     ErrorComponent,
     AccountNavbarComponent,
     EditStoryComponent,
-    CatalogPaginationComponent
+    CatalogPaginationComponent,
+    CategoryPaginationComponent
   ],
   imports: [
     BrowserModule,
