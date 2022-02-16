@@ -178,18 +178,23 @@
                                 <section class="row">
                                     <section class="col-12 col-md-12 col-lg-6">
                                         <section class="truyen-slider js-truyen-slider">
-                                            <swiper [config]="config2">
-                                                <ng-template swiperSlide
-                                                    *ngFor="let _topVipStory of topVipStory; let i = index">
-                                                    <section class="slider-thumb">
+                                            <section class="slider-thumb">
+                                                <swiper [config]="configThumb" (swiper)="thumbSwiper = $event">
+                                                    <ng-template swiperSlide=""
+                                                        *ngFor="let _topVipStory of topVipStory; let i = index">
                                                         <a class="item" title="{{_topVipStory.name}}">
                                                             <img src="{{_topVipStory.images}}"
                                                                 alt="{{_topVipStory.name}}"
                                                                 class="img-fluid img-thumbnail">
                                                         </a>
-                                                    </section>
+                                                    </ng-template>
+                                                </swiper>
+                                            </section>
 
-                                                    <section class="slider-info">
+                                            <section class="slider-info">
+                                                <swiper [thumbs]= "{ swiper: thumbSwiper }" [config]="configInfo">
+                                                    <ng-template swiperSlide
+                                                        *ngFor="let _topVipStory of topVipStory; let i = index">
                                                         <section class="item text-center">
                                                             <h2 class="title">{{_topVipStory.name}}</h2>
                                                             <section class="view text-secondary">
@@ -199,9 +204,9 @@
                                                                 Xem chi tiết
                                                             </a>
                                                         </section>
-                                                    </section>
-                                                </ng-template>
-                                            </swiper>
+                                                    </ng-template>
+                                                </swiper>
+                                            </section>
 
                                         </section>
                                     </section>

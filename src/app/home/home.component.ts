@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -8,9 +8,10 @@ import { TopConvert } from '../_models/top-convert';
 import { User } from '../_models/user';
 import { StoryService } from '../_services/story.service';
 import { UserService } from '../_services/user.service';
-import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation } from 'swiper';
+import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation, EffectCreative, Thumbs, EffectCoverflow } from 'swiper';
+import { faLandmark } from '@fortawesome/free-solid-svg-icons';
 
-SwiperCore.use([Pagination, Navigation, Autoplay]);
+SwiperCore.use([Pagination, Navigation, Autoplay, EffectCreative, Thumbs, EffectCoverflow]);
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   topConvert: TopConvert[] = [];
   private subscriptions: Subscription[] = [];
   noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
+  thumbSwiper: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -77,17 +79,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   };
 
-  config2: SwiperOptions = {
-    pagination: {
-      clickable: true
-    },
+  configThumb: SwiperOptions = {
     loop: true,
-    slidesPerView: 1,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false
-    },
+    slidesPerView: 'auto',
     navigation: true,
+    spaceBetween: 40
   }
 
+  configInfo: SwiperOptions = {
+    loop: true,
+    allowTouchMove: false,
+    effect: "creative",
+    creativeEffect: {
+      prev: {
+        shadow: false,
+        translate: ['-120%', 0, -500]
+      },
+      next: {
+        shadow: false,
+        translate: ['120%', 0, -500]
+      }
+    }
+  }
 }
