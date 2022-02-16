@@ -8,6 +8,9 @@ import { TopConvert } from '../_models/top-convert';
 import { User } from '../_models/user';
 import { StoryService } from '../_services/story.service';
 import { UserService } from '../_services/user.service';
+import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation } from 'swiper';
+
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 @Component({
   selector: 'app-home',
@@ -27,8 +30,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private storyService: StoryService,
-    private userService: UserService,  
-    private router: Router, 
+    private userService: UserService,
+    private router: Router,
     private toastr: ToastrService
   ) { }
 
@@ -39,27 +42,52 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getTopConvert();
   }
 
-  getHomeStory(){
+  getHomeStory() {
     this.subscriptions.push(this.storyService.getHomeStory()
-        .subscribe(data => {
-          this.topStoryWeek = data.topStoryWeek;
-          this.listNewStory = data.listNewStory;
-          this.topStory = data.topStory;
-          this.topVipStory = data.topVipStory;
-        }
-    ));
+      .subscribe(data => {
+        this.topStoryWeek = data.topStoryWeek;
+        this.listNewStory = data.listNewStory;
+        this.topStory = data.topStory;
+        this.topVipStory = data.topVipStory;
+      }
+      ));
   }
 
-  getTopConvert(){
+  getTopConvert() {
     this.subscriptions.push(this.userService.getTopConvert()
-        .subscribe(data => {
-          this.topConvert = data;
-        }
-    ));
+      .subscribe(data => {
+        this.topConvert = data;
+      }
+      ));
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  config: SwiperOptions = {
+    pagination: {
+      clickable: true
+    },
+    loop: true,
+    slidesPerView: 1,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    }
+  };
+
+  config2: SwiperOptions = {
+    pagination: {
+      clickable: true
+    },
+    loop: true,
+    slidesPerView: 1,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    navigation: true,
   }
 
 }
