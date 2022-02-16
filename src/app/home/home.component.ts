@@ -83,7 +83,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     loop: true,
     slidesPerView: 'auto',
     navigation: true,
-    spaceBetween: 40
+    spaceBetween: 40,
+    centeredSlides: true,
+    effect: "coverflow",
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      modifier: 1
+    }
   }
 
   configInfo: SwiperOptions = {
