@@ -19,6 +19,7 @@ import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.comp
 import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pagination.component';
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
+import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -61,6 +62,7 @@ const routes: Routes = [
 
   { path: 'danh-muc/:catalog', component: CatalogPaginationComponent, data: {title: 'Danh mục truyện' }},
   { path: 'the-loai/:cid', component: CategoryPaginationComponent, data: {title: 'Thể loại truyện' }},
+  { path: 'truyen-home/:sid', component: StoryDetailComponent, data: {title: 'Chi tiết truyện' }},
 
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} },

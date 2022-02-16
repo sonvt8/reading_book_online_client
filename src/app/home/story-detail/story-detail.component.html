@@ -1,0 +1,133 @@
+<section class="page-wrapper">
+    <app-header></app-header>
+    <section class="truyen-main">
+        <section class="container">
+            <section class="truyen-detail-block">
+                <section class="truyen-section section-featured">
+                    <section class="featured-content truyen-breadcrumb p-0">
+                        <ol class="breadcrumb" style="background-color: inherit">
+                            <li class="breadcrumb-item">
+                                <a property="item" typeof="WebPage" routerLink="/">
+                                    <span property="name">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"
+                               >{{story.name}}
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+                <section class="truyen-section section-featured section-detail-info">
+                    <section class="truyen-detail-info-block">
+                        <section class="row">
+                            <section class="col-thumb col-3">
+                                <section class="thumb hidden-xs">
+                                    <img class="img-fluid lazyload" data-src="{{story.images}}">
+                                </section>
+                            </section>
+                            <section class="col-info col-6">
+                                <section class="info">
+                                    <h1 class="title">
+                                        <a href="" title="{{story.name}}">{{story.name}}</a>
+                                    </h1>
+                                    <section class="list">
+                                        <section class="item">
+                                            <section class="item-label"> Tác giả:</section>
+                                            <section class="item-value"><span
+                                                    class="author" >{{story.author}}</span></section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Thể loại:</section>
+                                            <section class="item-value">
+                                                <ul class="list-unstyled categories">
+                                                    <li *ngFor="let category of story.categoryList">
+                                                        <a href=""
+                                                           title="Truyện {{category.name}}"
+                                                           >{{category.name}}</a>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Tình trạng:</section>
+                                            <section class="item-value">
+                                                    <span class="story-go text-center" *ngIf="story.status==1">
+                                                        Đang ra
+                                                    </span>
+                                                <span class="story-go text-center" *ngIf="story.status==2">
+                                                        Tạm dừng
+                                                    </span>
+                                                <span class="story-com text-center" *ngIf="story.status==3">
+                                                        Hoàn Thành
+                                                    </span>
+                                            </section>
+                                        </section>
+                                        <!-- <section class="item d-block d-sm-none">
+                                            <section class="item-label"> Đã đọc:</section>
+                                            <section class="item-value">
+                                                <a th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${readChapter.id}}"
+                                                   th:text="'Chương ' + ${readChapter.chapterNumber} + ': ' + ${readChapter.name}">
+                                                </a>
+                                            </section>
+                                        </section>
+                                        <section class="item d-block d-sm-none">
+                                            <section class="item-label"> Mới nhất:</section>
+                                            <section class="item-value">
+                                                <a th:href="@{'/truyen/' + ${story.id} + '/chuong-'+${story.chapterNew.id}}">
+                                                    <span class="text-info"
+                                                          th:text="'Chương ' + ${story.chapterNew.chapterNumber} + ': ' + ${story.chapterNew.name}"></span>
+                                                </a>
+                                            </section>
+                                        </section> -->
+                                    </section>
+                                    <section class="buttons">
+                                        <!-- <a th:if="${readChapter ne null}" class="btn btn-truyen"
+                                           th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${readChapter.id}}">
+                                            Đọc tiếp
+                                        </a>
+                                        <a th:if="${(readChapter eq null) && (story.chapterHead ne null)}"
+                                           class="btn btn-truyen"
+                                           th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${story.chapterHead.id}}">
+                                            Đọc Từ Đầu
+                                        </a>
+                                        <a ng-show="follow === false" ng-click="registRecentReadingStory()" class="btn btn-outline-primary waves-effect">Theo dõi</a>
+                                        <a ng-show="follow === true" ng-click="unRecentReadingStory()" class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a> -->
+                                        <!-- Button trigger modal -->
+                                        <a class="btn btn-xs btn-read text-white" data-toggle="modal" data-target="#appointModal">
+                                            Đề Cử
+                                        </a>
+                                    </section>
+                                </section>
+                            </section>
+
+                            <!-- <section class="col-rating col-3">
+                                <section class="rating-container text-center" itemscope="">
+                                    <section class="title"> Đánh giá</section>
+                                    <section class="content" itemprop="aggregateRating" itemscope="">
+                                        <section class="message"> Đã có
+                                            <span itemprop="ratingCount" id="myrating" th:text="${countRating}"></span>
+                                            người đánh giá
+                                        </section>
+                                        <section class="star-total hidden-xs">
+                                    <span id="myrate" itemprop="ratingValue"
+                                          th:text="${#numbers.formatDecimal(story.rating, 0, T(Math).round(story.rating) == story.rating?0:1, 'POINT')}"></span>
+                                        </section>
+                                        <section th:class="${rating?'basic jDisabled':'basic'}"
+                                                 th:data-average="${story.rating}" th:data-id="${story.id}">
+                                        </section>
+                                    </section>
+                                </section>
+                            </section> -->
+                        </section>
+                    </section>
+                </section>
+                <section class="truyen-section">
+                    <section class="truyen-detail-tab classic-tabs" id="navbar-custom">
+                        <section th:replace="/nav-tabs/storyNavtabs"></section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<app-footer></app-footer>

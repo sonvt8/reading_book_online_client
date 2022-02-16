@@ -33,6 +33,8 @@ export class CategoryPaginationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
         this.getStoryListByCategory(1);
         this.getCategoryName();

@@ -17,6 +17,10 @@ export class StoryService {
     return this.httpClient.post<GetStoryResponse>(`${this.baseUrl}quan-tri/truyen/danh-sach`, form);
   }
 
+  public getStoryById(id: number): Observable<Story> {
+    return this.httpClient.get<Story>(`${this.baseUrl}truyen-home/${id}`);
+  }
+
   public getStoryListByCatalog(pagenumber: number, catalog:string): Observable<GetStoryResponseByCatalog> {
     return this.httpClient.get<GetStoryResponseByCatalog>(`${this.baseUrl}danh-muc/${catalog}?pagenumber=${pagenumber}`);
   }
@@ -46,7 +50,8 @@ export class StoryService {
     formData.append('name', story.name);
     formData.append('author', story.author);
     formData.append('infomation', story.infomation);
-    story.categoryListInput.forEach(tempCat => formData.append('category', tempCat));
+    if(story.categoryListInput != null)
+      story.categoryListInput.forEach(tempCat => formData.append('category', tempCat));
     formData.append('price', JSON.stringify(story.price));
     formData.append('timeDeal', JSON.stringify(story.timeDeal));
     formData.append('dealStatus', JSON.stringify(Number(story.dealStatus)));
