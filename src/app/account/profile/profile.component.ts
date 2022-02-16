@@ -6,7 +6,6 @@ import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
-import { CustomValidationService } from 'src/app/_services/custom-validation.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import Swal from 'sweetalert2';
 
@@ -28,7 +27,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private accService: AccountService,
     private notifyService: NotificationService,
     private formBuilder: FormBuilder,
-    private customValidator: CustomValidationService,
     private authService: AuthService
   ) {}
 
