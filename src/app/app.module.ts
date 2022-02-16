@@ -35,6 +35,7 @@ import { RegisterComponent } from './members/register/register.component';
 import { ForgotPasswordComponent } from './members/forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
 import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
+import { PasswordChangeComponent } from './account/password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AccountNavbarComponent } from './account/account-navbar/account-navbar.
     EditUserComponent,
     ListStoryComponent,
     ErrorComponent,
-    AccountNavbarComponent
+    AccountNavbarComponent,
+    PasswordChangeComponent
   ],
   imports: [
     BrowserModule,
