@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Chapter } from '../_models/chapter';
 import { Story } from '../_models/story';
 
 @Injectable({
@@ -17,8 +18,8 @@ export class StoryService {
     return this.httpClient.post<GetStoryResponse>(`${this.baseUrl}quan-tri/truyen/danh-sach`, form);
   }
 
-  public getStoryById(id: number): Observable<Story> {
-    return this.httpClient.get<Story>(`${this.baseUrl}truyen-home/${id}`);
+  public getStoryById(id: number): Observable<GetStoryResponseById> {
+    return this.httpClient.get<GetStoryResponseById>(`${this.baseUrl}truyen-home/${id}`);
   }
 
   public getStoryListByCatalog(pagenumber: number, catalog:string): Observable<GetStoryResponseByCatalog> {
@@ -97,4 +98,12 @@ interface GetStoryResponseByCategory {
     totalPages: number,
     number: number
   }
+}
+
+interface GetStoryResponseById {
+  storySummary: Story,
+  readChapter: Chapter,
+  checkConverter: boolean,
+  rating: boolean,
+  countRating: number;
 }

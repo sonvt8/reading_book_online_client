@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Chapter } from 'src/app/_models/chapter';
 import { Story } from 'src/app/_models/story';
 import { ChapterService } from 'src/app/_services/chapter.service';
+import { FollowService } from 'src/app/_services/follow.service';
 import { StoryService } from 'src/app/_services/story.service';
 
 @Component({
@@ -20,6 +21,11 @@ export class StoryDetailComponent implements OnInit {
   totalPages: number = 0;
   currentPage: number = 1;
   page : number[] = [];
+  readChapter: Chapter = new Chapter();
+  checkConverter: boolean = false;
+  rating: boolean = false;
+  countRating: number = 0;
+  follow: boolean = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -28,6 +34,7 @@ export class StoryDetailComponent implements OnInit {
     private renderer: Renderer2,
     private storyService: StoryService,
     private chapterService: ChapterService,
+    private followService: FollowService,
     private route: ActivatedRoute, 
   ) { }
 
@@ -37,13 +44,25 @@ export class StoryDetailComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
         this.getChapterListByStoryId(1, 1);
         this.getStoryById();
+        this.checkFollow();
     });
+  }
+
+  checkFollow(){
+    this.sid = +this.route.snapshot.params['sid'];
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.checkFollow(form).subscribe(data => this.follow = data);
   }
 
   getStoryById(): void {
     this.sid = +this.route.snapshot.params['sid'];
     this.storyService.getStoryById(this.sid).subscribe(data => {
-      this.story = data;
+      this.story = data.storySummary;
+      this.readChapter = data.readChapter;
+      this.checkConverter = data.checkConverter,
+      this.rating = data.rating,
+      this.countRating = data.countRating;
       console.log(data);
     });
     

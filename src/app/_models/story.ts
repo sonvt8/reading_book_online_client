@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { Chapter } from "./chapter";
 import { User } from "./user";
 
 export class Story{
@@ -27,6 +28,8 @@ export class Story{
     chapterId!: number;
     timeUpdate!: string;
     username!: string;
+    chapterNew!: Chapter;
+    chapterHead! : Chapter;
 
     constructor(){
         this.id=0;

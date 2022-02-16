@@ -62,36 +62,36 @@
                                                     </span>
                                             </section>
                                         </section>
-                                        <!-- <section class="item d-block d-sm-none">
+                                        <section class="item d-block d-sm-none" *ngIf="readChapter != null">
                                             <section class="item-label"> Đã đọc:</section>
                                             <section class="item-value">
-                                                <a th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${readChapter.id}}"
-                                                   th:text="'Chương ' + ${readChapter.chapterNumber} + ': ' + ${readChapter.name}">
+                                                <a href=""
+                                                   >Chương {{readChapter.chapterNumber}} {{readChapter.name}}
                                                 </a>
                                             </section>
                                         </section>
                                         <section class="item d-block d-sm-none">
                                             <section class="item-label"> Mới nhất:</section>
-                                            <section class="item-value">
-                                                <a th:href="@{'/truyen/' + ${story.id} + '/chuong-'+${story.chapterNew.id}}">
+                                            <section class="item-value" *ngIf="story.chapterNew != null">
+                                                <a href="">
                                                     <span class="text-info"
-                                                          th:text="'Chương ' + ${story.chapterNew.chapterNumber} + ': ' + ${story.chapterNew.name}"></span>
+                                                          >Chương {{story.chapterNew.chapterNumber}} : {{story.chapterNew.name}}</span>
                                                 </a>
                                             </section>
-                                        </section> -->
+                                        </section>
                                     </section>
                                     <section class="buttons">
-                                        <!-- <a th:if="${readChapter ne null}" class="btn btn-truyen"
-                                           th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${readChapter.id}}">
+                                        <a *ngIf="readChapter == null" class="btn btn-truyen"
+                                           href="">
                                             Đọc tiếp
                                         </a>
-                                        <a th:if="${(readChapter eq null) && (story.chapterHead ne null)}"
+                                        <a *ngIf="readChapter != null && story.chapterHead == null"
                                            class="btn btn-truyen"
-                                           th:href="@{'/truyen/' + ${story.id} + '/chuong-' + ${story.chapterHead.id}}">
+                                           href="">
                                             Đọc Từ Đầu
                                         </a>
-                                        <a ng-show="follow === false" ng-click="registRecentReadingStory()" class="btn btn-outline-primary waves-effect">Theo dõi</a>
-                                        <a ng-show="follow === true" ng-click="unRecentReadingStory()" class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a> -->
+                                        <a *ngIf="follow === false" ng-click="registRecentReadingStory()" class="btn btn-outline-primary waves-effect">Theo dõi</a>
+                                        <a *ngIf="follow === true" ng-click="unRecentReadingStory()" class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a>
                                         <!-- Button trigger modal -->
                                         <a class="btn btn-xs btn-read text-white" data-toggle="modal" data-target="#appointModal">
                                             Đề Cử
