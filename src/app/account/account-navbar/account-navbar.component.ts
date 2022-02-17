@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DataService } from 'src/app/_services/data.service';
 
@@ -7,7 +7,7 @@ import { DataService } from 'src/app/_services/data.service';
   templateUrl: './account-navbar.component.html',
   styleUrls: ['./account-navbar.component.css']
 })
-export class AccountNavbarComponent implements OnInit {
+export class AccountNavbarComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public items: Item[] = [];
 
@@ -19,6 +19,10 @@ export class AccountNavbarComponent implements OnInit {
         this.items = obj as Item[];
       })
     );
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   select(index: number) {

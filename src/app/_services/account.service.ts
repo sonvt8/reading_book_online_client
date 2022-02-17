@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AccountOnHomePage } from '../_models/account-home-page';
 import { CustomHttpResponse } from '../_models/custom-http-response';
 import { User } from '../_models/user';
 
@@ -10,10 +11,27 @@ import { User } from '../_models/user';
 })
 export class AccountService {
   private baseUrl = environment.apiUrl;
+  private accountSubject: BehaviorSubject<AccountOnHomePage | null>;
+  public _account: Observable<AccountOnHomePage | null>;
 
   constructor(
     private httpClient: HttpClient
-  ) {}
+  ) {
+    this.accountSubject = new BehaviorSubject<AccountOnHomePage | null>(null);
+    this._account = this.getAccount();
+  }
+
+  public get accountValue(): AccountOnHomePage | null {
+    return this.accountSubject.value;
+  }
+
+  public setCurrentAccount(account: AccountOnHomePage) {
+    this.accountSubject.next(account);
+  }
+
+  public getAccount(): Observable<AccountOnHomePage> {
+    return this.httpClient.get<AccountOnHomePage>(`${this.baseUrl}tai_khoan/`);
+  }
 
   public updateNotification(words: string): Observable<User> {
     var formData: any = new FormData();
