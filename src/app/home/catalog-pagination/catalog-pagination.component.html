@@ -1,0 +1,137 @@
+<section class="page-wrapper body-home">
+    <app-header></app-header>
+    <section class="truyen-main" *ngIf="listStoryPage.length == 0">
+        <section id="content" class="container container-truyen mb-4">
+            <section class="truyen-section section-featured">
+                <section class="featured-content">
+                    <section class="row align-items-center">
+                        <section class="error-card">
+                            <section class="error-title-block">
+                                <h2 class="error-sub-title shadow-1"> Chưa Có Truyên nào thuộc thể loại này</h2>
+                            </section>
+                            <section class="error-container text-center mt-4">
+                                <a class="btn btn-truyen" routerLink="/trang-chu"><i
+                                        class="fa fa-angle-left"></i> Trở về Trang Chủ</a>
+                            </section>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.error-title-block').addClass('animated flipInY');
+                                    $('.error-container').addClass('animated fadeInUp');
+                                })
+                            </script>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="truyen-main" *ngIf="listStoryPage.length > 0">
+        <section class="truyen-section section-featured">
+            <section class="container container-truyen mb-4">
+                <section class="featured-content">
+                    <section class="row">
+                        <section class="col-12 col-sm-12 col-md-8">
+                            <section class="block block-default block-list-new">
+                                <section class="block-header">
+                                    <h1 class="title text-uppercase" *ngIf="catalog=='hoan-thanh'">TRUYỆN HOÀN THÀNH</h1>
+                                    <h1 class="title text-uppercase" *ngIf="catalog=='moi-cap-nhat'">TRUYỆN MỚI</h1>
+                                    <h1 class="title text-uppercase" *ngIf="catalog=='truyen-vip'">TRUYỆN VIP</h1>
+                                </section>
+                                <section class="block-content" id="dataTable">
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-table"
+                                            *ngFor="let story of listStoryPage">
+                                            <section class="content">
+                                                <a class="thumb" href="">
+                                                    <img class="img-fluid lazyload"
+                                                         data-src="{{story.images}}"
+                                                         alt="{{story.name}}">
+                                                </a>
+                                                <section class="info">
+                                                    <h2 class="title">
+                                                        <a href=""
+                                                           title="{{story.name}}">
+                                                            <img class="img-fluid"
+                                                                 *ngIf="story.dealStatus == 1"
+                                                                 src="assets/img/vip-vip.gif">
+                                                            <span [ngClass]="story.dealStatus == 1 ?'shadow-2' : ''"
+                                                                 >{{story.name}}</span>
+                                                        </a>
+                                                    </h2>
+                                                    <section class="chap">{{story.author}}</section>
+                                                    <section class="author">
+                                                        <a *ngIf="story.chapterId != null"
+                                                           href=""
+                                                           title="'Chương ' + {{story.chapterNumber}}"
+                                                           >Chương {{story.chapterNumber}}</a>
+                                                        <a *ngIf="story.chapterId == null">&nbsp;</a>
+                                                    </section>
+                                                    <section class="time">{{story.timeUpdate}}</section>
+                                                </section>
+                                            </section>
+                                        </li>
+                                    </ul>
+
+                                    <section *ngIf="totalPages>1">
+                                        <ul class="pagination justify-content-end mb-3 mt-3">
+                                            <li class="page-item" *ngIf="currentPage!=1">
+                                                <a class="page-link" (click)="getStoryListByCatalog(currentPage - 1)">
+                                                    <i class="fas fa-step-backward fa-sm"></i>
+                                                </a>
+                                            </li>
+                                            <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                                <a class="page-link" (click)="getStoryListByCatalog(i)">{{i}}</a>
+                                            </li>
+                                            <li class="page-item" *ngIf="currentPage != totalPages">
+                                                <a class="page-link" (click)="getStoryListByCatalog(currentPage + 1)">
+                                                    <i class="fas fa-step-forward fa-sm"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="col-12 col-sm-12 col-md-4">
+                            <section class="block block-editors-choice-slider">
+                                <section class="block-content">
+                                    <section class="editors-choice-slider js-editors-choice-slider">
+                                        <h2 class="shadow-1">ĐỌC NHIỀU</h2>
+                                        <section class="swiper-container swiper-container-horizontal">
+                                            <section class="swiper-wrapper">
+                                                <section class="swiper-slide" *ngFor="let topStory of topStoryMonth">
+                                                    <section class="item">
+                                                        <section class="thumb">
+                                                            <a href="" title="{{topStory.name}}">
+                                                                <img class="img-fluid" alt="" src="{{topStory.images}}" title="{{topStory.name}}">
+                                                            </a>
+                                                        </section>
+                                                        <section class="info">
+                                                            <h2 class="title">
+                                                                <a href="" title="{{topStory.name}}">{{topStory.name}}</a>
+                                                            </h2>
+                                                            <p class="description text-center">{{topStory.infomation}}</p>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                            <section class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                                                <span class="swiper-pagination-bullet"></span>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+
+<app-footer></app-footer>

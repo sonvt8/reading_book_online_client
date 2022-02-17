@@ -16,6 +16,10 @@ export class CategoryService {
     return this.httpClient.get<GetCategoryResponse>(`${this.baseUrl}quan-tri/the-loai/danh-sach?keyword=${theKeyword}&pagenumber=${thePage}`);
   }
 
+  public getCategoryListNoPagination(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${this.baseUrl}quan-tri/the-loai/danh-sach-khong-phan-trang`);
+  }
+
   public addCategory(name: string): Observable<Category> {
     return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/them`, name);
   }
@@ -31,6 +35,8 @@ export class CategoryService {
   public deleteCategory(id: number): Observable<Category> {
     return this.httpClient.delete<Category>(`${this.baseUrl}quan-tri/the-loai/xoa/${id}`);
   }
+
+  
 
   
 }

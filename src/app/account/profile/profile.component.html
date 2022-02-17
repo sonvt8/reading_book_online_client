@@ -70,14 +70,18 @@
                                                         <strong *ngIf="!currentUser?.displayName">Bạn chưa có Ngoại hiệu</strong>
                                                         <strong *ngIf="currentUser?.displayName">{{currentUser?.displayName}}</strong>
                                                     </p>
-                                                    <p class="text-muted mb-2">Việc đổi tên sẽ mất 2000 đậu, bạn đang
-                                                        có <strong>{{currentUser?.gold}}</strong> đậu</p>
+                                                    <p class="text-muted mb-2" *ngIf="!currentUser?.displayName">Bạn được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
+                                                    <p class="text-muted mb-2" *ngIf="currentUser?.displayName">Việc đổi tên sẽ mất 2000 đậu, bạn đang có <strong>{{currentUser?.gold}}</strong> đậu</p>
                                                     <p class="text-muted">Ngoại hiệu mới không dài quá 25 ký tự</p>
-                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick">
+                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick" [formGroup]="reNameForm" (ngSubmit)="onUpdateDisplayedName()">
                                                         <div class="form-group">
                                                             <div class="md-form mb-0">
-                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick">
+                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick" formControlName="txtChangenick" autocomplete="off">
                                                                 <label for="txtChangenick" class="">Ngoại hiệu mới</label>
+                                                            </div>
+                                                            <div *ngIf="(fRename['txtChangenick'].touched || submitted) && fRename['txtChangenick'].errors" class="text-danger">
+                                                                <span *ngIf="fRename['txtChangenick'].errors['required']">Ngoại hiệu mới không được để trống</span>
+                                                                <span *ngIf="fRename['txtChangenick'].errors['maxlength']">Tên ngoại hiệu nhiều hơn 25 ký tự</span>
                                                             </div>
                                                             <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect mt-2 float-right" name="btnChangenick" id="btnChangenick">Đổi
                                                             </button>

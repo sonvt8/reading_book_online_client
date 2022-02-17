@@ -1,0 +1,309 @@
+<section class="page-wrapper">
+    <app-header></app-header>
+    <section class="truyen-main">
+        <section class="container">
+            <section class="truyen-detail-block">
+                <section class="truyen-section section-featured">
+                    <section class="featured-content truyen-breadcrumb p-0">
+                        <ol class="breadcrumb" style="background-color: inherit">
+                            <li class="breadcrumb-item">
+                                <a property="item" typeof="WebPage" routerLink="/">
+                                    <span property="name">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"
+                               >{{story.name}}
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+                <section class="truyen-section section-featured section-detail-info">
+                    <section class="truyen-detail-info-block">
+                        <section class="row">
+                            <section class="col-thumb col-3">
+                                <section class="thumb hidden-xs">
+                                    <img class="img-fluid lazyload" data-src="{{story.images}}">
+                                </section>
+                            </section>
+                            <section class="col-info col-6">
+                                <section class="info">
+                                    <h1 class="title">
+                                        <a href="" title="{{story.name}}">{{story.name}}</a>
+                                    </h1>
+                                    <section class="list">
+                                        <section class="item">
+                                            <section class="item-label"> Tác giả:</section>
+                                            <section class="item-value"><span
+                                                    class="author" >{{story.author}}</span></section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Thể loại:</section>
+                                            <section class="item-value">
+                                                <ul class="list-unstyled categories">
+                                                    <li *ngFor="let category of story.categoryList">
+                                                        <a href=""
+                                                           title="Truyện {{category.name}}"
+                                                           >{{category.name}}</a>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Tình trạng:</section>
+                                            <section class="item-value">
+                                                    <span class="story-go text-center" *ngIf="story.status==1">
+                                                        Đang ra
+                                                    </span>
+                                                <span class="story-go text-center" *ngIf="story.status==2">
+                                                        Tạm dừng
+                                                    </span>
+                                                <span class="story-com text-center" *ngIf="story.status==3">
+                                                        Hoàn Thành
+                                                    </span>
+                                            </section>
+                                        </section>
+                                        <section class="item d-block d-sm-none" *ngIf="readChapter != null">
+                                            <section class="item-label"> Đã đọc:</section>
+                                            <section class="item-value">
+                                                <a href=""
+                                                   >Chương {{readChapter.chapterNumber}} {{readChapter.name}}
+                                                </a>
+                                            </section>
+                                        </section>
+                                        <section class="item d-block d-sm-none">
+                                            <section class="item-label"> Mới nhất:</section>
+                                            <section class="item-value" *ngIf="story.chapterNew != null">
+                                                <a href="">
+                                                    <span class="text-info"
+                                                          >Chương {{story.chapterNew.chapterNumber}} : {{story.chapterNew.name}}</span>
+                                                </a>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="buttons">
+                                        <a *ngIf="readChapter == null" class="btn btn-truyen"
+                                           href="">
+                                            Đọc tiếp
+                                        </a>
+                                        <a *ngIf="readChapter != null && story.chapterHead == null"
+                                           class="btn btn-truyen"
+                                           href="">
+                                            Đọc Từ Đầu
+                                        </a>
+                                        <a *ngIf="follow === false" ng-click="registRecentReadingStory()" class="btn btn-outline-primary waves-effect">Theo dõi</a>
+                                        <a *ngIf="follow === true" ng-click="unRecentReadingStory()" class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a>
+                                        <!-- Button trigger modal -->
+                                        <a class="btn btn-xs btn-read text-white" data-toggle="modal" data-target="#appointModal">
+                                            Đề Cử
+                                        </a>
+                                    </section>
+                                </section>
+                            </section>
+
+                            <section class="col-rating col-3">
+                                <section class="rating-container text-center" itemscope="">
+                                    <section class="title"> Đánh giá</section>
+                                    <section class="content" itemprop="aggregateRating" itemscope="">
+                                        <section class="message"> Đã có
+                                            <span itemprop="ratingCount" id="myrating">{{countRating}}</span>
+                                            người đánh giá
+                                        </section>
+                                        <section class="star-total hidden-xs">
+                                    <span id="myrate" itemprop="ratingValue"
+                                          >{{story.rating | number:'0.1-2'}}</span>
+                                        </section>
+                                        <section [ngClass]="rating ? 'basic jDisabled':'basic'" 
+                                                 data-average="story.rating" data-id="story.id">
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section class="truyen-section">
+                    <section class="truyen-detail-tab classic-tabs" id="navbar-custom">
+                        <div class="tabs-wrapper">
+                            <!-- Nav tabs -->
+                            <ul class="nav tabs-blue" role="tablist">
+                                <li class="nav-item active">
+                                    <a class="nav-link active waves-light active waves-effect waves-light" data-toggle="tab" href="#truyen-info"
+                                       role="tab">
+                                        Giới Thiệu
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link waves-light waves-effect waves-light" data-toggle="tab" href="#truyen-chapter" role="tab"
+                                       ng-click="getListChapter(1, 1)">
+                                        Danh Sách Chương
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link waves-light waves-effect waves-light" data-toggle="tab" href="#truyen-comment" role="tab"
+                                       ng-click="getListComment(1, 1)">
+                                        Bình Luận
+                                    </a>
+                                </li>
+                            </ul>
+                            </div>
+                            <!-- Tab panes {Fade}  -->
+                            <section class="tab-content">
+                                <section class="tab-pane fade show active" id="truyen-info"
+                                         name="truyen-detail-info" role="tabpanel">
+                                    <section class="row">
+                                        <section class="col-sm-12 col-md-8 col-lg-9">
+                                            <section class="brief" 
+                                                     *ngIf="story.infomation != null">{{story.infomation}}
+                                            </section>
+                                            <section class="list-overview" *ngIf="story.chapterNew != null">
+                                                <section class="item">
+                                                    <section class="item-title">
+                                                        <i class="truyen-icon icon-list"></i> Mới nhất
+                                                    </section>
+                                                    <section class="item-value">
+                                                        <a routerLink="/chuong/{{story.id}}/chuong-{{story.chapterId}}"
+                                                           >Chương {{story.chapterNew.chapterNumber}}: {{story.chapterNew.name}}</a>
+                                                    </section>
+                                                    <section class="item-time"
+                                                             >{{story.chapterNew.timeUpdate}}</section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                        <section class="col-sm-12 col-md-4 col-lg-3">
+                                            <section class="truyen-detail-sidebar">
+                                                <section class="block block-normal">
+                                                    <section class="block-content">
+                                                        <section class="row">
+                                                            <section class="col-xs-12 col-sm-6 col-md-12">
+                                                                <section class="block-detail-sidebar-author text-center">
+                                                                    <section class="info">
+                                                                        <a href="" class="avatar">
+                                                                            <img class="img-fluid lazyload" src="{{user.avatar? user.avatar : noImage}}">
+                                                                        </a>
+                                                                        <h2 class="name">{{user.displayName}}</h2>
+                                                                    </section>
+                                                                    <ul class="list-unstyled truyen-author-badge"></ul>
+                                                                    <section class="overview">
+                                                                        <span class="cap-3">Ngày Tham Gia: <span>{{user.createDate | date:'dd-MM-yyyy'}}</span>
+                                                                        </span>
+                                                                    </section>
+                                                                    <section class="statistic">
+                                                                        <section class="row">
+                                                                            <section class="col-4">
+                                                                                <section class="item">
+                                                                                    <span class="item-icon">
+                                                                                        <i class="truyen-icon icon-book"></i>
+                                                                                    </span>
+                                                                                    <span class="item-value">{{user.countStory}}</span>
+                                                                                </section>
+                                                                            </section>
+                                                                            <section class="col-4">
+                                                                                <section class="item"><span
+                                                                                        class="item-icon"> <i
+                                                                                        class="truyen-icon icon-list"></i> </span>
+                                                                                    <span class="item-value">{{user.countChapter}}</span>
+                                                                                </section>
+                                                                            </section>
+                                                                            <section class="col-4">
+                                                                                <section class="item">
+                                                                                    <span class="item-icon"> <i class="truyen-icon icon-gold"></i> </span>
+                                                                                    <span class="item-value">{{user.gold}}</span>
+                                                                                </section>
+                                                                            </section>
+                                                                        </section>
+                                                                    </section>
+                                                                </section>
+                                                            </section>
+                                                            <section class="col-xs-12 col-sm-6 col-md-12">
+                                                                <section class="block-detail-sidebar-related">
+                                                                    <section class="header">
+                                                                        <h2 class="title"> Cùng người đăng</h2>
+                                                                    </section>
+                                                                    <section class="content">
+                                                                        <div class="detail-sidebar-related js-detail-sidebar-related">
+                                                                            <div class="swiper-container swiper-container-horizontal">
+                                                                                <div class="swiper-wrapper">
+                                                                                    <div class="swiper-slide"
+                                                                                         *ngFor="let lStory of listStory">
+                                                                                        <div class="item text-center">
+                                                                                            <a href="" class="thumb">
+                                                                                                <img class="img-fluid" src="{{lStory.images}}" alt="{{lStory.name}}">
+                                                                                            </a>
+                                                                                            <div class="info">
+                                                                                                <h2 class="title">
+                                                                                                    <a routerLink="/truyen-home/{{lStory.id}}" title="{{lStory.name}}">{{lStory.name}}</a>
+                                                                                                </h2>
+                                                                                                <p class="description">{{lStory.infomation}}
+                                                                                                </p>
+                                                                                                <a routerLink="/truyen-home/{{lStory.id}}" class="btn btn-truyen" title="">
+                                                                                                    Xem chi tiết
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="swiper-button-prev"><i class="truyen-icon icon-prev"></i>
+                                                                                </div>
+                                                                                <div class="swiper-button-next"><i class="truyen-icon icon-next"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </section>
+                                                                </section>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                                <section class="tab-pane fade" id="truyen-chapter" name="truyen-chapter" role="tabpanel">
+                                    <section class="truyen-detail-chap">
+                                        <section th:replace="/pagination/chapterOfStoryPagination"></section>
+                                    </section>
+                                </section>
+                                <section class="tab-pane fade" id="truyen-comment" name="truyen-comment" role="tabpanel">
+                                    <section class="truyen-detail-chap">
+                                        <section class="row">
+                                            <section class="col-md-12">
+                                                <section th:replace="/pagination/commentOfStoryPagination"></section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    <!-- Modal -->
+    <section class="modal fade bd-example-modal-sm" id="appointModal" tabindex="-1" role="dialog"
+             aria-labelledby="appointModalLabel"             aria-hidden="true">
+        <section class="modal-dialog modal-sm" role="document">
+            <section class="modal-content">
+                <section class="modal-header">
+                    <h5 class="modal-title" id="appointModalLabel">Đề Cử Truyện</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </section>
+                <section class="modal-body">
+                    <p>- Truyện đã được đề cử: <strong>{{story.countAppoint}}</strong> nguyệt phiếu</p>
+                    <p>- Nếu bạn thấy truyện này hay bạn có thể sử dụng Đậu để đề cử truyện này, truyện càng có
+                        nhiều phiếu đề cử càng có vị trí đẹp ngoài trang chủ, càng có nhiều người đọc truyện hơn.</p>
+                    <p>- Mỗi Phiếu đề cử tốn 1000 đậu</p>
+                    <form class="form-inline" ng-submit="appoint()">
+                        <section class="form-group">
+                            <input type="number" class="form-control"
+                                   placeholder="Nhập số phiếu đề cử" min="1" ng-model="coupon"></section>
+                        <button type="submit" class="btn btn-truyen">Đề cử</button>
+                    </form>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<app-footer></app-footer>

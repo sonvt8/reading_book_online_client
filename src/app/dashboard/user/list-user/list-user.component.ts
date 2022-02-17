@@ -44,7 +44,7 @@ export class ListUserComponent implements OnInit {
       pagenumber = 1;
     }
     const data = new FormData();
-    data.append('pagenumber', JSON.stringify(pagenumber = "" ? 0 : pagenumber));
+    data.append('pagenumber', JSON.stringify(pagenumber));
     data.append('search', this.search.trim());
     data.append('type', JSON.stringify(this.type.id));
     
@@ -60,7 +60,6 @@ export class ListUserComponent implements OnInit {
               pages.push(i);
           }
           this.page = pages;
-          
         }
     ));
   }
