@@ -269,7 +269,54 @@
                             </section>
                             <section class="tab-pane fade" id="truyen-chapter" name="truyen-chapter" role="tabpanel">
                                 <section class="truyen-detail-chap">
-                                    <section th:replace="/pagination/chapterOfStoryPagination"></section>
+                                    <section class="row" *ngIf="listChapter.length === 0">
+                                        <section class="col-12">
+                                            <section class="alert alert-primary" role="alert">
+                                                <h5 class="text-center">Chưa có Chương nào được đăng </h5>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="panel" *ngIf="listChapter.length !== 0">
+                                        <section class="panel-body">
+                                            <section class="list-chap">
+                                                <section class="row">
+                                                    <section class="col-sm-6 col-md-4 chapter-item" *ngFor="let item of listChapter">
+                                                        <section class="item">
+                                                            <a routerLink="/chuong/{{item.storyId}}/chuong-{{item.id}}" class="align-items-center d-flex"
+                                                               title="Đăng bởi {{item.displayName}} lúc {{item.createDate| date: 'HH:mm dd-MM-yyyy' }}">
+                                                                    <span class="chapter-name">
+                                                                        <img *ngIf="item.status === 2" src="assets/img/vip-vip.gif" class="img-fluid"
+                                                                             height="12px"> Chương {{item.chapterNumber}} : {{item.name}}</span>&nbsp;
+                                                                <span class="chapter-time text-muted">{{item.timeUpdate}}</span>
+                                                            </a>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                        <section *ngIf="totalPages>1">
+                                            <ul class="pagination justify-content-end mb-3 mt-3">
+                                                <li *ngIf="currentPage != 1" class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(currentPage - 1, 1)">
+                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                                    <a [ngClass]="i===currentPage?'page-link disabled': 'page-link'" (click)="getChapterListByStoryId(i,1)">{{i}}</a>
+                                                </li>
+                                                <li *ngIf="currentPage != totalPages" class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(currentPage + 1, 1)">
+                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(1, 0)">
+                                                        Xem hết
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </section>
                                 </section>
                             </section>
                             <section class="tab-pane fade" id="truyen-comment" name="truyen-comment" role="tabpanel">
