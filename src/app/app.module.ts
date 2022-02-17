@@ -68,8 +68,7 @@ import { AccountFollowComponent } from './account/account-follow/account-follow.
     CatalogPaginationComponent,
     CategoryPaginationComponent,
     PasswordChangeComponent,
-    StoryDetailComponent
-    PasswordChangeComponent,
+    StoryDetailComponent,
     AccountFollowComponent
   ],
   imports: [
