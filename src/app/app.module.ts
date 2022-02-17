@@ -41,6 +41,7 @@ import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.comp
 import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pagination.component';
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
+import { AccountFollowComponent } from './account/account-follow/account-follow.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { StoryDetailComponent } from './home/story-detail/story-detail.component
     CategoryPaginationComponent,
     PasswordChangeComponent,
     StoryDetailComponent
+    PasswordChangeComponent,
+    AccountFollowComponent
   ],
   imports: [
     BrowserModule,

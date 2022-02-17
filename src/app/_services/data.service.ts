@@ -16,14 +16,14 @@ export class DataService {
   constructor(private httpClient: HttpClient) { 
     this.itemSubject = new BehaviorSubject<Item[] | null>(
       [
-        {name: 'Hồ sơ',path: '../',isActive: true},
-        {name: 'Truyện Theo Dõi',path: '../tai_khoan/theo_doi',isActive: false},
-        {name: 'Đổi Mật Khẩu',path: '../tai_khoan/doi_mat_khau',isActive: false},
-        {name: 'Nạp Đậu',path: '../tai_khoan/nap_dau',isActive: false},
-        {name: 'Log Giao Dịch',path: '../tai_khoan/giao_dich',isActive: false},
-        {name: 'Rút Tiền ==> Dành cho mod và converter',path: '../tai_khoan/rut_tien',isActive: false},
-        {name: 'Đăng Truyện',path: '../tai_khoan/them_truyen',isActive: false},
-        {name: 'Quản lý Truyện',path: '../tai_khoan/quan_ly_truyen',isActive: false}
+        {name: 'Hồ sơ',path: '/tai_khoan',isActive: true},
+        {name: 'Truyện Theo Dõi',path: '/tai_khoan/theo_doi',isActive: false},
+        {name: 'Đổi Mật Khẩu',path: '/tai_khoan/doi_mat_khau',isActive: false},
+        {name: 'Nạp Đậu',path: '/tai_khoan/nap_dau',isActive: false},
+        {name: 'Log Giao Dịch',path: '/tai_khoan/giao_dich',isActive: false},
+        {name: 'Rút Tiền ==> Dành cho mod và converter',path: '/tai_khoan/rut_tien',isActive: false},
+        {name: 'Đăng Truyện',path: '/tai_khoan/them_truyen',isActive: false},
+        {name: 'Quản lý Truyện',path: '/tai_khoan/quan_ly_truyen',isActive: false}
       ]
     );
     this._items = this.itemSubject.asObservable(); 

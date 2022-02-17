@@ -20,6 +20,7 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
+import { AccountFollowComponent } from './account/account-follow/account-follow.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -39,7 +40,8 @@ const routes: Routes = [
     path: 'tai_khoan', 
     children:[
       { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}},
-      { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}}
+      { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}},
+      { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}},
     ]
   },
   {
