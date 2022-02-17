@@ -1,1 +1,757 @@
-<p>story works!</p>
+<section class="page-wrapper">
+    <app-header></app-header>
+
+    <section class="truyen-main">
+        <section class="container">
+            <section class="truyen-detail-block">
+                <section class="truyen-section section-featured">
+                    <section class="featured-content truyen-breadcrumb p-0">
+                        <ol class="breadcrumb" style="background-color: inherit">
+                            <li class="breadcrumb-item">
+                                <a property="item" typeof="WebPage" href="/">
+                                    <span property="name">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Dị Thế Giới Mỹ Thực Gia</li>
+                        </ol>
+                    </section>
+                </section>
+                <section class="truyen-section section-featured section-detail-info">
+                    <section class="truyen-detail-info-block">
+                        <section class="row">
+                            <section class="col-thumb col-3">
+                                <section class="thumb hidden-xs">
+                                    <img class="img-fluid lazyload"
+                                        src="https://res.cloudinary.com/thang1988/image/upload/v1539535665/truyenmvc/di-the-gioi-my-thuc-gia.jpg">
+                                </section>
+                            </section>
+                            <section class="col-info col-6">
+                                <section class="info">
+                                    <h1 class="title">
+                                        <a href="" title="Dị Thế Giới Mỹ Thực Gia">Dị Thế Giới Mỹ Thực Gia</a>
+                                    </h1>
+                                    <section class="list">
+                                        <section class="item">
+                                            <section class="item-label"> Tác giả:</section>
+                                            <section class="item-value"><span class="author">Lý Hồng Thiên</span>
+                                            </section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Thể loại:</section>
+                                            <section class="item-value">
+                                                <ul class="list-unstyled categories">
+                                                    <li>
+                                                        <a href="/the-loai/1/do-thi" title="TruyệnĐô Thị">Đô Thị</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/the-loai/3/huyen-ao" title="TruyệnHuyền Ảo">Huyền
+                                                            Ảo</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/the-loai/4/kiem-hiep" title="TruyệnKiếm Hiệp">Kiếm
+                                                            Hiệp</a>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                        <section class="item">
+                                            <section class="item-label"> Tình trạng:</section>
+                                            <section class="item-value">
+                                                <span class="story-go text-center">
+                                                    Đang ra
+                                                </span>
+                                            </section>
+                                        </section>
+
+                                        <section class="item d-block d-sm-none">
+                                            <section class="item-label"> Mới nhất:</section>
+                                            <section class="item-value">
+                                                <a href="/truyen/3/chuong-430">
+                                                    <span class="text-info">Chương 16: 16</span>
+                                                </a>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="buttons">
+
+                                        <a class="btn btn-truyen waves-effect waves-light" href="/truyen/3/chuong-359">
+                                            Đọc Từ Đầu
+                                        </a>
+                                        <a ng-show="follow === false" ng-click="registRecentReadingStory()"
+                                            class="btn btn-outline-primary waves-effect">Theo dõi</a>
+                                        <!-- ng-if -->
+
+                                        <!-- <a ng-show="follow === true" ng-click="unRecentReadingStory()"
+                                            class="btn btn-outline-primary waves-effect ng-hide">Bỏ Theo dõi</a> -->
+                                        <!-- Button trigger modal -->
+                                        <a class="btn btn-xs btn-read text-white waves-effect waves-light"
+                                            data-toggle="modal" data-target="#appointModal">
+                                            Đề Cử
+                                        </a>
+                                    </section>
+                                </section>
+                            </section>
+
+                            <section class="col-rating col-3">
+                                <section class="rating-container text-center" itemscope="">
+                                    <section class="title"> Đánh giá</section>
+                                    <section class="content" itemprop="aggregateRating" itemscope="">
+                                        <section class="message"> Đã có
+                                            <span itemprop="ratingCount" id="myrating">0</span>
+                                            người đánh giá
+                                        </section>
+                                        <section class="star-total hidden-xs">
+                                            <span id="myrate" itemprop="ratingValue">10</span>
+                                        </section>
+                                        <section class="basic" data-average="10.0" data-id="3"
+                                            style="height: 20px; width: 115px; overflow: hidden; z-index: 1; position: relative;">
+                                            <div class="jRatingColor" style="width: 115px;"></div>
+                                            <div class="jRatingAverage" style="width: 0px; top: -20px;"></div>
+                                            <div class="jStar"
+                                                style="width: 115px; height: 20px; top: -40px; background: url(&quot;http://localhost:8090/images/stars.png&quot;) repeat-x;">
+                                            </div>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section class="truyen-section">
+                    <section class="truyen-detail-tab classic-tabs" id="navbar-custom">
+                        <div class="tabs-wrapper">
+                            <!-- Nav tabs -->
+                            <ul class="nav tabs-blue" role="tablist">
+                                <li class="nav-item active">
+                                    <a class="nav-link waves-light waves-effect waves-light" data-toggle="tab"
+                                        href="#truyen-info" role="tab" aria-selected="false">
+                                        Giới Thiệu
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link waves-light waves-effect waves-light active" data-toggle="tab"
+                                        href="#truyen-chapter" role="tab" ng-click="getListChapter(1, 1)"
+                                        aria-selected="true">
+                                        Danh Sách Chương
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link waves-light waves-effect waves-light" data-toggle="tab"
+                                        href="#truyen-comment" role="tab" ng-click="getListComment(1, 1)">
+                                        Bình Luận
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Tab panes {Fade}  -->
+                        <section class="tab-content">
+                            <section class="tab-pane fade" id="truyen-info" name="truyen-detail-info" role="tabpanel">
+                                <section class="row">
+                                    <section class="col-sm-12 col-md-8 col-lg-9">
+                                        <section class="brief">
+                                            <p><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Ở
+                                                    Vũ Giả nhấc tay có thể Liệt Sơn xuyên, súy chân có thể đoạn trường
+                                                    hà Huyền Huyễn trên thế giới, tồn tại như vậy một nhà nhà hàng nhỏ
+                                                    .&nbsp;</span><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Nhà
+                                                    hàng nhỏ không lớn, nhưng là vô số cường giả đỉnh cao xua như xua
+                                                    vịt chi địa .&nbsp;</span><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Ở
+                                                    đàng kia ngươi có thể thưởng thức được dùng trứng Phượng Hoàng cùng
+                                                    Long Huyết mét xào thành cơm xào trứng .&nbsp;</span><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Ở
+                                                    đàng kia ngươi có thể Hát đáo Sinh Mệnh Chi Tuyền xứng Chu Quả chế
+                                                    riêng Liệt Tửu .&nbsp;</span><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Ở
+                                                    đàng kia ngươi có thể ăn được Cửu Giai Thánh Thú nhục thân hợp với
+                                                    Hắc hồ tiêu thịt quay .&nbsp;</span><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><br
+                                                    style="box-sizing: border-box; color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;"><span
+                                                    style="color: #333333; font-family: 'source sans pro', sans-serif; font-size: 15px;">Cái
+                                                    gì ngươi nghĩ đem đầu bếp bắt về nhà ? Không có khả năng, bởi vì nhà
+                                                    hàng cửa nằm một con giữ cửa Thập Giai Thần Thú, Địa Ngục Khuyển
+                                                    .&nbsp;</span></p>
+                                        </section>
+                                        <section class="list-overview">
+                                            <section class="item">
+                                                <section class="item-title">
+                                                    <i class="truyen-icon icon-list"></i> Mới nhất
+                                                </section>
+                                                <section class="item-value">
+                                                    <a href="/truyen/3/chuong-430">Chương 16: 16</a>
+                                                </section>
+                                                <section class="item-time">2 năm trước</section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="col-sm-12 col-md-4 col-lg-3">
+                                        <section class="truyen-detail-sidebar">
+                                            <section class="block block-normal">
+                                                <section class="block-content">
+                                                    <section class="row">
+                                                        <section class="col-xs-12 col-sm-6 col-md-12">
+                                                            <section class="block-detail-sidebar-author text-center">
+                                                                <section class="info">
+                                                                    <a ng-href="/member/1" class="avatar"
+                                                                        href="/member/1">
+                                                                        <img class="img-fluid lazyload"
+                                                                            src="https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png">
+                                                                    </a>
+                                                                    <h2 class="name ng-binding">Chủ Biên</h2>
+                                                                </section>
+                                                                <ul class="list-unstyled truyen-author-badge"></ul>
+                                                                <section class="overview">
+                                                                    <span class="cap-3">Ngày Tham Gia: <span
+                                                                            ng-bind="user.createDate | date:'dd-MM-yyyy'"
+                                                                            class="ng-binding">15-08-2018</span>
+                                                                    </span>
+                                                                </section>
+                                                                <section class="statistic">
+                                                                    <section class="row">
+                                                                        <section class="col-4">
+                                                                            <section class="item">
+                                                                                <span class="item-icon">
+                                                                                    <i
+                                                                                        class="truyen-icon icon-book"></i>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="item-value ng-binding">4</span>
+                                                                            </section>
+                                                                        </section>
+                                                                        <section class="col-4">
+                                                                            <section class="item"><span
+                                                                                    class="item-icon"> <i
+                                                                                        class="truyen-icon icon-list"></i>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="item-value ng-binding">386</span>
+                                                                            </section>
+                                                                        </section>
+                                                                        <section class="col-4">
+                                                                            <section class="item">
+                                                                                <span class="item-icon"> <i
+                                                                                        class="truyen-icon icon-gold"></i>
+                                                                                </span>
+                                                                                <span
+                                                                                    class="item-value ng-binding">55125</span>
+                                                                            </section>
+                                                                        </section>
+                                                                    </section>
+                                                                </section>
+                                                            </section>
+                                                        </section>
+                                                        <section class="col-xs-12 col-sm-6 col-md-12">
+                                                            <section class="block-detail-sidebar-related">
+                                                                <section class="header">
+                                                                    <h2 class="title"> Cùng người đăng</h2>
+                                                                </section>
+                                                                <section class="content">
+                                                                    <div
+                                                                        class="detail-sidebar-related js-detail-sidebar-related">
+                                                                        <swiper [config]="config">
+                                                                            <ng-template swiperSlide=>
+                                                                                <div class="item text-center">
+                                                                                    <a href="/truyen/2"
+                                                                                        class="thumb">
+                                                                                        <img class="img-fluid"
+                                                                                            src="http://res.cloudinary.com/thang1988/image/upload/v1/truyenmvc/administrator-353645803721300"
+                                                                                            alt="Nhất Niệm Vĩnh Hằng">
+                                                                                    </a>
+                                                                                    <div class="info">
+                                                                                        <h2 class="title">
+                                                                                            <a href="/truyen/2" title="Nhất Niệm Vĩnh Hằng">Nhất Niệm Vĩnh Hằng</a>
+                                                                                        </h2>
+                                                                                        <p class="description"
+                                                                                            ng-bind-html="lStory.infomation">
+                                                                                            Nhất niệm thành thương hải , nhất niệm hóa tang điền . nhất niệm trảm thiên ma , nhất niệm tru vạn tiên . duy ngã niệm …… vĩnh hằng
+                                                                                        </p>
+                                                                                        <a ng-href="/truyen/2"
+                                                                                            class="btn btn-truyen"
+                                                                                            title="">
+                                                                                            Xem chi tiết
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-template>
+                                                                            <ng-template swiperSlide=>
+                                                                                <div class="item text-center">
+                                                                                    <a href="/truyen/2"
+                                                                                        class="thumb">
+                                                                                        <img class="img-fluid"
+                                                                                            src="https://res.cloudinary.com/thang1988/image/upload/v1539535810/truyenmvc/muc-than-ky.jpg"
+                                                                                            alt="Mục Thần Ký">
+                                                                                    </a>
+                                                                                    <div class="info">
+                                                                                        <h2 class="title">
+                                                                                            <a href="/truyen/2" title="Mục Thần Ký">Mục Thần Ký</a>
+                                                                                        </h2>
+                                                                                        <p class="description"
+                                                                                            ng-bind-html="lStory.infomation">
+                                                                                            Đại Khư tổ huấn nói, trời tối, đừng đi ra ngoài.
+                                                                                            <br>
+                                                                                            Đại Khư Tàn Lão thôn mấy kẻ già yếu tàn tật từ bờ sông nhặt được một đứa bé, lấy tên Tần Mục, ngậm đắng nuốt cay đem hắn nuôi lớn. Một ngày này màn đêm buông xuống, bóng tối bao trùm Đại Khư, Tần Mục đi ra cửa chính...
+                                                                                        </p>
+                                                                                        <a ng-href="/truyen/2"
+                                                                                            class="btn btn-truyen"
+                                                                                            title="">
+                                                                                            Xem chi tiết
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-template>
+                                                                            <ng-template swiperSlide=>
+                                                                                <div class="item text-center">
+                                                                                    <a href="/truyen/2"
+                                                                                        class="thumb">
+                                                                                        <img class="img-fluid"
+                                                                                            src="https://res.cloudinary.com/thang1988/image/upload/v1539535310/truyenmvc/tu-chan-noi-chuyen-phiem-quan.jpg"
+                                                                                            alt="Tu Chân Nói Chuyện Phiếm Quần">
+                                                                                    </a>
+                                                                                    <div class="info">
+                                                                                        <h2 class="title">
+                                                                                            <a href="/truyen/2" title="Tu Chân Nói Chuyện Phiếm Quần">Tu Chân Nói Chuyện Phiếm Quần</a>
+                                                                                        </h2>
+                                                                                        <p class="description"
+                                                                                            ng-bind-html="lStory.infomation">
+                                                                                            Một ngày, Tống Thư Hàng ngoài ý muốn gia nhập một cái tiên hiệp chuunibyou thâm niên người bệnh giao lưu quần, bên trong quần bạn nhóm đều lấy 'Đạo hữu' tương xứng, quần danh thiếp đều là các loại Phủ chủ, Động chủ, Chân nhân, Thiên Sư. Liền chủ nhóm lạc đường chó cảnh đều xưng là Đại yêu khuyển rời nhà trốn đi. Cả ngày nói chuyện là luyện đan, xông bí cảnh, luyện công kinh nghiệm cái gì. Đột nhiên có một ngày, lặn xuống nước hồi lâu hắn đột nhiên phát hiện... Trong đám mỗi một cái quần viên, vậy mà toàn bộ là Tu chân giả, có thể di sơn đảo hải, trường sinh ngàn năm cái chủng loại kia!
+                                                                                        </p>
+                                                                                        <a ng-href="/truyen/2"
+                                                                                            class="btn btn-truyen"
+                                                                                            title="">
+                                                                                            Xem chi tiết
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-template>
+                                                                        </swiper>
+                                                                    </div>
+                                                                </section>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                            <section class="tab-pane fade active show" id="truyen-chapter" name="truyen-chapter"
+                                role="tabpanel">
+                                <section class="truyen-detail-chap">
+                                    <section class="row ng-hide" ng-show="listChapter.length === 0">
+                                        <section class="col-12">
+                                            <!-- ng-if -->
+                                            <!-- <section class="alert alert-primary" role="alert">
+                                                <h5 class="text-center">Chưa có Chương nào được đăng </h5>
+                                            </section> -->
+                                        </section>
+
+                                    </section>
+                                    <section class="panel" ng-show="listChapter.length !== 0">
+                                        <section class="panel-body">
+                                            <section class="list-chap">
+                                                <section class="row">
+                                                    <!-- ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-430"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-430"
+                                                                title="Đăng bởi Chủ Biên lúc 11:01 29-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid" height="12px"> Chương 16 :
+                                                                    16</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-429"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-429"
+                                                                title="Đăng bởi Chủ Biên lúc 10:59 29-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid" height="12px"> Chương 15 : Hảo
+                                                                    đàn đặc lập độc
+                                                                    hành bạo phát nhà</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-374"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-374"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    14 : Ta là Hoàng Tử, ngươi làm ta đầu bếp
+                                                                    đi!:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-372"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-372"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    13 : Cơm xào trứng hay là trứng xào Đan Dược
+                                                                    ?:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-370"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-370"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    12 : Người gây chuyện, Cẩn Thận Không Ta Thông Ass
+                                                                    Ngươi:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-369"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-369"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    11 : Ta xấu như vậy buộc ngươi vì sao không sợ
+                                                                    ?:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-368"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-368"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    10 : Không vì kim tiền sở động nguyên
+                                                                    tắc:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-367"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-367"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    9 : Phương Phương Tiểu Điếm cục sắt trợ
+                                                                    thủ:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-366"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-366"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    8 : Bách Vạn không nên đắc tội tương lai Trù
+                                                                    Thần:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-365"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-365"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    7 : Nhà hàng nhỏ quy củ:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-364"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-364"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    6 : Lão bản, tới trước 10 bát cơm xào
+                                                                    trứng:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-363"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-363"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    5 : Tiếu Yên Vũ:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-362"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-362"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    4 : Đản phi phàm đản, Gạo phi phàm Gạo:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-361"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-361"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    3 : Sẽ sáng lên cơm xào trứng:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-360"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-360"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    2 : Cho Đại Hắc Cẩu ăn cơm xào trứng:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                    <section class="col-sm-6 col-md-4 chapter-item ng-scope"
+                                                        ng-repeat="item in listChapter">
+                                                        <section class="item">
+                                                            <a ng-href="/truyen/3/chuong-359"
+                                                                class="align-items-center d-flex"
+                                                                href="/truyen/3/chuong-359"
+                                                                title="Đăng bởi Chủ Biên lúc 21:29 13-05-2019">
+                                                                <span class="chapter-name ng-binding">
+                                                                    <img ng-show="item.status === 2"
+                                                                        src="../../assets/img/vip-vip.gif"
+                                                                        class="img-fluid ng-hide" height="12px"> Chương
+                                                                    1 : Đế Đô trong hẻm nhỏ nhà hàng nhỏ:</span>&nbsp;
+                                                                <span class="chapter-time text-muted ng-binding">2 năm
+                                                                    trước</span>
+                                                            </a>
+                                                        </section>
+                                                    </section><!-- end ngRepeat: item in listChapter -->
+                                                </section>
+                                            </section>
+                                        </section>
+                                        <section ng-show="totalPages>1" class="ng-hide">
+                                            <ul class="pagination justify-content-end mb-3 mt-3">
+                                                <li ng-show="currentPage != 1" class="page-item ng-hide">
+                                                    <a class="page-link waves-effect waves-effect"
+                                                        ng-click="getListChapter(currentPage - 1, 1)">
+                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <!-- ngRepeat: i in page -->
+                                                <li ng-repeat="i in page"
+                                                    ng-class="i===currentPage?'page-item active': 'page-item'"
+                                                    class="ng-scope page-item active">
+                                                    <a ng-class="i===currentPage?'page-link disabled': 'page-link'"
+                                                        ng-click="getListChapter(i,1)"
+                                                        class="ng-binding page-link disabled">1</a>
+                                                </li><!-- end ngRepeat: i in page -->
+                                                <li ng-show="currentPage != totalPages" class="page-item ng-hide">
+                                                    <a class="page-link waves-effect waves-effect"
+                                                        ng-click="getListChapter(currentPage + 1, 1)">
+                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link waves-effect waves-effect"
+                                                        ng-click="getListChapter(1, 0)">
+                                                        Xem hết
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                            <section class="tab-pane fade" id="truyen-comment" name="truyen-comment" role="tabpanel">
+                                <section class="truyen-detail-chap">
+                                    <section class="row">
+                                        <section class="col-md-12">
+                                            <section id="comment_field">
+                                                <section class="cm-based">
+                                                    <p class="comment-count"><span id="count_comment"
+                                                            class="ng-binding">0</span> bình luận
+                                                    </p>
+                                                    <form name="frmContact" id="frmContact" method="post"
+                                                        ng-submit="addComment()" novalidate=""
+                                                        class="ng-pristine ng-valid">
+                                                        <section class="form row">
+                                                            <section class="form-group col-md-10 comment-text">
+                                                                <textarea ng-model="commentText"
+                                                                    class="form-control ng-pristine ng-untouched ng-valid ng-empty">                        </textarea>
+                                                            </section>
+                                                            <section class="form-group col-md-2">
+                                                                <button type="submit" ng-click=""
+                                                                    class="btn btn-truyen btn-lg btn-block  waves-effect waves-light"
+                                                                    name="btnComment" id="btnComment">
+                                                                    <span class="fas fa-check"
+                                                                        aria-hidden="true"></span>
+                                                                </button>
+                                                            </section>
+                                                            <section class="clearfix"></section>
+                                                        </section>
+                                                    </form>
+                                                    <section id="truyen-detail-comment" class="blog-comment">
+                                                        <section class="alert alert-primary" role="alert"
+                                                            ng-show="listComment.length === 0">
+                                                            <h5 class="text-center">Chưa có Bình Luận nào</h5>
+                                                        </section>
+                                                        <ul class="comments ng-hide" id="comment_list"
+                                                            ng-show="listComment.length !== 0">
+                                                            <!-- ngRepeat: comment in listComment -->
+                                                        </ul>
+                                                        <section ng-show="totalCommentPages>1" class="ng-hide">
+                                                            <ul class="pagination justify-content-end mb-3 mt-3">
+                                                                <li ng-show="currentCommentPage != 1"
+                                                                    class="page-item ng-hide">
+                                                                    <a class="page-link waves-effect waves-effect"
+                                                                        ng-click="getListComment(currentCommentPage - 1, 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <!-- ngRepeat: i in pageComment -->
+                                                                <li ng-show="currentCommentPage != totalCommentPages"
+                                                                    class="page-item">
+                                                                    <a class="page-link waves-effect waves-effect"
+                                                                        ng-click="getListComment(currentCommentPage + 1, 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="page-item">
+                                                                    <a class="page-link waves-effect waves-effect"
+                                                                        ng-click="getListComment(1, 0)">
+                                                                        Xem hết
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+    <app-footer></app-footer>
+</section>
