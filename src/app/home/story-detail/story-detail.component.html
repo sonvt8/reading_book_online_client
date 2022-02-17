@@ -100,24 +100,24 @@
                                 </section>
                             </section>
 
-                            <!-- <section class="col-rating col-3">
+                            <section class="col-rating col-3">
                                 <section class="rating-container text-center" itemscope="">
                                     <section class="title"> Đánh giá</section>
                                     <section class="content" itemprop="aggregateRating" itemscope="">
                                         <section class="message"> Đã có
-                                            <span itemprop="ratingCount" id="myrating" th:text="${countRating}"></span>
+                                            <span itemprop="ratingCount" id="myrating">{{countRating}}</span>
                                             người đánh giá
                                         </section>
                                         <section class="star-total hidden-xs">
                                     <span id="myrate" itemprop="ratingValue"
-                                          th:text="${#numbers.formatDecimal(story.rating, 0, T(Math).round(story.rating) == story.rating?0:1, 'POINT')}"></span>
+                                          >{{story.rating | number:'0.1-2'}}</span>
                                         </section>
-                                        <section th:class="${rating?'basic jDisabled':'basic'}"
-                                                 th:data-average="${story.rating}" th:data-id="${story.id}">
+                                        <section [ngClass]="rating ? 'basic jDisabled':'basic'" 
+                                                 data-average="story.rating" data-id="story.id">
                                         </section>
                                     </section>
                                 </section>
-                            </section> -->
+                            </section>
                         </section>
                     </section>
                 </section>

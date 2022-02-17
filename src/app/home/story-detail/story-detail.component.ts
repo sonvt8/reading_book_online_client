@@ -4,9 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Chapter } from 'src/app/_models/chapter';
 import { Story } from 'src/app/_models/story';
+import { AuthService } from 'src/app/_services/auth.service';
 import { ChapterService } from 'src/app/_services/chapter.service';
 import { FollowService } from 'src/app/_services/follow.service';
 import { StoryService } from 'src/app/_services/story.service';
+
+declare var showRating: any
 
 @Component({
   selector: 'app-story-detail',
@@ -35,16 +38,22 @@ export class StoryDetailComponent implements OnInit {
     private storyService: StoryService,
     private chapterService: ChapterService,
     private followService: FollowService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private authService: AuthService 
   ) { }
 
   ngOnInit(): void {
+    showRating();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
         this.getChapterListByStoryId(1, 1);
         this.getStoryById();
-        this.checkFollow();
+        if(this.authService.isLoggedIn()){
+          this.checkFollow();
+          this.checkGetStoryById();
+        }
+          
     });
   }
 
@@ -59,10 +68,18 @@ export class StoryDetailComponent implements OnInit {
     this.sid = +this.route.snapshot.params['sid'];
     this.storyService.getStoryById(this.sid).subscribe(data => {
       this.story = data.storySummary;
+      this.countRating = data.countRating;
+      console.log(data);
+    });
+    
+  }
+
+  checkGetStoryById(): void {
+    this.sid = +this.route.snapshot.params['sid'];
+    this.storyService.checkGetStoryById(this.sid).subscribe(data => {
       this.readChapter = data.readChapter;
       this.checkConverter = data.checkConverter,
       this.rating = data.rating,
-      this.countRating = data.countRating;
       console.log(data);
     });
     
