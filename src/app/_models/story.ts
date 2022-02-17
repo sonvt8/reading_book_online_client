@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { Chapter } from "./chapter";
 import { User } from "./user";
 
 export class Story{
@@ -18,10 +19,19 @@ export class Story{
     timeDeal: number;
     updateDate: Date;
     userPosted: number;
+    userId!: number;
     displayName: string;
     categoryName: string;
     chapterNumber: number;
-    categoryList: Category[];
+    categoryListInput: string[];
+    categoryList!: Category[];
+    user!: User;
+    chapterId!: number;
+    timeUpdate!: string;
+    username!: string;
+    chapterNew!: Chapter;
+    chapterHead! : Chapter;
+    categoryId! : number;
 
     constructor(){
         this.id=0;
@@ -43,7 +53,9 @@ export class Story{
         this.displayName = "";
         this.categoryName = "";
         this.chapterNumber = 0
-        this.categoryList = [];
+        this.categoryListInput = [];
+        this.chapterNumber = 0
+
     }
         
 

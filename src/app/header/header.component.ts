@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css', '../../assets/css/myWebStyle.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public info!: Information;

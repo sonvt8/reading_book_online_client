@@ -14,6 +14,8 @@ export class User {
     public lastLoginDate: Date;
     public lastLoginDateDisplay: Date;
     public createDate: Date;
+    countStory!: number;
+    countChapter!: number;
   
     roleList: Role[];
     constructor() {

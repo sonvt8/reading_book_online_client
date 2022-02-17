@@ -41,6 +41,10 @@ export class UserService {
     return this.httpClient.get<TopConvert[]>(`${this.baseUrl}thanh_vien/xem_top_converter`);
   }
 
+  public getConvertInfo(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}thanh_vien/thong-tin-converter`, form);
+  }
+
   public deleteAdminUser(user: User): Observable<User> {
     return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
   }

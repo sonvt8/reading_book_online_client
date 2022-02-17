@@ -3,7 +3,7 @@
             var defaults = {
                 bigStarsPath: 'jquery/icons/stars.png',
                 smallStarsPath: 'jquery/icons/small.png',
-                ratingPath: window.location.origin + '/api/story/rating',
+                ratingPath: 'http://localhost:8081/tai_khoan/danh_gia',
                 type: 'big',
                 step: false,
                 isDisabled: false,

@@ -12,3 +12,4 @@ function showNavbar() {
         $('[data-toggle="tooltip"]').tooltip()
     })
 }
+
