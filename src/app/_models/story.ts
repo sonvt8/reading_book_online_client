@@ -19,6 +19,7 @@ export class Story{
     timeDeal: number;
     updateDate: Date;
     userPosted: number;
+    userId!: number;
     displayName: string;
     categoryName: string;
     chapterNumber: number;

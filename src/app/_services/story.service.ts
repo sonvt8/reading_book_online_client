@@ -22,6 +22,10 @@ export class StoryService {
     return this.httpClient.get<GetStoryResponseById>(`${this.baseUrl}truyen-home/${id}`);
   }
 
+  public getStoryByUser(id: number): Observable<Story[]> {
+    return this.httpClient.get<Story[]>(`${this.baseUrl}truyen-home/truyen-cua-converter?userId=${id}`);
+  }
+
   public checkGetStoryById(id: number): Observable<CheckGetStoryResponseById> {
     return this.httpClient.get<CheckGetStoryResponseById>(`${this.baseUrl}tai-khoan/truyen/kiem-tra/${id}`);
   }

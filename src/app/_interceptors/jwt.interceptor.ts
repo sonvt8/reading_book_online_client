@@ -28,7 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
             "truyen-home",
             
             "thanh_vien/xem_top_converter",
-            "thanh_vien/thong-tin_converter",
+            "thanh_vien/thong-tin-converter",
         ];
     }
 

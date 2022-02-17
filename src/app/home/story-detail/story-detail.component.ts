@@ -4,10 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Chapter } from 'src/app/_models/chapter';
 import { Story } from 'src/app/_models/story';
+import { User } from 'src/app/_models/user';
+import { TopConvert } from 'src/app/_models/top-convert';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ChapterService } from 'src/app/_services/chapter.service';
 import { FollowService } from 'src/app/_services/follow.service';
 import { StoryService } from 'src/app/_services/story.service';
+import { UserService } from 'src/app/_services/user.service';
 
 declare var showRating: any
 
@@ -20,6 +23,7 @@ export class StoryDetailComponent implements OnInit {
 
   story: Story = new Story();
   listChapter: Chapter[] = [];
+  listStory: Story[] = [];
   sid: number = 0;
   totalPages: number = 0;
   currentPage: number = 1;
@@ -29,6 +33,8 @@ export class StoryDetailComponent implements OnInit {
   rating: boolean = false;
   countRating: number = 0;
   follow: boolean = false;
+  user: User = new User();
+  noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
 
   private subscriptions: Subscription[] = [];
 
@@ -37,6 +43,7 @@ export class StoryDetailComponent implements OnInit {
     private renderer: Renderer2,
     private storyService: StoryService,
     private chapterService: ChapterService,
+    private userService: UserService,
     private followService: FollowService,
     private route: ActivatedRoute,
     private authService: AuthService 
@@ -53,7 +60,6 @@ export class StoryDetailComponent implements OnInit {
           this.checkFollow();
           this.checkGetStoryById();
         }
-          
     });
   }
 
@@ -69,7 +75,10 @@ export class StoryDetailComponent implements OnInit {
     this.storyService.getStoryById(this.sid).subscribe(data => {
       this.story = data.storySummary;
       this.countRating = data.countRating;
-      console.log(data);
+      var form = new FormData();
+      form.append("userId", JSON.stringify(data.storySummary.userId));
+      this.userService.getConvertInfo(form).subscribe(data => this.user = data);
+      this.storyService.getStoryByUser(data.storySummary.userId).subscribe(data => this.listStory = data);
     });
     
   }
@@ -81,8 +90,7 @@ export class StoryDetailComponent implements OnInit {
       this.checkConverter = data.checkConverter,
       this.rating = data.rating,
       console.log(data);
-    });
-    
+    });   
   }
 
   getChapterListByStoryId(pagenumber: number, type: number){
