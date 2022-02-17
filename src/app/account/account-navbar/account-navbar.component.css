@@ -1,0 +1,5 @@
+:host { display: contents; }
+
+.unClickable {
+    pointer-events: none;
+}

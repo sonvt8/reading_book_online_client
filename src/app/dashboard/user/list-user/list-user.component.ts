@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
+import Swal from 'sweetalert2';
+
+declare var $: any;
 
 @Component({
   selector: 'app-list-user',
@@ -11,12 +15,14 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
-
+  search: string = "";
   users: User[] = [];
   page : number[] = [];
   private subscriptions: Subscription[] = [];
   totalPages: number = 0;
   currentPage: number = 1;
+  payCoin: number = 0;
+  userId: number = 0;
   typeList = [
     {'id': 4, 'label': 'USER'},
     {'id': 1, 'label': 'ADMIN'},
@@ -28,14 +34,21 @@ export class ListUserComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getUser(1,"");
+    this.showSelect();
+    this.getUser(1);
   }
 
-  getUser(pagenumber: number, search: string){
+
+  getUser(pagenumber: number){
     if (pagenumber === undefined) {
       pagenumber = 1;
     }
-    this.subscriptions.push(this.userService.getAdminUserList(search, this.type.id, pagenumber)
+    const data = new FormData();
+    data.append('pagenumber', JSON.stringify(pagenumber));
+    data.append('search', this.search.trim());
+    data.append('type', JSON.stringify(this.type.id));
+    
+    this.subscriptions.push(this.userService.getAdminUserList(data)
         .subscribe(data => {
           this.users = data.content;
           this.currentPage = data.number + 1;
@@ -47,9 +60,70 @@ export class ListUserComponent implements OnInit {
               pages.push(i);
           }
           this.page = pages;
-          
         }
     ));
   }
 
+  onDeleteAdminUser(user: User): void{
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng Ý',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.value) {
+        this.subscriptions.push(this.userService.deleteAdminUser(user).subscribe(data=>{
+          this.toastr.success(`Người dùng ${user.username} đã bị xóa thành công!`);
+          this.getUser(1);
+        }, error => this.toastr.error(error.error.message)
+        ));
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        
+      }
+    })
+    
+  }
+
+  submitPayhDraw(payDrawForm: NgForm): void {
+    const data = new FormData();
+    data.append("money", payDrawForm.value.payCoin);
+    data.append("reId", JSON.stringify(this.userId));
+    this.subscriptions.push(this.userService.payDrawAdminUser(data).subscribe(
+        response => {
+          //this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
+          //payDrawForm.reset();
+          //payDrawForm.value.payCoin = 0;
+          Swal.fire({
+            text: "Nạp đậu thành tiền mặt thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => {
+          Swal.fire({
+            text: error.error.message,
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+        }
+    ));
+  }
+
+  setID(userId: number){
+    this.userId = userId;
+  }
+
+  reset(){
+    this.payCoin = 0;
+  }
+
+  showSelect(){
+    $(document).ready(function () {
+      $('.mdb-select').materialSelect();
+    });
+  }
+  
 }

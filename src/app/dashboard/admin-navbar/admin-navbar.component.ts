@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
-declare var $: any;
-
+declare var showNavbar: any
 
 @Component({
   selector: 'app-admin-navbar',
@@ -11,16 +14,27 @@ declare var $: any;
 
 export class AdminNavbarComponent implements OnInit {
 
-  constructor() { }
+  title: string = "";
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document, 
+    private renderer: Renderer2,
+    private authService: AuthService,
+    private router: Router,
+    private titleService: Title,
+  ) { }
 
   ngOnInit(): void {
-    this.showNavbar();
+    this.renderer.addClass(this.document.body, 'fixed-sn');
+    this.renderer.addClass(this.document.body, 'white-skin');
+    this.renderer.addClass(this.document.body, 'body-none');
+    showNavbar();
+    this.title = this.titleService.getTitle();
   }
 
-  showNavbar(){
-    $(".button-collapse").click(function(){
-      $(".side-nav").css("transform","translateX(0%)");
-    });
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/trang-chu']);
   }
 
 }

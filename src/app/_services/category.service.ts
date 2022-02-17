@@ -13,24 +13,30 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) { }
 
   public getCategoryList(thePage: number, theKeyword: string): Observable<GetCategoryResponse> {
-    return this.httpClient.get<GetCategoryResponse>(`${this.baseUrl}quan-tri/the-loai/danh-sach?keyword=${theKeyword}&pagenumber=${thePage}`);
+    return this.httpClient.get<GetCategoryResponse>(`${this.baseUrl}quan-tri/the_loai/danh-sach?keyword=${theKeyword}&pagenumber=${thePage}`);
+  }
+
+  public getCategoryListNoPagination(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${this.baseUrl}quan-tri/the_loai/danh-sach-khong-phan-trang`);
   }
 
   public addCategory(name: string): Observable<Category> {
-    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/them`, name);
+    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the_loai/them`, name);
   }
 
   public getCategory(id: number): Observable<Category> {
-    return this.httpClient.get<Category>(`${this.baseUrl}quan-tri/the-loai/cap-nhat/${id}`);
+    return this.httpClient.get<Category>(`${this.baseUrl}quan-tri/the_loai/cap-nhat/${id}`);
   }
 
   public updateCategory(category: Category): Observable<Category> {
-    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the-loai/cap-nhat/${category.id}`, category);
+    return this.httpClient.post<Category>(`${this.baseUrl}quan-tri/the_loai/cap-nhat/${category.id}`, category);
   }
 
   public deleteCategory(id: number): Observable<Category> {
-    return this.httpClient.delete<Category>(`${this.baseUrl}quan-tri/the-loai/xoa/${id}`);
+    return this.httpClient.delete<Category>(`${this.baseUrl}quan-tri/the_loai/xoa/${id}`);
   }
+
+  
 
   
 }

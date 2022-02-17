@@ -9,6 +9,8 @@ import { Observable, throwError } from 'rxjs';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
+import { NotificationType } from '../enum/notification-type.enum';
+import { NotificationService } from '../_services/notification.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -17,29 +19,33 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error => {
-        if (error) {
-          switch (error.status) {
+      catchError(errorResponse => {
+        if (errorResponse) {
+          switch (errorResponse.status) {
             case 400:
-              if (error.error.errors) {
+              if (errorResponse.error.errors) {
                 const modalStateErrors = [];
-                for (const key in error.error.errors) {
-                  if (error.error.errors[key]) {
-                    modalStateErrors.push(error.error.errors[key])
+                for (const key in errorResponse.error.errors) {
+                  if (errorResponse.error.errors[key]) {
+                    modalStateErrors.push(errorResponse.error.errors[key])
                   }
                 }
                 throw modalStateErrors;
-              } else if (typeof(error.error) === 'object') {
-                //this.toastr.error(error.statusText, error.status);
+              } else if (typeof(errorResponse.error) === 'object') {
+                this.toastr.error(errorResponse.error.message);
               } else {
-                this.toastr.error(error.error, error.status);
+                console.log("3333");
+                // this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
-              this.toastr.error(error.statusText, error.status);
+              this.toastr.error(errorResponse.statusText, errorResponse.status);
               break;
             case 404:
               //this.router.navigateByUrl('/not-found');
+              break;
+            case 403:
+              this.toastr.error(errorResponse.error.message);
               break;
             case 500:
               // const navigationExtras: NavigationExtras = { state: { error: error.error } }
@@ -47,13 +53,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
             default:
               this.toastr.error('Something unexpected went wrong');
-              console.log(error);
+              console.log(errorResponse);
               break;
           }
         }
-        return throwError(error);
+        return throwError(errorResponse);
       })
     )
   }
-
 }

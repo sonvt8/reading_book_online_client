@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Category } from 'src/app/_models/category';
 import { CategoryService } from 'src/app/_services/category.service';
 
-declare var $ : any;
 
 @Component({
   selector: 'app-edit-category',
@@ -37,7 +36,7 @@ export class EditCategoryComponent implements OnInit {
     this.subscriptions.push(this.categoryService.updateCategory(this.category).subscribe(
         response => {
             console.log(response);
-            this.router.navigateByUrl('/admin/category').then(r => {});
+            this.router.navigateByUrl('/quan-tri/the-loai').then(r => {});
             editForm.reset();
             this.toastr.success(`Thể loại ${response.name} cập nhật thành công!`);
         }, error => this.toastr.error(error.error.message)

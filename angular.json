@@ -33,20 +33,38 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/static/mdbootstrap/css/bootstrap.min.css",
+              "src/assets/static/mdbootstrap/css/mdb.css",
+              "src/assets/static/bower/Font-Awesome/css/all.css",
+              "node_modules/swiper/swiper-bundle.css",
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/static/css/myWebStyle.css",
+              "src/assets/static/css/animationStyle.css",
+              "src/assets/static/bower/animate.css/animate.min.css",
+              "src/assets/static/bower/jquery-ui/themes/base/jquery-ui.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "src/assets/js/jquery.js",
               "src/assets/js/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/mdb.min.js"
-             
+              "src/assets/static/mdbootstrap/js/bootstrap.min.js",
+              "src/assets/static/bower/swiper/dist/js/swiper.min.js",
+              "src/assets/static/bower/jquery-ui/jquery-ui.js",
+              "src/assets/static/bower/jquery-validation/dist/jquery.validate.js",
+              "src/assets/static/bower/jquery-lazy/jquery.lazy.min.js",
+              "src/assets/static/bower/jquery-lazy/jquery.lazy.plugins.min.js",
+              "src/assets/js/mdb.min.js",
+              "src/assets/js/aes.js",
+              "src/assets/js/pbkdf2.js",
+              "src/assets/js/AesUtil.js",
+              "src/assets/static/js/myFunction.js",
+              "src/assets/static/js/myApp.js",
+              "src/assets/static/js/backToTop.js",
+              "src/assets/static/js/jRating.js",
+              "src/assets/js/showNavbar.js",
+              "src/assets/js/showImage.js",
+              "src/assets/js/showRating.js"
             ]
           },
           "configurations": {

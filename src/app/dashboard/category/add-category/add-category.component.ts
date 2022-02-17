@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/_services/category.service';
 
+
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -24,7 +25,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
         response => {
           console.log(response);
           newForm.reset();
-          this.router.navigateByUrl('/admin/category').then(r => {});
+          this.router.navigateByUrl('/quan-tri/the-loai').then(r => {});
           this.toastr.success(`Thể loại ${response.name} được thêm mới thành công`);
         }, error => {
           this.toastr.error(error.error.message);
