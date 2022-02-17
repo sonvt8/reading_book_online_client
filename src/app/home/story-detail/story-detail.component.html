@@ -40,8 +40,9 @@
                                             <section class="item-value">
                                                 <ul class="list-unstyled categories">
                                                     <li *ngFor="let category of story.categoryList">
-                                                        <a href=""
-                                                            title="Truyện {{category.name}}">{{category.name}}</a>
+                                                        <a routerLink="/the-loai/{{category.id}}"
+                                                           title="Truyện {{category.name}}"
+                                                           >{{category.name}}</a>
                                                     </li>
                                                 </ul>
                                             </section>
