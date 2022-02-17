@@ -30,6 +30,7 @@ export class Story{
     username!: string;
     chapterNew!: Chapter;
     chapterHead! : Chapter;
+    categoryId! : number;
 
     constructor(){
         this.id=0;
