@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { AccountOnHomePage } from 'src/app/_models/account-home-page';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -17,7 +18,8 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit, OnDestroy {
   public selectedIndex: number = 0;
   public currentUser: User = new User;
-  private loggedInUsername!: string;
+  public accountInfo: AccountOnHomePage = new AccountOnHomePage;
+  // private loggedInUsername!: string;
   private subscriptions: Subscription[] = [];
   public reNameForm!: FormGroup;
   submitted = false;
@@ -32,13 +34,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.authService.user.subscribe(user => {
-        this.currentUser = user as User;
-        this.loggedInUsername = user?.username as string;
-      })
+      this.accService._account.subscribe(
+        (response: any) => {
+          this.accountInfo = response;
+        }
+      )
     );
     this.reNameForm = this.formBuilder.group({
-      txtChangenick: ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
+      txtChangenick: ['', Validators.compose([Validators.required, Validators.maxLength(120)])],
     });
   }
 
@@ -61,6 +64,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.accService.updateNotification(notification.txtAbout).subscribe(
         (response: User) => {
+          this.accountInfo.notification = response.notification;
+          this.accService.setCurrentAccount(this.accountInfo);
           this.authService.setCurrentUser(response);
           this.authService.addUserToLocalCache(response);
           this.notifyService.notify(NotificationType.SUCCESS,'Thông báo mới nhất đã được cập nhật');
@@ -74,10 +79,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const newNick = this.reNameForm.get('txtChangenick')!.value;
     if(!newNick) return;
 
-    if(!this.currentUser.displayName){
+    // stop here if form is invalid
+    if (this.reNameForm.invalid) {
+      return;
+    }
+
+    if(!this.accountInfo.displayName){
       this.subscriptions.push(
         this.accService.updateDisplayedName(newNick).subscribe(
           (response: User) => {
+            this.accountInfo.displayName = response.displayName;
+            this.accountInfo.gold = response.gold;
+            this.accService.setCurrentAccount(this.accountInfo);
             this.authService.setCurrentUser(response);
             this.authService.addUserToLocalCache(response);
             this.notifyService.notify(NotificationType.SUCCESS,'Tên đại diện mới đã được cập nhật');
@@ -104,6 +117,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.subscriptions.push(
             this.accService.updateDisplayedName(newNick).subscribe(
               (response: User) => {
+                this.accountInfo.displayName = response.displayName;
+                this.accountInfo.gold = response.gold;
+                this.accService.setCurrentAccount(this.accountInfo);
                 this.authService.setCurrentUser(response);
                 this.authService.addUserToLocalCache(response);
                 this.notifyService.notify(NotificationType.SUCCESS,'Tên đại diện mới đã được cập nhật');
