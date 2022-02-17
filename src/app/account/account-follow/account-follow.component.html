@@ -1,0 +1,90 @@
+<section class="page-wrapper">
+    <!--NavBar-->
+    <app-header></app-header>
+
+    <!--Body-->
+    <section class="truyen-main">
+        <section class="truyen-section section-featured">
+            <section class="container container-full mb-4 mt-5">
+                <section class="featured-content">
+                    <section class="container-fluid">
+                        <section class="featured-content" id="content">
+                            <section class="row">
+                                <app-account-navbar></app-account-navbar>
+                                <section class="col-lg-10 col-md-9">
+                                    <div class="card">
+                                        <h3 class="card-header primary-color white-text text-center">
+                                            Danh sách Theo dõi
+                                        </h3>
+                                        <div class="card-body table-responsive">
+                                            <table class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th class="font-weight-bolder">Truyện
+                                                    </th>
+                                                    <th class="font-weight-bolder">
+                                                        Cập Nhật
+                                                    </th>
+                                                    <th class="font-weight-bolder">
+                                                    </th>
+                                                    <th class="font-weight-bolder">
+                                                    </th>
+                                                    <th class="font-weight-bolder">
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngIf="!listStory?.length" class="text-center">
+                                                    <td colspan="4">Bạn chưa theo dõi truyện nào</td>
+                                                </tr>
+                                                <tr *ngIf="listStory?.length" >
+                                                    <ng-container *ngFor="let story of listStory; let i = index"> 
+                                                        <td>
+                                                            <a href="" target="_blank">{{story.name}}</a>
+                                                        </td>
+                                                        <td> {{story.updateDate | date:'dd/MM/yyyy HH:mm' }}</td>
+                                                        <td>
+                                                            <a href="" target="_blank" class="float-right badge badge-pill badge-secondary">Xem Truyện</a>
+                                                        </td>
+                                                        <td>
+                                                            <a *ngIf="story.chapterNumber" href=""
+                                                            class="float-right badge badge-pill badge-primary">Đọc Tiếp</a>
+                                                        </td>
+                                                        <td>
+                                                            <a (click)="deleteFollow(story.id, story.name)" title="Bỏ Theo Dõi" class="float-right badge badge-pill badge-danger"><i
+                                                                    class="fas fa-times mx-1"></i> Bỏ Theo dõi</a>
+                                                        </td>
+                                                    </ng-container>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- <div aria-label="Page navigation example" *ngIf="totalPages>1">
+                                                <ul class="pagination pg-blue justify-content-end">
+                                                    <li class="page-item" *ngIf="currentPage != 1">
+                                                        <a class="page-link"(click)="getPage(currentPage - 1)">
+                                                            <i class="fas fa-step-backward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li ng-repeat="i in page" ng-class="i===currentPage?'page-item active': 'page-item'">
+                                                        <a ng-class="i===currentPage?'page-link disabled': 'page-link'"
+                                                           ng-click="getPage(i)">{{i}}</a>
+                                                    </li>
+                                                    <li class="page-item" ng-show="currentPage != totalPages">
+                                                        <a class="page-link" ng-click="getPage(currentPage + 1)">
+                                                            <i class="fas fa-step-forward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<app-footer></app-footer>
