@@ -16,7 +16,8 @@ export class JwtInterceptor implements HttpInterceptor {
             "thanh_vien/dang_nhap",
             "thanh_vien/dang_ky",
             "thanh_vien/quen_mat_khau",
-            
+            "thanh_vien/thong-tin-converter",
+            "thanh_vien/binh-luan/xem",
             "trang-chu",
             
         ];
@@ -27,9 +28,8 @@ export class JwtInterceptor implements HttpInterceptor {
             "chuong",
             "truyen-home",
             "the-loai",
-            
+            "binh_luan/xem",
             "thanh_vien/xem_top_converter",
-            "thanh_vien/thong-tin-converter",
         ];
     }
 
