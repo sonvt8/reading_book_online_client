@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.storyService.getHomeStory()
       .subscribe(data => {
         this.topStoryWeek = data.topStoryWeek;
+        console.log(this.topStoryWeek);
+  
         this.listNewStory = data.listNewStory;
         this.topStory = data.topStory;
         this.topVipStory = data.topVipStory;

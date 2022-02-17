@@ -12,6 +12,9 @@ import { FollowService } from 'src/app/_services/follow.service';
 import { StoryService } from 'src/app/_services/story.service';
 import { UserService } from 'src/app/_services/user.service';
 
+import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
+SwiperCore.use([Navigation]);
+
 declare var showRating: any
 
 @Component({
@@ -27,7 +30,7 @@ export class StoryDetailComponent implements OnInit {
   sid: number = 0;
   totalPages: number = 0;
   currentPage: number = 1;
-  page : number[] = [];
+  page: number[] = [];
   readChapter: Chapter = new Chapter();
   checkConverter: boolean = false;
   rating: boolean = false;
@@ -46,7 +49,7 @@ export class StoryDetailComponent implements OnInit {
     private userService: UserService,
     private followService: FollowService,
     private route: ActivatedRoute,
-    private authService: AuthService 
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -54,16 +57,16 @@ export class StoryDetailComponent implements OnInit {
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
-        this.getChapterListByStoryId(1, 1);
-        this.getStoryById();
-        if(this.authService.isLoggedIn()){
-          this.checkFollow();
-          this.checkGetStoryById();
-        }
+      this.getChapterListByStoryId(1, 1);
+      this.getStoryById();
+      if (this.authService.isLoggedIn()) {
+        this.checkFollow();
+        this.checkGetStoryById();
+      }
     });
   }
 
-  checkFollow(){
+  checkFollow() {
     this.sid = +this.route.snapshot.params['sid'];
     var form = new FormData();
     form.append("storyId", JSON.stringify(this.sid));
@@ -80,7 +83,7 @@ export class StoryDetailComponent implements OnInit {
       this.userService.getConvertInfo(form).subscribe(data => this.user = data);
       this.storyService.getStoryByUser(data.storySummary.userId).subscribe(data => this.listStory = data);
     });
-    
+
   }
 
   checkGetStoryById(): void {
@@ -88,28 +91,32 @@ export class StoryDetailComponent implements OnInit {
     this.storyService.checkGetStoryById(this.sid).subscribe(data => {
       this.readChapter = data.readChapter;
       this.checkConverter = data.checkConverter,
-      this.rating = data.rating,
-      console.log(data);
-    });   
+        this.rating = data.rating,
+        console.log(data);
+    });
   }
 
-  getChapterListByStoryId(pagenumber: number, type: number){
+  getChapterListByStoryId(pagenumber: number, type: number) {
 
     this.sid = +this.route.snapshot.params['sid'];
     this.subscriptions.push(this.chapterService.getChapterListOfStory(this.sid, pagenumber, type)
-        .subscribe(data => {
-          this.listChapter = data.content;
-          this.currentPage = data.number + 1;
-          this.totalPages = data.totalPages;
-          var startPage = Math.max(1, this.currentPage - 2);
-          var endPage = Math.min(startPage + 4, this.totalPages);
-          var pages = [];
-          for (let i = startPage; i <= endPage; i++) {
-              pages.push(i);
-          }
-          this.page = pages;
+      .subscribe(data => {
+        this.listChapter = data.content;
+        this.currentPage = data.number + 1;
+        this.totalPages = data.totalPages;
+        var startPage = Math.max(1, this.currentPage - 2);
+        var endPage = Math.min(startPage + 4, this.totalPages);
+        var pages = [];
+        for (let i = startPage; i <= endPage; i++) {
+          pages.push(i);
         }
-    ));
+        this.page = pages;
+      }
+      ));
+  }
+
+  config: SwiperOptions = {
+    navigation: true
   }
 
 }

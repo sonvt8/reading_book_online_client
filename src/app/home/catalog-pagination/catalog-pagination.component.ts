@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/_models/story';
 import { StoryService } from 'src/app/_services/story.service';
+import SwiperCore, {Navigation, Pagination, SwiperOptions} from 'swiper';
+
+SwiperCore.use([Navigation, Pagination]);
 
 @Component({
   selector: 'app-catalog-pagination',
@@ -50,6 +53,13 @@ export class CatalogPaginationComponent implements OnInit {
           this.page = pages;
         }
     ));
+  }
+
+  config: SwiperOptions = {
+    navigation: true,
+    pagination: {
+      clickable: true
+    }
   }
 
 }

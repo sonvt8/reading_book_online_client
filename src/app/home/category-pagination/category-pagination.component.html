@@ -35,9 +35,8 @@
                                 <section class="block-content">
                                     <section class="editors-choice-slider js-editors-choice-slider">
                                         <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
-                                        <section class="swiper-container">
-                                            <section class="swiper-wrapper">
-                                                <section class="swiper-slide" *ngFor="let _topStoryWeek of listTopViewWeek; index as i" >
+                                        <swiper [config]="config">
+                                                <ng-template swiperSlide="" *ngFor="let _topStoryWeek of listTopViewWeek; index as i" >
                                                     <section class="item" *ngIf="i < 4">
                                                         <section class="thumb">
                                                             <a href="" >
@@ -54,16 +53,8 @@
                                                                      >{{_topStoryWeek.infomation}}</section>
                                                         </section>
                                                     </section>
-                                                </section>
-                                            </section>
-                                            <section class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
-                                                <span class="swiper-pagination-bullet"></span>
-                                                <span class="swiper-pagination-bullet"></span>
-                                                <span class="swiper-pagination-bullet"></span>
-                                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-                                                <span class="swiper-pagination-bullet"></span>
-                                            </section>
-                                        </section>
+                                                </ng-template>
+                                        </swiper>
                                     </section>
                                 </section>
                             </section>
