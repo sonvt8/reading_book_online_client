@@ -36,7 +36,6 @@ import { RegisterComponent } from './members/register/register.component';
 import { ForgotPasswordComponent } from './members/forgot-password/forgot-password.component';
 import { ErrorComponent } from './error/error.component';
 import { AccountNavbarComponent } from './account/account-navbar/account-navbar.component';
-import { StoryComponent } from './story/story.component';
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
 import { EditStoryComponent } from './dashboard/story/edit-story/edit-story.component';
 import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pagination.component';
@@ -64,7 +63,6 @@ import { StoryDetailComponent } from './home/story-detail/story-detail.component
     ListStoryComponent,
     ErrorComponent,
     AccountNavbarComponent,
-    StoryComponent,
     EditStoryComponent,
     CatalogPaginationComponent,
     CategoryPaginationComponent,
