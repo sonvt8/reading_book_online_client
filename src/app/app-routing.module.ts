@@ -42,8 +42,8 @@ const routes: Routes = [
       { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}}
     ]
   },
-  { 
-    path: 'quan-tri', 
+  {
+    path: 'quan-tri',
     component: AdminComponent,
     children:[
       { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
@@ -65,12 +65,12 @@ const routes: Routes = [
   { path: 'truyen-home/:sid', component: StoryDetailComponent, data: {title: 'Chi tiết truyện' }},
 
   // Always put default route at the end.
-  { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: {title: 'Trang chủ'} },
+  { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: { title: 'Trang chủ' } },
   { path: '**', component: ErrorComponent },  // Wildcard route for a 404 page
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule] 
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

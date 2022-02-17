@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { DataService } from 'src/app/_services/data.service';
 
 @Component({
   selector: 'app-account-navbar',
   templateUrl: './account-navbar.component.html',
   styleUrls: ['./account-navbar.component.css']
 })
-export class AccountNavbarComponent implements OnInit {
-  public items = [
-    {name: 'Hồ sơ',path: '../',style: false},
-    {name: 'Truyện Theo Dõi',path: '../tai_khoan/theo_doi'},
-    {name: 'Đổi Mật Khẩu',path: '../tai_khoan/doi_mat_khau'},
-    {name: 'Nạp Đậu',path: '../tai_khoan/nap_dau'},
-    {name: 'Log Giao Dịch',path: '../tai_khoan/giao_dich'},
-    {name: 'Rút Tiền ==> Dành cho mod và converter',path: '../tai_khoan/rut_tien'},
-    {name: 'Đăng Truyện',path: '../tai_khoan/them_truyen'},
-    {name: 'Quản lý Truyện',path: '../tai_khoan/quan_ly_truyen'}
-  ];
+export class AccountNavbarComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+  public items: Item[] = [];
 
-  public selectedIndex: number = 0;
-
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    
+    this.subscriptions.push(
+      this.dataService._items.subscribe(obj => {
+        this.items = obj as Item[];
+      })
+    );
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   select(index: number) {
-    this.selectedIndex = index;
+    this.dataService.updateStatus(index);
   }
+}
 
-  isActive(index: number): boolean {
-    return this.selectedIndex === index;
-  }
+interface Item {
+  name: string,
+  path: string,
+  isActive: boolean
 }

@@ -4,7 +4,8 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SwiperModule } from 'swiper/angular';
 
 // Component
 import { HeaderComponent } from './header/header.component';
@@ -20,8 +21,8 @@ import { UserService } from './_services/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCategoryComponent } from './dashboard/category/add-category/add-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToastrModule} from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
 import { EditCategoryComponent } from './dashboard/category/edit-category/edit-category.component';
 import { ListUserComponent } from './dashboard/user/list-user/list-user.component';
@@ -77,15 +78,16 @@ import { StoryDetailComponent } from './home/story-detail/story-detail.component
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
+    ToastrModule.forRoot({ timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
+    SwiperModule
   ],
   providers: [
-    CategoryService, 
+    CategoryService,
     UserService,
     NotificationService,
     StoryService,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     Title,
   ],
   bootstrap: [AppComponent]

@@ -26,6 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
             "danh-muc",
             "chuong",
             "truyen-home",
+            "the-loai",
             
             "thanh_vien/xem_top_converter",
             "thanh_vien/thong-tin-converter",

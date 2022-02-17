@@ -20,27 +20,27 @@
                                                 </h3>
                                                 <div class="card-body media">
                                                     <div class="mr-2" style=" position: relative">
-                                                        <a *ngIf="currentUser?.avatar">
-                                                            <img class="img-thumbnail lazyload" width="210px" src={{currentUser?.avatar}} alt="Avatar" id="imgavatar">
+                                                        <a *ngIf="accountInfo?.avatar">
+                                                            <img class="img-thumbnail lazyload" width="210px" src={{accountInfo?.avatar}} alt="Avatar" id="imgavatar">
                                                         </a>
-                                                        <a *ngIf="!currentUser?.avatar">
+                                                        <a *ngIf="!accountInfo?.avatar">
                                                             <img class="img-thumbnail lazyload" width="210px" src="../../assets/static/images/logo.png" alt="Avatar" id="imgavatar">
                                                         </a>
                                                         <button id="upload" style="position: absolute;top:0px">Đổi</button>
                                                     </div>
                                                     <div class="media-body">
-                                                        <p class="text-muted">ID: <strong>{{currentUser?.id}}</strong>
+                                                        <p class="text-muted">ID: <strong>{{accountInfo?.id}}</strong>
                                                         </p>
                                                         <p class="text-muted">Ngoại hiệu:
-                                                            <strong *ngIf="!currentUser?.displayName">Bạn chưa có Ngoại hiệu</strong>
-                                                            <strong *ngIf="currentUser?.displayName">{{currentUser?.displayName}}</strong>
+                                                            <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại hiệu</strong>
+                                                            <strong *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
                                                         </p>
-                                                        <p class="text-muted">Email: <strong>{{currentUser?.email}}</strong>
+                                                        <p class="text-muted">Email: <strong>{{accountInfo?.email}}</strong>
                                                         </p>
-                                                        <p class="text-muted">Đã đăng <strong class="text-primary">?????</strong> truyện và <strong class="text-primary">????</strong>
+                                                        <p class="text-muted">Đã đăng <strong class="text-primary">{{accountInfo?.story}}</strong> truyện và <strong class="text-primary">{{accountInfo?.chapter}}</strong>
                                                             chương
                                                         </p>
-                                                        <p class="text-muted">Tài sản: <strong class="text-primary" >{{currentUser?.gold}}</strong> đậu</p>
+                                                        <p class="text-muted">Tài sản: <strong class="text-primary" >{{accountInfo?.gold}}</strong> đậu</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,7 +54,7 @@
                                                     <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi đưa vào thông
                                                         báo</p>
                                                     <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" (ngSubmit)="onUpdateNotification(notification.value)" #notification = "ngForm">
-                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3" [(ngModel)]="currentUser.notification"></textarea>
+                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3" [(ngModel)]="accountInfo.notification"></textarea>
                                                         <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập nhật</button>
                                                     </form>
                                                 </div>
@@ -67,11 +67,11 @@
                                                 </h3>
                                                 <div class="card-body">
                                                     <p class="text-muted mb-2">Ngoại hiệu hiện tại:
-                                                        <strong *ngIf="!currentUser?.displayName">Bạn chưa có Ngoại hiệu</strong>
-                                                        <strong *ngIf="currentUser?.displayName">{{currentUser?.displayName}}</strong>
+                                                        <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại hiệu</strong>
+                                                        <strong *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
                                                     </p>
-                                                    <p class="text-muted mb-2" *ngIf="!currentUser?.displayName">Bạn được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
-                                                    <p class="text-muted mb-2" *ngIf="currentUser?.displayName">Việc đổi tên sẽ mất 2000 đậu, bạn đang có <strong>{{currentUser?.gold}}</strong> đậu</p>
+                                                    <p class="text-muted mb-2" *ngIf="!accountInfo?.displayName">Bạn được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
+                                                    <p class="text-muted mb-2" *ngIf="accountInfo?.displayName">Việc đổi tên sẽ mất 2000 đậu, bạn đang có <strong>{{accountInfo?.gold}}</strong> đậu</p>
                                                     <p class="text-muted">Ngoại hiệu mới không dài quá 25 ký tự</p>
                                                     <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick" [formGroup]="reNameForm" (ngSubmit)="onUpdateDisplayedName()">
                                                         <div class="form-group">
