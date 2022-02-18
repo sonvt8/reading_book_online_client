@@ -42,14 +42,12 @@
                                                                 <p><span class="font-weight-bold">Bước 1:</span> Dùng
                                                                     App MoMo quét mã QR bên dưới</p>
                                                                 <p><img class="img-fluid lazyload"
-                                                                        th:data-src="${urlPayMoMO}" alt=""></p>
+                                                                        src={{qrMoMo}} alt=""></p>
                                                                 <p><span class="font-weight-bold">Bước 2:</span> Tại mục
                                                                     chuyển tiền trong MoMo, nhập nội dung chuyển tiền
-                                                                    là: <span class="font-weight-bold"
-                                                                        th:text="${codePay}"></span>
+                                                                    là: <span class="font-weight-bold">{{payMessage}}</span>
                                                                     (bắt buộc phải ghi và chỉ ghi <span
-                                                                        class="font-weight-bold"
-                                                                        th:text="${codePay}"></span>, không thêm gì
+                                                                        class="font-weight-bold">{{payMessage}}</span>, không thêm gì
                                                                     khác). Điền số
                                                                     tiền
                                                                     bằng số đậu bạn muốn
@@ -70,15 +68,13 @@
                                                                 <p><span class="font-weight-bold">Bước 1:</span> Dùng
                                                                     App ViettelPay quét mã QR bên dưới</p>
                                                                 <p><img class="img-fluid lazyload"
-                                                                        th:data-src="${urlPayViettel}" alt=""></p>
+                                                                    src={{qrViettel}} alt=""></p>
                                                                 <p>hoặc chọn chuyển tiền tới số điện thoại <span
-                                                                        class="font-weight-bold">0366 235 661</span></p>
+                                                                        class="font-weight-bold">0977 777 606</span></p>
                                                                 <p><span class="font-weight-bold">Bước 2:</span> Tại mục
                                                                     chuyển tiền trong ViettelPay, nhập nội dung chuyển
-                                                                    tiền là: <span class="font-weight-bold"
-                                                                        th:text="${codePay}"></span> (bắt buộc phải ghi
-                                                                    và chỉ ghi <span class="font-weight-bold"
-                                                                        th:text="${codePay}"></span>,
+                                                                    tiền là: <span class="font-weight-bold">{{payMessage}}</span> (bắt buộc phải ghi
+                                                                    và chỉ ghi <span class="font-weight-bold">{{payMessage}}</span>,
                                                                     không thêm gì khác). Điền số tiền bằng số đậu bạn
                                                                     muốn nạp (1 đậu = 1 đồng)</p>
                                                                 <p><span class="font-weight-bold">Bước 3:</span> Số đậu
