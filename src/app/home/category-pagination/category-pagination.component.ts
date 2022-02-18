@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/_models/story';
@@ -15,7 +15,7 @@ SwiperCore.use([Navigation, Pagination]);
   templateUrl: './category-pagination.component.html',
   styleUrls: ['./category-pagination.component.css']
 })
-export class CategoryPaginationComponent implements OnInit {
+export class CategoryPaginationComponent implements OnInit, OnDestroy {
 
   listTopViewWeek: Story[] = [];
   listTopAppointMonth: Story[] = [];
@@ -76,6 +76,10 @@ export class CategoryPaginationComponent implements OnInit {
     pagination: {
       clickable: true
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

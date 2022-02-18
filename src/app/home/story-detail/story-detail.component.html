@@ -330,11 +330,15 @@
                                                     <form id="resetForm" #newForm="ngForm" (ngSubmit)="addComment(newForm)" novalidate>
                                                         <section class="form row">
                                                             <section class="form-group col-md-10 comment-text">
-                                                                    <textarea ngModel name="commentText" id="commentText" class="form-control">
+                                                                    <textarea ngModel name="commentText" id="commentText" required class="form-control">
                                                                     </textarea>
                                                             </section>
                                                             <section class="form-group col-md-2">
-                                                                <button type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block " name="btnComment"
+                                                                <button *ngIf="isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block " name="btnComment"
+                                                                        id="btnComment">
+                                                                    <span class="fas fa-check" aria-hidden="true"></span>
+                                                                </button>
+                                                                <button *ngIf="!isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block disabled" name="btnComment"
                                                                         id="btnComment">
                                                                     <span class="fas fa-check" aria-hidden="true"></span>
                                                                 </button>

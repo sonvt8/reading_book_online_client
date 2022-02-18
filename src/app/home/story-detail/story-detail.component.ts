@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Chapter } from 'src/app/_models/chapter';
@@ -27,7 +27,7 @@ declare var showRating: any
   templateUrl: './story-detail.component.html',
   styleUrls: ['./story-detail.component.css']
 })
-export class StoryDetailComponent implements OnInit {
+export class StoryDetailComponent implements OnInit, OnDestroy {
 
   story: Story = new Story();
   listChapter: Chapter[] = [];
@@ -45,6 +45,7 @@ export class StoryDetailComponent implements OnInit {
   totalComment: number = 0;
   listComment: CommentModel[] = [];
   noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
+  isLoggedIn: boolean = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -62,13 +63,14 @@ export class StoryDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     showRating();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
       this.getChapterListByStoryId(1, 1);
       this.getStoryById();
-      if (this.authService.isLoggedIn()) {
+      if (this.isLoggedIn) {
         this.checkFollow();
         this.checkGetStoryById();
       }
@@ -154,27 +156,40 @@ export class StoryDetailComponent implements OnInit {
   }
 
   addComment(newForm: NgForm){
-    console.log(newForm.value);
-    this.sid = +this.route.snapshot.params['sid'];
-    var form = new FormData();
-    form.append("storyId", JSON.stringify(this.sid));
-    form.append("commentText", newForm.value.commentText);
-    console.log(this.sid);
-    this.subscriptions.push(this.commentService.addComment(form).subscribe(
-      response => {
-        newForm.reset();
-        this.getCommentList(1,1);
-        Swal.fire({
-          text: "Bình luận thành công!",
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        })
-      }, error => this.toastr.error(error.error.message)
-  ));
+    if(newForm.value.commentText.trim() != ""){
+      console.log(newForm.value.commentText);
+      this.sid = +this.route.snapshot.params['sid'];
+      var form = new FormData();
+      form.append("storyId", JSON.stringify(this.sid));
+      form.append("commentText", newForm.value.commentText);
+      console.log(this.sid);
+      this.subscriptions.push(this.commentService.addComment(form).subscribe(
+        response => {
+          newForm.reset();
+          this.getCommentList(1,1);
+          Swal.fire({
+            text: "Bình luận thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => this.toastr.error(error.error.message)
+    ));
+    } else {
+      Swal.fire({
+        text: "Bạn cần nhập thông tin",
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+    }
+    
   }
 
   config: SwiperOptions = {
     navigation: true
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

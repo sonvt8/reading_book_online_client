@@ -28,7 +28,6 @@ export class JwtInterceptor implements HttpInterceptor {
             "chuong",
             "truyen-home",
             "the-loai",
-            "binh_luan/xem",
             "thanh_vien/xem_top_converter",
         ];
     }
