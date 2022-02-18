@@ -1,0 +1,83 @@
+<section class="page-wrapper">
+    <!--NavBar-->
+    <app-header></app-header>
+
+    <!--Body-->
+    <section class="truyen-main">
+        <section class="truyen-section section-featured">
+            <section class="container container-full mb-4 mt-5">
+                <section class="featured-content">
+                    <section class="container-fluid">
+                        <section class="featured-content" id="content">
+                            <section class="row">
+                                <app-account-navbar></app-account-navbar>
+                                <section class="col-lg-10 col-md-9">
+                                    <div class="card">
+                                        <h3 class="card-header primary-color white-text text-center">
+                                            Danh sách giao dịch
+                                        </h3>
+                                        <div class="card-body table-responsive">
+                                            <table class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="font-weight-bolder">Mã GD
+                                                        </th>
+                                                        <th class="font-weight-bolder">Thời Gian
+                                                        </th>
+                                                        <th class="font-weight-bolder">Thay đổi</th>
+                                                        <th class="font-weight-bolder">Nội Dung
+                                                        </th>
+                                                        <th class="font-weight-bolder">Trạng Thái
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngIf="!listPay?.length" class="text-center">
+                                                        <td colspan="5">Bạn chưa có giao dịch nào</td>
+                                                    </tr>
+                                                    <tr *ngFor="let pay of listPay; let i = index">
+                                                        <ng-container *ngIf="listPay?.length">
+                                                            <td>{{pay.id}}</td>
+                                                            <td>{{pay.createDate | date:'HH:mm dd/MM/yyyy' }}</td>
+                                                            <td>biding số tiền</td>
+                                                            <td>biding nội dung</td>
+                                                            <td>
+                                                                <span *ngIf="pay.status===1" class="badge badge-pill badge-success">Hoàn Thành</span>
+                                                                <span *ngIf="pay.status===2" class="badge badge-pill badge-info">Đợi Xử Lý</span>
+                                                                <span *ngIf="pay.status===0" class="badge badge-pill badge-danger">Hủy</span>
+                                                            </td>
+                                                        </ng-container>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div aria-label="Page navigation example" *ngIf="totalPages>1">
+                                                <ul class="pagination pg-blue justify-content-end">
+                                                    <li class="page-item" *ngIf="currentPage != 1">
+                                                        <a class="page-link" (click)="getPayPage(currentPage - 1)">
+                                                            <i class="fas fa-step-backward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li *ngFor="let page of pages" [ngClass]="page === currentPage?'page-item active': 'page-item'">
+                                                        <a class="page-link" (click)="getPayPage(page)">{{page}}</a>
+                                                    </li>
+                                                    <li class="page-item" *ngIf="currentPage != totalPages">
+                                                        <a class="page-link" (click)="getPayPage(currentPage + 1)">
+                                                            <i class="fas fa-step-forward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--Footer-->
+<app-footer></app-footer>
