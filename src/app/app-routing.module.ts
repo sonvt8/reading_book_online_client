@@ -21,12 +21,12 @@ import { CategoryPaginationComponent } from './home/category-pagination/category
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
+import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
   
   { 
-    
     path: 'thanh_vien', 
     children:[
       { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
@@ -42,6 +42,7 @@ const routes: Routes = [
       { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}},
       { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}},
       { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}},
+      { path: 'giao_dich', component: AccountTopUpComponent, data: {title: 'Theo dõi truyện'}},
     ]
   },
   {

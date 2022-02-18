@@ -36,6 +36,7 @@ export class AccountService {
   public updateNotification(words: string): Observable<User> {
     var formData: any = new FormData();
     formData.append("notification", words);
+    console.log(formData);
     return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/doi_thong_bao`, formData);
   }
 
@@ -50,5 +51,13 @@ export class AccountService {
     formData.append("old-pass", oldPassword);
     formData.append("new-pass", newPassword);
     return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai_khoan/doi_mat_khau`, formData);
+  }
+
+  public getFollowStories(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/theo-doi/danh-sach?pagenumber=${page}`);
+  }
+
+  public getPaymentHistory(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/thanh-toan/danh-sach?pagenumber=${page}`);
   }
 }

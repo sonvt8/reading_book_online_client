@@ -34,48 +34,47 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr *ngIf="!listStory?.length" class="text-center">
+                                                <tr *ngIf="!datas?.length" class="text-center">
                                                     <td colspan="4">Bạn chưa theo dõi truyện nào</td>
                                                 </tr>
-                                                <tr *ngIf="listStory?.length" >
-                                                    <ng-container *ngFor="let story of listStory; let i = index"> 
+                                                <tr *ngFor="let data of datas; let i = index">
+                                                    <ng-container *ngIf="datas?.length"> 
                                                         <td>
-                                                            <a href="" target="_blank">{{story.name}}</a>
+                                                            <a href="" target="_blank">{{data.story.name}}</a>
                                                         </td>
-                                                        <td> {{story.updateDate | date:'dd/MM/yyyy HH:mm' }}</td>
+                                                        <td> {{data.story.updateDate | date:'dd/MM/yyyy HH:mm' }}</td>
                                                         <td>
                                                             <a href="" target="_blank" class="float-right badge badge-pill badge-secondary">Xem Truyện</a>
                                                         </td>
                                                         <td>
-                                                            <a *ngIf="story.chapterNumber" href=""
+                                                            <a *ngIf="data.chapterId" href=""
                                                             class="float-right badge badge-pill badge-primary">Đọc Tiếp</a>
                                                         </td>
                                                         <td>
-                                                            <a (click)="deleteFollow(story.id, story.name)" title="Bỏ Theo Dõi" class="float-right badge badge-pill badge-danger"><i
+                                                            <a (click)="deleteFollow(data.story.id, data.story.name)" title="Bỏ Theo Dõi" class="float-right badge badge-pill badge-danger"><i
                                                                     class="fas fa-times mx-1"></i> Bỏ Theo dõi</a>
                                                         </td>
                                                     </ng-container>
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <!-- <div aria-label="Page navigation example" *ngIf="totalPages>1">
+                                            <div aria-label="Page navigation example" *ngIf="totalPages>1">
                                                 <ul class="pagination pg-blue justify-content-end">
                                                     <li class="page-item" *ngIf="currentPage != 1">
-                                                        <a class="page-link"(click)="getPage(currentPage - 1)">
+                                                        <a class="page-link" (click)="getPage(currentPage - 1)">
                                                             <i class="fas fa-step-backward fa-sm"></i>
                                                         </a>
                                                     </li>
-                                                    <li ng-repeat="i in page" ng-class="i===currentPage?'page-item active': 'page-item'">
-                                                        <a ng-class="i===currentPage?'page-link disabled': 'page-link'"
-                                                           ng-click="getPage(i)">{{i}}</a>
+                                                    <li *ngFor="let page of pages" [ngClass]="page === currentPage?'page-item active': 'page-item'">
+                                                        <a class="page-link" (click)="getPage(page)">{{page}}</a>
                                                     </li>
-                                                    <li class="page-item" ng-show="currentPage != totalPages">
-                                                        <a class="page-link" ng-click="getPage(currentPage + 1)">
+                                                    <li class="page-item" *ngIf="currentPage != totalPages">
+                                                        <a class="page-link" (click)="getPage(currentPage + 1)">
                                                             <i class="fas fa-step-forward fa-sm"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
