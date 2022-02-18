@@ -1,3 +1,5 @@
+import { Story } from "./story";
+
 export class Chapter {
     id: number;
     status: number;
@@ -8,6 +10,7 @@ export class Chapter {
     timeUpdate: Date;
     name: string;
     displayName: string;
+    story!: Story;
 
     constructor(){
         this.id = 0,

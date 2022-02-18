@@ -33,9 +33,8 @@ export class AccountFollowComponent implements OnInit, OnDestroy {
       pagenumber = 1;
     }
     
-    this.subscriptions.push(this.accService.getfollowStories(pagenumber)
+    this.subscriptions.push(this.accService.getFollowStories(pagenumber)
         .subscribe(data => {
-          console.log(data);
           this.datas = data.content;
           this.currentPage = data.number + 1;
           this.totalPages = data.totalPages;

@@ -53,7 +53,11 @@ export class AccountService {
     return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai_khoan/doi_mat_khau`, formData);
   }
 
-  public getfollowStories(page: number): Observable<any> {
+  public getFollowStories(page: number): Observable<any> {
     return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/theo-doi/danh-sach?pagenumber=${page}`);
+  }
+
+  public getPaymentHistory(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/thanh-toan/danh-sach?pagenumber=${page}`);
   }
 }
