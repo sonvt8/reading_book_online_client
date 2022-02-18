@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(user).subscribe(response => {
       this.toastr.success('Thông tin đăng ký đã gửi đến email của bạn');
-      this.router.navigate(['../dang-nhap'], { relativeTo: this.route });
+      this.router.navigate(['../dang_nhap'], { relativeTo: this.route });
     },error => {
       this.loading = false;
     })
