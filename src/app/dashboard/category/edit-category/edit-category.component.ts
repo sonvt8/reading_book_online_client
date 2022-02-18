@@ -28,7 +28,7 @@ export class EditCategoryComponent implements OnInit {
 
   handleCategoryDetails(): void {
     this.currentId = +this.route.snapshot.params['id'];
-    this.categoryService.getCategory(this.currentId).subscribe(data => this.category = data);
+    this.categoryService.getCategoryAdminById(this.currentId).subscribe(data => this.category = data);
   }
 
   submitEditCategory(editForm: NgForm): void {

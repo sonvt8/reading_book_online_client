@@ -47,7 +47,7 @@ export class CategoryPaginationComponent implements OnInit {
 
   getCategoryName(): void {
     this.cid = this.route.snapshot.params['cid'];
-    this.categoryService.getCategory(Number(this.cid)).subscribe(data => this.categoryName = data.name);
+    this.categoryService.getCategoryById(Number(this.cid)).subscribe(data => this.categoryName = data.name);
   }
 
   getStoryListByCategory(pagenumber: number){

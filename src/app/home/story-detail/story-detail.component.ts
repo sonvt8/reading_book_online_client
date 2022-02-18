@@ -17,6 +17,7 @@ import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
 import { CommentService } from 'src/app/_services/comment.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 SwiperCore.use([Navigation]);
 
 declare var showRating: any
@@ -56,7 +57,8 @@ export class StoryDetailComponent implements OnInit {
     private followService: FollowService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -167,13 +169,7 @@ export class StoryDetailComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         })
-      }, error => {
-        Swal.fire({
-          text: error.message,
-          icon: 'warning',
-          confirmButtonText: 'Ok'
-        })
-      }
+      }, error => this.toastr.error(error.error.message)
   ));
   }
 
