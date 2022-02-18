@@ -43,6 +43,7 @@ import { CategoryPaginationComponent } from './home/category-pagination/category
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
 import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
+import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { AccountLogPaymentComponent} from './account/account-log-payment/account
     PasswordChangeComponent,
     AccountFollowComponent,
     AccountLogPaymentComponent,
+    AccountTopUpComponent,
   ],
   imports: [
     BrowserModule,
