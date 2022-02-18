@@ -42,6 +42,7 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
+import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 
 @NgModule({
@@ -72,7 +73,8 @@ import { AccountTopUpComponent } from './account/account-top-up/account-top-up.c
     StoryDetailComponent,
     PasswordChangeComponent,
     AccountFollowComponent,
-    AccountTopUpComponent
+    AccountLogPaymentComponent,
+    AccountTopUpComponent,
   ],
   imports: [
     BrowserModule,

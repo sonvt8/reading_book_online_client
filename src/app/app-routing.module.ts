@@ -21,6 +21,7 @@ import { CategoryPaginationComponent } from './home/category-pagination/category
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
+import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ const routes: Routes = [
       { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}},
       { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}},
       { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}},
-      { path: 'giao_dich', component: AccountTopUpComponent, data: {title: 'Theo dõi truyện'}},
+      { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}},
+      { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}},
     ]
   },
   {

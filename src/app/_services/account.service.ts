@@ -36,7 +36,6 @@ export class AccountService {
   public updateNotification(words: string): Observable<User> {
     var formData: any = new FormData();
     formData.append("notification", words);
-    console.log(formData);
     return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/doi_thong_bao`, formData);
   }
 
