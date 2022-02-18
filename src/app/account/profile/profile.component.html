@@ -16,31 +16,44 @@
                                         <div class="col-lg-6 mb-5">
                                             <div class="card h-100">
                                                 <h3 class="card-header primary-color white-text">
-                                                    <span class="fas fa-user" aria-hidden="true"></span> Thông tin tài khoản
+                                                    <span class="fas fa-user" aria-hidden="true"></span> Thông tin tài
+                                                    khoản
                                                 </h3>
                                                 <div class="card-body media">
-                                                    <div class="mr-2" style=" position: relative">
-                                                        <a *ngIf="accountInfo?.avatar">
-                                                            <img class="img-thumbnail lazyload" width="210px" src={{accountInfo?.avatar}} alt="Avatar" id="imgavatar">
-                                                        </a>
-                                                        <a *ngIf="!accountInfo?.avatar">
-                                                            <img class="img-thumbnail lazyload" width="210px" src="../../assets/static/images/logo.png" alt="Avatar" id="imgavatar">
-                                                        </a>
-                                                        <button id="upload" style="position: absolute;top:0px">Đổi</button>
+                                                    <div class="mr-4 text-center" style=" position: relative">
+                                                        <label class="hoverable" for="fileInput">
+                                                            <img
+                                                                [src]="url ? url : 'https://randomuser.me/api/portraits/men/97.jpg'">
+                                                            <div class="hover-text">Choose file</div>
+                                                            <div class="background"></div>
+                                                        </label>
+                                                        <br />
+                                                        <input id="fileInput" type='file'
+                                                            (change)="onSelectFile($event)">
+                                                        <button class="btn btn-danger btn-sm" *ngIf="url" (click)="delete()">Delete</button>
+                                                        <button class="btn btn-success btn-sm" *ngIf="url" (click)="upload()">Upload</button>
                                                     </div>
-                                                    <div class="media-body">
+                                                    <div class="media-body ml-4">
                                                         <p class="text-muted">ID: <strong>{{accountInfo?.id}}</strong>
                                                         </p>
                                                         <p class="text-muted">Ngoại hiệu:
-                                                            <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại hiệu</strong>
-                                                            <strong *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
+                                                            <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại
+                                                                hiệu</strong>
+                                                            <strong
+                                                                *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
                                                         </p>
-                                                        <p class="text-muted">Email: <strong>{{accountInfo?.email}}</strong>
+                                                        <p class="text-muted">Email:
+                                                            <strong>{{accountInfo?.email}}</strong>
                                                         </p>
-                                                        <p class="text-muted">Đã đăng <strong class="text-primary">{{accountInfo?.story}}</strong> truyện và <strong class="text-primary">{{accountInfo?.chapter}}</strong>
+                                                        <p class="text-muted">Đã đăng <strong
+                                                                class="text-primary">{{accountInfo?.story}}</strong>
+                                                            truyện và <strong
+                                                                class="text-primary">{{accountInfo?.chapter}}</strong>
                                                             chương
                                                         </p>
-                                                        <p class="text-muted">Tài sản: <strong class="text-primary" >{{accountInfo?.gold}}</strong> đậu</p>
+                                                        <p class="text-muted">Tài sản: <strong
+                                                                class="text-primary">{{accountInfo?.gold}}</strong> đậu
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,14 +61,23 @@
                                         <div class="col-lg-6 mb-5">
                                             <div class="card h-100">
                                                 <h3 class="card-header primary-color white-text">
-                                                    <span class="fas fa-user" aria-hidden="true"></span> Cập nhật thông báo
+                                                    <span class="fas fa-user" aria-hidden="true"></span> Cập nhật thông
+                                                    báo
                                                 </h3>
                                                 <div class="card-body">
-                                                    <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi đưa vào thông
+                                                    <p class="text-muted mb-2">Hạn chế dùng link trong thông báo, muốn
+                                                        dùng link hãy dùng bit.ly hoặc goo.gl để rút gọn link trước khi
+                                                        đưa vào thông
                                                         báo</p>
-                                                    <form class="form-horizontal" id="frmupdateabout" name="frmupdateabout" (ngSubmit)="onUpdateNotification(notification.value)" #notification = "ngForm">
-                                                        <textarea id="txtAbout" class="form-control" name="txtAbout" rows="3" [(ngModel)]="accountInfo.notification"></textarea>
-                                                        <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập nhật</button>
+                                                    <form class="form-horizontal" id="frmupdateabout"
+                                                        name="frmupdateabout"
+                                                        (ngSubmit)="onUpdateNotification(notification.value)"
+                                                        #notification="ngForm">
+                                                        <textarea id="txtAbout" class="form-control" name="txtAbout"
+                                                            rows="3" [(ngModel)]="accountInfo.notification"></textarea>
+                                                        <button type="submit"
+                                                            class="btn btn-outline-primary btn-rounded waves-effect float-right">Cập
+                                                            nhật</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -67,23 +89,41 @@
                                                 </h3>
                                                 <div class="card-body">
                                                     <p class="text-muted mb-2">Ngoại hiệu hiện tại:
-                                                        <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại hiệu</strong>
-                                                        <strong *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
+                                                        <strong *ngIf="!accountInfo?.displayName">Bạn chưa có Ngoại
+                                                            hiệu</strong>
+                                                        <strong
+                                                            *ngIf="accountInfo?.displayName">{{accountInfo?.displayName}}</strong>
                                                     </p>
-                                                    <p class="text-muted mb-2" *ngIf="!accountInfo?.displayName">Bạn được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
-                                                    <p class="text-muted mb-2" *ngIf="accountInfo?.displayName">Việc đổi tên sẽ mất 2000 đậu, bạn đang có <strong>{{accountInfo?.gold}}</strong> đậu</p>
+                                                    <p class="text-muted mb-2" *ngIf="!accountInfo?.displayName">Bạn
+                                                        được miễn phí đặt ngoại hiệu ở lần đầu tiên</p>
+                                                    <p class="text-muted mb-2" *ngIf="accountInfo?.displayName">Việc đổi
+                                                        tên sẽ mất 2000 đậu, bạn đang có
+                                                        <strong>{{accountInfo?.gold}}</strong> đậu
+                                                    </p>
                                                     <p class="text-muted">Ngoại hiệu mới không dài quá 25 ký tự</p>
-                                                    <form class="form-horizontal" id="frmChangeNick" name="frmChangeNick" [formGroup]="reNameForm" (ngSubmit)="onUpdateDisplayedName()">
+                                                    <form class="form-horizontal" id="frmChangeNick"
+                                                        name="frmChangeNick" [formGroup]="reNameForm"
+                                                        (ngSubmit)="onUpdateDisplayedName()">
                                                         <div class="form-group">
                                                             <div class="md-form mb-0">
-                                                                <input type="text" class="form-control" name="txtChangenick" id="txtChangenick" formControlName="txtChangenick" autocomplete="off">
-                                                                <label for="txtChangenick" class="">Ngoại hiệu mới</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="txtChangenick" id="txtChangenick"
+                                                                    formControlName="txtChangenick" autocomplete="off">
+                                                                <label for="txtChangenick" class="">Ngoại hiệu
+                                                                    mới</label>
                                                             </div>
-                                                            <div *ngIf="(fRename['txtChangenick'].touched || submitted) && fRename['txtChangenick'].errors" class="text-danger">
-                                                                <span *ngIf="fRename['txtChangenick'].errors['required']">Ngoại hiệu mới không được để trống</span>
-                                                                <span *ngIf="fRename['txtChangenick'].errors['maxlength']">Tên ngoại hiệu nhiều hơn 25 ký tự</span>
+                                                            <div *ngIf="(fRename['txtChangenick'].touched || submitted) && fRename['txtChangenick'].errors"
+                                                                class="text-danger">
+                                                                <span
+                                                                    *ngIf="fRename['txtChangenick'].errors['required']">Ngoại
+                                                                    hiệu mới không được để trống</span>
+                                                                <span
+                                                                    *ngIf="fRename['txtChangenick'].errors['maxlength']">Tên
+                                                                    ngoại hiệu nhiều hơn 25 ký tự</span>
                                                             </div>
-                                                            <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect mt-2 float-right" name="btnChangenick" id="btnChangenick">Đổi
+                                                            <button type="submit"
+                                                                class="btn btn-outline-primary btn-rounded waves-effect mt-2 float-right"
+                                                                name="btnChangenick" id="btnChangenick">Đổi
                                                             </button>
                                                         </div>
                                                     </form>
