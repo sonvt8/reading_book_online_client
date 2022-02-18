@@ -1,14 +1,14 @@
-import { Pay } from './../../_models/pay';
+import { Pay } from '../../_models/pay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
-  selector: 'app-account-top-up',
-  templateUrl: './account-top-up.component.html',
-  styleUrls: ['./account-top-up.component.css']
+  selector: 'account-log-payment',
+  templateUrl: './account-log-payment.component.html',
+  styleUrls: ['./account-log-payment.component.css']
 })
-export class AccountTopUpComponent implements OnInit, OnDestroy {
+export class AccountLogPaymentComponent implements OnInit, OnDestroy {
   public listPay:Pay[] = [];
   public totalPages: number = 0;
   public currentPage: number = 1;
