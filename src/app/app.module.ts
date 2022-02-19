@@ -44,6 +44,7 @@ import { StoryDetailComponent } from './home/story-detail/story-detail.component
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
 import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
+import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { AccountTopUpComponent } from './account/account-top-up/account-top-up.c
     AccountFollowComponent,
     AccountLogPaymentComponent,
     AccountTopUpComponent,
+    StorySubmitComponent,
   ],
   imports: [
     BrowserModule,
