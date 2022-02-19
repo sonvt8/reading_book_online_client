@@ -24,6 +24,7 @@ import { AccountFollowComponent } from './account/account-follow/account-follow.
 import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
+import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -47,6 +48,7 @@ const routes: Routes = [
       { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}},
       { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}},
       { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}},
+      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}}
     ]
   },
   {
