@@ -18,6 +18,8 @@ import { CommentService } from 'src/app/_services/comment.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { RatingService } from 'src/app/_services/rating.service';
 SwiperCore.use([Navigation]);
 
 declare var showRating: any
@@ -46,6 +48,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   listComment: CommentModel[] = [];
   noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
   isLoggedIn: boolean = false;
+  starRating = 0;
 
   private subscriptions: Subscription[] = [];
 
@@ -59,15 +62,19 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: AuthService,
     private commentService: CommentService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private ratingService: RatingService,
+    config: NgbRatingConfig
+  ) {config.max = 5; }
 
   ngOnInit(): void {
+     
     this.isLoggedIn = this.authService.isLoggedIn();
-    showRating();
+    //showRating();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
+      this.sid = +this.route.snapshot.params['sid'];
       this.getChapterListByStoryId(1, 1);
       this.getStoryById();
       if (this.isLoggedIn) {
@@ -78,14 +85,12 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   }
 
   checkFollow() {
-    this.sid = +this.route.snapshot.params['sid'];
     var form = new FormData();
     form.append("storyId", JSON.stringify(this.sid));
     this.followService.checkFollow(form).subscribe(data => this.follow = data);
   }
 
   getStoryById(): void {
-    this.sid = +this.route.snapshot.params['sid'];
     this.storyService.getStoryById(this.sid).subscribe(data => {
       this.story = data.storySummary;
       this.countRating = data.countRating;
@@ -99,18 +104,14 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   }
 
   checkGetStoryById(): void {
-    this.sid = +this.route.snapshot.params['sid'];
     this.storyService.checkGetStoryById(this.sid).subscribe(data => {
       this.readChapter = data.readChapter;
-      this.checkConverter = data.checkConverter,
-        this.rating = data.rating,
-        console.log(data);
+      this.checkConverter = data.checkConverter;
+      this.rating = data.rating;
     });
   }
 
   getChapterListByStoryId(pagenumber: number, type: number) {
-
-    this.sid = +this.route.snapshot.params['sid'];
     this.subscriptions.push(this.chapterService.getChapterListOfStory(this.sid, pagenumber, type)
       .subscribe(data => {
         this.listChapter = data.content;
@@ -128,7 +129,6 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   }
 
   getCommentList(pagenumber: number, type: number){
-    this.sid = +this.route.snapshot.params['sid'];
     if (pagenumber === undefined) {
       pagenumber = 1;
     }
@@ -155,14 +155,32 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     })
   }
 
+
+  ratingHover(event: any){
+    this.starRating = event;
+  }
+
+  submitRating(){
+    var form = new FormData();
+    form.append("idBox", JSON.stringify(this.sid));
+    form.append("rate", JSON.stringify(this.starRating));
+    this.ratingService.ratingStory(form).subscribe(data =>  {
+      this.getStoryById();
+      Swal.fire({
+        text: "Đánh giá thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
   addComment(newForm: NgForm){
     if(newForm.value.commentText.trim() != ""){
-      console.log(newForm.value.commentText);
       this.sid = +this.route.snapshot.params['sid'];
       var form = new FormData();
       form.append("storyId", JSON.stringify(this.sid));
       form.append("commentText", newForm.value.commentText);
-      console.log(this.sid);
       this.subscriptions.push(this.commentService.addComment(form).subscribe(
         response => {
           newForm.reset();

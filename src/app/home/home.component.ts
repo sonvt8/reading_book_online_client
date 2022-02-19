@@ -38,8 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.renderer.addClass(this.document.body, 'body-home');
+    
     this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'body-home');
     this.getHomeStory();
     this.getTopConvert();
   }
@@ -47,9 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getHomeStory() {
     this.subscriptions.push(this.storyService.getHomeStory()
       .subscribe(data => {
-        this.topStoryWeek = data.topStoryWeek;
-        console.log(this.topStoryWeek);
-  
+        this.topStoryWeek = data.topStoryWeek;  
         this.listNewStory = data.listNewStory;
         this.topStory = data.topStory;
         this.topVipStory = data.topVipStory;

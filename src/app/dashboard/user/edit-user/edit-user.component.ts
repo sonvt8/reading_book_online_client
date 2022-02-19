@@ -52,7 +52,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   submitEditAdminUser(editForm: NgForm): void {
     this.subscriptions.push(this.userService.updateAdminUser(this.user).subscribe(
         response => {
-            console.log(response.roleList);
             this.router.navigateByUrl('/quan-tri/nguoi-dung').then(r => {});
             editForm.reset();
             this.toastr.success(`Tài khoản ${response.username} cập nhật thành công!`);

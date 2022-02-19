@@ -45,6 +45,7 @@ import { AccountFollowComponent } from './account/account-follow/account-follow.
 import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
-    SwiperModule
+    SwiperModule,
+    NgbModule
   ],
   providers: [
     CategoryService,

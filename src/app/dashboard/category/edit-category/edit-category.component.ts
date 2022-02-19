@@ -32,7 +32,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   }
 
   submitEditCategory(editForm: NgForm): void {
-    // console.log(ngForm.value);
     this.subscriptions.push(this.categoryService.updateCategory(this.category).subscribe(
         response => {
             console.log(response);

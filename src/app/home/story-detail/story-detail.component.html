@@ -111,9 +111,9 @@
                                             <span id="myrate" itemprop="ratingValue">{{story.rating |
                                                 number:'0.1-2'}}</span>
                                         </section>
-                                        <section [ngClass]="rating ? 'basic jDisabled':'basic'"
-                                            data-average="story.rating" data-id="story.id">
-                                        </section>
+                                        <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
+                                        
+                                        <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
                                     </section>
                                 </section>
                             </section>

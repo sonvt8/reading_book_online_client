@@ -70,7 +70,6 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
-          console.log("da dang nhap");
         }
     ));
   }
@@ -82,7 +81,6 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
-          console.log("chua dang nhap");
         }
     ));
   }
@@ -117,12 +115,10 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
 
   addComment(newForm: NgForm){
     if(newForm.value.commentText.trim() != ""){
-      console.log(newForm.value.commentText);
       this.sid = +this.route.snapshot.params['sid'];
       var form = new FormData();
       form.append("storyId", JSON.stringify(this.sid));
       form.append("commentText", newForm.value.commentText);
-      console.log(this.sid);
       this.subscriptions.push(this.commentService.addComment(form).subscribe(
         response => {
           newForm.reset();
