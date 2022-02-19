@@ -35,7 +35,8 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
       title: ['', Validators.required],
       author: ['', Validators.required],
       enterInformation: ['', Validators.required],
-      checkArray: this.fb.array([], [Validators.required])
+      checkArray: this.fb.array([], [Validators.required]),
+      imageInput: ['', Validators.required],
     })
   }
 
