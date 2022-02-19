@@ -186,7 +186,7 @@
                                                 <ng-template swiperSlide=""
                                                     *ngFor="let _topVipStory of topVipStory; let i = index">
                                                     <section class="slider-thumb text-center">
-                                                        <a class="item" title="{{_topVipStory.name}}">
+                                                        <a class="item" routerLink="/truyen-home/{{_topVipStory.id}}" title="{{_topVipStory.name}}" >
                                                             <img src="{{_topVipStory.images}}"
                                                                 alt="{{_topVipStory.name}}"
                                                                 class="img-fluid img-thumbnail">
@@ -198,18 +198,13 @@
                                                             <section class="view text-secondary">
                                                                 {{_topVipStory.author}}</section>
                                                             <p class="description">{{_topVipStory.infomation}}</p>
-                                                            <a href="" class="btn btn-truyen" title="xem tiếp">
+                                                            <a routerLink="/truyen-home/{{_topVipStory.id}}" class="btn btn-truyen" title="xem tiếp">
                                                                 Xem chi tiết
                                                             </a>
                                                         </section>
                                                     </section>
                                                 </ng-template>
                                             </swiper>
-                                        
-
-
-
-
                                     </section>
                                 </section>
                                 <section class="col-12 col-md-12 col-lg-6">
@@ -222,7 +217,7 @@
                                                         <section class="col-12 col-sm-12 col-md-6 btv-2">
                                                             <section class="item">
                                                                 <h2 class="title">
-                                                                    <a href=""
+                                                                    <a routerLink="/truyen-home/{{_topVipStory.id}}"
                                                                         title="{{_topVipStory.name}}">{{_topVipStory.name}}</a>
                                                                 </h2>
                                                                 <section class="view text-secondary">
