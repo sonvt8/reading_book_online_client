@@ -159,7 +159,7 @@
                                                     <i class="truyen-icon icon-list"></i> Mới nhất
                                                 </section>
                                                 <section class="item-value">
-                                                    <a routerLink="/chuong/{{story.id}}/chuong-{{story.chapterId}}">Chương
+                                                    <a routerLink="/truyen-home/{{story.id}}/{{story.chapterNew.id}}">Chương
                                                         {{story.chapterNew.chapterNumber}}:
                                                         {{story.chapterNew.name}}</a>
                                                 </section>
@@ -282,7 +282,7 @@
                                                 <section class="row">
                                                     <section class="col-sm-6 col-md-4 chapter-item" *ngFor="let item of listChapter">
                                                         <section class="item">
-                                                            <a routerLink="/chuong/{{item.storyId}}/chuong-{{item.id}}" class="align-items-center d-flex"
+                                                            <a routerLink="/truyen-home/{{item.storyId}}/{{item.id}}" class="align-items-center d-flex"
                                                                title="Đăng bởi {{item.displayName}} lúc {{item.createDate| date: 'HH:mm dd-MM-yyyy' }}">
                                                                     <span class="chapter-name">
                                                                         <img *ngIf="item.status === 2" src="assets/img/vip-vip.gif" class="img-fluid"

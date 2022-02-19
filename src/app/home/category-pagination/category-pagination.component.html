@@ -151,7 +151,7 @@
                                                     <section class="chap">{{story.author}}</section>
                                                     <section class="author">
                                                         <a *ngIf="story.chapterId != null"
-                                                            routerLink="/chuong/{{story.id}}/chuong-{{story.chapterId}}"
+                                                            routerLink="/truyen-home/{{story.id}}/{{story.chapterId}}"
                                                            title="'Chương ' + {{story.chapterNumber}}"
                                                            >Chương {{story.chapterNumber}}</a>
                                                         <a *ngIf="story.chapterId == null">&nbsp;</a>

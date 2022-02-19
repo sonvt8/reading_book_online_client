@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(this.document.body, 'body-home');
-    this.renderer.removeClass(this.document.body, 'page-login');
+    this.renderer.removeAttribute(this.document.body, 'class');
     this.getHomeStory();
     this.getTopConvert();
   }

@@ -23,6 +23,7 @@ import { StoryDetailComponent } from './home/story-detail/story-detail.component
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
 import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
+import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'danh-muc/:catalog', component: CatalogPaginationComponent, data: {title: 'Danh mục truyện' }},
   { path: 'the-loai/:cid', component: CategoryPaginationComponent, data: {title: 'Thể loại truyện' }},
   { path: 'truyen-home/:sid', component: StoryDetailComponent, data: {title: 'Chi tiết truyện' }},
+  { path: 'truyen-home/:sid/:chid', component: ChapterDetailComponent, data: {title: 'Chi tiết chương' }},
 
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: { title: 'Trang chủ' } },
