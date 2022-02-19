@@ -81,7 +81,7 @@
                                                             <!-- Material checked -->
                                                             <div class="col-6 col-md-4 col-lg-2" *ngFor="let category of categories">
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" id="inlineCheckbox{{category.id}}" name="categoryList" class="custom-control-input" [value]="category.id" (change)="onCheckboxChange($event)"/>
+                                                                    <input type="checkbox" id="inlineCheckbox{{category.id}}" name="categoryList" class="custom-control-input" [value]="category.name" (change)="onCheckboxChange($event)"/>
                                                                     <label class="custom-control-label" for="inlineCheckbox{{category.id}}" style="line-height: 1.8">{{category.name}}</label>
                                                                     
                                                                 </div>
@@ -134,7 +134,9 @@
                                                         <div class="row text-right">
                                                             <div class="col-12">
                                                                 <button type="reset" class="btn btn-outline-primary btn-rounded waves-effect">Khôi Phục</button>
-                                                                <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">Đăng Truyện</button>
+                                                                <button type="submit" [disabled]="loading" class="btn btn-outline-primary btn-rounded waves-effect">
+                                                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Đăng Truyện
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </form>

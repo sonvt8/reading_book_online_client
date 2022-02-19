@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Category } from 'src/app/_models/category';
+import { Story } from 'src/app/_models/story';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CategoryService } from 'src/app/_services/category.service';
+import { NotificationService } from 'src/app/_services/notification.service';
+import { StoryService } from 'src/app/_services/story.service';
 
 declare var $: any;
 declare var showImage : any;
@@ -17,7 +21,7 @@ declare var showImage : any;
 export class StorySubmitComponent implements OnInit, OnDestroy {
   public loading = false;
   public submitted = false;
-  public images!: File ;
+  public fileToUpload!: File ;
   private subscriptions: Subscription[] = [];
   public categories: Category[] = [];
   public isTextAreaEmpty: boolean = true;
@@ -30,6 +34,8 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
     private cateService: CategoryService,
     private fb: FormBuilder,
     private authService: AuthService,
+    private storyService: StoryService,
+    private notifyService: NotificationService
   ) {
     this.addStoryForm = this.fb.group({
       title: ['', Validators.required],
@@ -81,8 +87,8 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
   }
 
   onImageUpload(event: any): void {
-    this.images = event.target.files[0];
-    console.log(this.images);
+    this.fileToUpload = event.target.files[0];
+    console.log(this.fileToUpload);
   }
 
   onSubmit() {
@@ -92,26 +98,30 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
     if (this.addStoryForm.invalid) {
       return;
     }
+    this.addStoryForm.disable()
+    this.loading = true;
 
-    // this.loading = true;
-    // var loginUser: UserLogin = {
-    //   title: this.loginForm.get('username')!.value,
-    //   password:this.loginForm.get('password')!.value
-    // };
+    var formData: any = new FormData();
+    formData.append("name", this.addStoryForm.get('title')!.value);
+    formData.append("author", this.addStoryForm.get('author')!.value);
+    formData.append("infomation", this.addStoryForm.get('enterInformation')!.value);
+    formData.append("category", this.addStoryForm.get('checkArray')!.value);
+    formData.append("image", this.fileToUpload);
 
-    // this.subscriptions.push(
-    //   this.authService.login(loginUser).subscribe(
-    //     (response: HttpResponse<User>) => {
-    //       const token = response.headers.get(HeaderType.JWT_TOKEN);
-    //       this.tokenService.saveToken(token!);
-    //       this.authService.addUserToLocalCache(response.body!);
-    //       this.authService.setCurrentUser(response.body!);
-    //       this.router.navigate(['/trang-chu']);
-    //       this.loading = false;
-    //     },error => {
-    //       this.loading = false;
-    //     })
-    // );
+    this.subscriptions.push(
+      this.storyService.addStory(formData).subscribe(
+        (response: Story) => {
+          this.notifyService.notify(NotificationType.SUCCESS,"Bạn đã đăng truyện thành công");
+          this.loading = false;
+        },error => {
+          this.loading = false;
+        },
+        () => {
+          this.submitted = false;
+          this.addStoryForm.reset();
+        }
+      )
+    );
   }
-
 }
+

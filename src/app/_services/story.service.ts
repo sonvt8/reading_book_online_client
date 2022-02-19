@@ -47,6 +47,10 @@ export class StoryService {
     return this.httpClient.get<GetHomeStoryResponse>(`${this.baseUrl}trang-chu`);
   }
 
+  public addStory(form: FormData,): Observable<Story> {
+    return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/them-truyen`,form);
+  }
+
   public deleteStory(id: number): Observable<Story> {
     return this.httpClient.delete<Story>(`${this.baseUrl}quan-tri/truyen/xoa-truyen/${id}`);
   }
