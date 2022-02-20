@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/_services/category.service';
   templateUrl: './edit-category.component.html',
   styleUrls: ['./edit-category.component.css']
 })
-export class EditCategoryComponent implements OnInit {
+export class EditCategoryComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
   category: Category = new Category();
@@ -28,11 +28,10 @@ export class EditCategoryComponent implements OnInit {
 
   handleCategoryDetails(): void {
     this.currentId = +this.route.snapshot.params['id'];
-    this.categoryService.getCategory(this.currentId).subscribe(data => this.category = data);
+    this.categoryService.getCategoryAdminById(this.currentId).subscribe(data => this.category = data);
   }
 
   submitEditCategory(editForm: NgForm): void {
-    // console.log(ngForm.value);
     this.subscriptions.push(this.categoryService.updateCategory(this.category).subscribe(
         response => {
             console.log(response);
@@ -49,6 +48,10 @@ export class EditCategoryComponent implements OnInit {
  
   set isActiveBool(newValue:boolean) {
     this.category.status = newValue ? 1 : 0
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

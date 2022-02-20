@@ -47,6 +47,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
             case 403:
               this.toastr.error(errorResponse.error.message);
+              console.log(errorResponse);
               break;
             case 500:
               // const navigationExtras: NavigationExtras = { state: { error: error.error } }

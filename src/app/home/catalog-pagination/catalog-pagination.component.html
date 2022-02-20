@@ -43,13 +43,13 @@
                                         <li class="list-group-item list-group-item-table"
                                             *ngFor="let story of listStoryPage">
                                             <section class="content">
-                                                <a class="thumb" href="">
+                                                <a class="thumb" routerLink="/truyen-home/{{story.id}}">
                                                     <img class="img-fluid lazyload" data-src="{{story.images}}"
                                                         alt="{{story.name}}">
                                                 </a>
                                                 <section class="info">
                                                     <h2 class="title">
-                                                        <a href="" title="{{story.name}}">
+                                                        <a routerLink="/truyen-home/{{story.id}}" title="{{story.name}}">
                                                             <img class="img-fluid" *ngIf="story.dealStatus == 1"
                                                                 src="assets/img/vip-vip.gif">
                                                             <span
@@ -58,7 +58,7 @@
                                                     </h2>
                                                     <section class="chap">{{story.author}}</section>
                                                     <section class="author">
-                                                        <a *ngIf="story.chapterId != null" href=""
+                                                        <a *ngIf="story.chapterId != null" routerLink="/truyen-home/{{story.id}}/{{story.chapterId}}"
                                                             title="'Chương ' + {{story.chapterNumber}}">Chương
                                                             {{story.chapterNumber}}</a>
                                                         <a *ngIf="story.chapterId == null">&nbsp;</a>
@@ -99,14 +99,14 @@
                                             <ng-template swiperSlide="" *ngFor="let topStory of topStoryMonth">
                                                 <section class="item">
                                                     <section class="thumb">
-                                                        <a href="" title="{{topStory.name}}">
+                                                        <a routerLink="/truyen-home/{{topStory.id}}" title="{{topStory.name}}">
                                                             <img class="img-fluid" alt="" src="{{topStory.images}}"
                                                                 title="{{topStory.name}}">
                                                         </a>
                                                     </section>
                                                     <section class="info">
                                                         <h2 class="title">
-                                                            <a href="" title="{{topStory.name}}">{{topStory.name}}</a>
+                                                            <a routerLink="/truyen-home/{{topStory.id}}" title="{{topStory.name}}">{{topStory.name}}</a>
                                                         </h2>
                                                         <p class="description text-center">{{topStory.infomation}}</p>
                                                     </section>

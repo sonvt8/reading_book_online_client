@@ -31,7 +31,7 @@ export class StoryService {
   }
 
   public getStoryListByCategory(pagenumber: number, cid: string): Observable<GetStoryResponseByCategory> {
-    return this.httpClient.get<GetStoryResponseByCategory>(`${this.baseUrl}the-loai/${cid}?pagenumber=${pagenumber}`);
+    return this.httpClient.get<GetStoryResponseByCategory>(`${this.baseUrl}the-loai/danh-sach-truyen/${cid}?pagenumber=${pagenumber}`);
   }
 
   public getAdminStory(id: number): Observable<Story> {
