@@ -19,10 +19,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public selectedIndex: number = 0;
   public currentUser: User = new User;
   public accountInfo: AccountOnHomePage = new AccountOnHomePage;
-  // private loggedInUsername!: string;
   private subscriptions: Subscription[] = [];
   public reNameForm!: FormGroup;
-  submitted = false;
+  public submitted = false;
+  public url: string = this.authService.getUserFromLocalCache().avatar;
+  public avatar!: File ;
+  public isChanged: boolean = false;
 
   constructor(
     private router: Router,
@@ -37,6 +39,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.accService._account.subscribe(
         (response: any) => {
           this.accountInfo = response;
+          this.url = this.accountInfo.avatar;
         }
       )
     );
@@ -137,9 +140,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  url: string = '';
   onSelectFile(event: any) {
     if (event.target.files && event.target.files![0]) {
+      this.isChanged = true;
+      this.avatar = event.target.files[0];
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
@@ -154,6 +158,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public upload() {
-    // Call Upload API here
+    var formData: any = new FormData();
+    formData.append("profileImage",this.avatar);
+    this.subscriptions.push(
+      this.accService.updateAvatar(formData).subscribe(
+        (response: User) => {
+          this.accountInfo.avatar = response.avatar;
+          this.accService.setCurrentAccount(this.accountInfo);
+          this.authService.setCurrentUser(response);
+          this.authService.addUserToLocalCache(response);
+          this.notifyService.notify(NotificationType.SUCCESS, 'Đã thực hiện cập nhật ảnh đại diện');
+          this.isChanged = false;
+        }
+      )
+    );
   }
 }
