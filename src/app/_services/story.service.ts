@@ -26,11 +26,6 @@ export class StoryService {
     return this.httpClient.get<Story[]>(`${this.baseUrl}truyen-home/truyen-cua-converter?userId=${id}`);
   }
 
-  public checkGetStoryById(id: number): Observable<CheckGetStoryResponseById> {
-    return this.httpClient.get<CheckGetStoryResponseById>(`${this.baseUrl}tai-khoan/truyen/kiem-tra/${id}`);
-  }
-
-
   public getStoryListByCatalog(pagenumber: number, catalog:string): Observable<GetStoryResponseByCatalog> {
     return this.httpClient.get<GetStoryResponseByCatalog>(`${this.baseUrl}danh-muc/${catalog}?pagenumber=${pagenumber}`);
   }
@@ -45,10 +40,6 @@ export class StoryService {
 
   public getHomeStory(): Observable<GetHomeStoryResponse> {
     return this.httpClient.get<GetHomeStoryResponse>(`${this.baseUrl}trang-chu`);
-  }
-
-  public addStory(form: FormData,): Observable<Story> {
-    return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/them-truyen`,form);
   }
 
   public deleteStory(id: number): Observable<Story> {
@@ -116,10 +107,4 @@ interface GetStoryResponseByCategory {
 interface GetStoryResponseById {
   storySummary: Story,
   countRating: number;
-}
-
-interface CheckGetStoryResponseById {
-  readChapter: Chapter,
-  checkConverter: boolean,
-  rating: boolean,
 }

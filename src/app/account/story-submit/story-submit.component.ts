@@ -5,6 +5,7 @@ import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Category } from 'src/app/_models/category';
 import { Story } from 'src/app/_models/story';
 import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CategoryService } from 'src/app/_services/category.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -35,7 +36,8 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private storyService: StoryService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private accService: AccountService
   ) {
     this.addStoryForm = this.fb.group({
       title: ['', Validators.required],
@@ -109,7 +111,7 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
     formData.append("image", this.fileToUpload);
 
     this.subscriptions.push(
-      this.storyService.addStory(formData).subscribe(
+      this.accService.addStory(formData).subscribe(
         (response: Story) => {
           this.notifyService.notify(NotificationType.SUCCESS,"Bạn đã đăng truyện thành công");
           this.loading = false;

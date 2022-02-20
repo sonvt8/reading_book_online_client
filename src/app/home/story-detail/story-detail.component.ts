@@ -13,6 +13,7 @@ import { StoryService } from 'src/app/_services/story.service';
 import { UserService } from 'src/app/_services/user.service';
 
 import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
+import { AccountService } from 'src/app/_services/account.service';
 SwiperCore.use([Navigation]);
 
 declare var showRating: any
@@ -49,7 +50,8 @@ export class StoryDetailComponent implements OnInit {
     private userService: UserService,
     private followService: FollowService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private accService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -88,7 +90,7 @@ export class StoryDetailComponent implements OnInit {
 
   checkGetStoryById(): void {
     this.sid = +this.route.snapshot.params['sid'];
-    this.storyService.checkGetStoryById(this.sid).subscribe(data => {
+    this.accService.checkGetStoryById(this.sid).subscribe(data => {
       this.readChapter = data.readChapter;
       this.checkConverter = data.checkConverter,
         this.rating = data.rating,
