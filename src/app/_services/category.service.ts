@@ -40,9 +40,9 @@ export class CategoryService {
     return this.httpClient.delete<Category>(`${this.baseUrl}quan-tri/the_loai/xoa/${id}`);
   }
 
-  
-
-  
+  public getCategories(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${this.baseUrl}the-loai/danh-sach`);
+  }
 }
 
 interface GetCategoryResponse {

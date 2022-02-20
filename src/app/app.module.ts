@@ -46,6 +46,8 @@ import { AccountLogPaymentComponent} from './account/account-log-payment/account
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StorySubmitComponent } from './account/story-submit/story-submit.component';
+import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AccountLogPaymentComponent,
     AccountTopUpComponent,
     ChapterDetailComponent,
+    StorySubmitComponent,
+    ManageStoryComponent,
   ],
   imports: [
     BrowserModule,
