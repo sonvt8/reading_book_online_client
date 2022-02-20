@@ -47,6 +47,10 @@ export class AccountService {
     return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/doi_ngoai_hieu`, formData);
   }
 
+  public updateAvatar(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/anh_dai_dien`, form);
+  }
+
   public updatePassword(oldPassword: string, newPassword: string): Observable<CustomHttpResponse> {
     var formData: any = new FormData();
     formData.append("old-pass", oldPassword);

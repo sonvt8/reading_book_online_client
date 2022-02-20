@@ -20,7 +20,7 @@
                                                     khoản
                                                 </h3>
                                                 <div class="card-body media">
-                                                    <div class="mr-4 text-center" style=" position: relative">
+                                                    <div class="mr-4 text-center" style=" position:relative;">
                                                         <label class="hoverable" for="fileInput">
                                                             <img
                                                                 [src]="url ? url : 'https://randomuser.me/api/portraits/men/97.jpg'">
@@ -29,9 +29,9 @@
                                                         </label>
                                                         <br />
                                                         <input id="fileInput" type='file'
-                                                            (change)="onSelectFile($event)">
-                                                        <button class="btn btn-danger btn-sm" *ngIf="url" (click)="delete()">Delete</button>
-                                                        <button class="btn btn-success btn-sm" *ngIf="url" (click)="upload()">Upload</button>
+                                                            (change)="onSelectFile($event)" accept="image/png, image/jpeg, image/jpg">
+                                                        <button class="btn blue-gradient btn-sm float-left" *ngIf="isChanged" (click)="delete()"><span>Xoá Ảnh</span></button>
+                                                        <button class="btn blue-gradient btn-sm float-left" *ngIf="isChanged" (click)="upload()"><span>Chọn Ảnh</span></button>
                                                     </div>
                                                     <div class="media-body ml-4">
                                                         <p class="text-muted">ID: <strong>{{accountInfo?.id}}</strong>
