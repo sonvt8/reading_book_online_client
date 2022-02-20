@@ -86,9 +86,9 @@
                                             class="btn btn-truyen" href="">
                                             Đọc Từ Đầu
                                         </a>
-                                        <a *ngIf="follow === false" ng-click="registRecentReadingStory()"
+                                        <a *ngIf="follow === false" (click)="addFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Theo dõi</a>
-                                        <a *ngIf="follow === true" ng-click="unRecentReadingStory()"
+                                        <a *ngIf="follow === true" (click)="cancelFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a>
                                         <!-- Button trigger modal -->
                                         <a class="btn btn-xs btn-read text-white" data-toggle="modal"

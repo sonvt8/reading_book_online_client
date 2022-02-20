@@ -163,8 +163,39 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     form.append("rate", JSON.stringify(this.starRating));
     this.ratingService.ratingStory(form).subscribe(data =>  {
       this.getStoryById();
+      this.rating = true;
       Swal.fire({
         text: "Đánh giá thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
+  addFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.addFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = true;
+      Swal.fire({
+        text: "Theo dõi truyện thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
+  cancelFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.cancelFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = false;
+      Swal.fire({
+        text: "Hủy theo dõi truyện thành công!",
         icon: 'success',
         confirmButtonText: 'Ok'
       })
