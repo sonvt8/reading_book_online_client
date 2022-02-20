@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RatingService } from 'src/app/_services/rating.service';
+import { AccountService } from 'src/app/_services/account.service';
 SwiperCore.use([Navigation]);
 
 
@@ -63,8 +64,10 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     private commentService: CommentService,
     private toastr: ToastrService,
     private ratingService: RatingService,
+    private accService: AccountService,
     config: NgbRatingConfig
   ) {config.max = 5; }
+    
 
   ngOnInit(): void {    
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -101,7 +104,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   }
 
   checkGetStoryById(): void {
-    this.storyService.checkGetStoryById(this.sid).subscribe(data => {
+    this.accService.checkGetStoryById(this.sid).subscribe(data => {
       this.readChapter = data.readChapter;
       this.checkConverter = data.checkConverter;
       this.rating = data.rating;

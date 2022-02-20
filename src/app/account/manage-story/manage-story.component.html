@@ -1,0 +1,403 @@
+<section class="page-wrapper">
+    <!--NavBar-->
+    <app-header></app-header>
+
+    <!--Body-->
+    <section class="truyen-main">
+        <section class="truyen-section section-featured">
+            <section class="container container-full mb-4 mt-5">
+                <section class="featured-content">
+                    <section class="container-fluid">
+                        <section class="featured-content" id="content">
+                            <section class="row">
+                                <app-account-navbar></app-account-navbar>
+                                <section class="col-lg-10 col-md-9" style="background: white;">
+                                    <section class="row">
+                                        <section class="col-12">
+                                            <div class="classic-tabs">
+                                                <!-- Nav tabs -->
+                                                <div class="tabs-wrapper">
+                                                    <ul class="nav tabs-blue" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-light active waves-effect waves-light"
+                                                                data-toggle="tab" href="#panel36" role="tab">Đang
+                                                                Làm</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-light waves-effect waves-light"
+                                                                data-toggle="tab" href="#panel37" role="tab">Hoàn
+                                                                Thành</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-light waves-effect waves-light"
+                                                                data-toggle="tab" href="#panel38" role="tab">Tạm
+                                                                Dừng</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link waves-light waves-effect waves-light"
+                                                                data-toggle="tab" href="#panel39" role="tab">Khóa</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Tab panels -->
+
+                                                <div class="tab-content card">
+                                                    <!-- Panel 1 -->
+                                                    <div class="tab-pane fade in show active table-responsive"
+                                                        id="panel36" role="tabpanel">
+                                                        <table class="table table-striped" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="font-weight-bolder">ID
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Tên truyện
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Đánh Giá</th>
+                                                                    <th class="font-weight-bolder">Đề Cử</th>
+                                                                    <th class="font-weight-bolder">Trạng Thái</th>
+                                                                    <th class="font-weight-bolder">Thao Tác
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngIf="!listOnGoing?.length" class="text-center">
+                                                                    <td colspan="6">Bạn chưa có truyện đăng nào!</td>
+                                                                </tr>
+                                                                <tr *ngFor="let item of listOnGoing">
+                                                                    <ng-container *ngIf="listOnGoing?.length">
+                                                                        <td>{{item.id}}</td>
+                                                                        <td>
+                                                                            <a target="_blank" href=""
+                                                                                class="align-items-center d-flex">
+                                                                                {{item.name}}
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.rating}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.countAppoint}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span *ngIf="item.dealStatus === 0"
+                                                                                class="badge badge-pill badge-primary">Free
+                                                                            </span>
+                                                                            <span *ngIf="item.dealStatus === 1"
+                                                                                type="button"
+                                                                                class="badge badge-pill badge-success">Vip
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">Thêm
+                                                                                chương</a>
+                                                                            <a class="badge badge-pill badge-info"
+                                                                                href="">Sửa</a>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">DSC</a>
+                                                                            <a href="" target="_blank"
+                                                                                class="badge badge-pill badge-info">Kiểm
+                                                                                Tra</a>
+                                                                            <a (click)="storyDelete(item.id, item.name)"
+                                                                                class="badge badge-pill badge-danger"><i
+                                                                                    class="fas fa-times mx-1"></i>
+                                                                                Xóa</a>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div aria-label="Page navigation example"
+                                                            *ngIf="totalOnGoingPages>1">
+                                                            <ul class="pagination pg-blue justify-content-end">
+                                                                <li class="page-item" *ngIf="currentOnGoingPage != 1">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryOnGoing(currentOnGoingPage - 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li *ngFor="let page of onGoingPages"
+                                                                    [ngClass]="page === currentOnGoingPage?'page-item active': 'page-item'">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryOnGoing(page)">{{page}}</a>
+                                                                </li>
+                                                                <li class="page-item"
+                                                                    *ngIf="currentOnGoingPage != totalOnGoingPages">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryOnGoing(currentOnGoingPage + 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Panel 1 -->
+                                                    <!-- Panel 2 -->
+                                                    <div class="tab-pane fade" id="panel37" role="tabpanel">
+                                                        <table class="table table-striped" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="font-weight-bolder">ID
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Tên truyện
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Đánh Giá</th>
+                                                                    <th class="font-weight-bolder">Đề Cử</th>
+                                                                    <th class="font-weight-bolder">Trạng Thái</th>
+                                                                    <th class="font-weight-bolder">Thao Tác
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngIf="!listComplte?.length" class="text-center">
+                                                                    <td colspan="6">Bạn chưa có truyện đăng hoàn thành
+                                                                        nào!</td>
+                                                                </tr>
+                                                                <tr *ngFor="let item of listComplte">
+                                                                    <ng-container *ngIf="listComplte?.length">
+                                                                        <td>{{item.id}}</td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="align-items-center d-flex">
+                                                                                {{item.name}}
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.rating}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.countAppoint}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span *ngIf="item.dealStatus === 0"
+                                                                                class="badge badge-pill badge-primary">Free
+                                                                            </span>
+                                                                            <span *ngIf="item.dealStatus === 1"
+                                                                                type="button"
+                                                                                class="badge badge-pill badge-success">Vip
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">Thêm
+                                                                                chương</a>
+                                                                            <a class="badge badge-pill badge-info"
+                                                                                href="">Sửa</a>
+                                                                            <a ref=""
+                                                                                class="badge badge-pill badge-info">DSC</a>
+                                                                            <a href="" target="_blank"
+                                                                                class="badge badge-pill badge-info">Kiểm
+                                                                                Tra</a>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div aria-label="Page navigation example"
+                                                            *ngIf="totalCompltePages>1">
+                                                            <ul class="pagination pg-blue justify-content-end">
+                                                                <li class="page-item" *ngIf="currentCompltePage != 1">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryComplte(currentCompltePage - 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li *ngFor="let page of compltePages"
+                                                                    [ngClass]="page === currentCompltePage?'page-item active': 'page-item'">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryComplte(page)">{{page}}</a>
+                                                                </li>
+                                                                <li class="page-item"
+                                                                    *ngIf="currentCompltePage != totalCompltePages">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryComplte(currentCompltePage + 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Panel 2 -->
+                                                    <!-- Panel 3 -->
+                                                    <div class="tab-pane fade" id="panel38" role="tabpanel">
+                                                        <table class="table table-striped" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="font-weight-bolder">ID
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Tên truyện
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Đánh Giá</th>
+                                                                    <th class="font-weight-bolder">Đề Cử</th>
+                                                                    <th class="font-weight-bolder">Trạng Thái</th>
+                                                                    <th class="font-weight-bolder">Thao Tác
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngIf="!listStop?.length" class="text-center">
+                                                                    <td colspan="6">Bạn chưa có truyện tạm dừng nào!
+                                                                    </td>
+                                                                </tr>
+                                                                <tr *ngFor="let item of listStop">
+                                                                    <ng-container *ngIf="listStop?.length">
+                                                                        <td>{{item.id}}</td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="align-items-center d-flex">
+                                                                                {{item.name}}
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.rating}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.countAppoint}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span *ngIf="item.dealStatus === 0"
+                                                                                class="badge badge-pill badge-primary">Free
+                                                                            </span>
+                                                                            <span *ngIf="item.dealStatus === 1"
+                                                                                type="button"
+                                                                                class="badge badge-pill badge-success">Vip
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">Thêm
+                                                                                chương</a>
+                                                                            <a class="badge badge-pill badge-info"
+                                                                                href="">Sửa</a>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">DSC</a>
+                                                                            <a href="" target="_blank"
+                                                                                class="badge badge-pill badge-info">Kiểm
+                                                                                Tra</a>
+                                                                            <a (click)="storyDelete(item.id, item.name)"
+                                                                                class="badge badge-pill badge-danger"><i
+                                                                                    class="fas fa-times mx-1"></i>
+                                                                                Xóa</a>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <div aria-label="Page navigation example"
+                                                            *ngIf="totalStopPages>1">
+                                                            <ul class="pagination pg-blue justify-content-end">
+                                                                <li class="page-item" *ngIf="currentStopPage != 1">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryStop(currentStopPage - 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li *ngFor="let page of stopPages"
+                                                                    [ngClass]="page === currentStopPage?'page-item active': 'page-item'">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryStop(page)">{{page}}</a>
+                                                                </li>
+                                                                <li class="page-item"
+                                                                    *ngIf="currentStopPage != totalStopPages">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryStop(currentStopPage + 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Panel 3 -->
+                                                    <!-- Panel 4-->
+                                                    <div class="tab-pane fade" id="panel39" role="tabpanel">
+                                                        <table class="table table-striped" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="font-weight-bolder">ID
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Tên truyện
+                                                                    </th>
+                                                                    <th class="font-weight-bolder">Đánh Giá</th>
+                                                                    <th class="font-weight-bolder">Đề Cử</th>
+                                                                    <th class="font-weight-bolder">Trạng Thái</th>
+                                                                    <th class="font-weight-bolder">Thao Tác
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngIf="!listHidden?.length" class="text-center">
+                                                                    <td colspan="6">Bạn chưa có truyện nào bị khóa!</td>
+                                                                </tr>
+                                                                <tr *ngFor="let item of listHidden">
+                                                                    <ng-container *ngIf="listHidden?.length">
+                                                                        <td>{{item.id}}</td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="align-items-center d-flex">
+                                                                                {{item.name}}
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.rating}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{item.countAppoint}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span *ngIf="item.dealStatus === 0"
+                                                                                class="badge badge-pill badge-primary">Free
+                                                                            </span>
+                                                                            <span *ngIf="item.dealStatus === 1"
+                                                                                type="button"
+                                                                                class="badge badge-pill badge-success">Vip
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href=""
+                                                                                class="badge badge-pill badge-info">DSC</a>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div aria-label="Page navigation example"
+                                                            *ngIf="totalHiddenPages>1">
+                                                            <ul class="pagination pg-blue justify-content-end">
+                                                                <li class="page-item" *ngIf="currentHiddenPage != 1">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryHidden(currentHiddenPage - 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li *ngFor="let page of hidenPages"
+                                                                    [ngClass]="page === currentHiddenPage?'page-item active': 'page-item'">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryHidden(page)">{{page}}</a>
+                                                                </li>
+                                                                <li class="page-item"
+                                                                    *ngIf="currentHiddenPage != totalHiddenPages">
+                                                                    <a class="page-link"
+                                                                        (click)="getListStoryHidden(currentHiddenPage + 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Panel 4 -->
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+    <!--Footer-->
+    <app-footer></app-footer>
