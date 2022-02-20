@@ -90,6 +90,32 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     this.followService.checkFollow(form).subscribe(data => this.follow = data);
   }
 
+  appoint(newForm: NgForm){
+    //console.log(newForm.value);
+    if(newForm.value.coupon != ""){
+     
+      var form = new FormData();
+      form.append("storyId", JSON.stringify(this.sid));
+      form.append("coupon", newForm.value.coupon);
+      this.subscriptions.push(this.storyService.appointStory(form).subscribe(
+        response => {
+          newForm.reset();
+          Swal.fire({
+            text: "Đề cử thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => this.toastr.error(error.error.message)
+    ));
+    } else {
+      Swal.fire({
+        text: "Bạn cần nhập thông tin",
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+    }
+  }
+
   getStoryById(): void {
     this.storyService.getStoryById(this.sid).subscribe(data => {
       this.story = data.storySummary;
@@ -208,7 +234,6 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
 
   addComment(newForm: NgForm){
     if(newForm.value.commentText.trim() != ""){
-      this.sid = +this.route.snapshot.params['sid'];
       var form = new FormData();
       form.append("storyId", JSON.stringify(this.sid));
       form.append("commentText", newForm.value.commentText);
