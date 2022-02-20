@@ -22,7 +22,6 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RatingService } from 'src/app/_services/rating.service';
 SwiperCore.use([Navigation]);
 
-declare var showRating: any
 
 @Component({
   selector: 'app-story-detail',
@@ -67,10 +66,8 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     config: NgbRatingConfig
   ) {config.max = 5; }
 
-  ngOnInit(): void {
-     
+  ngOnInit(): void {    
     this.isLoggedIn = this.authService.isLoggedIn();
-    //showRating();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {

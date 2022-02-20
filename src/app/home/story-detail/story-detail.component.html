@@ -111,9 +111,14 @@
                                             <span id="myrate" itemprop="ratingValue">{{story.rating |
                                                 number:'0.1-2'}}</span>
                                         </section>
-                                        <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
-                                        
-                                        <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
+                                        <ng-container *ngIf="!rating">
+                                            <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
+                                            <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>
+                                        <ng-container *ngIf="rating">
+                                            <p>Bạn đã đánh giá truyện này</p>
+                                            <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>                                      
                                     </section>
                                 </section>
                             </section>
