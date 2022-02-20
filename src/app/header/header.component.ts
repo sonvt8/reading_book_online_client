@@ -35,13 +35,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getDataHeader();
+    this.loadJsFile("../../assets/js/myApp.js");
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  getDataHeader(){
+  getDataHeader() {
     this.dataService.getData().subscribe(res => {
       this.info = res.information;
       this.categories = res.listCategoryOfMenu;
@@ -55,5 +56,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logOut() {
     this.authService.logOut();
     this.router.navigate(['/trang-chu']);
+  }
+
+  public loadJsFile(url: string) {
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 }
