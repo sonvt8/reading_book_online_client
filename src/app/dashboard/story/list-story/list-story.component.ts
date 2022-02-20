@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './list-story.component.html',
   styleUrls: ['./list-story.component.css']
 })
-export class ListStoryComponent implements OnInit {
+export class ListStoryComponent implements OnInit, OnDestroy {
   search: string = "";
   stories: Story[] = [];
   page : number[] = [];
@@ -85,6 +85,10 @@ export class ListStoryComponent implements OnInit {
       }
     })
     
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   showSelect(){

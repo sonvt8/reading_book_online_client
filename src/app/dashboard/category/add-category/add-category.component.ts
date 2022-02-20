@@ -23,7 +23,6 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(this.categoryService.addCategory(newForm.value).subscribe(
         response => {
-          console.log(response);
           newForm.reset();
           this.router.navigateByUrl('/quan-tri/the-loai').then(r => {});
           this.toastr.success(`Thể loại ${response.name} được thêm mới thành công`);

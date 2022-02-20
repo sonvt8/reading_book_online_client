@@ -1,0 +1,196 @@
+<section class="page-wrapper">
+    <app-header></app-header>
+    <section class="truyen-main">
+        <section th:replace="/breadcrumb/chapterBreadcrumb"></section>
+        <section class="truyen-section section-read-info">
+            <section class="container">
+                <section class="read-info-block text-center">
+                    <h1 class="title">
+                        <a routerLink="/truyen-home/{{chapter.id}}" title="{{chapter.story.name}}"
+                           >{{chapter.story.name}}</a>
+                    </h1>
+                    <ul class="list-unstyled meta">
+                        <li>
+                            <a class="author js-popover" data-toggle="popover"
+                               data-target="#js-popover-read-author" data-placement="bottom" data-original-title="">
+                                <section class="avatar">
+                                    <img class="img-fluid lazyload" src="{{chapter.user.avatar?chapter.user.avatar:noImage}}">
+                                </section>
+                                <span>{{chapter.user.displayName}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <span class="item-icon">
+                                <i class="truyen-icon icon-eye-grey"></i>
+                            </span> <span>{{chapter.countView}}</span> lượt xem
+                        </li>
+                        <li>
+                            <span class="item-icon">
+                                <i class="truyen-icon icon-list-grey"></i>
+                            </span>
+                            <span>{{chapter.wordCount}} Chữ</span>
+                        </li>
+                        <li>
+                            <span class="item-icon">
+                                <i class="truyen-icon icon-time-grey"></i>
+                            </span>
+                            <span>{{chapter.createDate | date: 'HH:mm - dd/MM/yy'}}</span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </section>
+        <section class="truyen-section section-read-container">
+            <section class="container">
+                <section class="truyen-read-block">
+                    <section class="truyen-read-navigation text-center">
+                        <a routerLink="/truyen-home/{{chapter.story.id}}/{{preChapter}}"
+                           class="btn btn-primary" [ngClass]="preChapter!=0 ? '': 'disabled'"
+                           data-toggle="tooltip" data-placement="bottom" title="Chương trước">
+                            <span class="btn-icon"> <i class="truyen-icon icon-prev-bold"></i> </span>
+                        </a>
+                        <a routerLink="/truyen-home/{{chapter.story.id}}" class="btn btn-transparent btn-outline-primary waves-effect">
+                            <span class="btn-icon js-tooltip " data-toggle="tooltip" data-placement="bottom"
+                                  title="Mục lục"> <i class="truyen-icon icon-list"></i> </span> </a>
+                        <a routerLink="/truyen-home/{{chapter.story.id}}/{{nextChapter}}"
+                           class="btn btn-primary" [ngClass]="nextChapter!=0 ? '': 'disabled'"
+                           data-toggle="tooltip" data-placement="bottom" title="Chương sau">
+                            <span class="btn-icon"> <i class="truyen-icon icon-next-bold"></i> </span>
+                        </a>
+                    </section>
+                    <section class="truyen-read-content" data-font-family="'Palatino Linotype', sans-serif"
+                             style="width: 100%">
+                        <section class="header">
+                            <h2 class="title"
+                                >Chương {{chapter.chapterNumber}}: {{chapter.name}}</h2>
+                        </section>
+                        <section class="content" id="js-truyen-content"
+                                 style="font-size: 26px; line-height: 140%; font-family: 'Palatino Linotype', sans-serif; word-wrap: break-word;">
+                            <section class="content-vip" *ngIf="!checkVip">
+                                <h3 class="text-danger text-center">Đây là chương truyện mất phí,bạn cần trả <strong
+                                        th:text="${chapter.price}"></strong> đậu để
+                                    xem, nếu đồng ý hãy ấn vào nút <strong>MUA</strong> bên dưới. </h3>
+                                <p class="text-center">
+                                    <button class="btn btn-primary" th:ng-click="|chapterVip('${chapter.id}')|">
+                                        MUA
+                                    </button>
+                                </p>
+                                <section class="alert alert-primary col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
+                                    <p class="text-justify small">- Chương truyện sau khi mua bạn có 24 tiếng để đọc,
+                                        sau 24 tiếng nếu muốn đọc lại bạn phải mua lại.</p>
+                                    <p class="text-justify small">- Chương truyện này sẽ cho đọc miễn phí sau <strong
+                                            >{{chapter.story.timeDeal}}</strong> ngày kể từ lúc được đăng.</p>
+                                </section>
+                                <section class="clearfix"></section>
+                            </section>
+                            <ng-container *ngIf="checkVip">
+                                {{chapter.content}}
+                            </ng-container>
+                        </section>
+                    </section>
+                    <section class="truyen-read-navigation text-center">
+                        <a routerLink="/truyen-home/{{chapter.story.id}}/{{preChapter}}"
+                           class="btn btn-primary" [ngClass]="preChapter!=0 ? '': 'disabled'"
+                           data-toggle="tooltip" data-placement="bottom" title="Chương trước">
+                            <span class="btn-icon"> <i class="truyen-icon icon-prev-bold"></i> </span>
+                        </a>
+                        <a routerLink="/truyen-home/{{chapter.story.id}}" class="btn btn-transparent btn-outline-primary waves-effect">
+                            <span class="btn-icon js-tooltip " data-toggle="tooltip" data-placement="bottom"
+                                  title="Mục lục"> <i class="truyen-icon icon-list"></i> </span> </a>
+                        <a href="#modal-report" data-toggle="modal" class="btn btn-transparent btn-outline-primary waves-effect">
+                        <span class="btn-icon js-tooltip" data-toggle="tooltip" data-placement="bottom"
+                                title="Báo lỗi"> <i class="truyen-icon icon-warning"></i> </span> </a>
+                        <a routerLink="/truyen-home/{{chapter.story.id}}/{{nextChapter}}"
+                           class="btn btn-primary" [ngClass]="nextChapter!=0 ? '': 'disabled'"
+                           data-toggle="tooltip" data-placement="bottom" title="Chương sau">
+                            <span class="btn-icon"> <i class="truyen-icon icon-next-bold"></i> </span>
+                        </a>
+                    </section>
+                    <section class="chapter-comment">
+                        <section class="row">
+                            <section class="col-md-12">
+                                <section id="comment_field">
+                                    <section class="cm-based">
+                                        <p class="comment-count"><span id="count_comment">{{totalComment}}</span> bình luận
+                                        </p>
+                                        <form id="resetForm" #newForm="ngForm" (ngSubmit)="addComment(newForm)" novalidate>
+                                            <section class="form row">
+                                                <section class="form-group col-md-10 comment-text">
+                                                    <textarea ngModel name="commentText" id="commentText" required class="form-control">
+                                                    </textarea>
+                                                </section>
+                                                <section class="form-group col-md-2">
+                                                    <button *ngIf="isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block " name="btnComment"
+                                                            id="btnComment">
+                                                        <span class="fas fa-check" aria-hidden="true"></span>
+                                                    </button>
+                                                    <button *ngIf="!isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block disabled" name="btnComment"
+                                                            id="btnComment">
+                                                        <span class="fas fa-check" aria-hidden="true"></span>
+                                                    </button>
+                                                </section>
+                                                <section class="clearfix"></section>
+                                            </section>
+                                        </form>
+                                        <section id="truyen-detail-comment" class="blog-comment">
+                                            <section class="alert alert-primary" role="alert" *ngIf="listComment.length === 0">
+                                                <h5 class="text-center">Chưa có Bình Luận nào</h5>
+                                            </section>
+                                            <ul class="comments" id="comment_list" *ngIf="listComment.length !== 0">
+                                                <li class="clearfix" *ngFor="let comment of listComment" id="comment_{{comment.id}}">
+                                                    <section style="float:left;width:40px;height:80px;">
+                                                        <a href="">
+                                                            <img class="avatar"
+                                                                 alt="{{comment.user.displayName}}"
+                                                                 src="{{comment.user.avatar? comment.user.avatar : noImage}}">
+                                                        </a><br style="clear:both">
+                                                    </section>
+                                                    <section class="post-comments">
+                                                        <p>{{comment.content}}</p>
+                                                        <p class="meta-2">
+                                                            <a href=""><abbr title="Thành viên">{{comment.user.displayName}}</abbr></a>
+                                                            <small>
+                                                                <small><a>Báo xấu</a></small>
+                                                            </small>
+                                                            <small class="float-right">{{comment.timeUpdate}}
+                                                            </small>
+                                                        </p>
+                                                    </section>
+                                                </li>
+                                            </ul>
+                                            <section *ngIf="totalPages>1">
+                                                <ul class="pagination justify-content-end mb-3 mt-3">
+                                                    <li *ngIf="currentPage != 1" class="page-item">
+                                                        <a class="page-link" (click)="getCommentList(currentPage - 1, 1)">
+                                                            <i class="fas fa-step-backward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                                        <a [ngClass]="i===currentPage?'page-link disabled': 'page-link'"
+                                                           (click)="getCommentList(i,1)">{{i}}</a>
+                                                    </li>
+                                                    <li *ngIf="currentPage != totalPages" class="page-item">
+                                                        <a class="page-link" (click)="getCommentList(currentPage + 1, 1)">
+                                                            <i class="fas fa-step-forward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" (click)="getCommentList(1, 0)">
+                                                            Xem hết
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+
+<app-footer></app-footer>

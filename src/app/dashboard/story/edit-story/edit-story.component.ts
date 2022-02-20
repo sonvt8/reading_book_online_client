@@ -90,7 +90,6 @@ export class EditStoryComponent implements OnInit, OnDestroy {
 
   onProfileImageChange(event: any): void {
     this.images = event.target.files[0];
-    console.log(this.images);
   }
 
   ngOnDestroy(): void {

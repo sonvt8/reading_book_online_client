@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountOnHomePage } from '../_models/account-home-page';
+import { Chapter } from '../_models/chapter';
 import { CustomHttpResponse } from '../_models/custom-http-response';
+import { Story } from '../_models/story';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -45,10 +47,40 @@ export class AccountService {
     return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/doi_ngoai_hieu`, formData);
   }
 
+  public updateAvatar(form: FormData): Observable<User> {
+    return this.httpClient.post<User>(`${this.baseUrl}tai_khoan/anh_dai_dien`, form);
+  }
+
   public updatePassword(oldPassword: string, newPassword: string): Observable<CustomHttpResponse> {
     var formData: any = new FormData();
     formData.append("old-pass", oldPassword);
     formData.append("new-pass", newPassword);
     return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai_khoan/doi_mat_khau`, formData);
   }
+
+  public getFollowStories(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/theo-doi/danh-sach?pagenumber=${page}`);
+  }
+
+  public getPaymentHistory(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/thanh-toan/danh-sach?pagenumber=${page}`);
+  }
+
+  public getStoryAccount(pagenumber: number, status:number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}tai-khoan/truyen/danh-sach?pagenumber=${pagenumber}&status=${status}`);
+  }
+
+  public addStory(form: FormData): Observable<Story> {
+    return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/them-truyen`,form);
+  }
+
+  public checkGetStoryById(id: number): Observable<CheckGetStoryResponseById> {
+    return this.httpClient.get<CheckGetStoryResponseById>(`${this.baseUrl}tai-khoan/truyen/kiem-tra/${id}`);
+  }
+}
+
+interface CheckGetStoryResponseById {
+  readChapter: Chapter,
+  checkConverter: boolean,
+  rating: boolean,
 }

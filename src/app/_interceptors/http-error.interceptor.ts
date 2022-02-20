@@ -40,12 +40,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
             case 401:
               this.toastr.error(errorResponse.statusText, errorResponse.status);
+              this.router.navigate(['/trang-chu']);
               break;
             case 404:
               //this.router.navigateByUrl('/not-found');
               break;
             case 403:
               this.toastr.error(errorResponse.error.message);
+              console.log(errorResponse);
               break;
             case 500:
               // const navigationExtras: NavigationExtras = { state: { error: error.error } }

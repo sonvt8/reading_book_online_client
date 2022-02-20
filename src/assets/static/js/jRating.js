@@ -1,8 +1,8 @@
 (function ($) {
         $.fn.jRating = function (op) {
             var defaults = {
-                bigStarsPath: 'jquery/icons/stars.png',
-                smallStarsPath: 'jquery/icons/small.png',
+                bigStarsPath: window.location.origin + '/assets/img/stars.png',
+                smallStarsPath: window.location.origin + '/assets/img/small.png',
                 ratingPath: 'http://localhost:8081/tai_khoan/danh_gia',
                 type: 'big',
                 step: false,
@@ -68,6 +68,7 @@
                         zIndex: 1,
                         position: 'relative'
                     });
+                    console.log(jDisabled);
                     if (!jDisabled)
                         $(this).unbind().bind({
                             mouseenter: function (e) {

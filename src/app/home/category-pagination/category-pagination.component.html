@@ -39,13 +39,13 @@
                                                 <ng-template swiperSlide="" *ngFor="let _topStoryWeek of listTopViewWeek; index as i" >
                                                     <section class="item" *ngIf="i < 4">
                                                         <section class="thumb">
-                                                            <a href="" >
+                                                            <a routerLink="/truyen-home/{{_topStoryWeek.id}}" >
                                                                 <img class="img-fluid lazyload" alt="" data-src="{{_topStoryWeek.images}}" title="{{_topStoryWeek.name}}">
                                                             </a>
                                                         </section>
                                                         <section class="info">
                                                             <h2 class="title">
-                                                                <a href="">{{_topStoryWeek.name}}</a>
+                                                                <a routerLink="/truyen-home/{{_topStoryWeek.id}}">{{_topStoryWeek.name}}</a>
                                                             </h2>
                                                             <span>
                                                                 <span class="fz-16" >{{_topStoryWeek.cnt}}</span> người truy cập</span>
@@ -68,7 +68,7 @@
                                                 <section class="col-12 col-sm-12 col-md-6 btv-2" *ngIf="i < 6">
                                                     <section class="item">
                                                         <h2 class="title">
-                                                            <a href="" title="{{_topStoryWeek.name}}">{{_topStoryWeek.name}}</a>
+                                                            <a routerLink="/truyen-home/{{_topStoryWeek.id}}" title="{{_topStoryWeek.name}}">{{_topStoryWeek.name}}</a>
                                                         </h2>
                                                         <section class="view text-secondary">
                                                             <span class="text-red fz-16">{{_topStoryWeek.cnt}}</span>người truy cập
@@ -93,7 +93,7 @@
                                                 <section class="index index-{{i+1}} index-star">{{i+1}}</section>
                                                 <section class="info">
                                                     <h2 class="title">
-                                                        <a href="">{{_topstory.name}}</a>
+                                                        <a routerLink="/truyen-home/{{_topstory.id}}">{{_topstory.name}}</a>
                                                     </h2>
                                                     <section class="view text-secondary" *ngIf="i == 0">
                                                         <span class="text-red fz-16">{{_topstory.cnt}}</span> phiếu
@@ -103,7 +103,7 @@
                                                     </section>
                                                     <section class="extra-info" *ngIf="i == 0">
                                                         <p>Thể Loại:
-                                                            <a href="">{{_topstory.categoryName}}</a>
+                                                            <a routerLink="/truyen-home/{{_topstory.id}}">{{_topstory.categoryName}}</a>
                                                         </p>
                                                         <p>Tác giả: <span>{{_topstory.author}}</span>
                                                         </p>
@@ -138,12 +138,12 @@
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-table" *ngFor="let story of pageStory; index as i">
                                             <section class="content">
-                                                <a class="thumb" href="">
+                                                <a class="thumb" routerLink="/truyen-home/{{story.id}}">
                                                     <img class="img-fluid" src="{{story.images}}" alt="{{story.name}}">
                                                 </a>
                                                 <section class="info">
                                                     <h2 class="title">
-                                                        <a title="{{story.name}}">
+                                                        <a title="{{story.name}}" routerLink="/truyen-home/{{story.id}}">
                                                             <img class="img-fluid" src="assets/img/vip-vip.gif" *ngIf="story.dealStatus === 1" alt="">
                                                             <span [ngClass]="story.dealStatus == 1?'shadow-2' : ''">{{story.name}}</span>
                                                         </a>
@@ -151,7 +151,7 @@
                                                     <section class="chap">{{story.author}}</section>
                                                     <section class="author">
                                                         <a *ngIf="story.chapterId != null"
-                                                           href=""
+                                                            routerLink="/truyen-home/{{story.id}}/{{story.chapterId}}"
                                                            title="'Chương ' + {{story.chapterNumber}}"
                                                            >Chương {{story.chapterNumber}}</a>
                                                         <a *ngIf="story.chapterId == null">&nbsp;</a>

@@ -42,6 +42,12 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
+import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
+import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
+import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StorySubmitComponent } from './account/story-submit/story-submit.component';
+import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +75,13 @@ import { AccountFollowComponent } from './account/account-follow/account-follow.
     CategoryPaginationComponent,
     PasswordChangeComponent,
     StoryDetailComponent,
-    AccountFollowComponent
+    PasswordChangeComponent,
+    AccountFollowComponent,
+    AccountLogPaymentComponent,
+    AccountTopUpComponent,
+    ChapterDetailComponent,
+    StorySubmitComponent,
+    ManageStoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +93,8 @@ import { AccountFollowComponent } from './account/account-follow/account-follow.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
-    SwiperModule
+    SwiperModule,
+    NgbModule
   ],
   providers: [
     CategoryService,

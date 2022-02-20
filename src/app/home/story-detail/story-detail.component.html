@@ -111,9 +111,14 @@
                                             <span id="myrate" itemprop="ratingValue">{{story.rating |
                                                 number:'0.1-2'}}</span>
                                         </section>
-                                        <section [ngClass]="rating ? 'basic jDisabled':'basic'"
-                                            data-average="story.rating" data-id="story.id">
-                                        </section>
+                                        <ng-container *ngIf="!rating">
+                                            <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
+                                            <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>
+                                        <ng-container *ngIf="rating">
+                                            <p>Bạn đã đánh giá truyện này</p>
+                                            <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>                                      
                                     </section>
                                 </section>
                             </section>
@@ -159,7 +164,7 @@
                                                     <i class="truyen-icon icon-list"></i> Mới nhất
                                                 </section>
                                                 <section class="item-value">
-                                                    <a routerLink="/chuong/{{story.id}}/chuong-{{story.chapterId}}">Chương
+                                                    <a routerLink="/truyen-home/{{story.id}}/{{story.chapterNew.id}}">Chương
                                                         {{story.chapterNew.chapterNumber}}:
                                                         {{story.chapterNew.name}}</a>
                                                 </section>
@@ -269,14 +274,135 @@
                             </section>
                             <section class="tab-pane fade" id="truyen-chapter" name="truyen-chapter" role="tabpanel">
                                 <section class="truyen-detail-chap">
-                                    <section th:replace="/pagination/chapterOfStoryPagination"></section>
+                                    <section class="row" *ngIf="listChapter.length === 0">
+                                        <section class="col-12">
+                                            <section class="alert alert-primary" role="alert">
+                                                <h5 class="text-center">Chưa có Chương nào được đăng </h5>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="panel" *ngIf="listChapter.length !== 0">
+                                        <section class="panel-body">
+                                            <section class="list-chap">
+                                                <section class="row">
+                                                    <section class="col-sm-6 col-md-4 chapter-item" *ngFor="let item of listChapter">
+                                                        <section class="item">
+                                                            <a routerLink="/truyen-home/{{item.storyId}}/{{item.id}}" class="align-items-center d-flex"
+                                                               title="Đăng bởi {{item.displayName}} lúc {{item.createDate| date: 'HH:mm dd-MM-yyyy' }}">
+                                                                    <span class="chapter-name">
+                                                                        <img *ngIf="item.status === 2" src="assets/img/vip-vip.gif" class="img-fluid"
+                                                                             height="12px"> Chương {{item.chapterNumber}} : {{item.name}}</span>&nbsp;
+                                                                <span class="chapter-time text-muted">{{item.timeUpdate}}</span>
+                                                            </a>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                        <section *ngIf="totalPages>1">
+                                            <ul class="pagination justify-content-end mb-3 mt-3">
+                                                <li *ngIf="currentPage != 1" class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(currentPage - 1, 1)">
+                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                                    <a [ngClass]="i===currentPage?'page-link disabled': 'page-link'" (click)="getChapterListByStoryId(i,1)">{{i}}</a>
+                                                </li>
+                                                <li *ngIf="currentPage != totalPages" class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(currentPage + 1, 1)">
+                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link" (click)="getChapterListByStoryId(1, 0)">
+                                                        Xem hết
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                    </section>
                                 </section>
                             </section>
                             <section class="tab-pane fade" id="truyen-comment" name="truyen-comment" role="tabpanel">
                                 <section class="truyen-detail-chap">
                                     <section class="row">
                                         <section class="col-md-12">
-                                            <section th:replace="/pagination/commentOfStoryPagination"></section>
+                                            <section id="comment_field">
+                                                <section class="cm-based">
+                                                    <p class="comment-count"><span id="count_comment">{{totalComment}}</span> bình luận
+                                                    </p>
+                                                    <form id="resetForm" #newForm="ngForm" (ngSubmit)="addComment(newForm)" novalidate>
+                                                        <section class="form row">
+                                                            <section class="form-group col-md-10 comment-text">
+                                                                    <textarea ngModel name="commentText" id="commentText" required class="form-control">
+                                                                    </textarea>
+                                                            </section>
+                                                            <section class="form-group col-md-2">
+                                                                <button *ngIf="isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block " name="btnComment"
+                                                                        id="btnComment">
+                                                                    <span class="fas fa-check" aria-hidden="true"></span>
+                                                                </button>
+                                                                <button *ngIf="!isLoggedIn" type="submit" ng-click="" class="btn btn-truyen btn-lg btn-block disabled" name="btnComment"
+                                                                        id="btnComment">
+                                                                    <span class="fas fa-check" aria-hidden="true"></span>
+                                                                </button>
+                                                            </section>
+                                                            <section class="clearfix"></section>
+                                                        </section>
+                                                    </form>
+                                                    <section id="truyen-detail-comment" class="blog-comment">
+                                                        <section class="alert alert-primary" role="alert" *ngIf="listComment.length === 0">
+                                                            <h5 class="text-center">Chưa có Bình Luận nào</h5>
+                                                        </section>
+                                                        <ul class="comments" id="comment_list" *ngIf="listComment.length !== 0">
+                                                            <li class="clearfix" *ngFor="let comment of listComment" id="comment_{{comment.id}}">
+                                                                <section style="float:left;width:40px;height:80px;">
+                                                                    <a href="">
+                                                                        <img class="avatar"
+                                                                             alt="{{comment.user.displayName}}"
+                                                                             src="{{comment.user.avatar? comment.user.avatar : noImage}}">
+                                                                    </a><br style="clear:both">
+                                                                </section>
+                                                                <section class="post-comments">
+                                                                    <p>{{comment.content}}</p>
+                                                                    <p class="meta-2">
+                                                                        <a href=""><abbr title="Thành viên">{{comment.user.displayName}}</abbr></a>
+                                                                        <small>
+                                                                            <small><a>Báo xấu</a></small>
+                                                                        </small>
+                                                                        <small class="float-right">{{comment.timeUpdate}}
+                                                                        </small>
+                                                                    </p>
+                                                                </section>
+                                                            </li>
+                                                        </ul>
+                                                        <section *ngIf="totalPages>1">
+                                                            <ul class="pagination justify-content-end mb-3 mt-3">
+                                                                <li *ngIf="currentPage != 1" class="page-item">
+                                                                    <a class="page-link" (click)="getCommentList(currentPage - 1, 1)">
+                                                                        <i class="fas fa-step-backward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li *ngFor="let i of page" [ngClass]="i===currentPage?'page-item active': 'page-item'">
+                                                                    <a [ngClass]="i===currentPage?'page-link disabled': 'page-link'"
+                                                                       (click)="getCommentList(i,1)">{{i}}</a>
+                                                                </li>
+                                                                <li *ngIf="currentPage != totalPages" class="page-item">
+                                                                    <a class="page-link" (click)="getCommentList(currentPage + 1, 1)">
+                                                                        <i class="fas fa-step-forward fa-sm"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="page-item">
+                                                                    <a class="page-link" (click)="getCommentList(1, 0)">
+                                                                        Xem hết
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
                                         </section>
                                     </section>
                                 </section>

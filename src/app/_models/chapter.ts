@@ -1,3 +1,6 @@
+import { Story } from "./story";
+import { User } from "./user";
+
 export class Chapter {
     id: number;
     status: number;
@@ -8,6 +11,11 @@ export class Chapter {
     timeUpdate: Date;
     name: string;
     displayName: string;
+    story: Story = new Story;
+    user: User = new User;
+    countView!: number;
+    wordCount!: number;
+    content!: string;
 
     constructor(){
         this.id = 0,

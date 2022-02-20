@@ -19,10 +19,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public selectedIndex: number = 0;
   public currentUser: User = new User;
   public accountInfo: AccountOnHomePage = new AccountOnHomePage;
-  // private loggedInUsername!: string;
   private subscriptions: Subscription[] = [];
   public reNameForm!: FormGroup;
-  submitted = false;
+  public submitted = false;
+  public url: string = this.authService.getUserFromLocalCache().avatar;
+  public avatar!: File ;
+  public isChanged: boolean = false;
 
   constructor(
     private router: Router,
@@ -30,13 +32,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private notifyService: NotificationService,
     private formBuilder: FormBuilder,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.accService._account.subscribe(
         (response: any) => {
           this.accountInfo = response;
+          this.url = this.accountInfo.avatar;
         }
       )
     );
@@ -45,7 +48,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
@@ -56,9 +59,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.selectedIndex = index;
   }
 
-  onUpdateNotification(notification: any){
-    if(notification.txtAbout == '') {
-      this.notifyService.notify(NotificationType.ERROR,'Thông báo mới chưa được cập nhật');
+  onUpdateNotification(notification: any) {
+    if (notification.txtAbout == '') {
+      this.notifyService.notify(NotificationType.ERROR, 'Thông báo mới chưa được cập nhật');
       return;
     }
     this.subscriptions.push(
@@ -68,23 +71,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.accService.setCurrentAccount(this.accountInfo);
           this.authService.setCurrentUser(response);
           this.authService.addUserToLocalCache(response);
-          this.notifyService.notify(NotificationType.SUCCESS,'Thông báo mới nhất đã được cập nhật');
+          this.notifyService.notify(NotificationType.SUCCESS, 'Thông báo mới nhất đã được cập nhật');
         }
       )
     );
   }
 
-  onUpdateDisplayedName(){
+  onUpdateDisplayedName() {
     this.submitted = true;
     const newNick = this.reNameForm.get('txtChangenick')!.value;
-    if(!newNick) return;
+    if (!newNick) return;
 
     // stop here if form is invalid
     if (this.reNameForm.invalid) {
       return;
     }
 
-    if(!this.accountInfo.displayName){
+    if (!this.accountInfo.displayName) {
       this.subscriptions.push(
         this.accService.updateDisplayedName(newNick).subscribe(
           (response: User) => {
@@ -93,7 +96,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.accService.setCurrentAccount(this.accountInfo);
             this.authService.setCurrentUser(response);
             this.authService.addUserToLocalCache(response);
-            this.notifyService.notify(NotificationType.SUCCESS,'Tên đại diện mới đã được cập nhật');
+            this.notifyService.notify(NotificationType.SUCCESS, 'Tên đại diện mới đã được cập nhật');
             this.submitted = false;
             this.reNameForm.reset();
           },
@@ -103,7 +106,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           }
         )
       );
-    }else{
+    } else {
       Swal.fire({
         title: 'Xác nhận thực hiện!',
         text: "Sẽ tốn 2000 đậu khi thực hiện, bạn chắc chứ?",
@@ -122,7 +125,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.accService.setCurrentAccount(this.accountInfo);
                 this.authService.setCurrentUser(response);
                 this.authService.addUserToLocalCache(response);
-                this.notifyService.notify(NotificationType.SUCCESS,'Tên đại diện mới đã được cập nhật');
+                this.notifyService.notify(NotificationType.SUCCESS, 'Tên đại diện mới đã được cập nhật');
                 this.submitted = false;
                 this.reNameForm.reset();
               },
@@ -135,5 +138,39 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  onSelectFile(event: any) {
+    if (event.target.files && event.target.files![0]) {
+      this.isChanged = true;
+      this.avatar = event.target.files[0];
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        this.url = event.target.result as string;
+      }
+    }
+  }
+  public delete() {
+    this.url = "";
+  }
+
+  public upload() {
+    var formData: any = new FormData();
+    formData.append("profileImage",this.avatar);
+    this.subscriptions.push(
+      this.accService.updateAvatar(formData).subscribe(
+        (response: User) => {
+          this.accountInfo.avatar = response.avatar;
+          this.accService.setCurrentAccount(this.accountInfo);
+          this.authService.setCurrentUser(response);
+          this.authService.addUserToLocalCache(response);
+          this.notifyService.notify(NotificationType.SUCCESS, 'Đã thực hiện cập nhật ảnh đại diện');
+          this.isChanged = false;
+        }
+      )
+    );
   }
 }

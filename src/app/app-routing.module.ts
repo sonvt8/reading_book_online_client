@@ -21,12 +21,16 @@ import { CategoryPaginationComponent } from './home/category-pagination/category
 import { PasswordChangeComponent } from './account/password-change/password-change.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
+import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
+import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
+import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
+import { StorySubmitComponent } from './account/story-submit/story-submit.component';
+import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
   
   { 
-    
     path: 'thanh_vien', 
     children:[
       { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
@@ -42,6 +46,10 @@ const routes: Routes = [
       { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}},
       { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}},
       { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}},
+      { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}},
+      { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}},
+      { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}},
+      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}}
     ]
   },
   {
@@ -65,6 +73,7 @@ const routes: Routes = [
   { path: 'danh-muc/:catalog', component: CatalogPaginationComponent, data: {title: 'Danh mục truyện' }},
   { path: 'the-loai/:cid', component: CategoryPaginationComponent, data: {title: 'Thể loại truyện' }},
   { path: 'truyen-home/:sid', component: StoryDetailComponent, data: {title: 'Chi tiết truyện' }},
+  { path: 'truyen-home/:sid/:chid', component: ChapterDetailComponent, data: {title: 'Chi tiết chương' }},
 
   // Always put default route at the end.
   { path: '', redirectTo: '/trang-chu', pathMatch: 'full', data: { title: 'Trang chủ' } },
