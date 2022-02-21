@@ -4,6 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 
@@ -42,7 +43,7 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
-import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
+import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -87,6 +88,7 @@ import { ManageStoryComponent } from './account/manage-story/manage-story.compon
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
+    MultiSelectModule,
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,

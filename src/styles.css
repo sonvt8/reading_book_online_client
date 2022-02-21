@@ -15,3 +15,12 @@
     white-space: nowrap!important;
     border: 0!important;
 }
+
+p-multiSelect {
+    display: block;
+}
+
+.p-multiselect {
+    width: 100%;
+    font-size: 1rem;
+}
