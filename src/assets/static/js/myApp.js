@@ -1,8 +1,8 @@
 window.TruyenOnlineScript = {
     init: function () {
         this.initApplyConfig();
-        //this.initAutoSearch();
-        //this.initAutoSearchMobile();
+        this.initAutoSearch();
+        this.initAutoSearchMobile();
         this.initLayzLoad();
         this.initSearch();
         this.initSearchMobile();
@@ -35,119 +35,121 @@ window.TruyenOnlineScript = {
         }).addClass(style);
     },
 
-    // initAutoSearch: function () {
-    //     // Search Auto Complete Laptop
-    //     $("#txtKeyword").autocomplete({
-    //         minLength: 1,
-    //         // define callback to format results
-    //         source: function (request, response) {
-    //             $.ajax({
-    //                 type: "POST",
-    //                 url: window.location.origin + '/api/story/search',
-    //                 data: {
-    //                     txtSearch: encryptText(this.term)
-    //                 },
-    //                 success: function (data) {
-    //                     if (data.length === 0) {
-    //                         data.push({
-    //                             vnName: 'Không tìm thấy truyện phù hợp',
-    //                             sID: 0
-    //                         });
-    //                     }
-    //                     response($.map(data, function (item) {
-    //                         return {
-    //                             label: item.vnName,
-    //                             value: item.vnName,
-    //                             image: item.images,
-    //                             author: item.author,
-    //                             id: item.id
-    //                         }
-    //                     }));
-    //                 }
+    initAutoSearch: function () {
+        // Search Auto Complete Laptop
+        $("#txtKeyword").autocomplete({
+            minLength: 1,
+            // define callback to format results
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:8081/truyen-home/tim-kiem',
+                    data: {
+                        txtSearch: this.term
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        if (data.length === 0) {
+                            data.push({
+                                name: 'Không tìm thấy truyện phù hợp',
+                                id: 0
+                            });
+                            
+                        }
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.name,
+                                image: item.images,
+                                author: item.author,
+                                id: item.id
+                            }
+                        }));
+                    }
 
-    //             });
-    //         },
-    //         // define select handler
-    //         select: function (event, ui) {
-    //             if (ui.item) {
-    //                 if (ui.item.id !== 0) {
-    //                     event.preventDefault();
-    //                     window.location.replace(window.location.origin + '/truyen/' + ui.item.id);
-    //                     return false;
-    //                 }
-    //                 return false;
-    //             }
-    //         }
-    //     }).click(function () {
-    //         $(this).autocomplete('search');
-    //     }).autocomplete("instance")._renderItem = function (ul, item) {
-    //         if (item.id === 0)
-    //             return $("<li></li>")
-    //                 .append("<div class='custom-ui-menu-item'> <strong>" + item.label + "</strong></div>")
-    //                 .appendTo(ul);
-    //         return $("<li></li>")
-    //             .append("<div class='custom-ui-menu-item'> <div><img class='imageClass' src='" + item.image + "' > </div><span><strong>"
-    //                 + item.label + "</strong><br>" + item.author + "</span></div>")
-    //             .appendTo(ul);
-    //     };
-    // },
+                });
+            },
+            // define select handler
+            select: function (event, ui) {
+                if (ui.item) {
+                    if (ui.item.id !== 0) {
+                        event.preventDefault();
+                        window.location.replace('http://localhost:4200/truyen-home/' + ui.item.id);
+                        return false;
+                    }
+                    return false;
+                }
+            }
+        }).click(function () {
+            $(this).autocomplete('search');
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            if (item.id === 0)
+                return $("<li></li>")
+                    .append("<div class='custom-ui-menu-item'> <strong>" + item.label + "</strong></div>")
+                    .appendTo(ul);
+            return $("<li></li>")
+                .append("<div class='custom-ui-menu-item'> <div><img class='imageClass' src='" + item.image + "' > </div><span><strong>"
+                    + item.label + "</strong><br>" + item.author + "</span></div>")
+                .appendTo(ul);
+        };
+    },
 
-    // initAutoSearchMobile: function () {
-    //     // Search Auto Complete Laptop
-    //     $("#txtKeywordMobi").autocomplete({
-    //         minLength: 1,
-    //         // define callback to format results
-    //         source: function (request, response) {
-    //             $.ajax({
-    //                 type: "POST",
-    //                 url: window.location.origin + '/api/story/search',
-    //                 data: {
-    //                     txtSearch: encryptText(this.term)
-    //                 },
-    //                 success: function (data) {
-    //                     if (data.length === 0) {
-    //                         data.push({
-    //                             vnName: 'Không tìm thấy truyện phù hợp',
-    //                             sID: 0
-    //                         });
-    //                     }
-    //                     response($.map(data, function (item) {
-    //                         return {
-    //                             label: item.vnName,
-    //                             value: item.vnName,
-    //                             image: item.images,
-    //                             author: item.author,
-    //                             id: item.id
-    //                         }
-    //                     }));
-    //                 }
+    initAutoSearchMobile: function () {
+        // Search Auto Complete Laptop
+        $("#txtKeywordMobi").autocomplete({
+            minLength: 1,
+            // define callback to format results
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:8081/truyen-home/tim-kiem',
+                    data: {
+                        txtSearch: this.term
+                    },
+                    success: function (data) {
+                        if (data.length === 0) {
+                            data.push({
+                                name: 'Không tìm thấy truyện phù hợp',
+                                id: 0
+                            });
+                        }
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.name,
+                                image: item.images,
+                                author: item.author,
+                                id: item.id
+                            }
+                        }));
+                    }
 
-    //             });
-    //         },
-    //         // define select handler
-    //         select: function (event, ui) {
-    //             if (ui.item) {
-    //                 if (ui.item.id !== 0) {
-    //                     event.preventDefault();
-    //                     window.location.replace(window.location.origin + '/truyen/' + ui.item.id + '/' + ui.item.url);
-    //                     return false;
-    //                 }
-    //                 return false;
-    //             }
-    //         }
-    //     }).click(function () {
-    //         $(this).autocomplete('search');
-    //     }).autocomplete("instance")._renderItem = function (ul, item) {
-    //         if (item.id === 0)
-    //             return $("<li></li>")
-    //                 .append("<div class='custom-ui-menu-item'> <strong>" + item.label + "</strong></div>")
-    //                 .appendTo(ul);
-    //         return $("<li></li>")
-    //             .append("<div class='custom-ui-menu-item'> <div><img class='imageClass' src='" + item.image + "' > </div><span><strong>"
-    //                 + item.label + "</strong><br>" + item.author + "</span></div>")
-    //             .appendTo(ul);
-    //     };
-    // },
+                });
+            },
+            // define select handler
+            select: function (event, ui) {
+                if (ui.item) {
+                    if (ui.item.id !== 0) {
+                        event.preventDefault();
+                        window.location.replace('http://localhost:4200/truyen-home/' + ui.item.id);
+                        return false;
+                    }
+                    return false;
+                }
+            }
+        }).click(function () {
+            $(this).autocomplete('search');
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            if (item.id === 0)
+                return $("<li></li>")
+                    .append("<div class='custom-ui-menu-item'> <strong>" + item.label + "</strong></div>")
+                    .appendTo(ul);
+            return $("<li></li>")
+                .append("<div class='custom-ui-menu-item'> <div><img class='imageClass' src='" + item.image + "' > </div><span><strong>"
+                    + item.label + "</strong><br>" + item.author + "</span></div>")
+                .appendTo(ul);
+        };
+    },
 
     initLayzLoad: function () {
         $('.lazyload').lazy();

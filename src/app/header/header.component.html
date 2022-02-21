@@ -61,7 +61,7 @@
                                     <i class="truyen-icon icon-search"></i>
                                 </button>
                             </section>
-                            <form id="js-search-panel" class="search-panel">
+                            <form id="js-search-panel" class="search-panel" method="post">
                                 <div class="txtDiv">
                                     <input type="text" name="txtKeyword" id="txtKeyword" value=""
                                         placeholder="Tên truyện" class="form-control" autocomplete="off" required
@@ -228,7 +228,7 @@
 <a href="#" class="truyen-sidebar-overlay js-close-sidebar"></a>
 <section class="truyen-search-box">
     <section class="container">
-        <form class="search-box-mobile">
+        <form class="search-box-mobile" method="post">
             <input type="text" id="txtKeywordMobi" name="txtKeyword" class="form-control"
                 placeholder="Tên truyện hoặc tác giả không dấu" value="" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">

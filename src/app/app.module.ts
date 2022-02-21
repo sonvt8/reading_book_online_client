@@ -81,7 +81,7 @@ import { ManageStoryComponent } from './account/manage-story/manage-story.compon
     AccountTopUpComponent,
     ChapterDetailComponent,
     StorySubmitComponent,
-    ManageStoryComponent,
+    ManageStoryComponent
   ],
   imports: [
     BrowserModule,

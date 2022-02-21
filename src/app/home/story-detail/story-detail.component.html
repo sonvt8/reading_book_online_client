@@ -79,16 +79,16 @@
                                         </section>
                                     </section>
                                     <section class="buttons">
-                                        <a *ngIf="readChapter == null" class="btn btn-truyen" href="">
+                                        <a *ngIf="readChapter != null" class="btn btn-truyen" href="">
                                             Đọc tiếp
                                         </a>
-                                        <a *ngIf="readChapter != null && story.chapterHead == null"
+                                        <a *ngIf="readChapter == null && story.chapterHead == null"
                                             class="btn btn-truyen" href="">
                                             Đọc Từ Đầu
                                         </a>
-                                        <a *ngIf="follow === false" ng-click="registRecentReadingStory()"
+                                        <a *ngIf="follow === false" (click)="addFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Theo dõi</a>
-                                        <a *ngIf="follow === true" ng-click="unRecentReadingStory()"
+                                        <a *ngIf="follow === true" (click)="cancelFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a>
                                         <!-- Button trigger modal -->
                                         <a class="btn btn-xs btn-read text-white" data-toggle="modal"
@@ -430,10 +430,9 @@
                     <p>- Nếu bạn thấy truyện này hay bạn có thể sử dụng Đậu để đề cử truyện này, truyện càng có
                         nhiều phiếu đề cử càng có vị trí đẹp ngoài trang chủ, càng có nhiều người đọc truyện hơn.</p>
                     <p>- Mỗi Phiếu đề cử tốn 1000 đậu</p>
-                    <form class="form-inline" ng-submit="appoint()">
+                    <form class="form-inline" id="resetForm" #appointForm="ngForm" (ngSubmit)="appoint(appointForm)">
                         <section class="form-group">
-                            <input type="number" class="form-control" placeholder="Nhập số phiếu đề cử" min="1"
-                                ng-model="coupon">
+                            <input type="number" class="form-control" ngModel name="coupon" placeholder="Nhập số phiếu đề cử" min="1">
                         </section>
                         <button type="submit" class="btn btn-truyen">Đề cử</button>
                     </form>

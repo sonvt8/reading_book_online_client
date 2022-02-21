@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Chapter } from '../_models/chapter';
+import { CustomHttpResponse } from '../_models/custom-http-response';
 import { Story } from '../_models/story';
 
 @Injectable({
@@ -48,6 +49,10 @@ export class StoryService {
 
   public updateAdminStory(form: FormData, id: number): Observable<Story> {
     return this.httpClient.post<Story>(`${this.baseUrl}quan-tri/truyen/sua-truyen/${id}`, form);
+  }
+
+  public appointStory(form: FormData): Observable<CustomHttpResponse> {
+    return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai_khoan/de_cu_truyen`, form);
   }
 
   public createStoryFormData(story: Story, images: File): FormData {

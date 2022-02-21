@@ -90,6 +90,32 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     this.followService.checkFollow(form).subscribe(data => this.follow = data);
   }
 
+  appoint(newForm: NgForm){
+    //console.log(newForm.value);
+    if(newForm.value.coupon != ""){
+     
+      var form = new FormData();
+      form.append("storyId", JSON.stringify(this.sid));
+      form.append("coupon", newForm.value.coupon);
+      this.subscriptions.push(this.storyService.appointStory(form).subscribe(
+        response => {
+          newForm.reset();
+          Swal.fire({
+            text: "Đề cử thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => this.toastr.error(error.error.message)
+    ));
+    } else {
+      Swal.fire({
+        text: "Bạn cần nhập thông tin",
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+    }
+  }
+
   getStoryById(): void {
     this.storyService.getStoryById(this.sid).subscribe(data => {
       this.story = data.storySummary;
@@ -166,6 +192,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     form.append("rate", JSON.stringify(this.starRating));
     this.ratingService.ratingStory(form).subscribe(data =>  {
       this.getStoryById();
+      this.rating = true;
       Swal.fire({
         text: "Đánh giá thành công!",
         icon: 'success',
@@ -175,9 +202,38 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  addFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.addFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = true;
+      Swal.fire({
+        text: "Theo dõi truyện thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
+  cancelFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.cancelFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = false;
+      Swal.fire({
+        text: "Hủy theo dõi truyện thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
   addComment(newForm: NgForm){
     if(newForm.value.commentText.trim() != ""){
-      this.sid = +this.route.snapshot.params['sid'];
       var form = new FormData();
       form.append("storyId", JSON.stringify(this.sid));
       form.append("commentText", newForm.value.commentText);

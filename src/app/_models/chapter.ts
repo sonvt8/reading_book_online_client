@@ -16,6 +16,7 @@ export class Chapter {
     countView!: number;
     wordCount!: number;
     content!: string;
+    price!: number
 
     constructor(){
         this.id = 0,
