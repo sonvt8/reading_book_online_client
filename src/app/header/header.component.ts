@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getDataHeader();
-    this.loadJsFile("../../assets/js/myApp.js");
+    this.loadJsFile("../../assets/static/js/myApp.js");
   }
 
   ngOnDestroy() {

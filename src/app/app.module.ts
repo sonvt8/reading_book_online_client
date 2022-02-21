@@ -48,6 +48,7 @@ import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
+import { NotSearchPageComponent } from './home/not-search-page/not-search-page.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ManageStoryComponent } from './account/manage-story/manage-story.compon
     ChapterDetailComponent,
     StorySubmitComponent,
     ManageStoryComponent,
+    NotSearchPageComponent,
   ],
   imports: [
     BrowserModule,

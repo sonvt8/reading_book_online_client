@@ -26,6 +26,7 @@ import { AccountTopUpComponent } from './account/account-top-up/account-top-up.c
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
+import { NotSearchPageComponent } from './home/not-search-page/not-search-page.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -70,6 +71,7 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'khong-tim-thay-truyen', component: NotSearchPageComponent, data: {title: 'Không tìm thấy truyện' }},
   { path: 'danh-muc/:catalog', component: CatalogPaginationComponent, data: {title: 'Danh mục truyện' }},
   { path: 'the-loai/:cid', component: CategoryPaginationComponent, data: {title: 'Thể loại truyện' }},
   { path: 'truyen-home/:sid', component: StoryDetailComponent, data: {title: 'Chi tiết truyện' }},
