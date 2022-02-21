@@ -62,7 +62,8 @@
               "src/assets/static/js/myApp.js",
               "src/assets/static/js/backToTop.js",
               "src/assets/js/showNavbar.js",
-              "src/assets/js/showImage.js"
+              "src/assets/js/showImage.js",
+              "src/assets/js/searchStoryHome.js"
             ]
           },
           "configurations": {

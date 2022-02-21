@@ -15,7 +15,7 @@ declare var $: any;
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit, OnDestroy {
-  search: string = "";
+  searchUser: string = "";
   users: User[] = [];
   page : number[] = [];
   private subscriptions: Subscription[] = [];
@@ -45,7 +45,7 @@ export class ListUserComponent implements OnInit, OnDestroy {
     }
     const data = new FormData();
     data.append('pagenumber', JSON.stringify(pagenumber));
-    data.append('search', this.search.trim());
+    data.append('search', this.searchUser.trim());
     data.append('type', JSON.stringify(this.type.id));
     
     this.subscriptions.push(this.userService.getAdminUserList(data)

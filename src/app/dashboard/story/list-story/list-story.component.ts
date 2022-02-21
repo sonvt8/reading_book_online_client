@@ -14,7 +14,7 @@ declare var $: any;
   styleUrls: ['./list-story.component.css']
 })
 export class ListStoryComponent implements OnInit, OnDestroy {
-  search: string = "";
+  searchStory: string = "";
   stories: Story[] = [];
   page : number[] = [];
   private subscriptions: Subscription[] = [];
@@ -43,7 +43,7 @@ export class ListStoryComponent implements OnInit, OnDestroy {
     }
     const data = new FormData();
     data.append('pagenumber', JSON.stringify(pagenumber = "" ? 0 : pagenumber));
-    data.append('search', this.search.trim());
+    data.append('search', this.searchStory.trim());
     data.append('type', JSON.stringify(this.type.id));
     
     this.subscriptions.push(this.storyService.getStoryList(data)
