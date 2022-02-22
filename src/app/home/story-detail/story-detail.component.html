@@ -79,11 +79,11 @@
                                         </section>
                                     </section>
                                     <section class="buttons">
-                                        <a *ngIf="readChapter != null" class="btn btn-truyen" href="">
+                                        <a *ngIf="readChapter != null" class="btn btn-truyen" routerLink="/truyen-home/{{story.id}}/{{readChapter.id}}">
                                             Đọc tiếp
                                         </a>
-                                        <a *ngIf="readChapter == null && story.chapterHead == null"
-                                            class="btn btn-truyen" href="">
+                                        <a *ngIf="readChapter == null && story.chapterHead != null"
+                                            class="btn btn-truyen" routerLink="/truyen-home/{{story.id}}/{{story.chapterHead.id}}">
                                             Đọc Từ Đầu
                                         </a>
                                         <a *ngIf="follow === false" (click)="addFollowStory()"

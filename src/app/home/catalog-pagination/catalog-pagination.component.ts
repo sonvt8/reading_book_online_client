@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/_models/story';
@@ -23,11 +24,15 @@ export class CatalogPaginationComponent implements OnInit, OnDestroy {
   catalog: string = "";
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
     private storyService: StoryService, 
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
+    this.renderer.addClass(this.document.body, 'body-home');
     this.route.paramMap.subscribe(() => {
         this.getStoryListByCatalog(1);
     });
