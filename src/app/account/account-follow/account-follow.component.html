@@ -40,14 +40,14 @@
                                                 <tr *ngFor="let data of datas; let i = index">
                                                     <ng-container *ngIf="datas?.length"> 
                                                         <td>
-                                                            <a href="" target="_blank">{{data.story.name}}</a>
+                                                            <a routerLink="/truyen-home/{{data.story.id}}" target="_blank">{{data.story.name}}</a>
                                                         </td>
                                                         <td> {{data.story.updateDate | date:'dd/MM/yyyy HH:mm' }}</td>
                                                         <td>
-                                                            <a href="" target="_blank" class="float-right badge badge-pill badge-secondary">Xem Truyện</a>
+                                                            <a routerLink="/truyen-home/{{data.story.id}}" target="_blank" class="float-right badge badge-pill badge-secondary">Xem Truyện</a>
                                                         </td>
                                                         <td>
-                                                            <a *ngIf="data.chapterId" href=""
+                                                            <a *ngIf="data.chapterId" routerLink="/truyen-home/{{data.story.id}}/{{data.chapterId}}"
                                                             class="float-right badge badge-pill badge-primary">Đọc Tiếp</a>
                                                         </td>
                                                         <td>
