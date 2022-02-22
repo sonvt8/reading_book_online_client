@@ -109,7 +109,7 @@
                                         </section>
                                         <section class="star-total hidden-xs">
                                             <span id="myrate" itemprop="ratingValue">{{story.rating |
-                                                number:'0.1-2'}}</span>
+                                                number:'0.1-1'}}</span>
                                         </section>
                                         <ng-container *ngIf="!rating">
                                             <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>

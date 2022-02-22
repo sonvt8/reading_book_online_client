@@ -9,6 +9,9 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { Subscription } from 'rxjs';
 
+
+declare var searchStory: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -34,6 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    searchStory();
     this.getDataHeader();
     this.loadJsFile("../../assets/static/js/myApp.js");
   }

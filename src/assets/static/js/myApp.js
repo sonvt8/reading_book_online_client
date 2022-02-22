@@ -1,8 +1,8 @@
 window.TruyenOnlineScript = {
     init: function () {
         this.initApplyConfig();
-        this.initAutoSearch();
-        this.initAutoSearchMobile();
+        //this.initAutoSearch();
+        //this.initAutoSearchMobile();
         this.initLayzLoad();
         this.initSearch();
         this.initSearchMobile();

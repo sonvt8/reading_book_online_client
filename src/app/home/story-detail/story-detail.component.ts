@@ -70,6 +70,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     
 
   ngOnInit(): void {    
+    
     this.isLoggedIn = this.authService.isLoggedIn();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
