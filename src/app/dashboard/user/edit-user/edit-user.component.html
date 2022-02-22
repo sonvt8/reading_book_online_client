@@ -73,12 +73,17 @@
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-12">
-                                <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="rolseList" [(ngModel)]="user.roleList" [ngModelOptions]="{standalone: true}">
+                                <!-- <select multiple class="mdb-select md-form colorful-select dropdown-primary" name="rolseList" [(ngModel)]="user.roleList" [ngModelOptions]="{standalone: true}">
                                     <option *ngFor="let role of listRole" [ngValue]="role">
                                         {{role.name}}
                                     </option>
-                                </select>
+                                </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Phân Quyền</label>
+                                <p-multiSelect class="w-100" name="rolseList" [options]="roles"
+                                    [(ngModel)]="user.roleList" optionLabel="name" display="chip">
+                                </p-multiSelect>
+                                
+
                             </div>
                         </div>
                         <!--Grid row-->

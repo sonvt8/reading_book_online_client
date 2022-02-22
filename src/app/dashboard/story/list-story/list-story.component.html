@@ -50,7 +50,7 @@
                             <tr *ngFor="let story of stories; index as i">
                                 <td>{{i + 1}}</td>
                                 <td>
-                                    <a target="_blank" href=""
+                                    <a target="_blank" routerLink="/truyen-home/{{story.id}}"
                                         class="align-items-center d-flex">
                                         {{story.name}}
                                     </a>
