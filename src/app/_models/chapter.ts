@@ -6,7 +6,7 @@ export class Chapter {
     status: number;
     createDate: Date;
     serial: number;
-    chapterNumber: number;
+    chapterNumber: string;
     storyId : number;
     timeUpdate: Date;
     name: string;
@@ -23,7 +23,7 @@ export class Chapter {
         this.status = 0,
         this.createDate = new Date(),
         this.serial = 0,
-        this.chapterNumber = 0,
+        this.chapterNumber = '',
         this.storyId = 0,
         this.timeUpdate = new Date(),
         this.name = "",
