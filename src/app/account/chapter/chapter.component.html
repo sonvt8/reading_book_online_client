@@ -19,7 +19,7 @@
                                                     <span class="oi oi-book"></span> Đăng Chương Mới
                                                 </h3>
                                                 <div class="card-body">
-                                                    <form enctype="multipart/form-data" class="section-preview" id="resetForm" [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
+                                                    <form enctype="multipart/form-data" class="section-preview" id="resetForm" name='resetForm' [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
                                                         <!--Grid row-->
                                                         <b></b>
                                                         <!-- <input type="text" class="form-control" formControlName="sid"> -->
@@ -51,7 +51,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <input type="text" class="form-control" id="chapterNumber" name="chapterNumber" formControlName="chapterNumber">
+                                                                    <input type="text" class="form-control" id="chapterNumber" name="chapterNumber" formControlName="chapterNumber" autocomplete="off">
                                                                     <label for="chapterNumber" class=" text-primary form-label">Chương Thứ</label>
                                                                     <span class="form-text text-muted">
                                                                         Đây là số chương. VD 'Chương 46: Ta Vô Địch' thì Chương Thứ là '46'
@@ -68,7 +68,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <input type="text" class="form-control" id="name" name="name" formControlName="name">
+                                                                    <input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off">
                                                                     <label for="name" class=" text-primary">Tên Chương</label>
                                                                     <div *ngIf="(f['name'].touched || submitted) && f['name'].errors" class="text-danger">
                                                                         <em *ngIf="f['name'].errors['required']">Chương truyện không được để trống</em>
@@ -83,7 +83,7 @@
                                                             <!--Grid column-->
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <textarea type="text" id="infomation" name="content" rows="10" class="form-control md-textarea" formControlName="content"></textarea>
+                                                                    <textarea type="text" id="content" name="content" rows="10" class="form-control md-textarea" formControlName="content"></textarea>
                                                                     <label for="content" class=" text-primary">Nội dung:</label>
                                                                     <div *ngIf="this.chapterForm.controls['content'].errors?.['required'] && submitted" class="text-danger">
                                                                         <em>Nội dung không được để trống</em>
@@ -97,7 +97,7 @@
                                                             <div class="col-12">
                                                                 <button type="button" routerLink="/tai-khoan/list_chuong/{{storyId}}" class="btn btn-outline-primary btn-rounded waves-effect">Danh sách chương
                                                                 </button>
-                                                                <button type="reset" class="btn btn-outline-primary btn-rounded waves-effect">Làm Lại</button>
+                                                                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="formReset()">Làm Lại</button>
                                                                 <button type="submit" [disabled]="loading" class="btn btn-outline-primary btn-rounded waves-effect">
                                                                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Đăng Chương
                                                                 </button>

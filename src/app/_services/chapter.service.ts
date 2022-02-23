@@ -24,6 +24,10 @@ export class ChapterService {
   public getChapterByStoryIdAndChapterId(sID: number, chID: number): Observable<GetChapterByStoryIdResponse> {
     return this.httpClient.get<GetChapterByStoryIdResponse>(`${this.baseUrl}chuong/${sID}/chuong-${chID}`);
   }
+
+  public addChapter(sID: number, chapter: Chapter): Observable<Chapter> {
+    return this.httpClient.post<Chapter>(`${this.baseUrl}tai-khoan/chapter/them/${sID}`,chapter);
+  }
 }
 
 interface GetChapterResponse {
@@ -40,3 +44,4 @@ interface GetChapterByStoryIdResponse {
   nextChapter: number;
   checkVip: boolean;
 }
+

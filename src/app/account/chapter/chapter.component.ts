@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { Chapter } from 'src/app/_models/chapter';
 import { Story } from 'src/app/_models/story';
 import { ChapterService } from 'src/app/_services/chapter.service';
+import { DataService } from 'src/app/_services/data.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { StoryService } from 'src/app/_services/story.service';
 
@@ -28,6 +30,7 @@ export class ChapterComponent implements OnInit, OnDestroy {
     private storyService: StoryService,
     private notifyService: NotificationService,
     private formBuilder: FormBuilder,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void { 
@@ -35,8 +38,6 @@ export class ChapterComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
       response => {
           this.story = response.storySummary;
-          console.log(this.story)
-          console.log(this.story.id)
       }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
     ));
     this.chapterForm = this.formBuilder.group({
@@ -63,5 +64,40 @@ export class ChapterComponent implements OnInit, OnDestroy {
     }
     this.chapterForm.disable()
     this.loading = true;
+
+    // var formData: any = new FormData();
+    // formData.append("chapterNumber", this.chapterForm.get('chapterNumber')!.value);
+    // formData.append("serial", this.chapterForm.get('serial')!.value);
+    // formData.append("name", this.chapterForm.get('name')!.value);
+    // formData.append("content", this.chapterForm.get('content')!.value);
+
+    this.subscriptions.push(
+      this.chapterService.addChapter( this.storyId, this.chapterForm.value).subscribe(
+        (response: Chapter) => {
+          this.notifyService.notify(NotificationType.SUCCESS,"Chương truyện đã đăng thành công");
+          this.chapterForm.reset();
+          this.dataService.updateStatus(7);
+          this.router.navigate(['/tai_khoan/quan_ly_truyen']);
+          this.loading = false;
+        },error => {
+          this.loading = false;
+        },
+        () => {
+          this.submitted = false;
+          this.chapterForm.reset();
+        }
+      )
+    );
   }
+
+  formReset(){
+    this.chapterForm.reset();
+  }
+}
+
+interface ChapterInfo {
+  chapter: Chapter,
+  preChapter: number;
+  nextChapter: number;
+  checkVip: boolean;
 }
