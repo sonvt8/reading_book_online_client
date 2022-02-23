@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     pagination: {
       clickable: true
     },
-    loop: true,
-    slidesPerView: 1,
+    initialSlide: 0, //this one accept a number according to docs
+    slidesPerView: 1, //number or 'auto'
     autoplay: {
       delay: 3000,
       disableOnInteraction: false

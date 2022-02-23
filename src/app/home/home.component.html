@@ -12,9 +12,10 @@
                                     <section class="editors-choice-slider js-editors-choice-slider">
                                         <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
                                         <swiper [config]="config">
-                                            <ng-template swiperSlide
-                                                *ngFor="let _topStoryWeek of topStoryWeek; index as i">
-                                                <section class="item" *ngIf="i < 4">
+                                            <ng-container *ngFor="let _topStoryWeek of topStoryWeek; index as i">
+                                                <ng-template swiperSlide *ngIf="i < 4"
+                                                >
+                                                <section class="item" >
                                                     <section class="thumb">
                                                         <a href="">
                                                             <img class="img-fluid lazyload" alt=""
@@ -35,6 +36,9 @@
                                                     </section>
                                                 </section>
                                             </ng-template>
+                                            </ng-container>
+                                            
+                                            
 
                                         </swiper>
                                     </section>

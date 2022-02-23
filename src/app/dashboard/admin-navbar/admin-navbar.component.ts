@@ -25,6 +25,7 @@ export class AdminNavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'fixed-sn');
     this.renderer.addClass(this.document.body, 'white-skin');
     this.renderer.addClass(this.document.body, 'body-none');
