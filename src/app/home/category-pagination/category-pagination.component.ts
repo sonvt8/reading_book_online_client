@@ -71,12 +71,25 @@ export class CategoryPaginationComponent implements OnInit, OnDestroy {
     ));
   }
 
+  // config: SwiperOptions = {
+  //   navigation: true,
+  //   pagination: {
+  //     clickable: true
+  //   }
+  // }
+
   config: SwiperOptions = {
-    navigation: true,
     pagination: {
       clickable: true
+    },
+    loop:true,
+    //initialSlide: 0, //this one accept a number according to docs
+    slidesPerView: 1, //number or 'auto'
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
     }
-  }
+  };
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());

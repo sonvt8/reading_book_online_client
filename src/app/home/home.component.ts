@@ -5,11 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Story } from '../_models/story';
 import { TopConvert } from '../_models/top-convert';
-import { User } from '../_models/user';
 import { StoryService } from '../_services/story.service';
 import { UserService } from '../_services/user.service';
 import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation, EffectCreative, Thumbs, EffectCoverflow } from 'swiper';
-import { faLandmark } from '@fortawesome/free-solid-svg-icons';
+
 
 SwiperCore.use([Pagination, Navigation, Autoplay, EffectCreative, Thumbs, EffectCoverflow]);
 
@@ -72,7 +71,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     pagination: {
       clickable: true
     },
-    initialSlide: 0, //this one accept a number according to docs
+    loop:true,
+    //initialSlide: 0, //this one accept a number according to docs
     slidesPerView: 1, //number or 'auto'
     autoplay: {
       delay: 3000,
@@ -94,19 +94,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  configInfo: SwiperOptions = {
-    loop: true,
-    allowTouchMove: false,
-    effect: "creative",
-    creativeEffect: {
-      prev: {
-        shadow: false,
-        translate: ['-120%', 0, -500]
-      },
-      next: {
-        shadow: false,
-        translate: ['120%', 0, -500]
-      }
-    }
-  }
+  // configInfo: SwiperOptions = {
+  //   loop: true,
+  //   allowTouchMove: false,
+  //   effect: "creative",
+  //   creativeEffect: {
+  //     prev: {
+  //       shadow: false,
+  //       translate: ['-120%', 0, -500]
+  //     },
+  //     next: {
+  //       shadow: false,
+  //       translate: ['120%', 0, -500]
+  //     }
+  //   }
+  // }
 }

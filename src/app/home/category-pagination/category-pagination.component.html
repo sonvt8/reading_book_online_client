@@ -37,7 +37,7 @@
                                         <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
                                         <swiper [config]="config">
                                             <ng-container *ngFor="let _topStoryWeek of listTopViewWeek; index as i">
-                                                <ng-template swiperSlide="" *ngIf="i < 4">
+                                                <ng-template swiperSlide="" *ngIf="i < listTopViewWeek.length">
                                                     <section class="item">
                                                         <section class="thumb">
                                                             <a routerLink="/truyen-home/{{_topStoryWeek.id}}" >
