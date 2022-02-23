@@ -56,9 +56,9 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
         } else if (pay.type === 5 || pay.type === 2 || pay.type === 4) {
             result = "-" + pay.money;
         } else {
-            if (pay.sendId.id === 1)
+            if (pay.receivedId.id === 1)
                 result = "-" + pay.money;
-            else if (pay.receivedId.id === 1)
+            else if (pay.sendId.id === 1)
                 result = "+" + pay.money;
         }
     }
@@ -76,9 +76,9 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
     } else if (pay.type === 5) {
         result = "Đã đổi " + pay.money + " đậu thành Tiền mặt";
     } else {
-        if (pay.sendId.id === 1)
+        if (pay.receivedId.id === 1)
             result = "Thanh toán " + pay.money + " đậu đọc Vip Truyện <a href='/truyen/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a> Chương <a href='/truyen/" + pay.chapter.story.id + "/chuong-" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
-        else if (pay.receivedId.id === 1)
+        else if (pay.sendId.id === 1)
             result = "Nhận " + pay.money + " đậu từ Vip Truyện <a href='/truyen/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a> Chương <a href='/truyen/" + pay.chapter.story.id + "/chuong-" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
     }
     return result;
