@@ -16,12 +16,14 @@ import { StoryService } from 'src/app/_services/story.service';
   styleUrls: ['./chapter.component.css']
 })
 export class ChapterComponent implements OnInit, OnDestroy {
-  public loading = false;
-  public submitted = false;
   private subscriptions: Subscription[] = [];
-  public storyId: number = 3;
+  public storyId: number = 0;
   public story: Story = new Story();
-  public chapterForm!: FormGroup;
+
+  public listChapter:Chapter[] = [];
+  public totalPages: number = 0;
+  public currentPage: number = 1;
+  public pages : number[] = [];
 
   constructor(
     private router: Router,
@@ -29,69 +31,44 @@ export class ChapterComponent implements OnInit, OnDestroy {
     private chapterService: ChapterService,
     private storyService: StoryService,
     private notifyService: NotificationService,
-    private formBuilder: FormBuilder,
     private dataService: DataService
   ) { }
 
   ngOnInit(): void { 
     this.storyId = +this.route.snapshot.params['sid'];
-    this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
-      response => {
-          this.story = response.storySummary;
-      }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
-    ));
-    this.chapterForm = this.formBuilder.group({
-      serial: ['', [Validators.required,Validators.maxLength(5)]],
-      chapterNumber: ['', [Validators.required,Validators.maxLength(5)]],
-      name: ['', [Validators.required,Validators.maxLength(255)]],
-      content: ['', Validators.required]
-    });
+    this.getChapterListByStoryId(1, 1); //get chapters having pagination with type = 1. Otherwise, type = 0 no pagination
+    this.getStoryDetail();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.chapterForm.controls; }
+  deleteChapter(id: number): void {}
 
-  onSubmit() {
-    this.submitted = true;
-    
-    // stop here if form is invalid
-    if (this.chapterForm.invalid) {
-      return;
-    }
-    this.chapterForm.disable()
-    this.loading = true;
-
-    this.subscriptions.push(
-      this.chapterService.addChapter( this.storyId, this.chapterForm.value).subscribe(
-        (response: Chapter) => {
-          this.notifyService.notify(NotificationType.SUCCESS,"Chương truyện đã đăng thành công");
-          this.chapterForm.reset();
-          this.dataService.updateStatus(7);
-          this.router.navigate(['/tai_khoan/quan_ly_truyen']);
-          this.loading = false;
-        },error => {
-          this.loading = false;
-        },
-        () => {
-          this.submitted = false;
-          this.chapterForm.reset();
+  getChapterListByStoryId(pagenumber: number, type: number) {
+    this.subscriptions.push(this.chapterService.getChapterListOfStory(this.storyId, pagenumber, type)
+      .subscribe(data => {
+        console.log(data)
+        this.listChapter = data.content;
+        this.currentPage = data.number + 1;
+        this.totalPages = data.totalPages;
+        var startPage = Math.max(1, this.currentPage - 2);
+        var endPage = Math.min(startPage + 4, this.totalPages);
+        var tmpPages = [];
+        for (let i = startPage; i <= endPage; i++) {
+          tmpPages.push(i);
         }
-      )
-    );
+        this.pages = tmpPages;
+      }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
+    ));
   }
 
-  formReset(){
-    this.chapterForm.reset();
+  getStoryDetail(){
+    this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
+      response => {
+          this.story = response.storySummary;
+      }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
+    ));
   }
-}
-
-interface ChapterInfo {
-  chapter: Chapter,
-  preChapter: number;
-  nextChapter: number;
-  checkVip: boolean;
 }

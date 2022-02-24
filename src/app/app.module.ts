@@ -51,6 +51,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 import { ChapterComponent } from './account/chapter/chapter.component';
+import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ChapterComponent } from './account/chapter/chapter.component';
     ChapterDetailComponent,
     StorySubmitComponent,
     ManageStoryComponent,
-    ChapterComponent
+    ChapterComponent,
+    ChapterNewComponent
   ],
   imports: [
     BrowserModule,

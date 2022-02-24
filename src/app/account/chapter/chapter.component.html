@@ -12,103 +12,69 @@
                             <section class="row">
                                 <app-account-navbar></app-account-navbar>
                                 <section class="col-lg-10 col-md-9">
-                                    <section class="row">
-                                        <div class="col">
-                                            <div class="card mb-5">
-                                                <h3 class="card-header primary-color white-text">
-                                                    <span class="oi oi-book"></span> Đăng Chương Mới
-                                                </h3>
-                                                <div class="card-body">
-                                                    <form enctype="multipart/form-data" class="section-preview" id="resetForm" name='resetForm' [formGroup]="chapterForm" (ngSubmit)="onSubmit()">
-                                                        <!--Grid row-->
-                                                        <b></b>
-                                                        <!-- <input type="text" class="form-control" formControlName="sid"> -->
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="md-form mb-0">
-                                                                    <input type="text" class="form-control" id="sName" name="sName" [(ngModel)]="story.name" [ngModelOptions]="{standalone: true}" readonly>
-                                                                    <label for="id" class="form-label text-primary active">Tên truyện </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="md-form mb-0">
-                                                                    <input type="number" class="form-control" id="serial" name="serial" formControlName="serial">
-                                                                    <label for="serial" class="form-label text-primary">Thứ tự </label>
-                                                                    <span class="form-text text-muted">
-                                                                        Đây là số thứ tự của chương. Danh sách chương được sắp xếp theo STT này.
-                                                                    </span>
-                                                                    <div *ngIf="(f['serial'].touched || submitted) && f['serial'].errors" class="text-danger">
-                                                                        <em *ngIf="f['serial'].errors['required']">Thứ tự chương không được để trống</em>
-                                                                        <em *ngIf="f['serial'].errors['maxlength']">Thứ tự chương không được vượt quá 5 ký tự</em>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--Grid row-->
-                                                        <!--Grid row-->
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="md-form mb-0">
-                                                                    <input type="text" class="form-control" id="chapterNumber" name="chapterNumber" formControlName="chapterNumber" autocomplete="off">
-                                                                    <label for="chapterNumber" class=" text-primary form-label">Chương Thứ</label>
-                                                                    <span class="form-text text-muted">
-                                                                        Đây là số chương. VD 'Chương 46: Ta Vô Địch' thì Chương Thứ là '46'
-                                                                    </span>
-                                                                    <div *ngIf="(f['chapterNumber'].touched || submitted) && f['chapterNumber'].errors" class="text-danger">
-                                                                        <em *ngIf="f['chapterNumber'].errors['required']">Chương truyện không được để trống</em>
-                                                                        <em *ngIf="f['chapterNumber'].errors['maxlength']">Chương truyện không được vượt quá 5 ký tự</em>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--Grid row-->
-                                                        <!--Grid row-->
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="md-form mb-0">
-                                                                    <input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off">
-                                                                    <label for="name" class=" text-primary">Tên Chương</label>
-                                                                    <div *ngIf="(f['name'].touched || submitted) && f['name'].errors" class="text-danger">
-                                                                        <em *ngIf="f['name'].errors['required']">Chương truyện không được để trống</em>
-                                                                        <em *ngIf="f['name'].errors['maxlength']">Chương truyện không được vượt quá 255 ký tự</em>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--Grid row-->
-                                                        <!--Grid row-->
-                                                        <div class="row">
-                                                            <!--Grid column-->
-                                                            <div class="col-md-12">
-                                                                <div class="md-form mb-0">
-                                                                    <textarea type="text" id="content" name="content" rows="10" class="form-control md-textarea" formControlName="content"></textarea>
-                                                                    <label for="content" class=" text-primary">Nội dung:</label>
-                                                                    <div *ngIf="this.chapterForm.controls['content'].errors?.['required'] && submitted" class="text-danger">
-                                                                        <em>Nội dung không được để trống</em>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--Grid row-->
-                                                        <!--Grid row-->
-                                                        <div class="row text-right">
-                                                            <div class="col-12">
-                                                                <button type="button" routerLink="/tai-khoan/list_chuong/{{storyId}}" class="btn btn-outline-primary btn-rounded waves-effect">Danh sách chương
-                                                                </button>
-                                                                <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" (click)="formReset()">Làm Lại</button>
-                                                                <button type="submit" [disabled]="loading" class="btn btn-outline-primary btn-rounded waves-effect">
-                                                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Đăng Chương
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <!--Grid row-->
-                                                    </form>
+                                    <div class="card">
+                                        <h3 class="card-header primary-color white-text text-center">
+                                            Danh sách chương Truyện <span>{{story.name}}</span>
+                                        </h3>
+                                        <div class="card-body table-responsive">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6 col-12">
+                                                    <a class="btn btn-outline-primary btn-rounded waves-effect" routerLink="/tai_khoan/them_chuong_truyen/{{storyId}}"><i class="fas fa-plus"></i> Thêm Chương</a>
+                                                </div>
+                                                <!-- <div class="col-sm-12 col-md-6 col-12">
+                                                    <select class="mdb-select md-form colorful-select dropdown-primary mt-0" ng-change="getListChapter(1)"
+                                                            ng-options="opt.label for opt in typeList track by opt.id" ng-model="type">
+                                                    </select>
+                                                </div> -->
+                                                <div class="col-12">
+                                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="font-weight-bolder">Thứ Tự</th>
+                                                            <th class="font-weight-bolder">Chương</th>
+                                                            <th class="font-weight-bolder">Ngày Đăng</th>
+                                                            <th class="font-weight-bolder">Trạng Thái</th>
+                                                            <th class="font-weight-bolder"></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let chapter of listChapter">
+                                                            <td>{{chapter.serial}}</td>
+                                                            <td><a target="_blank" routerLink="/truyen-home/{{storyId}}/{{chapter.id}}">Chương {{chapter.chapterNumber}} : {{chapter.name}}</a></td>
+                                                            <td>{{chapter.createDate | date:'HH:mm dd/MM/yyyy' }}</td>
+                                                            <td>
+                                                                <span *ngIf="chapter.status===1" class="badge badge-pill badge-success">Free</span>
+                                                                <span *ngIf="chapter.status===2" class="badge badge-pill badge-info">Vip</span>
+                                                                <span *ngIf="chapter.status===0" class="badge badge-pill badge-danger">Khóa</span>
+                                                            </td>
+                                                            <td>
+                                                                <a title="Sửa" routerLink="" class="badge badge-pill badge-danger"><i class="fas fa-edit mx-1"></i></a>
+                                                                <a (click)="deleteChapter(chapter.id)" title="Xóa Chapter" class="badge badge-pill badge-danger"><i class="fas fa-trash mx-1"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div aria-label="Page navigation example" *ngIf="totalPages>1">
+                                                        <ul class="pagination pg-blue justify-content-end">
+                                                            <li class="page-item" *ngIf="currentPage != 1">
+                                                                <a class="page-link" (click)="getChapterListByStoryId(currentPage - 1, 1)">
+                                                                    <i class="fas fa-step-backward fa-sm"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li *ngFor="let page of pages" [ngClass]="page === currentPage?'page-item active': 'page-item'">
+                                                                <a class="page-link" (click)="getChapterListByStoryId(page,1)">{{page}}</a>
+                                                            </li>
+                                                            <li class="page-item" *ngIf="currentPage != totalPages">
+                                                                <a class="page-link" (click)="getChapterListByStoryId(currentPage + 1, 1)">
+                                                                    <i class="fas fa-step-forward fa-sm"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
+                                    </div>
                                 </section>
                             </section>
                         </section>

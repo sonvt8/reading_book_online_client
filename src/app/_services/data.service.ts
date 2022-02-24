@@ -42,6 +42,14 @@ export class DataService {
     this.itemSubject.next(items);
   }
 
+  // public clearStatusItem(){
+  //   const items = this.itemSubject.value;
+  //   items!.map(item => {
+  //     return item.isActive = false;
+  //   })
+  //   this.setCurrentItems(items!);
+  // }
+
   public updateStatus(index: number){
     const items = this.itemSubject.value;
     items!.map(item => {
@@ -54,12 +62,12 @@ export class DataService {
   public returnCurrentItem(){
     const url = this.router.url;
     const items = this.itemSubject.value;
-    var index = 0;
+    var index = -1;
     items!.map(item => {
       if (item.path === url) return index = item.id;
       return item.isActive = false;
     })
-    items![index].isActive = true;
+    if (index > -1) items![index].isActive = true;
     this.setCurrentItems(items!);
   }
 }
