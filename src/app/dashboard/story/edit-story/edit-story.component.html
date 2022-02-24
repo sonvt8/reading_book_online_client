@@ -142,13 +142,14 @@
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <select class="mdb-select md-form colorful-select dropdown-primary" name="dealStatus"
+                                <!-- <select class="mdb-select md-form colorful-select dropdown-primary" name="dealStatus"
                                     [(ngModel)]="story.dealStatus" [ngModelOptions]="{standalone: true}">
                                     <option *ngFor="let vip of vipList" [value]="vip.id">
                                         {{vip.label}}
                                     </option>
-                                </select>
+                                </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Trạng thái Vip</label>
+                                <p-dropdown [style]="{ width: '100%' }" [options]="vipList" [(ngModel)]="story.dealStatus" name="dealStatus" optionLabel="label" optionValue="id"></p-dropdown>
                             </div>
                         </div>
                         <!--Grid row-->
@@ -179,18 +180,19 @@
                         <!--Grid row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <select class="mdb-select md-form colorful-select dropdown-primary" name="status"
+                                <!-- <select class="mdb-select md-form colorful-select dropdown-primary" name="status"
                                     [(ngModel)]="story.status" [ngModelOptions]="{standalone: true}">
                                     <option *ngFor="let _status of statusList" [value]="_status.id">
                                         {{_status.label}}
                                     </option>
-                                </select>
+                                </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Trạng thái</label>
+                                <p-dropdown [style]="{ width: '100%' }" [options]="statusList" [(ngModel)]="story.status" name="status" optionLabel="label" optionValue="id"></p-dropdown>
                             </div>
                         </div>
                         <!--Grid row-->
                         <!--Grid row-->
-                        <div class="row text-right">
+                        <div class="row text-right mt-2">
                             <div class="col-12">
                                 <a class="btn btn-outline-secondary btn-rounded waves-effect"
                                     routerLink="/quan-tri/truyen">Quay Lại</a>

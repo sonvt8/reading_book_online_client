@@ -38,7 +38,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   totalPages: number = 0;
   currentPage: number = 1;
   page: number[] = [];
-  readChapter: Chapter = new Chapter();
+  readChapter!: Chapter;
   checkConverter: boolean = false;
   rating: boolean = false;
   countRating: number = 0;

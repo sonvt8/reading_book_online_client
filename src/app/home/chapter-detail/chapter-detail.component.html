@@ -71,7 +71,7 @@
                                         >{{chapter.price}}</strong> đậu để
                                     xem, nếu đồng ý hãy ấn vào nút <strong>MUA</strong> bên dưới. </h3>
                                 <p class="text-center">
-                                    <button class="btn btn-primary" th:ng-click="|chapterVip('${chapter.id}')|">
+                                    <button class="btn btn-primary" (click)="chapterVip(chapter.id)">
                                         MUA
                                     </button>
                                 </p>

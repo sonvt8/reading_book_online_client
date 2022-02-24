@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Chapter } from '../_models/chapter';
+import { CustomHttpResponse } from '../_models/custom-http-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class ChapterService {
 
   public addChapter(sID: number, chapter: Chapter): Observable<Chapter> {
     return this.httpClient.post<Chapter>(`${this.baseUrl}tai-khoan/chapter/them/${sID}`,chapter);
+  }
+
+  buyChaperVip(form: FormData): Observable<CustomHttpResponse>{
+    return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai-khoan/thanh-toan/mua-chuong-vip`, form);
   }
 }
 

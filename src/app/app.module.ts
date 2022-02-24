@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 
@@ -91,6 +92,7 @@ import { ChapterComponent } from './account/chapter/chapter.component';
     AppRoutingModule,
     ButtonModule,
     MultiSelectModule,
+    DropdownModule,
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,

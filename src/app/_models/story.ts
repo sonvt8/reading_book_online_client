@@ -54,8 +54,7 @@ export class Story{
         this.categoryName = "";
         this.chapterNumber = 0
         this.categoryListInput = [];
-        this.chapterNumber = 0
-
+        this.chapterNumber = 0;
     }
         
 
