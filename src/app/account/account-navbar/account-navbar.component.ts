@@ -14,6 +14,7 @@ export class AccountNavbarComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.returnCurrentItem();
     this.subscriptions.push(
       this.dataService._items.subscribe(obj => {
         this.items = obj as Item[];

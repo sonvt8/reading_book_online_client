@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Category } from 'src/app/_models/category';
@@ -8,6 +9,7 @@ import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CategoryService } from 'src/app/_services/category.service';
+import { DataService } from 'src/app/_services/data.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { StoryService } from 'src/app/_services/story.service';
 
@@ -35,9 +37,11 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
     private cateService: CategoryService,
     private fb: FormBuilder,
     private authService: AuthService,
-    private storyService: StoryService,
+    private route: ActivatedRoute,
+    private router: Router,
     private notifyService: NotificationService,
-    private accService: AccountService
+    private accService: AccountService,
+    private dataService: DataService
   ) {
     this.addStoryForm = this.fb.group({
       title: ['', Validators.required],
@@ -114,6 +118,9 @@ export class StorySubmitComponent implements OnInit, OnDestroy {
       this.accService.addStory(formData).subscribe(
         (response: Story) => {
           this.notifyService.notify(NotificationType.SUCCESS,"Bạn đã đăng truyện thành công");
+          this.addStoryForm.reset();
+          this.dataService.updateStatus(7);
+          this.router.navigate(['../quan_ly_truyen'], { relativeTo: this.route });
           this.loading = false;
         },error => {
           this.loading = false;

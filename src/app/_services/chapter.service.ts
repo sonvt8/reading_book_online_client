@@ -26,6 +26,10 @@ export class ChapterService {
     return this.httpClient.get<GetChapterByStoryIdResponse>(`${this.baseUrl}chuong/${sID}/chuong-${chID}`);
   }
 
+  public addChapter(sID: number, chapter: Chapter): Observable<Chapter> {
+    return this.httpClient.post<Chapter>(`${this.baseUrl}tai-khoan/chapter/them/${sID}`,chapter);
+  }
+
   buyChaperVip(form: FormData): Observable<CustomHttpResponse>{
     return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai-khoan/thanh-toan/mua-chuong-vip`, form);
   }
@@ -45,3 +49,4 @@ interface GetChapterByStoryIdResponse {
   nextChapter: number;
   checkVip: boolean;
 }
+

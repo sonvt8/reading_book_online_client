@@ -26,6 +26,8 @@ import { AccountTopUpComponent } from './account/account-top-up/account-top-up.c
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
+import { ChapterComponent } from './account/chapter/chapter.component';
+import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -49,7 +51,9 @@ const routes: Routes = [
       { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}},
       { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}},
       { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}},
-      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}}
+      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}},
+      { path: 'them_chuong_truyen/:sid', component: ChapterNewComponent, data: {title: 'Thêm chương truyện'}},
+      { path: 'chuong_cua_truyen/:sid', component: ChapterComponent, data: {title: 'Xem danh sách chương'}}
     ]
   },
   {
@@ -65,8 +69,6 @@ const routes: Routes = [
       { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },
       { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện'} },
       { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện'} },
-      
-
     ]
   },
 
