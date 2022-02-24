@@ -52,6 +52,8 @@ import { StorySubmitComponent } from './account/story-submit/story-submit.compon
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 import { ChapterComponent } from './account/chapter/chapter.component';
 import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
+import { AuthenticationGuard } from './_guards/authentication.guard';
+import { RoleGuard } from './_guards/role.guard';
 
 @NgModule({
   declarations: [
@@ -112,6 +114,8 @@ import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.c
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     Title,
+    AuthenticationGuard,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })
