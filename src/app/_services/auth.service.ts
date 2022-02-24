@@ -73,6 +73,23 @@ export class AuthService {
     return false;
   }
 
+  checkRole(roleToCheck: string): boolean {
+    this.tokenService.loadToken();
+    return (this.jwtHelper.decodeToken(this.tokenService.token).authorities as Array<string>).indexOf(roleToCheck) !== -1;
+  }
+
+  roleMatch(allowedRole: Array<string>): boolean {
+    this.tokenService.loadToken();
+    let isMatch = false;
+    const userRoles = this.jwtHelper.decodeToken(this.tokenService.token).authorities as Array<string>;
+    allowedRole.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+      }
+    });
+    return isMatch;
+  }
+
   public login(user: UserLogin): Observable<HttpResponse<User>> {
     return this.httpClient.post<User>(`${this.baseUrl}thanh_vien/dang_nhap`, user, { observe: 'response' });
   }
