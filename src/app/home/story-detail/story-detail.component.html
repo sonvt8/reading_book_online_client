@@ -302,7 +302,7 @@
                                                 </section>
                                             </section>
                                         </section>
-                                        <section *ngIf="totalPages>1">
+                                        <section *ngIf="totalPages > 1">
                                             <ul class="pagination justify-content-end mb-3 mt-3">
                                                 <li *ngIf="currentPage != 1" class="page-item">
                                                     <a class="page-link" (click)="getChapterListByStoryId(currentPage - 1, 1)">
@@ -380,7 +380,7 @@
                                                                 </section>
                                                             </li>
                                                         </ul>
-                                                        <section *ngIf="totalPages>1">
+                                                        <section *ngIf="totalPagesComment>1">
                                                             <ul class="pagination justify-content-end mb-3 mt-3">
                                                                 <li *ngIf="currentPage != 1" class="page-item">
                                                                     <a class="page-link" (click)="getCommentList(currentPage - 1, 1)">

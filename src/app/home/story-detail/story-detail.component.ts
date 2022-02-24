@@ -36,6 +36,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   listStory: Story[] = [];
   sid: number = 0;
   totalPages: number = 0;
+  totalPagesComment: number = 0
   currentPage: number = 1;
   page: number[] = [];
   readChapter!: Chapter;
@@ -151,10 +152,6 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
           pages.push(i);
         }
         this.page = pages;
-
-        console.log(this.currentPage);
-        console.log(this.totalPages);
-        console.log(this.page);
       }
       ));
   }
@@ -175,9 +172,9 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
       this.listComment = data.content;
       this.currentPage = data.number + 1;
       this.totalComment = data.totalElements;
-      this.totalPages = data.totalPages;
+      this.totalPagesComment = data.totalPages;
       var startPage = Math.max(1, this.currentPage - 2);
-      var endPage = Math.min(startPage + 4, this.totalPages);
+      var endPage = Math.min(startPage + 4, this.totalPagesComment);
       var pages = [];
       for (let i = startPage; i <= endPage; i++) {
         pages.push(i);
