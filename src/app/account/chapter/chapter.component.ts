@@ -65,12 +65,6 @@ export class ChapterComponent implements OnInit, OnDestroy {
     this.chapterForm.disable()
     this.loading = true;
 
-    // var formData: any = new FormData();
-    // formData.append("chapterNumber", this.chapterForm.get('chapterNumber')!.value);
-    // formData.append("serial", this.chapterForm.get('serial')!.value);
-    // formData.append("name", this.chapterForm.get('name')!.value);
-    // formData.append("content", this.chapterForm.get('content')!.value);
-
     this.subscriptions.push(
       this.chapterService.addChapter( this.storyId, this.chapterForm.value).subscribe(
         (response: Chapter) => {
