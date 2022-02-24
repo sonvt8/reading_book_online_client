@@ -151,6 +151,10 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
           pages.push(i);
         }
         this.page = pages;
+
+        console.log(this.currentPage);
+        console.log(this.totalPages);
+        console.log(this.page);
       }
       ));
   }
