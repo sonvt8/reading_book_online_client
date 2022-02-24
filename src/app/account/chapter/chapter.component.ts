@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
@@ -9,6 +8,8 @@ import { ChapterService } from 'src/app/_services/chapter.service';
 import { DataService } from 'src/app/_services/data.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { StoryService } from 'src/app/_services/story.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-chapter',
@@ -25,6 +26,14 @@ export class ChapterComponent implements OnInit, OnDestroy {
   public currentPage: number = 1;
   public pages : number[] = [];
 
+  public typeList = [
+    {'id': 0, 'label': 'Thứ Tự Cao xuống Thấp'},
+    {'id': 1, 'label': 'Thứ Tự Thấp đến Cao '},
+    {'id': 2, 'label': 'Ngày Đăng Từ Mới đến Cũ'},
+    {'id': 3, 'label': 'Ngày Đăng Từ Cũ đến Mới'}
+  ];
+  public type = this.typeList[0];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -35,8 +44,9 @@ export class ChapterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void { 
+    this.showSelect();
     this.storyId = +this.route.snapshot.params['sid'];
-    this.getChapterListByStoryId(1, 1); //get chapters having pagination with type = 1. Otherwise, type = 0 no pagination
+    this.getChapterListByStoryId(1);
     this.getStoryDetail();
   }
 
@@ -46,10 +56,9 @@ export class ChapterComponent implements OnInit, OnDestroy {
 
   deleteChapter(id: number): void {}
 
-  getChapterListByStoryId(pagenumber: number, type: number) {
-    this.subscriptions.push(this.chapterService.getChapterListOfStory(this.storyId, pagenumber, type)
+  getChapterListByStoryId(pagenumber: number) {
+    this.subscriptions.push(this.chapterService.getChapterUserByStoryId(this.storyId, pagenumber, this.type.id)
       .subscribe(data => {
-        console.log(data)
         this.listChapter = data.content;
         this.currentPage = data.number + 1;
         this.totalPages = data.totalPages;
@@ -70,5 +79,11 @@ export class ChapterComponent implements OnInit, OnDestroy {
           this.story = response.storySummary;
       }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
     ));
+  }
+
+  showSelect(){
+    $(document).ready(function () {
+      $('.mdb-select').materialSelect();
+    });
   }
 }
