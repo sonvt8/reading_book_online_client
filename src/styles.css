@@ -24,3 +24,8 @@ p-multiSelect {
     width: 100%;
     font-size: 1rem;
 }
+
+.md-form textarea.md-textarea {
+    overflow-y: auto;
+    padding: 20px 0 0 0 !important;
+}
