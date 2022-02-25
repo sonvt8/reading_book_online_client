@@ -44,7 +44,10 @@ export class EditStoryComponent implements OnInit, OnDestroy {
     private categoryService: CategoryService, 
     private router: Router, 
     private toastr: ToastrService, 
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { this.vipList = [
+      {'id': 0, 'label': 'Miễn phí'},
+      {'id': 1, 'label': 'Trả phí'},
+    ];}
 
   ngOnInit(): void {
     showImage();
@@ -90,6 +93,17 @@ export class EditStoryComponent implements OnInit, OnDestroy {
 
   onProfileImageChange(event: any): void {
     this.images = event.target.files[0];
+  }
+
+  get isDealStatus() {
+    return this.story.dealStatus == 1 ? 'Trả phí' : 'Miễn phí';
+  }
+ 
+  set isDealStatus(newValue:string) {
+    if(newValue == 'Trả phí')
+      this.story.dealStatus = 1;
+    else
+      this.story.dealStatus = 0;
   }
 
   ngOnDestroy(): void {

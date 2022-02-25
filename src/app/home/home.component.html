@@ -1,7 +1,27 @@
 <section class="page-wrapper">
     <app-header></app-header>
-
-    <section class="truyen-main">
+    <section class="truyen-main" *ngIf="topStory.length == 0">
+        <section id="content" class="container container-truyen mb-4">
+            <section class="truyen-section section-featured">
+                <section class="featured-content">
+                    <section class="row align-items-center">
+                        <section class="error-card">
+                            <section class="error-title-block">
+                                <h2 class="error-sub-title shadow-1"> Bạn chưa đăng truyện nào cả</h2>
+                            </section>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.error-title-block').addClass('animated flipInY');
+                                    $('.error-container').addClass('animated fadeInUp');
+                                })
+                            </script>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="truyen-main" *ngIf="topStory.length != 0">
         <section class="container">
             <section class="truyen-section section-featured">
                 <section class="featured-content">
@@ -12,30 +32,30 @@
                                     <section class="editors-choice-slider js-editors-choice-slider">
                                         <h2 class="shadow-1">ĐỌC NHIỀU TRONG TUẦN</h2>
                                         <swiper [config]="config">
-                                            <ng-template swiperSlide
-                                                *ngFor="let _topStoryWeek of topStoryWeek; index as i">
-                                                <section class="item" *ngIf="i < 4">
-                                                    <section class="thumb">
-                                                        <a href="">
-                                                            <img class="img-fluid lazyload" alt=""
-                                                                data-src="{{_topStoryWeek.images}}"
-                                                                title="{{_topStoryWeek.name}}">
-                                                        </a>
+                                            <ng-container *ngFor="let _topStoryWeek of topStoryWeek; index as i">
+                                                <ng-template swiperSlide *ngIf="i < 6">
+                                                    <section class="item" >
+                                                        <section class="thumb">
+                                                            <a href="">
+                                                                <img class="img-fluid lazyload" alt=""
+                                                                    data-src="{{_topStoryWeek.images}}"
+                                                                    title="{{_topStoryWeek.name}}">
+                                                            </a>
+                                                        </section>
+                                                        <section class="info">
+                                                            <h2 class="title">
+                                                                <a href="">{{_topStoryWeek.name}}</a>
+                                                            </h2>
+                                                            <span>
+                                                                <span class="fz-16">{{_topStoryWeek.cnt}}</span> người
+                                                                truy cập</span>
+                                                            <section class="description text-center"
+                                                                style="-webkit-line-clamp: 2;">
+                                                                {{_topStoryWeek.infomation}}</section>
+                                                        </section>
                                                     </section>
-                                                    <section class="info">
-                                                        <h2 class="title">
-                                                            <a href="">{{_topStoryWeek.name}}</a>
-                                                        </h2>
-                                                        <span>
-                                                            <span class="fz-16">{{_topStoryWeek.cnt}}</span> người
-                                                            truy cập</span>
-                                                        <section class="description text-center"
-                                                            style="-webkit-line-clamp: 2;">
-                                                            {{_topStoryWeek.infomation}}</section>
-                                                    </section>
-                                                </section>
-                                            </ng-template>
-
+                                                </ng-template>
+                                            </ng-container>
                                         </swiper>
                                     </section>
                                 </section>

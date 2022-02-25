@@ -61,7 +61,7 @@
                                     <i class="truyen-icon icon-search"></i>
                                 </button>
                             </section>
-                            <form id="js-search-panel" class="search-panel">
+                            <form id="js-search-panel" class="search-panel" method="post">
                                 <div class="txtDiv">
                                     <input type="text" name="txtKeyword" id="txtKeyword" value=""
                                         placeholder="Tên truyện" class="form-control" autocomplete="off" required
@@ -96,11 +96,8 @@
                             <span class="truyen-login-title">{{currentUser?.username}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a routerLink="/quan-tri">Trang Quản Lý</a></li>
+                            <li><a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') && !authService.checkRole('ROLE_SMOD')">Trang Quản Lý</a></li>
                             <li><a routerLink="/tai_khoan">Hồ Sơ</a></li>
-                            <li><a routerLink="/trang-chu">Truyện Theo Dõi</a></li>
-                            <li><a routerLink="/trang-chu">Quản Lý Truyện</a></li>
-                            <li><a routerLink="/trang-chu">Nạp Đậu</a></li>
                             <li class="dropdown-divider"></li>
                             <li><a (click)="logOut()">Thoát</a></li>
                         </ul>
@@ -155,22 +152,9 @@
                         </a>
                     </section>
                     <section class="list-group collapse" id="truyen-user-menu-collapse">
-                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Đăng truyện<span class="truyen-icon icon-white-next"></span>
-                            </a>
-                        </section>
-                        <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Truyện Theo Dõi<span class="truyen-icon icon-white-next"></span>
-                            </a>
-                        </section>
-                        <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Quản lý truyện<span
+                            <a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') && !authService.checkRole('ROLE_SMOD')">Trang quản lý <span
                                     class="truyen-icon icon-white-next"></span></a>
-                        </section>
-                        <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
-                        <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Tủ truyện<span class="truyen-icon icon-white-next"></span></a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
                         <section class="list-group-item list-group-item-sidebar">
@@ -178,9 +162,6 @@
                                     class="truyen-icon icon-white-next"></span></a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
-                        <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/trang-chu">Nạp Đậu<span class="truyen-icon icon-white-next"></span></a>
-                        </section>
                     </section>
                 </section>
             </section>
@@ -195,7 +176,7 @@
             </section>
             <section class="list-group" style="margin-bottom: 20px;">
                 <section class="list-group-item list-group-item-action list-group-item-sidebar">
-                    <a routerLink="/danh-muc/moi-cap-nhap" 
+                    <a routerLink="/danh-muc/moi-cap-nhat" 
                        title="Truyện Mới"> Truyện Mới <span
                             class="truyen-icon icon-next"></span>
                     </a>
@@ -228,7 +209,7 @@
 <a href="#" class="truyen-sidebar-overlay js-close-sidebar"></a>
 <section class="truyen-search-box">
     <section class="container">
-        <form class="search-box-mobile">
+        <form class="search-box-mobile" method="post">
             <input type="text" id="txtKeywordMobi" name="txtKeyword" class="form-control"
                 placeholder="Tên truyện hoặc tác giả không dấu" value="" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Bạn chưa nhập gì để tìm kiếm!')">

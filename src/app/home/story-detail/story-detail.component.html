@@ -79,16 +79,16 @@
                                         </section>
                                     </section>
                                     <section class="buttons">
-                                        <a *ngIf="readChapter == null" class="btn btn-truyen" href="">
+                                        <a *ngIf="readChapter != null" class="btn btn-truyen" routerLink="/truyen-home/{{story.id}}/{{readChapter.id}}">
                                             Đọc tiếp
                                         </a>
-                                        <a *ngIf="readChapter != null && story.chapterHead == null"
-                                            class="btn btn-truyen" href="">
+                                        <a *ngIf="readChapter == null && story.chapterHead != null"
+                                            class="btn btn-truyen" routerLink="/truyen-home/{{story.id}}/{{story.chapterHead.id}}">
                                             Đọc Từ Đầu
                                         </a>
-                                        <a *ngIf="follow === false" ng-click="registRecentReadingStory()"
+                                        <a *ngIf="follow === false" (click)="addFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Theo dõi</a>
-                                        <a *ngIf="follow === true" ng-click="unRecentReadingStory()"
+                                        <a *ngIf="follow === true" (click)="cancelFollowStory()"
                                             class="btn btn-outline-primary waves-effect">Bỏ Theo dõi</a>
                                         <!-- Button trigger modal -->
                                         <a class="btn btn-xs btn-read text-white" data-toggle="modal"
@@ -109,16 +109,20 @@
                                         </section>
                                         <section class="star-total hidden-xs">
                                             <span id="myrate" itemprop="ratingValue">{{story.rating |
-                                                number:'0.1-2'}}</span>
+                                                number:'0.1-1'}}</span>
                                         </section>
                                         <ng-container *ngIf="!rating">
                                             <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
                                             <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
                                         </ng-container>
-                                        <ng-container *ngIf="rating">
+                                        <ng-container *ngIf="rating && currentUser.id != story.userId">
                                             <p>Bạn đã đánh giá truyện này</p>
                                             <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
-                                        </ng-container>                                      
+                                        </ng-container>  
+                                        <ng-container *ngIf="rating && currentUser.id == story.userId">
+                                            <p>Bạn không được đánh giá truyện bạn đã đăng</p>
+                                            <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>                                     
                                     </section>
                                 </section>
                             </section>
@@ -156,7 +160,10 @@
                                 role="tabpanel">
                                 <section class="row">
                                     <section class="col-sm-12 col-md-8 col-lg-9">
-                                        <section class="brief" *ngIf="story.infomation != null">{{story.infomation}}
+                                        <section class="brief" *ngIf="story.infomation != null">
+                                            <div [innerHTML]="story.infomation">
+
+                                            </div>
                                         </section>
                                         <section class="list-overview" *ngIf="story.chapterNew != null">
                                             <section class="item">
@@ -299,7 +306,7 @@
                                                 </section>
                                             </section>
                                         </section>
-                                        <section *ngIf="totalPages>1">
+                                        <section *ngIf="totalPages > 1">
                                             <ul class="pagination justify-content-end mb-3 mt-3">
                                                 <li *ngIf="currentPage != 1" class="page-item">
                                                     <a class="page-link" (click)="getChapterListByStoryId(currentPage - 1, 1)">
@@ -377,7 +384,7 @@
                                                                 </section>
                                                             </li>
                                                         </ul>
-                                                        <section *ngIf="totalPages>1">
+                                                        <section *ngIf="totalPagesComment>1">
                                                             <ul class="pagination justify-content-end mb-3 mt-3">
                                                                 <li *ngIf="currentPage != 1" class="page-item">
                                                                     <a class="page-link" (click)="getCommentList(currentPage - 1, 1)">
@@ -430,10 +437,9 @@
                     <p>- Nếu bạn thấy truyện này hay bạn có thể sử dụng Đậu để đề cử truyện này, truyện càng có
                         nhiều phiếu đề cử càng có vị trí đẹp ngoài trang chủ, càng có nhiều người đọc truyện hơn.</p>
                     <p>- Mỗi Phiếu đề cử tốn 1000 đậu</p>
-                    <form class="form-inline" ng-submit="appoint()">
+                    <form class="form-inline" id="resetForm" #appointForm="ngForm" (ngSubmit)="appoint(appointForm)">
                         <section class="form-group">
-                            <input type="number" class="form-control" placeholder="Nhập số phiếu đề cử" min="1"
-                                ng-model="coupon">
+                            <input type="number" class="form-control" ngModel name="coupon" placeholder="Nhập số phiếu đề cử" min="1">
                         </section>
                         <button type="submit" class="btn btn-truyen">Đề cử</button>
                     </form>

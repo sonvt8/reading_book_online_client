@@ -68,10 +68,10 @@
                                  style="font-size: 26px; line-height: 140%; font-family: 'Palatino Linotype', sans-serif; word-wrap: break-word;">
                             <section class="content-vip" *ngIf="!checkVip">
                                 <h3 class="text-danger text-center">Đây là chương truyện mất phí,bạn cần trả <strong
-                                        th:text="${chapter.price}"></strong> đậu để
+                                        >{{chapter.price}}</strong> đậu để
                                     xem, nếu đồng ý hãy ấn vào nút <strong>MUA</strong> bên dưới. </h3>
                                 <p class="text-center">
-                                    <button class="btn btn-primary" th:ng-click="|chapterVip('${chapter.id}')|">
+                                    <button class="btn btn-primary" (click)="chapterVip(chapter.id)">
                                         MUA
                                     </button>
                                 </p>
@@ -84,7 +84,9 @@
                                 <section class="clearfix"></section>
                             </section>
                             <ng-container *ngIf="checkVip">
-                                {{chapter.content}}
+                                <div [innerHTML]="chapter.content">
+
+                                </div>
                             </ng-container>
                         </section>
                     </section>

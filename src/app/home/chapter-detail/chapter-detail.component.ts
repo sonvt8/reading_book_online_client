@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Chapter } from 'src/app/_models/chapter';
@@ -40,7 +40,8 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private storyService: StoryService,
     private chapterService: ChapterService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private router: Router ,
     private authService: AuthService,
     private commentService: CommentService,
     private toastr: ToastrService
@@ -138,6 +139,23 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
       })
     }
     
+  }
+
+  chapterVip(id: number){
+      var form = new FormData();
+      form.append("chapterId", JSON.stringify(id));
+      this.subscriptions.push(this.chapterService.buyChaperVip(form).subscribe(
+        response => {
+          
+          Swal.fire({
+            text: "Mua chương vip thành công",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+          this.checkVip= true;
+          this.router.navigateByUrl(`/truyen-home/${this.sid}/${id}`, { skipLocationChange: true }).then(r => {});
+        }, error => this.toastr.error(error.error.message)
+    ));
   }
 
   ngOnDestroy(): void {

@@ -16,8 +16,8 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-12">
                             <div class="md-form mb-0 mt-0">
-                                <input type="text" class="form-control" length="255" (input)="getStory(1)" id="search" name="search" [(ngModel)] = "search">
-                                <label for="search" class="form-label text-primary">Tìm Kiếm Theo Tên</label>
+                                <input type="text" class="form-control" length="255" (input)="getStory(1)" id="searchStory" name="searchStory" [(ngModel)] = "searchStory">
+                                <label for="searchStory" class="form-label text-primary">Tìm Kiếm Theo Tên</label>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-12">
@@ -47,16 +47,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let story of stories">
-                                <td>{{story.id}}</td>
+                            <tr *ngFor="let story of stories; index as i">
+                                <td>{{i + 1}}</td>
                                 <td>
-                                    <a target="_blank" href=""
+                                    <a target="_blank" routerLink="/truyen-home/{{story.id}}"
                                         class="align-items-center d-flex">
                                         {{story.name}}
                                     </a>
                                 </td>
                                 <td>
-                                    {{story.rating}}
+                                    {{story.rating | number:'0.1-1'}}
                                 </td>
                                 <td>
                                     {{story.countView}}

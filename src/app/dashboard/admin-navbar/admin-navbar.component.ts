@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 
 declare var showNavbar: any
@@ -15,21 +16,24 @@ declare var showNavbar: any
 export class AdminNavbarComponent implements OnInit {
 
   title: string = "";
+  user: User = new User();
 
   constructor(
     @Inject(DOCUMENT) private document: Document, 
     private renderer: Renderer2,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private titleService: Title,
   ) { }
 
   ngOnInit(): void {
+    this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'fixed-sn');
     this.renderer.addClass(this.document.body, 'white-skin');
     this.renderer.addClass(this.document.body, 'body-none');
     showNavbar();
     this.title = this.titleService.getTitle();
+    this.user = this.authService.getUserFromLocalCache();
   }
 
   logOut() {

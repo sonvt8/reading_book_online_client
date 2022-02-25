@@ -39,8 +39,8 @@
                                 <td colspan="6">Chưa Có Thể Loại nào</td>
                             </tr>
                             <ng-container *ngIf="categories.length!==0">
-                                <tr *ngFor="let cat of categories">
-                                    <td>{{cat.id}}</td>
+                                <tr *ngFor="let cat of categories; index as i">
+                                    <td>{{i + 1}}</td>
                                     <td>{{cat.name}}</td>
                                     <td>{{cat.createDate | date: 'mediumDate'}}</td>
                                     <td>{{cat.createBy}}</td>

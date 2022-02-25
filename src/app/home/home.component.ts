@@ -5,11 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Story } from '../_models/story';
 import { TopConvert } from '../_models/top-convert';
-import { User } from '../_models/user';
 import { StoryService } from '../_services/story.service';
 import { UserService } from '../_services/user.service';
 import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation, EffectCreative, Thumbs, EffectCoverflow } from 'swiper';
-import { faLandmark } from '@fortawesome/free-solid-svg-icons';
 
 SwiperCore.use([Pagination, Navigation, Autoplay, EffectCreative, Thumbs, EffectCoverflow]);
 
@@ -33,12 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private storyService: StoryService,
     private userService: UserService,
-    private router: Router,
-    private toastr: ToastrService
   ) { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.getHomeStory();
@@ -72,8 +67,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     pagination: {
       clickable: true
     },
-    loop: true,
-    slidesPerView: 1,
+    loop:true,
+    slidesPerView: 1, //number or 'auto'
     autoplay: {
       delay: 3000,
       disableOnInteraction: false
@@ -94,19 +89,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  configInfo: SwiperOptions = {
-    loop: true,
-    allowTouchMove: false,
-    effect: "creative",
-    creativeEffect: {
-      prev: {
-        shadow: false,
-        translate: ['-120%', 0, -500]
-      },
-      next: {
-        shadow: false,
-        translate: ['120%', 0, -500]
-      }
-    }
-  }
+  // configInfo: SwiperOptions = {
+  //   loop: true,
+  //   allowTouchMove: false,
+  //   effect: "creative",
+  //   creativeEffect: {
+  //     prev: {
+  //       shadow: false,
+  //       translate: ['-120%', 0, -500]
+  //     },
+  //     next: {
+  //       shadow: false,
+  //       translate: ['120%', 0, -500]
+  //     }
+  //   }
+  // }
 }

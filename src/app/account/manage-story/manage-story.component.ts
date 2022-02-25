@@ -92,7 +92,7 @@ export class ManageStoryComponent implements OnInit, OnDestroy{
     if (pagenumber === undefined) {
       pagenumber = 1;
     }
-    const status = 0; /* Get list pending stories */
+    const status = 2; /* Get list pending stories */
     this.subscriptions.push(this.accService.getStoryAccount(pagenumber, status)
         .subscribe(data => {
           this.listStop = data.content;

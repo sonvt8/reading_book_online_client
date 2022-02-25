@@ -36,14 +36,16 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   listStory: Story[] = [];
   sid: number = 0;
   totalPages: number = 0;
+  totalPagesComment: number = 0
   currentPage: number = 1;
   page: number[] = [];
-  readChapter: Chapter = new Chapter();
+  readChapter!: Chapter;
   checkConverter: boolean = false;
   rating: boolean = false;
   countRating: number = 0;
   follow: boolean = false;
   user: User = new User();
+  currentUser: User = new User();
   totalComment: number = 0;
   listComment: CommentModel[] = [];
   noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
@@ -70,6 +72,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     
 
   ngOnInit(): void {    
+    this.currentUser = this.authService.getUserFromLocalCache();
     this.isLoggedIn = this.authService.isLoggedIn();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
@@ -88,6 +91,32 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     var form = new FormData();
     form.append("storyId", JSON.stringify(this.sid));
     this.followService.checkFollow(form).subscribe(data => this.follow = data);
+  }
+
+  appoint(newForm: NgForm){
+    //console.log(newForm.value);
+    if(newForm.value.coupon != ""){
+     
+      var form = new FormData();
+      form.append("storyId", JSON.stringify(this.sid));
+      form.append("coupon", newForm.value.coupon);
+      this.subscriptions.push(this.storyService.appointStory(form).subscribe(
+        response => {
+          newForm.reset();
+          Swal.fire({
+            text: "Đề cử thành công!",
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        }, error => this.toastr.error(error.error.message)
+    ));
+    } else {
+      Swal.fire({
+        text: "Bạn cần nhập thông tin",
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+    }
   }
 
   getStoryById(): void {
@@ -144,9 +173,9 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
       this.listComment = data.content;
       this.currentPage = data.number + 1;
       this.totalComment = data.totalElements;
-      this.totalPages = data.totalPages;
+      this.totalPagesComment = data.totalPages;
       var startPage = Math.max(1, this.currentPage - 2);
-      var endPage = Math.min(startPage + 4, this.totalPages);
+      var endPage = Math.min(startPage + 4, this.totalPagesComment);
       var pages = [];
       for (let i = startPage; i <= endPage; i++) {
         pages.push(i);
@@ -166,6 +195,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     form.append("rate", JSON.stringify(this.starRating));
     this.ratingService.ratingStory(form).subscribe(data =>  {
       this.getStoryById();
+      this.rating = true;
       Swal.fire({
         text: "Đánh giá thành công!",
         icon: 'success',
@@ -175,9 +205,38 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  addFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.addFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = true;
+      Swal.fire({
+        text: "Theo dõi truyện thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
+  cancelFollowStory(){
+    var form = new FormData();
+    form.append("storyId", JSON.stringify(this.sid));
+    this.followService.cancelFollowStory(form).subscribe(data =>  {
+      this.getStoryById();
+      this.follow = false;
+      Swal.fire({
+        text: "Hủy theo dõi truyện thành công!",
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    }, error => this.toastr.error(error.error.message)
+    );
+  }
+
   addComment(newForm: NgForm){
     if(newForm.value.commentText.trim() != ""){
-      this.sid = +this.route.snapshot.params['sid'];
       var form = new FormData();
       form.append("storyId", JSON.stringify(this.sid));
       form.append("commentText", newForm.value.commentText);

@@ -9,6 +9,9 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { Subscription } from 'rxjs';
 
+
+declare var searchStory: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private authService: AuthService,
+    public authService: AuthService,
     private titleService: Title,
   ) {
     this.subscription = this.authService.user.subscribe(user => {
@@ -34,8 +37,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    searchStory();
     this.getDataHeader();
-    this.loadJsFile("../../assets/js/myApp.js");
+    this.loadJsFile("../../assets/static/js/myApp.js");
   }
 
   ngOnDestroy() {

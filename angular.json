@@ -34,16 +34,20 @@
             ],
             "styles": [
               "src/assets/static/mdbootstrap/css/bootstrap.min.css",
+              "node_modules/primeng/resources/primeng.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeicons/primeicons.css",
               "src/assets/static/mdbootstrap/css/mdb.css",
               "src/assets/static/bower/Font-Awesome/css/all.css",
               "node_modules/swiper/swiper-bundle.css",
-              "src/styles.css",
+
               "src/assets/static/css/myWebStyle.css",
               "src/assets/static/css/animationStyle.css",
               "src/assets/static/bower/animate.css/animate.min.css",
               "src/assets/static/bower/jquery-ui/themes/base/jquery-ui.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/js/jquery.js",
@@ -62,7 +66,8 @@
               "src/assets/static/js/myApp.js",
               "src/assets/static/js/backToTop.js",
               "src/assets/js/showNavbar.js",
-              "src/assets/js/showImage.js"
+              "src/assets/js/showImage.js",
+              "src/assets/js/searchStoryHome.js"
             ]
           },
           "configurations": {

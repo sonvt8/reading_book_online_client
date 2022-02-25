@@ -4,6 +4,8 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 
@@ -42,12 +44,17 @@ import { CatalogPaginationComponent } from './home/catalog-pagination/catalog-pa
 import { CategoryPaginationComponent } from './home/category-pagination/category-pagination.component';
 import { StoryDetailComponent } from './home/story-detail/story-detail.component';
 import { AccountFollowComponent } from './account/account-follow/account-follow.component';
-import { AccountLogPaymentComponent} from './account/account-log-payment/account-log-payment.component';
+import { AccountLogPaymentComponent } from './account/account-log-payment/account-log-payment.component';
 import { AccountTopUpComponent } from './account/account-top-up/account-top-up.component';
 import { ChapterDetailComponent } from './home/chapter-detail/chapter-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StorySubmitComponent } from './account/story-submit/story-submit.component';
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
+import { ChapterComponent } from './account/chapter/chapter.component';
+import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
+import { AuthenticationGuard } from './_guards/authentication.guard';
+import { RoleGuard } from './_guards/role.guard';
+import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
 
 @NgModule({
   declarations: [
@@ -82,11 +89,16 @@ import { ManageStoryComponent } from './account/manage-story/manage-story.compon
     ChapterDetailComponent,
     StorySubmitComponent,
     ManageStoryComponent,
+    ChapterComponent,
+    ChapterNewComponent,
+    AccEditStoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
+    MultiSelectModule,
+    DropdownModule,
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
@@ -104,6 +116,8 @@ import { ManageStoryComponent } from './account/manage-story/manage-story.compon
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     Title,
+    AuthenticationGuard,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })

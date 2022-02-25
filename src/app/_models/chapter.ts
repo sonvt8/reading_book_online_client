@@ -6,9 +6,9 @@ export class Chapter {
     status: number;
     createDate: Date;
     serial: number;
-    chapterNumber: number;
+    chapterNumber: string;
     storyId : number;
-    timeUpdate: Date;
+    timeUpdate: string;
     name: string;
     displayName: string;
     story: Story = new Story;
@@ -16,15 +16,16 @@ export class Chapter {
     countView!: number;
     wordCount!: number;
     content!: string;
+    price!: number
 
     constructor(){
         this.id = 0,
         this.status = 0,
         this.createDate = new Date(),
         this.serial = 0,
-        this.chapterNumber = 0,
+        this.chapterNumber = '',
         this.storyId = 0,
-        this.timeUpdate = new Date(),
+        this.timeUpdate = '',
         this.name = "",
         this.displayName = "0";
     }
