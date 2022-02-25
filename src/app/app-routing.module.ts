@@ -28,6 +28,8 @@ import { StorySubmitComponent } from './account/story-submit/story-submit.compon
 import { ManageStoryComponent } from './account/manage-story/manage-story.component';
 import { ChapterComponent } from './account/chapter/chapter.component';
 import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
+import { AuthenticationGuard } from './_guards/authentication.guard';
+import { RoleGuard } from './_guards/role.guard';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -45,30 +47,30 @@ const routes: Routes = [
   { 
     path: 'tai_khoan', 
     children:[
-      { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}},
-      { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}},
-      { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}},
-      { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}},
-      { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}},
-      { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}},
-      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}},
-      { path: 'them_chuong_truyen/:sid', component: ChapterNewComponent, data: {title: 'Thêm chương truyện'}},
-      { path: 'chuong_cua_truyen/:sid', component: ChapterComponent, data: {title: 'Xem danh sách chương'}}
+      { path: '', component: ProfileComponent, data: {title: 'Hồ sơ'}, canActivate: [AuthenticationGuard] },
+      { path: 'doi_mat_khau', component: PasswordChangeComponent, data: {title: 'Đổi mật khẩu'}, canActivate: [AuthenticationGuard]},
+      { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}, canActivate: [AuthenticationGuard]},
+      { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}, canActivate: [AuthenticationGuard]},
+      { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}, canActivate: [AuthenticationGuard]},
+      { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}, canActivate: [AuthenticationGuard]},
+      { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}, canActivate: [AuthenticationGuard]},
+      { path: 'them_chuong_truyen/:sid', component: ChapterNewComponent, data: {title: 'Thêm chương truyện'}, canActivate: [AuthenticationGuard]},
+      { path: 'chuong_cua_truyen/:sid', component: ChapterComponent, data: {title: 'Xem danh sách chương'}, canActivate: [AuthenticationGuard]}
     ]
   },
   {
     path: 'quan-tri',
     component: AdminComponent,
     children:[
-      { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
-      { path: 'trang-quan-ly', component: AdminHomeComponent, data: {title: 'Trang quản lý'}},
-      { path: 'the-loai', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại'}},
-      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: ' Cập nhật Thể loại'}},
-      { path: 'them-the-loai', component: AddCategoryComponent, data: {title: 'Thêm thể loại'}},
-      { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản'}},
-      { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng'} },
-      { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện'} },
-      { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện'} },
+      { path: '', component: AdminHomeComponent, data: {title: 'Trang quản lý', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'trang-quan-ly', component: AdminHomeComponent, data: {title: 'Trang quản lý', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'the-loai', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: ' Cập nhật Thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'them-the-loai', component: AddCategoryComponent, data: {title: 'Thêm thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
+      { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
+      { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
     ]
   },
 
