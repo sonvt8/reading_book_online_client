@@ -9,7 +9,6 @@ import { StoryService } from '../_services/story.service';
 import { UserService } from '../_services/user.service';
 import SwiperCore, { SwiperOptions, Pagination, Autoplay, Navigation, EffectCreative, Thumbs, EffectCoverflow } from 'swiper';
 
-
 SwiperCore.use([Pagination, Navigation, Autoplay, EffectCreative, Thumbs, EffectCoverflow]);
 
 @Component({
@@ -32,12 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private storyService: StoryService,
     private userService: UserService,
-    private router: Router,
-    private toastr: ToastrService
   ) { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');
     this.getHomeStory();
@@ -72,7 +68,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       clickable: true
     },
     loop:true,
-    //initialSlide: 0, //this one accept a number according to docs
     slidesPerView: 1, //number or 'auto'
     autoplay: {
       delay: 3000,

@@ -45,6 +45,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
   countRating: number = 0;
   follow: boolean = false;
   user: User = new User();
+  currentUser: User = new User();
   totalComment: number = 0;
   listComment: CommentModel[] = [];
   noImage = 'https://res.cloudinary.com/thang1988/image/upload/v1544258290/truyenmvc/noImages.png';
@@ -71,7 +72,7 @@ export class StoryDetailComponent implements OnInit, OnDestroy {
     
 
   ngOnInit(): void {    
-    
+    this.currentUser = this.authService.getUserFromLocalCache();
     this.isLoggedIn = this.authService.isLoggedIn();
     this.renderer.removeAttribute(this.document.body, 'class');
     this.renderer.addClass(this.document.body, 'body-home');

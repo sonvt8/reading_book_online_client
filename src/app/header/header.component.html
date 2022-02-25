@@ -96,7 +96,7 @@
                             <span class="truyen-login-title">{{currentUser?.username}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') || !authService.checkRole('ROLE_SMOD')">Trang Quản Lý</a></li>
+                            <li><a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') && !authService.checkRole('ROLE_SMOD')">Trang Quản Lý</a></li>
                             <li><a routerLink="/tai_khoan">Hồ Sơ</a></li>
                             <li class="dropdown-divider"></li>
                             <li><a (click)="logOut()">Thoát</a></li>
@@ -153,7 +153,7 @@
                     </section>
                     <section class="list-group collapse" id="truyen-user-menu-collapse">
                         <section class="list-group-item list-group-item-sidebar">
-                            <a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') || !authService.checkRole('ROLE_SMOD')">Trang quản lý <span
+                            <a routerLink="/quan-tri" [hidden]="!authService.checkRole('ROLE_ADMIN') && !authService.checkRole('ROLE_SMOD')">Trang quản lý <span
                                     class="truyen-icon icon-white-next"></span></a>
                         </section>
                         <section class="list-group-item list-group-item-sidebar list-group-item-diver"></section>
@@ -176,7 +176,7 @@
             </section>
             <section class="list-group" style="margin-bottom: 20px;">
                 <section class="list-group-item list-group-item-action list-group-item-sidebar">
-                    <a routerLink="/danh-muc/moi-cap-nhap" 
+                    <a routerLink="/danh-muc/moi-cap-nhat" 
                        title="Truyện Mới"> Truyện Mới <span
                             class="truyen-icon icon-next"></span>
                     </a>

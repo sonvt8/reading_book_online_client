@@ -115,10 +115,14 @@
                                             <ngb-rating  [max]="5" [(rate)]="starRating" (hover)="ratingHover($event)" [readonly]="false"></ngb-rating>
                                             <button class="btn btn-primary" (click)="submitRating()">Đánh giá</button>
                                         </ng-container>
-                                        <ng-container *ngIf="rating">
+                                        <ng-container *ngIf="rating && currentUser.id != story.userId">
                                             <p>Bạn đã đánh giá truyện này</p>
                                             <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
-                                        </ng-container>                                      
+                                        </ng-container>  
+                                        <ng-container *ngIf="rating && currentUser.id == story.userId">
+                                            <p>Bạn không được đánh giá truyện bạn đã đăng</p>
+                                            <button class="btn btn-primary disabled" (click)="submitRating()">Đánh giá</button>
+                                        </ng-container>                                     
                                     </section>
                                 </section>
                             </section>
