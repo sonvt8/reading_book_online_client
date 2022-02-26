@@ -54,6 +54,7 @@ import { ChapterComponent } from './account/chapter/chapter.component';
 import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.component';
 import { AuthenticationGuard } from './_guards/authentication.guard';
 import { RoleGuard } from './_guards/role.guard';
+import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { RoleGuard } from './_guards/role.guard';
     StorySubmitComponent,
     ManageStoryComponent,
     ChapterComponent,
-    ChapterNewComponent
+    ChapterNewComponent,
+    AccEditStoryComponent
   ],
   imports: [
     BrowserModule,
