@@ -74,6 +74,14 @@ export class AccountService {
     return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/them-truyen`,form);
   }
 
+  public updateStory(form: FormData, id: number): Observable<Story> {
+    return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/sua-truyen/${id}`, form);
+  }
+
+  public deleteStory(id: number): Observable<CustomHttpResponse> {
+    return this.httpClient.delete<CustomHttpResponse>(`${this.baseUrl}tai-khoan/truyen/xoa-truyen/${id}`);
+  }
+
   public checkGetStoryById(id: number): Observable<CheckGetStoryResponseById> {
     return this.httpClient.get<CheckGetStoryResponseById>(`${this.baseUrl}tai-khoan/truyen/kiem-tra/${id}`);
   }
