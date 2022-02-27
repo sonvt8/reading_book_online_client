@@ -39,8 +39,7 @@ export class ChapterComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private chapterService: ChapterService,
     private storyService: StoryService,
-    private notifyService: NotificationService,
-    private dataService: DataService
+    private notifyService: NotificationService
   ) { }
 
   ngOnInit(): void { 

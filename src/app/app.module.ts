@@ -56,6 +56,7 @@ import { AuthenticationGuard } from './_guards/authentication.guard';
 import { RoleGuard } from './_guards/role.guard';
 import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
 import { AccountWithdrawComponent } from './account/account-withdraw/account-withdraw.component';
+import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edit.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { AccountWithdrawComponent } from './account/account-withdraw/account-wit
     ChapterComponent,
     ChapterNewComponent,
     AccEditStoryComponent,
-    AccountWithdrawComponent
+    AccountWithdrawComponent,
+    ChapterEditComponent
   ],
   imports: [
     BrowserModule,
