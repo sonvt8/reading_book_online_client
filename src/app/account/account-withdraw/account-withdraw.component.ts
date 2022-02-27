@@ -62,7 +62,10 @@ export class AccountWithdrawComponent implements OnInit, OnDestroy {
         }
     ));
   }
-  deleteDraw(id: number){}
+
+  deleteDraw(id: number){
+    //not doing in api yet
+  }
 
   changeValue(){
     this.drawCoin = this.drawMoney + (this.drawMoney * 0.1);

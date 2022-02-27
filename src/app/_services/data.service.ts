@@ -50,12 +50,13 @@ export class DataService {
   //   this.setCurrentItems(items!);
   // }
 
-  public updateStatus(index: number){
+  public updateStatus(id: number){
     const items = this.itemSubject.value;
     items!.map(item => {
       return item.isActive = false;
     })
-    items![index].isActive = true;
+    const found = items!.find(ele => ele.id == id);
+    found!.isActive = true;
     this.setCurrentItems(items!);
   }
 
