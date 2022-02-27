@@ -1,0 +1,160 @@
+<section class="page-wrapper">
+    <!--NavBar-->
+    <app-header></app-header>
+
+    <!--Body-->
+    <section class="truyen-main">
+        <section class="truyen-section section-featured">
+            <section class="container container-full mb-4 mt-5">
+                <section class="featured-content">
+                    <section class="container-fluid">
+                        <section class="featured-content" id="content">
+                            <section class="row">
+                                <app-account-navbar></app-account-navbar>
+                                <section class="col-lg-10 col-md-9">
+                                    <div class="card">
+                                        <h3 class="card-header primary-color white-text text-center">
+                                            Danh sách rút tiền
+                                        </h3>
+                                        <div class="card-body table-responsive">
+                                            <button class="btn btn-primary btn-rounded waves-effect waves-light"
+                                                data-toggle="modal" data-target="#modalLRFormDemo">Đăng Ký Rút
+                                                Tiền</button>
+                                            <table class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="font-weight-bolder">Mã GD
+                                                        </th>
+                                                        <th class="font-weight-bolder">Thời Gian
+                                                        </th>
+                                                        <th class="font-weight-bolder">Thay đổi</th>
+                                                        <th class="font-weight-bolder">Nội Dung
+                                                        </th>
+                                                        <th class="font-weight-bolder">Trạng Thái
+                                                        </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngIf="!listPay?.length" class="text-center">
+                                                        <td colspan="5">Bạn chưa có giao dịch rút tiền nào</td>
+                                                    </tr>
+                                                    <tr *ngFor="let pay of listPay; let i = index">
+                                                        <ng-container *ngIf="listPay?.length">
+                                                            <td>{{pay.id}}</td>
+                                                            <td>{{pay.createDate | date:'HH:mm dd/MM/yyyy' }}</td>
+                                                            <td>
+                                                                <span *ngIf="pay.status === 0">0</span>
+                                                                <span *ngIf="pay.status !== 0"> - {{pay.money}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span *ngIf="pay.status===0">Bạn hủy rút {{pay.money}}
+                                                                    đậu thành tiền mặt</span>
+                                                                <span *ngIf="pay.status===1">Bạn đã rút {{pay.money}}
+                                                                    đậu thành tiền mặt</span>
+                                                                <span *ngIf="pay.status===2">Bạn đăng ký rút
+                                                                    {{pay.money}} đậu thành tiền mặt</span>
+                                                            </td>
+                                                            <td>
+                                                                <span *ngIf="pay.status===1"
+                                                                    class="badge badge-pill badge-success">Hoàn
+                                                                    Thành</span>
+                                                                <span *ngIf="pay.status===2"
+                                                                    class="badge badge-pill badge-info">Đợi Xử Lý</span>
+                                                                <span *ngIf="pay.status===0"
+                                                                    class="badge badge-pill badge-danger">Hủy</span>
+                                                            </td>
+                                                            <td>
+                                                                <a *ngIf="pay.status===2"
+                                                                    (click)="deleteDraw(pay.id)" title="Hủy Giao Dịch"
+                                                                    class="badge badge-pill badge-danger"><i
+                                                                        class="fas fa-times mx-1"></i> Hủy</a>
+                                                            </td>
+                                                        </ng-container>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div aria-label="Page navigation example" *ngIf="totalPages>1">
+                                                <ul class="pagination pg-blue justify-content-end">
+                                                    <li class="page-item" *ngIf="currentPage != 1">
+                                                        <a class="page-link" (click)="getPayPage(currentPage - 1)">
+                                                            <i class="fas fa-step-backward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li *ngFor="let page of pages" [ngClass]="page === currentPage?'page-item active': 'page-item'">
+                                                        <a class="page-link" (click)="getPayPage(page)">{{page}}</a>
+                                                    </li>
+                                                    <li class="page-item" *ngIf="currentPage != totalPages">
+                                                        <a class="page-link" (click)="getPayPage(currentPage + 1)">
+                                                            <i class="fas fa-step-forward fa-sm"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+
+<!--Footer-->
+<app-footer></app-footer>
+
+<!-- Modal đăng ký rút tiền-->
+<div class="modal fade" id="modalLRFormDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-primary" role="document">
+        <!-- Content -->
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <p class="heading lead">Đăng Ký Rút Tiền</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <form #withdrawForm="ngForm" (ngSubmit)="submitWithDraw()">
+                <!-- Body -->
+                <div class="modal-body">
+                    <!-- Material input -->
+                    <div class="md-form input-group">
+                        <input type="number" id="numberExample" class="form-control" value="0"
+                            min="50000" step="10000" (change)="changeValue()" [(ngModel)] = "drawMoney" [ngModelOptions]="{standalone: true}" [disabled]="loading">
+                        <label for="numberExample" class="text-primary active">Số Tiền Rút </label>
+                        <div class="input-group-append">
+                            <span class="input-group-text md-addon">VNĐ</span>
+                        </div>
+                        <span class="form-text text-muted">
+                            Số Tiền cần rút phải chia hết cho 10.000 . Mỗi lần rút ít nhất 50.000 VNĐ
+                        </span>
+                    </div>
+                    <div class="md-form input-group">
+                        <input type="text" id="numberExample1" class="form-control font-weight-bold" readonly
+                        value="0" [(ngModel)] = "drawCoin" [ngModelOptions]="{standalone: true}">
+                        <label for="numberExample1" class="text-primary active">Số Đậu Cần Thanh Toán </label>
+                        <div class="input-group-append">
+                            <span class="input-group-text md-addon">Đậu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" [disabled]="loading" class="btn btn-primary waves-effect waves-light" id="submitWD">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Rút tiền
+                    </button>
+                    <input type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal"
+                        (click)="resetWithdrawForm(withdrawForm)" id="canSubmit" value="Hủy" />
+                </div>
+            </form>
+        </div>
+        <!-- Content -->
+    </div>
+</div>

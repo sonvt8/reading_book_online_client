@@ -49,13 +49,14 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
   getMoney(pay: Pay): string{
     var result = "";
     if (pay.status === 0) {
-        result = "0";
+        result = "0"; //for canceled payment
     } else {
         if (pay.type === 1) {
-            result = "+" + pay.money;
+            result = "+" + pay.money; //for top-up payment
         } else if (pay.type === 5 || pay.type === 2 || pay.type === 4) {
             result = "-" + pay.money;
         } else {
+            //for buying vip chapter
             if (pay.receivedId.id === 1)
                 result = "-" + pay.money;
             else if (pay.sendId.id === 1)
@@ -72,14 +73,14 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
     else if (pay.type === 2)
         result = "Thanh toán " + pay.money + " đậu để đổi ngoại hiệu";
     else if (pay.type === 4) {
-        result = "Thanh toán " + pay.money + " đậu đề cử " + pay.vote + " Nguyệt Phiếu cho Truyện <a href='/truyen/" + pay.story.id + "'>" + pay.story.name + " </a>";
+        result = "Thanh toán " + pay.money + " đậu đề cử " + pay.vote + " Nguyệt Phiếu cho Truyện <a routerLink='/truyen-home/" + pay.story.id + "'>" + pay.story.name + " </a>";
     } else if (pay.type === 5) {
         result = "Đã đổi " + pay.money + " đậu thành Tiền mặt";
     } else {
         if (pay.receivedId.id === 1)
-            result = "Thanh toán " + pay.money + " đậu đọc Vip Truyện <a href='/truyen/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a> Chương <a href='/truyen/" + pay.chapter.story.id + "/chuong-" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
+            result = "Thanh toán " + pay.money + " đậu đọc Vip Truyện <a href='/truyen-home/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a><a href='/truyen-home/" + pay.chapter.story.id + "/" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
         else if (pay.sendId.id === 1)
-            result = "Nhận " + pay.money + " đậu từ Vip Truyện <a href='/truyen/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a> Chương <a href='/truyen/" + pay.chapter.story.id + "/chuong-" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
+            result = "Nhận " + pay.money + " đậu từ Vip Truyện <a routerLink=='/truyen-home/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a><a href='/truyen-home/" + pay.chapter.story.id + "/" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
     }
     return result;
   }

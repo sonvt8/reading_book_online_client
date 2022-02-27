@@ -12,6 +12,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 import { DataService } from 'src/app/_services/data.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { StoryService } from 'src/app/_services/story.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 declare var showImage : any;
@@ -30,7 +31,7 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
   public categories: Category[] = [];
   public editStoryForm!: FormGroup;
   public story: Story = new Story();
-  public storyStatus = 1;
+  public storyStatus: number = 1;
   public categoryList: FormArray = new FormArray([]);
 
   public statusList = [
@@ -120,7 +121,9 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
   }
 
   valueChange(event: any) {
-    this.storyStatus = event.target.value;
+    const target = event.target.value;
+    const strArr = target.split(":");
+    this.storyStatus = parseInt(strArr[0]);
   }
 
   onImageUpload(event: any): void {
@@ -137,7 +140,32 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
     }
     this.editStoryForm.disable()
     this.loading = true;
-    
+
+    if(this.storyStatus == 0){
+      Swal.fire({
+        title: 'Tài khoản thực hiện khoá truyện đăng?',
+        text: 'Bạn sẽ không thể khôi phục trạng thái của truyện sau khi khoá',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đồng Ý',
+        cancelButtonText: 'Hủy'
+      }).then((result) => {
+        if (result.value) {
+          this.storyOnSubmited()
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          this.editStoryForm.enable();
+          this.loading = false;
+          return;
+        }
+      })
+    }else{
+      this.storyOnSubmited()
+    }
+  }
+
+  storyOnSubmited(){
     var formData: any = new FormData();
     formData.append("name", this.editStoryForm.get('name')!.value);
     formData.append("author", this.editStoryForm.get('author')!.value);
@@ -151,15 +179,15 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
         (response: Story) => {
           this.notifyService.notify(NotificationType.SUCCESS,"Bạn đã sửa truyện thành công");
           this.editStoryForm.reset();
+          this.loading = false;
           this.dataService.updateStatus(7);
           this.router.navigate(['../../quan_ly_truyen'], { relativeTo: this.route });
-          this.loading = false;
         },error => {
           this.loading = false;
         },
         () => {
           this.submitted = false;
-          this.editStoryForm.reset();
+          this.editStoryForm.enable();
         }
       )
     );
