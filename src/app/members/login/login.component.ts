@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
-import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public loading = false;
   public submitted = false;
   public loginForm!: FormGroup;

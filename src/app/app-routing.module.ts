@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: 'dang_nhap', component: LoginComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
       { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
-      
+      { path: 'thong_tin/:tcid', component: MembersComponent, data: {title: 'Thông tin thành viên'}},
     ]
   },
   { 
