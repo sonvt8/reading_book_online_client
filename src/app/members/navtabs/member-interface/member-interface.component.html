@@ -7,7 +7,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#truyen-detail-story" role="tab" (click)="getListStory(1, 1)"> Truyện đã đăng
+        <a class="nav-link" data-toggle="tab" href="#truyen-detail-story" role="tab"> Truyện đã đăng
         </a>
     </li>
 </ul>
@@ -71,8 +71,7 @@
     <section class="tab-pane tab-pane-custom fade" id="truyen-detail-story" name="truyen-detail-story"
              role="tabpanel">
         <section class="row">
-            <!-- <section th:replace="/pagination/storyOfMemberPagination"></section> -->
-            aaaaa
+            <app-member-stories [cvId]="cvId" ></app-member-stories>
         </section>
     </section>
 </section>

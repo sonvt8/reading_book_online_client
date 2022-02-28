@@ -1,0 +1,65 @@
+<section class="col-12" *ngIf="!listStory?.length">
+    <section class="alert alert-primary" role="alert">
+        <h5 class="text-center">Chưa có truyện đăng </h5>
+    </section>
+</section>
+<section class="col-12" *ngIf="listStory?.length">
+    <section class="block block-default block-list-new">
+        <section class="block-content" id="dataTable">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-table" *ngFor="let story of listStory; let i = index">
+                    <section class="content">
+                        <a class="thumb" routerLink="/truyen-home/{{story.id}}">
+                            <img class="img-fluid lazyload" src="{{story.images}}" alt="{{story.name}}">
+                        </a>
+                        <section class="info">
+                            <h2 class="title">
+                                <a routerLink="/truyen-home/{{story.id}}">{{story.name}}
+                                    <img class="img-fluid" *ngIf="story.dealStatus === 2" src="assets/img/vip-vip.gif">
+                                    <span [ngClass]="{'shadow-2': story.dealStatus === 1}">{{story.name}}</span>
+                                </a>
+                            </h2>
+                            <section class="chap"> {{story.author}}</section>
+                            <section class="author">
+                                <span class="d-block">
+                                    <i class="fas fa-eye"></i> {{story.countView}} lượt xem
+                                </span>
+                            </section>
+                            <section class="time">
+                                <a *ngIf="story.newChapter"
+                                    routerLink="/truyen-home/{{story.id}}/{{story.newChapter.id}}">
+                                    Chương {{story.newChapter.chapterNumber}}
+                                </a>
+                                <a class="d-block d-sm-none" *ngIf="story.newChapter">&nbsp;</a>
+                                <small class="d-none d-sm-inline-block" *ngIf="story.newChapter"> -
+                                    {{story.timeUpdate}}</small>
+                            </section>
+                        </section>
+                    </section>
+                </li>
+            </ul>
+            <section *ngIf="totalPages>1">
+                <ul class="pagination justify-content-end mb-3 mt-3">
+                    <li *ngIf="currentPage != 1" class="page-item">
+                        <a class="page-link" (click)="getListStory(currentPage - 1, 1)">
+                            <i class="fas fa-step-backward fa-sm"></i>
+                        </a>
+                    </li>
+                    <li *ngFor="let page of pages" [ngClass]="page === currentPage?'page-item active': 'page-item'">
+                        <a class="page-link" (click)="getListStory(page,1)">{{page}}</a>
+                    </li>
+                    <li *ngIf="currentPage != totalPages" class="page-item">
+                        <a class="page-link" (click)="getListStory(currentPage + 1, 1)">
+                            <i class="fas fa-step-forward fa-sm"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" (click)="getListStory(1, 0)">
+                            Xem hết
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </section>
+</section>

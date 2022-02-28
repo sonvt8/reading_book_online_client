@@ -30,6 +30,7 @@ export class Story{
     timeUpdate!: string;
     username!: string;
     chapterNew!: Chapter;
+    newChapter!: Chapter; //same data with chapterNew
     chapterHead! : Chapter;
     categoryId! : number;
 

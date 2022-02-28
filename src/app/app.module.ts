@@ -59,6 +59,7 @@ import { AccountWithdrawComponent } from './account/account-withdraw/account-wit
 import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edit.component';
 import { LoginComponent } from './members/login/login.component';
 import { MemberInterfaceComponent } from './members/navtabs/member-interface/member-interface.component';
+import { MemberStoriesComponent } from './members/navtabs/member-stories/member-stories.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { MemberInterfaceComponent } from './members/navtabs/member-interface/mem
     AccountWithdrawComponent,
     ChapterEditComponent,
     LoginComponent,
-    MemberInterfaceComponent
+    MemberInterfaceComponent,
+    MemberStoriesComponent
   ],
   imports: [
     BrowserModule,

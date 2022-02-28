@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Role } from '../_models/role';
+import { Story } from '../_models/story';
 import { TopConvert } from '../_models/top-convert';
 import { User } from '../_models/user';
 
@@ -45,6 +46,10 @@ export class UserService {
     return this.httpClient.post<User>(`${this.baseUrl}thanh_vien/thong-tin-converter`, form);
   }
 
+  public getStoriesConverter(id: number, pagenumber: number, type: number): Observable<GetMemberStoriesResponse> {
+    return this.httpClient.get<GetMemberStoriesResponse>(`${this.baseUrl}truyen-home/truyen-cua-thanh-vien?userId=${id}&pagenumber=${pagenumber}&type=${type}`);
+  }
+
   public deleteAdminUser(user: User): Observable<User> {
     return this.httpClient.delete<User>(`${this.baseUrl}quan_tri/nguoi_dung/xoa/${user.id}`);
   }
@@ -56,6 +61,14 @@ export class UserService {
 
 interface GetAdminUserResponse {
   content: User[],
+  size: number,
+  totalElements: number,
+  totalPages: number,
+  number: number
+}
+
+interface GetMemberStoriesResponse {
+  content: Story[],
   size: number,
   totalElements: number,
   totalPages: number,
