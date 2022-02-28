@@ -78,6 +78,10 @@ export class AccountService {
     return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/truyen/sua-truyen/${id}`, form);
   }
 
+  public updateChapter(chapter: Chapter, id: number): Observable<Story> {
+    return this.httpClient.post<Story>(`${this.baseUrl}tai-khoan/chapter/sua-chuong/${id}`, chapter);
+  }
+
   public deleteStory(id: number): Observable<CustomHttpResponse> {
     return this.httpClient.delete<CustomHttpResponse>(`${this.baseUrl}tai-khoan/truyen/xoa-truyen/${id}`);
   }
