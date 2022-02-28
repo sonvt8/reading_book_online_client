@@ -33,6 +33,7 @@ import { RoleGuard } from './_guards/role.guard';
 import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
 import { AccountWithdrawComponent } from './account/account-withdraw/account-withdraw.component';
 import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edit.component';
+import { LoginComponent } from './members/login/login.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -41,7 +42,7 @@ const routes: Routes = [
     path: 'thanh_vien', 
     children:[
       { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
-      { path: 'dang_nhap', component: MembersComponent, data: {title: 'Đăng nhập'}},
+      { path: 'dang_nhap', component: LoginComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
       { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
       
