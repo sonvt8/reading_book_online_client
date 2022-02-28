@@ -31,6 +31,9 @@ import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.c
 import { AuthenticationGuard } from './_guards/authentication.guard';
 import { RoleGuard } from './_guards/role.guard';
 import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
+import { AccountWithdrawComponent } from './account/account-withdraw/account-withdraw.component';
+import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edit.component';
+import { LoginComponent } from './members/login/login.component';
 
 const routes: Routes = [
   { path: 'trang-chu', component: HomeComponent, data: {title: 'Trang Chủ'}},
@@ -39,10 +42,10 @@ const routes: Routes = [
     path: 'thanh_vien', 
     children:[
       { path: '', component: MembersComponent, data: {title: 'Đăng nhập'}},
-      { path: 'dang_nhap', component: MembersComponent, data: {title: 'Đăng nhập'}},
+      { path: 'dang_nhap', component: LoginComponent, data: {title: 'Đăng nhập'}},
       { path: 'dang_ky', component: RegisterComponent, data: {title: 'Đăng ký'}},
       { path: 'quen_mat_khau', component: ForgotPasswordComponent, data: {title: 'Quên mật khẩu'}},
-      
+      { path: 'thong_tin/:tcid', component: MembersComponent, data: {title: 'Thông tin thành viên'}},
     ]
   },
   { 
@@ -53,11 +56,13 @@ const routes: Routes = [
       { path: 'theo_doi', component: AccountFollowComponent, data: {title: 'Theo dõi truyện'}, canActivate: [AuthenticationGuard]},
       { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}, canActivate: [AuthenticationGuard]},
       { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}, canActivate: [AuthenticationGuard]},
+      { path: 'rut_tien', component: AccountWithdrawComponent, data: {title: 'Trang rút tiền'}, canActivate: [AuthenticationGuard]},
       { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện'}, canActivate: [AuthenticationGuard]},
       { path: 'sua_truyen/:sid', component: AccEditStoryComponent, data: {title: 'Sửa truyện'}, canActivate: [AuthenticationGuard]},
       { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện'}, canActivate: [AuthenticationGuard]},
       { path: 'them_chuong_truyen/:sid', component: ChapterNewComponent, data: {title: 'Thêm chương truyện'}, canActivate: [AuthenticationGuard]},
-      { path: 'chuong_cua_truyen/:sid', component: ChapterComponent, data: {title: 'Xem danh sách chương'}, canActivate: [AuthenticationGuard]}
+      { path: 'chuong_cua_truyen/:sid', component: ChapterComponent, data: {title: 'Xem danh sách chương'}, canActivate: [AuthenticationGuard]},
+      { path: 'sua_chuong_truyen/:sid/:cid', component: ChapterEditComponent, data: {title: 'Sửa chương truyện'}, canActivate: [AuthenticationGuard]},
     ]
   },
   {

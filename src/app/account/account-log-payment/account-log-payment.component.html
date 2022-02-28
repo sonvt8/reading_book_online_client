@@ -40,7 +40,7 @@
                                                             <td>{{pay.id}}</td>
                                                             <td>{{pay.createDate | date:'HH:mm dd/MM/yyyy' }}</td>
                                                             <td> {{ getMoney(pay) }}</td>
-                                                            <td> {{ getContent(pay) }}</td>
+                                                            <td [innerHTML]="getContent(pay)"></td>
                                                             <td>
                                                                 <span *ngIf="pay.status===1" class="badge badge-pill badge-success">Hoàn Thành</span>
                                                                 <span *ngIf="pay.status===2" class="badge badge-pill badge-info">Đợi Xử Lý</span>

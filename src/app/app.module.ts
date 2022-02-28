@@ -55,6 +55,11 @@ import { ChapterNewComponent } from './account/chapter/chapter-new/chapter-new.c
 import { AuthenticationGuard } from './_guards/authentication.guard';
 import { RoleGuard } from './_guards/role.guard';
 import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.component';
+import { AccountWithdrawComponent } from './account/account-withdraw/account-withdraw.component';
+import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edit.component';
+import { LoginComponent } from './members/login/login.component';
+import { MemberInterfaceComponent } from './members/navtabs/member-interface/member-interface.component';
+import { MemberStoriesComponent } from './members/navtabs/member-stories/member-stories.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +96,12 @@ import { AccEditStoryComponent } from './account/edit-story/acc-edit-story.compo
     ManageStoryComponent,
     ChapterComponent,
     ChapterNewComponent,
-    AccEditStoryComponent
+    AccEditStoryComponent,
+    AccountWithdrawComponent,
+    ChapterEditComponent,
+    LoginComponent,
+    MemberInterfaceComponent,
+    MemberStoriesComponent
   ],
   imports: [
     BrowserModule,

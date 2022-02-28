@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Story } from 'src/app/_models/story';
 import { AccountService } from 'src/app/_services/account.service';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-manage-story',
@@ -31,7 +33,7 @@ export class ManageStoryComponent implements OnInit, OnDestroy{
   public currentHiddenPage: number = 1;
   public hidenPages : number[] = [];
   
-  constructor(private accService: AccountService) { }
+  constructor(private accService: AccountService,private notifyService: NotificationService,) { }
 
   ngOnInit(): void {
     this.getListStoryOnGoing(1);
@@ -44,7 +46,14 @@ export class ManageStoryComponent implements OnInit, OnDestroy{
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  storyDelete(id: number, name: string){}
+  storyDelete(id: number){
+    this.subscriptions.push(this.accService.deleteStory(id)
+        .subscribe(data => {
+          this.notifyService.notify(NotificationType.SUCCESS, data.message)
+          this.getListStoryOnGoing(1);
+        }
+    ));
+  }
 
   getListStoryOnGoing(pagenumber: number){
     if (pagenumber === undefined) {

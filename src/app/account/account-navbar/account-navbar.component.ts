@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
 import { DataService } from 'src/app/_services/data.service';
 
 @Component({
@@ -11,13 +12,18 @@ export class AccountNavbarComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public items: Item[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, public authService: AuthService,) { }
 
   ngOnInit(): void {
     this.dataService.returnCurrentItem();
     this.subscriptions.push(
       this.dataService._items.subscribe(obj => {
-        this.items = obj as Item[];
+        if(this.authService.checkRole('ROLE_ADMIN') || this.authService.checkRole('ROLE_SMOD')){
+          this.items = obj as Item[];
+        }else{
+          obj = obj!.filter(ele => !(ele.id === 5));
+          this.items = obj as Item[];
+        }
       })
     );
   }

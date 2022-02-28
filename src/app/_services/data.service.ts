@@ -22,7 +22,7 @@ export class DataService {
         {id: 2,name: 'Đổi Mật Khẩu',path: '/tai_khoan/doi_mat_khau',isActive: false},
         {id: 3,name: 'Nạp Đậu',path: '/tai_khoan/nap_dau',isActive: false},
         {id: 4,name: 'Log Giao Dịch',path: '/tai_khoan/giao_dich',isActive: false},
-        {id: 5,name: 'Rút Tiền ==> Dành cho mod và converter',path: '/tai_khoan/rut_tien',isActive: false},
+        {id: 5,name: 'Rút Tiền',path: '/tai_khoan/rut_tien',isActive: false},
         {id: 6,name: 'Đăng Truyện',path: '/tai_khoan/them_truyen',isActive: false},
         {id: 7,name: 'Quản lý Truyện',path: '/tai_khoan/quan_ly_truyen',isActive: false}
       ]
@@ -50,12 +50,13 @@ export class DataService {
   //   this.setCurrentItems(items!);
   // }
 
-  public updateStatus(index: number){
+  public updateStatus(id: number){
     const items = this.itemSubject.value;
     items!.map(item => {
       return item.isActive = false;
     })
-    items![index].isActive = true;
+    const found = items!.find(ele => ele.id == id);
+    found!.isActive = true;
     this.setCurrentItems(items!);
   }
 
