@@ -17,7 +17,7 @@ export class MembersComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +25,5 @@ export class MembersComponent implements OnInit {
     this.renderer.addClass(this.document.body, 'page-read');
     this.renderer.addClass(this.document.body, 'body-home');
     this.cvId = +this.route.snapshot.params['tcid'];
-    console.log(this.cvId);
   }
 }

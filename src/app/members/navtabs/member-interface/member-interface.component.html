@@ -1,1 +1,78 @@
-<p>member-interface works!</p>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs nav-custom" role="tablist">
+    <li class="nav-item active">
+        <a class="nav-link active" data-toggle="tab" href="#truyen-detail-introduction"
+           role="tab">
+            Thông Báo
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#truyen-detail-story" role="tab" (click)="getListStory(1, 1)"> Truyện đã đăng
+        </a>
+    </li>
+</ul>
+<!-- Tab panes {Fade}  -->
+<section class="tab-content">
+    <section class="tab-pane tab-pane-custom fade show active" id="truyen-detail-introduction"
+             name="truyen-detail-introduction" role="tabpanel">
+        <section class="row">
+            <section class="col-sm-12 col-md-4 col-lg-3">
+                <div class="truyen-detail-sidebar">
+                    <div class="block block-normal">
+                        <div class="block-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="block-detail-sidebar-author text-center">
+                                        <div class="info">
+                                            <a href="#" class="avatar">
+                                                <img *ngIf="user.avatar" class="img-fluid lazyload" src={{user.avatar}}>
+                                                <img *ngIf="!user.avatar" class="img-fluid lazyload" src="../../assets/static/images/logo.png"> 
+                                            </a>
+                                            <h2 class="name">{{user.displayName}}</h2>
+                                        </div>
+                                        <ul class="list-unstyled truyen-author-badge"></ul>
+                                        <div class="overview"><span class="cap-3">Ngày Tham Gia: 
+                                            <span>{{user.createDate | date:'dd/MM/yyyy' }}</span></span>
+                                        </div>
+                                        <div class="statistic">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="item">
+                                                        <span class="item-icon">
+                                                            <i class="truyen-icon icon-book"></i>
+                                                        </span>
+                                                        <span class="item-value">{{countStory}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="item">
+                                                        <span class="item-icon">
+                                                            <i class="truyen-icon icon-list"></i> </span>
+                                                        <span class="item-value">{{countChapter}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-sm-12 col-md-8 col-lg-9">
+                <div class="alert alert-primary" role="alert">
+                    <h5 *ngIf="user.notification">{{user.notification}}</h5>
+                    <h5 *ngIf="!user.notification">Không có thông báo gì mới</h5>
+                </div>
+            </section>
+        </section>
+    </section>
+    <section class="tab-pane tab-pane-custom fade" id="truyen-detail-story" name="truyen-detail-story"
+             role="tabpanel">
+        <section class="row">
+            <!-- <section th:replace="/pagination/storyOfMemberPagination"></section> -->
+            aaaaa
+        </section>
+    </section>
+</section>
