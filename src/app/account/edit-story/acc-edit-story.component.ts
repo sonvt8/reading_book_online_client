@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Category } from 'src/app/_models/category';
 import { Story } from 'src/app/_models/story';
-import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CategoryService } from 'src/app/_services/category.service';
@@ -72,11 +71,15 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
         this.storyStatus = this.story.status;
         // assign value into group of checkboxs
         this.categoryList = new FormArray([...this.story.categoryListInput.map(item => new FormControl(item))]);
+        // handle string return
+        const search = '<br />';
+        const replaceWith = '';
+        const result = this.story.infomation.split(search).join(replaceWith)
         // assign value into form fields
         this.editStoryForm.setValue({
           name: this.story.name, 
           author: this.story.author,
-          enterInformation: this.story.infomation,
+          enterInformation: result,
         });
       }, error => this.notifyService.notify(NotificationType.ERROR, error.error.message)
     ));

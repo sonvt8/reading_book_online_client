@@ -132,11 +132,15 @@ export class ChapterEditComponent implements OnInit, OnDestroy {
           this.chapter = data.chapter;
           this.story = data.chapter.story;
           this.chapterStatus = this.chapter.status;
+          // handle string return
+          const search = '<br />';
+          const replaceWith = '';
+          const result = this.chapter.content.split(search).join(replaceWith)
           this.editChapterForm.setValue({
             serial: this.chapter.serial, 
             chapterNumber: this.chapter.chapterNumber,
             name: this.chapter.name,
-            content: this.chapter.content
+            content:result
           });
         }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
     ));
