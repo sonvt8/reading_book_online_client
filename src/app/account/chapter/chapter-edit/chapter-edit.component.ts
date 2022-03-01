@@ -108,7 +108,7 @@ export class ChapterEditComponent implements OnInit, OnDestroy {
     this.chapter.status = this.chapterStatus;
 
     this.subscriptions.push(
-      this.accService.updateChapter(this.chapter,this.storyId).subscribe(
+      this.accService.updateChapter(this.chapter,this.chapterId).subscribe(
         (response: Story) => {
           this.notifyService.notify(NotificationType.SUCCESS,"Chương truyện đã được sửa nội dung");
           this.editChapterForm.reset();

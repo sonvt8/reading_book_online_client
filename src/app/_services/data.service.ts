@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AdminHome } from '../_models/admin-home';
 import { Category } from '../_models/category';
 import { Information } from '../_models/information';
 
@@ -32,6 +33,10 @@ export class DataService {
 
   public getData(): Observable<GetInformationResponse> {
     return this.httpClient.get<GetInformationResponse>(`${this.baseUrl}thong-tin`);
+  }
+
+  public getCountAdminHome(): Observable<AdminHome> {
+    return this.httpClient.get<AdminHome>(`${this.baseUrl}quan-tri`);
   }
 
   public get itemValue(): Item[] | null {
