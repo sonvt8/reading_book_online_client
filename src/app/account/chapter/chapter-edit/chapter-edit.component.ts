@@ -147,9 +147,8 @@ export class ChapterEditComponent implements OnInit, OnDestroy {
   }
 
   valueChange(event: any) {
-    const target = event.target.value;
-    const strArr = target.split(":");
-    this.chapterStatus = parseInt(strArr[0]);
+    const obj = this.statusList!.find(element => element.label === event.target.value);
+    this.chapterStatus = obj!.id;
   }
 
   formReset(){

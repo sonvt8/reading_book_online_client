@@ -124,9 +124,8 @@ export class AccEditStoryComponent implements OnInit, OnDestroy {
   }
 
   valueChange(event: any) {
-    const target = event.target.value;
-    const strArr = target.split(":");
-    this.storyStatus = parseInt(strArr[0]);
+    const obj = this.statusList!.find(element => element.label === event.target.value);
+    this.storyStatus = obj!.id;
   }
 
   onImageUpload(event: any): void {
