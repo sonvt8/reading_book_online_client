@@ -84,8 +84,8 @@
                                                             <!--Grid column-->
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <textarea type="text" id="content" name="content" rows="10" class="form-control md-textarea" formControlName="content"></textarea>
-                                                                    <label for="content" class="text-primary active">Nội dung:</label>
+                                                                    <h6 for="content" class=" text-primary active">Nội dung:</h6>
+                                                                    <p-editor type="text" id="content" name="content" rows="10" formControlName="content" [style]="{'height':'320px'}"></p-editor>
                                                                     <div *ngIf="this.editChapterForm.controls['content'].errors?.['required'] && submitted" class="text-danger">
                                                                         <em>Nội dung không được để trống</em>
                                                                     </div>
