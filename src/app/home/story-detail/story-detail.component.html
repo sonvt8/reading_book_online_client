@@ -256,8 +256,7 @@
                                                                                             <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                                 title="{{lStory.name}}">{{lStory.name}}</a>
                                                                                         </h2>
-                                                                                        <p class="description">
-                                                                                            {{lStory.infomation}}
+                                                                                        <p class="description" [innerHTML]="lStory.infomation">
                                                                                         </p>
                                                                                         <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                             class="btn btn-truyen"

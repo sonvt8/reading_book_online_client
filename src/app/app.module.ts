@@ -8,6 +8,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
+import { EditorModule } from 'primeng/editor';
 
 // Component
 import { HeaderComponent } from './header/header.component';
@@ -116,7 +117,8 @@ import { MemberStoriesComponent } from './members/navtabs/member-stories/member-
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
     SwiperModule,
-    NgbModule
+    NgbModule,
+    EditorModule
   ],
   providers: [
     CategoryService,

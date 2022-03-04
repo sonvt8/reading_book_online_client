@@ -51,10 +51,10 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
-                                    <textarea type="text" id="infomation" name="infomation" rows="6"
-                                        class="form-control md-textarea" [(ngModel)]="story.infomation"
-                                        [ngModelOptions]="{standalone: true}"></textarea>
-                                    <label for="infomation" class=" text-primary form-label active">Giới Thiệu</label>
+                                    <h6 for="infomation" class=" text-primary form-label active">Giới Thiệu</h6>
+                                    <p-editor type="text" id="infomation" name="infomation" rows="6"
+                                        [(ngModel)]="story.infomation" [style]="{'height':'320px'}"
+                                        [ngModelOptions]="{standalone: true}"></p-editor>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,8 @@
                             <div class="col-md-12">
                                 <label class="md-label-cs text-primary mt-1 form-label">Thể loại</label>
                                 <p-multiSelect class="w-100" name="categoryListInput" [options]="listCate"
-                                    [(ngModel)]="story.categoryListInput" [optionLabel]="story.categoryName" display="chip">
+                                    [(ngModel)]="story.categoryListInput" [optionLabel]="story.categoryName"
+                                    display="chip">
                                 </p-multiSelect>
                             </div>
                         </div>
@@ -149,7 +150,9 @@
                                     </option>
                                 </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Trạng thái Vip</label>
-                                <p-dropdown [style]="{ width: '100%' }" [options]="vipList" [(ngModel)]="story.dealStatus" name="dealStatus" optionLabel="label" optionValue="id"></p-dropdown>
+                                <p-dropdown [style]="{ width: '100%' }" [options]="vipList"
+                                    [(ngModel)]="story.dealStatus" name="dealStatus" optionLabel="label"
+                                    optionValue="id"></p-dropdown>
                             </div>
                         </div>
                         <!--Grid row-->
@@ -187,7 +190,9 @@
                                     </option>
                                 </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Trạng thái</label>
-                                <p-dropdown [style]="{ width: '100%' }" [options]="statusList" [(ngModel)]="story.status" name="status" optionLabel="label" optionValue="id"></p-dropdown>
+                                <p-dropdown [style]="{ width: '100%' }" [options]="statusList"
+                                    [(ngModel)]="story.status" name="status" optionLabel="label" optionValue="id">
+                                </p-dropdown>
                             </div>
                         </div>
                         <!--Grid row-->
