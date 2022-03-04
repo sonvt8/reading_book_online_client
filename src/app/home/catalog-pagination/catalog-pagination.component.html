@@ -108,7 +108,7 @@
                                                         <h2 class="title">
                                                             <a routerLink="/truyen-home/{{topStory.id}}" title="{{topStory.name}}">{{topStory.name}}</a>
                                                         </h2>
-                                                        <p class="description text-center">{{topStory.infomation}}</p>
+                                                        <p class="description text-center" [innerHTML] = "topStory.infomation"></p>
                                                     </section>
                                                 </section>
                                             </ng-template>

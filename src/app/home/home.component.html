@@ -80,7 +80,7 @@
                                                             truy cập
                                                         </section>
                                                         <section class="description"
-                                                            [innerHTML]="_topStoryWeek.infomation">
+                                                            [innerHTML]="_topStoryWeek.infomation | noSanitize">
                                                         </section>
                                                     </section>
                                                 </section>
@@ -251,7 +251,7 @@
                                                                             class="text-red fz-16">{{_topVipStory.author}}</span>
                                                                     </section>
                                                                     <p class="description"
-                                                                        [innerHTML]="_topVipStory.infomation">
+                                                                        [innerHTML]="_topVipStory.infomation | noSanitize">
                                                                     </p>
                                                                 </section>
                                                             </section>

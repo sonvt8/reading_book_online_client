@@ -61,6 +61,7 @@ import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edi
 import { LoginComponent } from './members/login/login.component';
 import { MemberInterfaceComponent } from './members/navtabs/member-interface/member-interface.component';
 import { MemberStoriesComponent } from './members/navtabs/member-stories/member-stories.component';
+import { NoSanitizePipe } from './_pipes/no-sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { MemberStoriesComponent } from './members/navtabs/member-stories/member-
     ChapterEditComponent,
     LoginComponent,
     MemberInterfaceComponent,
-    MemberStoriesComponent
+    MemberStoriesComponent,
+    NoSanitizePipe
   ],
   imports: [
     BrowserModule,
