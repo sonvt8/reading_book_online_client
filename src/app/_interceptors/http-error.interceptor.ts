@@ -32,9 +32,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors;
               } else if (typeof(errorResponse.error) === 'object') {
+                this.router.navigate(['/trang-chu']);
                 this.toastr.error(errorResponse.error.message);
               } else {
-                console.log("3333");
                 // this.toastr.error(error.error, error.status);
               }
               break;
@@ -47,7 +47,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
             case 403:
               this.toastr.error(errorResponse.error.message);
-              console.log(errorResponse);
               break;
             case 500:
               // const navigationExtras: NavigationExtras = { state: { error: error.error } }
@@ -55,7 +54,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
             default:
               this.toastr.error('Something unexpected went wrong');
-              console.log(errorResponse);
               break;
           }
         }

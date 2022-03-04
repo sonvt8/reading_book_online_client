@@ -175,9 +175,9 @@
                                                         <!--Grid row-->
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <select class="mdb-select md-form colorful-select dropdown-primary" (change)="valueChange($event)" [(ngModel)]="storyStatus" [ngModelOptions]="{standalone: true}">
-                                                                    <option *ngFor="let status of statusList" [ngValue]="status.id">
-                                                                        {{ status.label }}
+                                                                <select class="mdb-select md-form colorful-select dropdown-primary" (change)="valueChange($event)">
+                                                                    <option *ngFor="let status of statusList" [ngValue]="status.id" [selected]="status.id === storyStatus">
+                                                                        {{ status.label}}
                                                                     </option>
                                                                 </select>
                                                                 <label
