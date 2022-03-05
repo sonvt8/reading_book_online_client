@@ -84,8 +84,8 @@
                                                             <!--Grid column-->
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <textarea type="text" id="content" name="content" rows="10" class="form-control md-textarea" formControlName="content"></textarea>
-                                                                    <label for="content" class="text-primary active">Nội dung:</label>
+                                                                    <h6 for="content" class=" text-primary active">Nội dung:</h6>
+                                                                    <p-editor type="text" id="content" name="content" rows="10" formControlName="content" [style]="{'height':'320px'}"></p-editor>
                                                                     <div *ngIf="this.editChapterForm.controls['content'].errors?.['required'] && submitted" class="text-danger">
                                                                         <em>Nội dung không được để trống</em>
                                                                     </div>
@@ -96,8 +96,9 @@
                                                         <!--Grid row-->
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <select class="mdb-select md-form colorful-select dropdown-primary" (change)="valueChange($event)">
-                                                                    <option *ngFor="let status of statusList" [ngValue]="status.id" [selected]="status.id === chapterStatus">
+                                                                <select class="mdb-select md-form colorful-select dropdown-primary" (change)="valueChange($event)" [disabled]="chapterStatus==2 || chapterStatus==0">
+                                                                    <option *ngFor="let status of statusList" [ngValue]="status.id" [selected]="status.id === chapterStatus"
+                                                                    [disabled]="chapterStatus==2">
                                                                         {{ status.label }}
                                                                     </option>
                                                                 </select>

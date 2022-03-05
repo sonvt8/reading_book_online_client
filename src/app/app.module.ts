@@ -8,6 +8,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
+import { EditorModule } from 'primeng/editor';
 
 // Component
 import { HeaderComponent } from './header/header.component';
@@ -60,6 +61,7 @@ import { ChapterEditComponent } from './account/chapter/chapter-edit/chapter-edi
 import { LoginComponent } from './members/login/login.component';
 import { MemberInterfaceComponent } from './members/navtabs/member-interface/member-interface.component';
 import { MemberStoriesComponent } from './members/navtabs/member-stories/member-stories.component';
+import { NoSanitizePipe } from './_pipes/no-sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,8 @@ import { MemberStoriesComponent } from './members/navtabs/member-stories/member-
     ChapterEditComponent,
     LoginComponent,
     MemberInterfaceComponent,
-    MemberStoriesComponent
+    MemberStoriesComponent,
+    NoSanitizePipe
   ],
   imports: [
     BrowserModule,
@@ -116,7 +119,8 @@ import { MemberStoriesComponent } from './members/navtabs/member-stories/member-
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 5000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
     SwiperModule,
-    NgbModule
+    NgbModule,
+    EditorModule
   ],
   providers: [
     CategoryService,

@@ -161,7 +161,7 @@
                                 <section class="row">
                                     <section class="col-sm-12 col-md-8 col-lg-9">
                                         <section class="brief" *ngIf="story.infomation != null">
-                                            <div [innerHTML]="story.infomation">
+                                            <div [innerHTML]="story.infomation | noSanitize">
 
                                             </div>
                                         </section>
@@ -256,8 +256,7 @@
                                                                                             <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                                 title="{{lStory.name}}">{{lStory.name}}</a>
                                                                                         </h2>
-                                                                                        <p class="description">
-                                                                                            {{lStory.infomation}}
+                                                                                        <p class="description" [innerHTML]="lStory.infomation | noSanitize">
                                                                                         </p>
                                                                                         <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                             class="btn btn-truyen"

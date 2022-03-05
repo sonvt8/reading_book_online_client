@@ -84,7 +84,7 @@
                                 <section class="clearfix"></section>
                             </section>
                             <ng-container *ngIf="checkVip">
-                                <div [innerHTML]="chapter.content">
+                                <div [innerHTML]="chapter.content | noSanitize">
 
                                 </div>
                             </ng-container>

@@ -78,13 +78,12 @@
                                                             <!--Grid column-->
                                                             <div class="col-md-12">
                                                                 <div class="md-form mb-0">
-                                                                    <textarea type="text" id="infomation"
+                                                                    <h6 for="infomation" class="text-primary">Giới
+                                                                        Thiệu</h6>
+                                                                    <p-editor type="text" id="infomation"
                                                                         name="infomation" rows="6"
-                                                                        class="form-control md-textarea"
-                                                                        formControlName="enterInformation"></textarea>
-                                                                    <label for="infomation"
-                                                                        class="form-label text-primary active">Giới
-                                                                        Thiệu</label>
+                                                                        formControlName="enterInformation"
+                                                                        [style]="{'height':'320px'}"></p-editor>
                                                                     <div *ngIf="this.editStoryForm.controls['enterInformation'].errors?.['required'] && submitted"
                                                                         class="text-danger">
                                                                         <em>Giới Thiệu không được để trống</em>
