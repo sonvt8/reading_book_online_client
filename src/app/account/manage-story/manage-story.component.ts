@@ -33,7 +33,7 @@ export class ManageStoryComponent implements OnInit, OnDestroy{
   public currentHiddenPage: number = 1;
   public hidenPages : number[] = [];
   
-  constructor(private accService: AccountService,private notifyService: NotificationService,) { }
+  constructor(private accService: AccountService,private notifyService: NotificationService) { }
 
   ngOnInit(): void {
     this.getListStoryOnGoing(1);
@@ -49,7 +49,7 @@ export class ManageStoryComponent implements OnInit, OnDestroy{
   storyDelete(id: number){
     this.subscriptions.push(this.accService.deleteStory(id)
         .subscribe(data => {
-          this.notifyService.notify(NotificationType.SUCCESS, data.message)
+          this.notifyService.notify(NotificationType.SUCCESS, data.message);
           this.getListStoryOnGoing(1);
         }
     ));
