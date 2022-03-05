@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import Swal from 'sweetalert2';
 
@@ -16,6 +17,7 @@ declare var $: any;
 })
 export class ListUserComponent implements OnInit, OnDestroy {
   searchUser: string = "";
+  currentUser : User = new User;
   users: User[] = [];
   page : number[] = [];
   private subscriptions: Subscription[] = [];
@@ -31,11 +33,12 @@ export class ListUserComponent implements OnInit, OnDestroy {
   ];
   type = this.typeList[0];
 
-  constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService,public authService: AuthService,) { }
 
   ngOnInit(): void {
     this.showSelect();
     this.getUser(1);
+    this.currentUser = this.authService.getUserFromLocalCache();
   }
 
 
@@ -64,29 +67,29 @@ export class ListUserComponent implements OnInit, OnDestroy {
     ));
   }
 
-  onDeleteAdminUser(user: User): void{
-    Swal.fire({
-      title: 'Are you sure want to remove?',
-      text: 'You will not be able to recover this file!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Đồng Ý',
-      cancelButtonText: 'Hủy'
-    }).then((result) => {
-      if (result.value) {
-        this.subscriptions.push(this.userService.deleteAdminUser(user).subscribe(data=>{
-          this.toastr.success(`Người dùng ${user.username} đã bị xóa thành công!`);
-          this.getUser(1);
-        }, error => this.toastr.error(error.error.message)
-        ));
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
+  // onDeleteAdminUser(user: User): void{
+  //   Swal.fire({
+  //     title: 'Are you sure want to remove?',
+  //     text: 'You will not be able to recover this file!',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Đồng Ý',
+  //     cancelButtonText: 'Hủy'
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       this.subscriptions.push(this.userService.deleteAdminUser(user).subscribe(data=>{
+  //         this.toastr.success(`Người dùng ${user.username} đã bị xóa thành công!`);
+  //         this.getUser(1);
+  //       }, error => this.toastr.error(error.error.message)
+  //       ));
+  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
         
-      }
-    })
+  //     }
+  //   })
     
-  }
+  // }
 
   submitPayhDraw(payDrawForm: NgForm): void {
     const data = new FormData();
