@@ -29,3 +29,7 @@ p-multiSelect {
     overflow-y: auto;
     padding: 20px 0 0 0 !important;
 }
+
+b, strong {
+    font-weight: bold;
+}
