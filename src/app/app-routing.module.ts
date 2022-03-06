@@ -57,7 +57,7 @@ const routes: Routes = [
       { path: 'giao_dich', component: AccountLogPaymentComponent, data: {title: 'Lich sử giao dịch'}, canActivate: [AuthenticationGuard]},
       { path: 'nap_dau', component: AccountTopUpComponent, data: {title: 'Trang nạp đậu'}, canActivate: [AuthenticationGuard]},
       { path: 'rut_tien', component: AccountWithdrawComponent, data: {title: 'Trang rút tiền', roles: ['ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard]},
-      { path: 'them_truyen', component: AddCategoryComponent, data: {title: 'Đăng truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'them_truyen', component: StorySubmitComponent, data: {title: 'Đăng truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard, RoleGuard]},
       { path: 'sua_truyen/:sid', component: AccEditStoryComponent, data: {title: 'Sửa truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard, RoleGuard]},
       { path: 'quan_ly_truyen', component: ManageStoryComponent, data: {title: 'Quản lý truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard, RoleGuard]},
       { path: 'them_chuong_truyen/:sid', component: ChapterNewComponent, data: {title: 'Thêm chương truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD', 'ROLE_CONVERTER']}, canActivate: [AuthenticationGuard, RoleGuard]},
