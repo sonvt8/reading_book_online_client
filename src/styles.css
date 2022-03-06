@@ -30,6 +30,9 @@
     padding: 20px 0 0 0 !important;
 }
 
+b, strong {
+    font-weight: bold;
+}
 /* Colored Toasts */
 .colored-toast.swal2-icon-success {
   background-color: #a5dc86 !important;
