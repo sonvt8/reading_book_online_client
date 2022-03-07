@@ -74,8 +74,8 @@ const routes: Routes = [
       { path: 'the-loai', component: AdminCategoryComponent, data: {title: 'Danh sách thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
       { path: 'the-loai/:id', component: EditCategoryComponent, data: {title: ' Cập nhật Thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
       { path: 'them-the-loai', component: AddCategoryComponent, data: {title: 'Thêm thể loại', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
-      { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard]},
-      { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
+      { path: 'nguoi-dung', component: ListUserComponent, data: {title: 'Danh sách tài khoản', roles: ['ROLE_ADMIN']}, canActivate: [AuthenticationGuard, RoleGuard]},
+      { path: 'nguoi-dung/:id', component: EditUserComponent, data: {title: 'Cập nhật người dùng', roles: ['ROLE_ADMIN']}, canActivate: [AuthenticationGuard, RoleGuard] },
       { path: 'truyen', component: ListStoryComponent, data: {title: 'Danh sách truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
       { path: 'truyen/:id', component: EditStoryComponent, data: {title: 'Cập nhật truyện', roles: ['ROLE_ADMIN', 'ROLE_SMOD']}, canActivate: [AuthenticationGuard, RoleGuard] },
     ]

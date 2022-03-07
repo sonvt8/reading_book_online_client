@@ -80,7 +80,7 @@
                                 </select> -->
                                 <label class="md-label-cs text-primary mt-1 form-label">Phân Quyền</label>
                                 <p-multiSelect class="w-100" name="rolseList" [options]="roles"
-                                    [(ngModel)]="user.roleList" optionLabel="name" display="chip">
+                                    [(ngModel)]="user.roleList" optionLabel="name" display="chip" [id]="'select' + roles.values">
                                 </p-multiSelect>
                                 
 
