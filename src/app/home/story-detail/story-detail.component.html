@@ -296,7 +296,7 @@
                                                             <a routerLink="/truyen-home/{{item.storyId}}/{{item.id}}" class="align-items-center d-flex"
                                                                title="Đăng bởi {{item.displayName}} lúc {{item.createDate| date: 'HH:mm dd-MM-yyyy' }}">
                                                                     <span class="chapter-name">
-                                                                        <img *ngIf="item.status === 2" src="assets/img/vip-vip.gif" class="img-fluid"
+                                                                        <img *ngIf="item.status === 2 && item.price > 0" src="assets/img/vip-vip.gif" class="img-fluid"
                                                                              height="12px"> Chương {{item.chapterNumber}} : {{item.name}}</span>&nbsp;
                                                                 <span class="chapter-time text-muted">{{item.timeUpdate}}</span>
                                                             </a>

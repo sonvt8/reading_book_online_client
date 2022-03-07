@@ -47,7 +47,11 @@ export class ChapterNewComponent implements OnInit {
     this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
       response => {
           this.story = response.storySummary;
-          this.newSerial = this.story.chapterNew.serial + 1;
+          if(this.story.chapterNew != null)
+            this.newSerial = this.story.chapterNew.serial + 1;
+          else{
+            this.newSerial = 1;
+          }
           this.chapterForm.patchValue({serial: this.newSerial});
       }
     ));

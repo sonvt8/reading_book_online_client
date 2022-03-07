@@ -35,7 +35,7 @@ export class ChapterService {
   }
 
   buyChaperVip(form: FormData): Observable<CustomHttpResponse>{
-    return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai-khoan/thanh-toan/mua-chuong-vip`, form);
+    return this.httpClient.post<CustomHttpResponse>(`${this.baseUrl}tai-khoan/thanh-toan/mua-chapter-vip`, form);
   }
 }
 
