@@ -18,12 +18,10 @@ export class AccountNavbarComponent implements OnInit, OnDestroy {
     this.dataService.returnCurrentItem();
     this.subscriptions.push(
       this.dataService._items.subscribe(obj => {
-        if(this.authService.checkRole('ROLE_SMOD')){
+        if(this.authService.checkRole('ROLE_SMOD') || this.authService.checkRole('ROLE_CONVERTER')){
           this.items = obj as Item[];
-        }else if (this.authService.checkRole('ROLE_ADMIN') || this.authService.checkRole('ROLE_CONVERTER')){
-          obj = obj!.filter(ele => !(ele.id === 5));
-          this.items = obj as Item[];
-        }else{
+        }
+        else{
           obj = obj!.filter(ele => ele.id < 5);
           this.items = obj as Item[];
         }
