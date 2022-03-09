@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.renderer.addClass(this.document.body, 'body-home');
     this.getHomeStory();
     this.getTopConvert();
+   
   }
 
   getHomeStory() {
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.userService.getTopConvert()
       .subscribe(data => {
         this.topConvert = data;
+        console.log(this.topConvert);
       }
       ));
   }
