@@ -66,7 +66,7 @@
                         </section>
                         <section class="content" id="js-truyen-content"
                                  style="font-size: 26px; line-height: 140%; font-family: 'Palatino Linotype', sans-serif; word-wrap: break-word;">
-                            <section class="content-vip" *ngIf="!checkVip">
+                            <section class="content-vip" *ngIf="!checkVip && chapter.price > 0">
                                 <h3 class="text-danger text-center">Đây là chương truyện mất phí,bạn cần trả <strong
                                         >{{chapter.price}}</strong> đậu để
                                     xem, nếu đồng ý hãy ấn vào nút <strong>MUA</strong> bên dưới. </h3>
@@ -83,8 +83,8 @@
                                 </section>
                                 <section class="clearfix"></section>
                             </section>
-                            <ng-container *ngIf="checkVip">
-                                <div [innerHTML]="chapter.content">
+                            <ng-container *ngIf="checkVip || chapter.price==0">
+                                <div [innerHTML]="chapter.content | noSanitize">
 
                                 </div>
                             </ng-container>
@@ -99,9 +99,6 @@
                         <a routerLink="/truyen-home/{{chapter.story.id}}" class="btn btn-transparent btn-outline-primary waves-effect">
                             <span class="btn-icon js-tooltip " data-toggle="tooltip" data-placement="bottom"
                                   title="Mục lục"> <i class="truyen-icon icon-list"></i> </span> </a>
-                        <a href="#modal-report" data-toggle="modal" class="btn btn-transparent btn-outline-primary waves-effect">
-                        <span class="btn-icon js-tooltip" data-toggle="tooltip" data-placement="bottom"
-                                title="Báo lỗi"> <i class="truyen-icon icon-warning"></i> </span> </a>
                         <a routerLink="/truyen-home/{{chapter.story.id}}/{{nextChapter}}"
                            class="btn btn-primary" [ngClass]="nextChapter!=0 ? '': 'disabled'"
                            data-toggle="tooltip" data-placement="bottom" title="Chương sau">

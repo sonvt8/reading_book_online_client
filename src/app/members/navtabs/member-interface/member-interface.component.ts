@@ -1,7 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Story } from 'src/app/_models/story';
 import { User } from 'src/app/_models/user';
+import { NotificationService } from 'src/app/_services/notification.service';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -22,7 +25,7 @@ export class MemberInterfaceComponent implements OnInit, OnDestroy {
   public currentPage: number = 1;
   public pages : number[] = [];
   
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router: Router,private notifyService: NotificationService) { }
 
   ngOnInit(): void {
     const form = new FormData();
@@ -30,8 +33,16 @@ export class MemberInterfaceComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.userService.getConvertInfo(form).subscribe(
       data => {
         this.user = data;
-        this.countChapter = data.countChapter;
-        this.countStory = data.countStory;
+        console.log(data)
+        const checkRole = data.roleList.filter(ele => ele.name === "ROLE_CONVERTER");
+        console.log(checkRole)
+        if(checkRole.length){
+          this.countChapter = data.countChapter;
+          this.countStory = data.countStory;
+        }else{
+          this.router.navigate(['/trang-chu']);
+          this.notifyService.notify(NotificationType.WARNING, 'Truy nhập thông tin Converter không thành công!!');
+        }
       }
     ));
   }

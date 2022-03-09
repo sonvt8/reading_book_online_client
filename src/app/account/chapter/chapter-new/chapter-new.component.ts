@@ -23,6 +23,7 @@ export class ChapterNewComponent implements OnInit {
   public storyId: number = 0;
   public story: Story = new Story();
   public chapterForm!: FormGroup;
+  public newSerial: number = 0;
 
   constructor(
     private router: Router,
@@ -32,21 +33,28 @@ export class ChapterNewComponent implements OnInit {
     private notifyService: NotificationService,
     private formBuilder: FormBuilder,
     private dataService: DataService
-  ) { }
-
-  ngOnInit(): void { 
-    this.storyId = +this.route.snapshot.params['sid'];
-    this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
-      response => {
-          this.story = response.storySummary;
-      }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
-    ));
+  ) {
     this.chapterForm = this.formBuilder.group({
       serial: ['', [Validators.required,Validators.maxLength(5)]],
       chapterNumber: ['', [Validators.required,Validators.maxLength(5)]],
       name: ['', [Validators.required,Validators.maxLength(255)]],
       content: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void { 
+    this.storyId = +this.route.snapshot.params['sid'];
+    this.subscriptions.push(this.storyService.getStoryById(this.storyId).subscribe(
+      response => {
+          this.story = response.storySummary;
+          if(this.story.chapterNew != null)
+            this.newSerial = this.story.chapterNew.serial + 1;
+          else{
+            this.newSerial = 1;
+          }
+          this.chapterForm.patchValue({serial: this.newSerial});
+      }
+    ));
   }
 
   ngOnDestroy(): void {

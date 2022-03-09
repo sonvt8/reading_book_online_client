@@ -108,7 +108,7 @@ export class ChapterEditComponent implements OnInit, OnDestroy {
     this.chapter.status = this.chapterStatus;
 
     this.subscriptions.push(
-      this.accService.updateChapter(this.chapter,this.storyId).subscribe(
+      this.accService.updateChapter(this.chapter,this.chapterId).subscribe(
         (response: Story) => {
           this.notifyService.notify(NotificationType.SUCCESS,"Chương truyện đã được sửa nội dung");
           this.editChapterForm.reset();
@@ -132,20 +132,23 @@ export class ChapterEditComponent implements OnInit, OnDestroy {
           this.chapter = data.chapter;
           this.story = data.chapter.story;
           this.chapterStatus = this.chapter.status;
+          // handle string return
+          const search = '<br />';
+          const replaceWith = '';
+          const result = this.chapter.content.split(search).join(replaceWith)
           this.editChapterForm.setValue({
             serial: this.chapter.serial, 
             chapterNumber: this.chapter.chapterNumber,
             name: this.chapter.name,
-            content: this.chapter.content
+            content:result
           });
         }, error => this.notifyService.notify(NotificationType.ERROR,error.error.message)
     ));
   }
 
   valueChange(event: any) {
-    const target = event.target.value;
-    const strArr = target.split(":");
-    this.chapterStatus = parseInt(strArr[0]);
+    const obj = this.statusList!.find(element => element.label === event.target.value);
+    this.chapterStatus = obj!.id;
   }
 
   formReset(){

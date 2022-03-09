@@ -161,7 +161,7 @@
                                 <section class="row">
                                     <section class="col-sm-12 col-md-8 col-lg-9">
                                         <section class="brief" *ngIf="story.infomation != null">
-                                            <div [innerHTML]="story.infomation">
+                                            <div [innerHTML]="story.infomation | noSanitize">
 
                                             </div>
                                         </section>
@@ -256,8 +256,7 @@
                                                                                             <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                                 title="{{lStory.name}}">{{lStory.name}}</a>
                                                                                         </h2>
-                                                                                        <p class="description">
-                                                                                            {{lStory.infomation}}
+                                                                                        <p class="description" [innerHTML]="lStory.infomation | noSanitize">
                                                                                         </p>
                                                                                         <a routerLink="/truyen-home/{{lStory.id}}"
                                                                                             class="btn btn-truyen"
@@ -297,7 +296,7 @@
                                                             <a routerLink="/truyen-home/{{item.storyId}}/{{item.id}}" class="align-items-center d-flex"
                                                                title="Đăng bởi {{item.displayName}} lúc {{item.createDate| date: 'HH:mm dd-MM-yyyy' }}">
                                                                     <span class="chapter-name">
-                                                                        <img *ngIf="item.status === 2" src="assets/img/vip-vip.gif" class="img-fluid"
+                                                                        <img *ngIf="item.status === 2 && item.price > 0" src="assets/img/vip-vip.gif" class="img-fluid"
                                                                              height="12px"> Chương {{item.chapterNumber}} : {{item.name}}</span>&nbsp;
                                                                 <span class="chapter-time text-muted">{{item.timeUpdate}}</span>
                                                             </a>

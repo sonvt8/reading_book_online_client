@@ -50,8 +50,8 @@
                                                             </h2>
                                                             <span>
                                                                 <span class="fz-16" >{{_topStoryWeek.cnt}}</span> người truy cập</span>
-                                                            <section class="description text-center" style="-webkit-line-clamp: 2;"
-                                                                     >{{_topStoryWeek.infomation}}</section>
+                                                            <section class="description text-center" style="-webkit-line-clamp: 2;" [innerHTML] = "_topStoryWeek.infomation"
+                                                                     ></section>
                                                         </section>
                                                     </section>
                                                 </ng-template>
@@ -75,7 +75,7 @@
                                                         <section class="view text-secondary">
                                                             <span class="text-red fz-16">{{_topStoryWeek.cnt}}</span>người truy cập
                                                         </section>
-                                                        <section class="description">{{_topStoryWeek.infomation}}</section>
+                                                        <section class="description" [innerHTML] = "_topStoryWeek.infomation"></section>
                                                     </section>
                                                 </section>
                                             </ng-container>
