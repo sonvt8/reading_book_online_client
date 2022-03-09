@@ -17,6 +17,7 @@ export class AdminNavbarComponent implements OnInit {
 
   title: string = "";
   user: User = new User();
+  noImage = "https://randomuser.me/api/portraits/men/97.jpg";
 
   constructor(
     @Inject(DOCUMENT) private document: Document, 

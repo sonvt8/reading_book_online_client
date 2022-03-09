@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public reNameForm!: FormGroup;
   public submitted = false;
   public url: string = this.authService.getUserFromLocalCache().avatar;
-  public avatar!: File ;
+  public avatar: File | null = null ;
   public isChanged: boolean = false;
 
   constructor(
@@ -141,10 +141,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onSelectFile(event: any) {
+    console.log(event);
     if (event.target.files && event.target.files![0]) {
       this.isChanged = true;
       this.avatar = event.target.files[0];
       var reader = new FileReader();
+      console.log(this.avatar);
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
@@ -154,7 +156,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
   public delete() {
-    this.url = "";
+    this.url = this.authService.getUserFromLocalCache().avatar;
+    this.avatar = null;
   }
 
   public upload() {

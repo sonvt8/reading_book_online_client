@@ -76,9 +76,28 @@ export class EditStoryComponent implements OnInit, OnDestroy {
     const formData = this.storyService.createStoryFormData(this.story, this.images);
     this.subscriptions.push(this.storyService.updateAdminStory(formData, this.story.id).subscribe(
         response => {
-            this.router.navigateByUrl('/quan-tri/truyen').then(r => {});
-            editForm.reset();
-            this.toastr.success(`truyện ${response.name} cập nhật thành công!`);
+          if(editForm.value.dealStatus == 1){
+            if(editForm.value.price == 0){
+              this.toastr.error('Giá truyện vip phải lớn hơn 0');
+            }
+            else if(editForm.value.timeDeal == 0){
+              this.toastr.error('Thời hạn vip phải lớn hơn 0');
+            } else{
+              this.router.navigateByUrl('/quan-tri/truyen').then(r => {});
+              editForm.reset();
+              this.toastr.success(`truyện ${response.name} cập nhật thành công!`);
+            }
+          } else {
+            if(editForm.value.timeDeal !=0 || editForm.value.price !=0){
+              this.toastr.error('Không được chỉnh giá hoặc thời gian vip khi truyện đang miễn phí');
+            } else{
+              this.router.navigateByUrl('/quan-tri/truyen').then(r => {});
+              editForm.reset();
+              this.toastr.success(`truyện ${response.name} cập nhật thành công!`);
+            }
+           
+          }
+
         }, error => this.toastr.error(error.error.message)
     ));
   }
