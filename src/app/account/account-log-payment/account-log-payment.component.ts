@@ -2,6 +2,8 @@ import { Pay } from '../../_models/pay';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/_services/account.service';
+import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'account-log-payment',
@@ -14,11 +16,14 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
   public currentPage: number = 1;
   private subscriptions: Subscription[] = [];
   public pages : number[] = [];
+  currentUser : User = new User;
 
-  constructor(private accService: AccountService) { }
+  constructor(private accService: AccountService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.getPayPage(1);
+    
+    this.currentUser = this.auth.getUserFromLocalCache();
   }
 
   ngOnDestroy(): void {
@@ -33,6 +38,12 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.accService.getPaymentHistory(pagenumber)
         .subscribe(data => {
           this.listPay = data.content;
+
+          for(let pay of this.listPay){
+            console.log(pay.type);
+            console.log(this.getContent(pay));
+          }
+          
           this.currentPage = data.number + 1;
           this.totalPages = data.totalPages;
           var startPage = Math.max(1, this.currentPage - 2);
@@ -57,9 +68,9 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
             result = "-" + pay.money;
         } else {
             //for buying vip chapter
-            if (pay.receivedId.id === 1)
+            if (pay.sendId.id === this.currentUser.id)
                 result = "-" + pay.money;
-            else if (pay.sendId.id === 1)
+            else if (pay.receivedId.id === this.currentUser.id)
                 result = "+" + pay.money;
         }
     }
@@ -77,11 +88,12 @@ export class AccountLogPaymentComponent implements OnInit, OnDestroy {
     } else if (pay.type === 5) {
         result = "Đã đổi " + pay.money + " đậu thành Tiền mặt";
     } else {
-        if (pay.receivedId.id === 1)
+        if (pay.sendId.id === this.currentUser.id)
             result = "Thanh toán " + pay.money + " đậu đọc Vip Truyện <a href='/truyen-home/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a><a href='/truyen-home/" + pay.chapter.story.id + "/" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
-        else if (pay.sendId.id === 1)
+        else if (pay.receivedId.id === this.currentUser.id)
             result = "Nhận " + pay.money + " đậu từ Vip Truyện <a routerLink=='/truyen-home/" + pay.chapter.story.id + "'>" + pay.chapter.story.name + " </a><a href='/truyen-home/" + pay.chapter.story.id + "/" + pay.chapter.id + "'> Chương " + pay.chapter.chapterNumber + " </a>";
     }
     return result;
+    
   }
 }
