@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 })
 export class ChapterDetailComponent implements OnInit, OnDestroy {
 
+  currentDay = new Date();
+  numberDay: number = 0;
   chapter: Chapter = new Chapter();
   preChapter: number = 0;
   nextChapter: number = 0;
@@ -71,6 +73,8 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
+          
+          //this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, this.chapter.dealine);
         }
     ));
   }
@@ -82,6 +86,8 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
+          //console.log(this.chapter.dealine.getDate());
+          //this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, this.chapter.dealine);
         }
     ));
   }
@@ -156,6 +162,12 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.router.navigateByUrl(`/truyen-home/${this.sid}/${id}`, { skipLocationChange: true }).then(r => {});
         }, error => this.toastr.error(error.error.message)
     ));
+  }
+
+  getDaysBetweenTwoDay(d1: Date, d2: Date){
+    let ms1 = d1.getTime();
+    let ms2 = d2.getTime();
+    return Math.ceil((ms2 - ms1) / (24*60*60*1000));
   }
 
   ngOnDestroy(): void {
