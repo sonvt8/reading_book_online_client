@@ -73,8 +73,7 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
-          
-          //this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, this.chapter.dealine);
+          this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, new Date(this.chapter.dealine));
         }
     ));
   }
@@ -86,8 +85,7 @@ export class ChapterDetailComponent implements OnInit, OnDestroy {
           this.preChapter = data.preChapter;
           this.nextChapter = data.nextChapter;
           this.checkVip = data.checkVip;
-          //console.log(this.chapter.dealine.getDate());
-          //this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, this.chapter.dealine);
+          this.numberDay = this.getDaysBetweenTwoDay(this.currentDay, new Date(this.chapter.dealine));
         }
     ));
   }

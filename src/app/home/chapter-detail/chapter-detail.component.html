@@ -58,7 +58,7 @@
                             <span class="btn-icon"> <i class="truyen-icon icon-next-bold"></i> </span>
                         </a>
                     </section>
-                    <h5 class="text-center text-danger">Ngày hết hạn đọc truyện Free: {{chapter.dealine | date:'dd/MM/yyyy'}}</h5>
+                    <h5 *ngIf="numberDay>0" class="text-center text-danger">Ngày hết hạn đọc truyện Free: {{chapter.dealine | date:'dd/MM/yyyy'}}</h5>
                     <section class="truyen-read-content" data-font-family="'Palatino Linotype', sans-serif"
                              style="width: 100%">
                         <section class="header">
