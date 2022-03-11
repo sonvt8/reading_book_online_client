@@ -17,6 +17,7 @@ export class Chapter {
     wordCount!: number;
     content!: string;
     price!: number
+    dealine!: Date;
 
     constructor(){
         this.id = 0,

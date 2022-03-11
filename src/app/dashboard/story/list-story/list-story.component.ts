@@ -78,7 +78,10 @@ export class ListStoryComponent implements OnInit, OnDestroy {
         this.subscriptions.push(this.storyService.deleteStory(id).subscribe(data=>{
           this.toastr.success(`Truyện đã xóa thành công!`);
           this.getStory(1);
-        }, error => this.toastr.error(error.error.message)
+        }, error => {
+          this.toastr.error(error.error.message);
+          this.router.navigateByUrl('/quan-tri/truyen').then(r => {});
+        }
         ));
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         
