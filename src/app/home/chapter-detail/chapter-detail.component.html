@@ -58,6 +58,7 @@
                             <span class="btn-icon"> <i class="truyen-icon icon-next-bold"></i> </span>
                         </a>
                     </section>
+                    <h5 *ngIf="numberDay>0" class="text-center text-danger">Ngày hết hạn đọc truyện Free: {{chapter.dealine | date:'dd/MM/yyyy'}}</h5>
                     <section class="truyen-read-content" data-font-family="'Palatino Linotype', sans-serif"
                              style="width: 100%">
                         <section class="header">
@@ -78,12 +79,14 @@
                                 <section class="alert alert-primary col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
                                     <p class="text-justify small">- Chương truyện sau khi mua bạn có 24 tiếng để đọc,
                                         sau 24 tiếng nếu muốn đọc lại bạn phải mua lại.</p>
-                                    <p class="text-justify small">- Chương truyện này sẽ cho đọc miễn phí sau <strong
-                                            >{{chapter.story.timeDeal}}</strong> ngày kể từ lúc được đăng.</p>
+                                    <!-- <p class="text-justify small">- Chương truyện này sẽ cho đọc miễn phí sau <strong
+                                            >{{chapter.story.timeDeal}}</strong> ngày kể từ lúc được đăng.</p> -->
                                 </section>
                                 <section class="clearfix"></section>
                             </section>
                             <ng-container *ngIf="checkVip || chapter.price==0">
+                                
+                                
                                 <div [innerHTML]="chapter.content | noSanitize">
 
                                 </div>

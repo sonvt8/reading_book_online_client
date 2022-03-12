@@ -61,7 +61,10 @@ export class AdminCategoryComponent implements OnInit, OnDestroy {
         this.subscriptions.push(this.categoryService.deleteCategory(id).subscribe(data=>{
           this.toastr.success(`Thể loại đã xóa thành công!`);
           this.getCategory(1, "");
-        }, error => this.toastr.error(error.error.message)
+        }, error => {
+          this.toastr.error(error.error.message);
+          this.router.navigateByUrl('/quan-tri/the-loai').then(r => {});
+        }
         ));
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         
